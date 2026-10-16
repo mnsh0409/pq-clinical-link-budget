@@ -1,0 +1,1154 @@
+{
+ "handshake_bytes": {
+  "C0_classical": {
+   "value": 2353,
+   "unit": "byte",
+   "derived_from": [
+    "tls_hs_bytes_ecdsa_ecdhe[PQC-05]"
+   ]
+  },
+  "C1_hybrid_kex_classical_auth": {
+   "value": 4559,
+   "unit": "byte",
+   "derived_from": [
+    "tls_hs_bytes_ecdsa_ecdhe[PQC-05]",
+    "p256_uncompressed_point_B[SEC-06d]",
+    "kex_x25519mlkem768_client_B[SEC-06b]",
+    "kex_x25519mlkem768_server_B[SEC-06c]"
+   ],
+   "assumption": "the measured classical handshake carries one 65-B P-256 share per direction; each is replaced by the hybrid share"
+  },
+  "C2_full_pq": {
+   "value": 20224,
+   "unit": "byte",
+   "derived_from": [
+    "tls_hs_bytes_dil3_kyb3[PQC-05]"
+   ],
+   "note": "pre-FIPS Dilithium3/Kyber768 sizes; ML-DSA-65 sig 3309 B vs Dilithium3 3293 B and identical Kyber768/ML-KEM-768 sizes -> +32 B per signature at most"
+  }
+ },
+ "handover_scenarios": [
+  {
+   "scenario": "urban macro, car",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 30,
+   "isd_m": 500,
+   "ho_per_h": 82.1,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04d",
+    "NTN-04d"
+   ]
+  },
+  {
+   "scenario": "dense urban, car",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 30,
+   "isd_m": 200,
+   "ho_per_h": 205.2,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04b",
+    "NTN-04d"
+   ]
+  },
+  {
+   "scenario": "rural, vehicle",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 120,
+   "isd_m": 1732,
+   "ho_per_h": 94.8,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04c",
+    "NTN-04c"
+   ]
+  },
+  {
+   "scenario": "highway, low",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 100,
+   "isd_m": 1732,
+   "ho_per_h": 79.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04f"
+   ]
+  },
+  {
+   "scenario": "highway, high",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 300,
+   "isd_m": 1732,
+   "ho_per_h": 237.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04f"
+   ]
+  },
+  {
+   "scenario": "high-speed train",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "speed_kmh": 500,
+   "isd_m": 1732,
+   "ho_per_h": 395.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04e"
+   ]
+  },
+  {
+   "scenario": "NSA 5G freeway (low-band)",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 100,
+   "km_per_ho": 0.4,
+   "ho_per_h": 250.0,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "assumption": "vehicle speed 100 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "NSA 5G freeway (low-band)",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 130,
+   "km_per_ho": 0.4,
+   "ho_per_h": 325.0,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "assumption": "vehicle speed 130 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "SA 5G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 100,
+   "km_per_ho": 0.9,
+   "ho_per_h": 111.1,
+   "ledger": [
+    "MOB-02b"
+   ],
+   "assumption": "vehicle speed 100 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "SA 5G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 130,
+   "km_per_ho": 0.9,
+   "ho_per_h": 144.4,
+   "ledger": [
+    "MOB-02b"
+   ],
+   "assumption": "vehicle speed 130 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "NSA mmWave",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 30,
+   "km_per_ho": 0.13,
+   "ho_per_h": 230.8,
+   "ledger": [
+    "MOB-02c"
+   ],
+   "assumption": "vehicle speed 30 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "NSA mmWave",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 100,
+   "km_per_ho": 0.13,
+   "ho_per_h": 769.2,
+   "ledger": [
+    "MOB-02c"
+   ],
+   "assumption": "vehicle speed 100 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "4G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "speed_kmh": 100,
+   "km_per_ho": 0.6,
+   "ho_per_h": 166.7,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "assumption": "vehicle speed 100 km/h (the paper does not state the drive-test speed)"
+  },
+  {
+   "scenario": "5G at 130 km/h (authors' own figure)",
+   "kind": "measured (Hassan 2022 \u00a75.3)",
+   "speed_kmh": 130,
+   "ho_per_h": 553,
+   "ledger": [
+    "MOB-02d"
+   ],
+   "note": "basis (band/carrier) not stated in the paper; higher than 130/0.4 = 325"
+  },
+  {
+   "scenario": "LEO 600 km, 1000 km earth-moving cell, stationary UE",
+   "kind": "TR 38.821 cell dwell (SECONDARY)",
+   "speed_kmh": 0,
+   "ho_per_h": 27.2,
+   "ledger": [
+    "NTN-05c"
+   ]
+  },
+  {
+   "scenario": "LEO 600 km, 50 km cell, stationary UE",
+   "kind": "TR 38.821 cell dwell (SECONDARY)",
+   "speed_kmh": 0,
+   "ho_per_h": 544.6,
+   "ledger": [
+    "NTN-05c"
+   ]
+  }
+ ],
+ "budget_T1_T2": [
+  {
+   "scenario": "urban macro, car",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 82.1,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04d",
+    "NTN-04d"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 193181.3,
+    "T1_pretty": "193.2 kB",
+    "T2_bytes_per_h_f1pct": 1931.8129999999999,
+    "T2_bytes_per_h_f5pct": 9659.064999999999,
+    "T2_bytes_per_h_f10pct": 19318.129999999997,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 14.31,
+     "ECG 12-lead (288 kb/s)": 0.15,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.09,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.04,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 374293.89999999997,
+    "T1_pretty": "374.3 kB",
+    "T2_bytes_per_h_f1pct": 3742.939,
+    "T2_bytes_per_h_f5pct": 18714.695,
+    "T2_bytes_per_h_f10pct": 37429.39,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 27.73,
+     "ECG 12-lead (288 kb/s)": 0.29,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.17,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.08,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 1660390.4,
+    "T1_pretty": "1.66 MB",
+    "T2_bytes_per_h_f1pct": 16603.904,
+    "T2_bytes_per_h_f5pct": 83019.51999999999,
+    "T2_bytes_per_h_f10pct": 166039.03999999998,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 122.99,
+     "ECG 12-lead (288 kb/s)": 1.28,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.74,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.37,
+     "ambulance video measured (12 Mb/s)": 0.03,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   }
+  },
+  {
+   "scenario": "dense urban, car",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 205.2,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04b",
+    "NTN-04d"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 482835.6,
+    "T1_pretty": "482.8 kB",
+    "T2_bytes_per_h_f1pct": 4828.356,
+    "T2_bytes_per_h_f5pct": 24141.78,
+    "T2_bytes_per_h_f10pct": 48283.56,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 35.77,
+     "ECG 12-lead (288 kb/s)": 0.37,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.21,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.11,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 935506.7999999999,
+    "T1_pretty": "935.5 kB",
+    "T2_bytes_per_h_f1pct": 9355.068,
+    "T2_bytes_per_h_f5pct": 46775.34,
+    "T2_bytes_per_h_f10pct": 93550.68,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 69.3,
+     "ECG 12-lead (288 kb/s)": 0.72,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.42,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.21,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 4149964.8,
+    "T1_pretty": "4.15 MB",
+    "T2_bytes_per_h_f1pct": 41499.648,
+    "T2_bytes_per_h_f5pct": 207498.24,
+    "T2_bytes_per_h_f10pct": 414996.48,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 307.4,
+     "ECG 12-lead (288 kb/s)": 3.2,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.84,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.92,
+     "ambulance video measured (12 Mb/s)": 0.08,
+     "surgical video measured (40 Mb/s)": 0.02
+    }
+   }
+  },
+  {
+   "scenario": "rural, vehicle",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 94.8,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04c",
+    "NTN-04c"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 223064.4,
+    "T1_pretty": "223.1 kB",
+    "T2_bytes_per_h_f1pct": 2230.644,
+    "T2_bytes_per_h_f5pct": 11153.220000000001,
+    "T2_bytes_per_h_f10pct": 22306.440000000002,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 16.52,
+     "ECG 12-lead (288 kb/s)": 0.17,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.1,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.05,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 432193.2,
+    "T1_pretty": "432.2 kB",
+    "T2_bytes_per_h_f1pct": 4321.932,
+    "T2_bytes_per_h_f5pct": 21609.66,
+    "T2_bytes_per_h_f10pct": 43219.32,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 32.01,
+     "ECG 12-lead (288 kb/s)": 0.33,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.19,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.1,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 1917235.2,
+    "T1_pretty": "1.92 MB",
+    "T2_bytes_per_h_f1pct": 19172.352,
+    "T2_bytes_per_h_f5pct": 95861.76000000001,
+    "T2_bytes_per_h_f10pct": 191723.52000000002,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 142.02,
+     "ECG 12-lead (288 kb/s)": 1.48,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.85,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.43,
+     "ambulance video measured (12 Mb/s)": 0.04,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   }
+  },
+  {
+   "scenario": "highway, low",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 79.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04f"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 185887.0,
+    "T1_pretty": "185.9 kB",
+    "T2_bytes_per_h_f1pct": 1858.8700000000001,
+    "T2_bytes_per_h_f5pct": 9294.35,
+    "T2_bytes_per_h_f10pct": 18588.7,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 13.77,
+     "ECG 12-lead (288 kb/s)": 0.14,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.08,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.04,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 360161.0,
+    "T1_pretty": "360.2 kB",
+    "T2_bytes_per_h_f1pct": 3601.61,
+    "T2_bytes_per_h_f5pct": 18008.05,
+    "T2_bytes_per_h_f10pct": 36016.1,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 26.68,
+     "ECG 12-lead (288 kb/s)": 0.28,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.16,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.08,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 1597696.0,
+    "T1_pretty": "1.60 MB",
+    "T2_bytes_per_h_f1pct": 15976.960000000001,
+    "T2_bytes_per_h_f5pct": 79884.8,
+    "T2_bytes_per_h_f10pct": 159769.6,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 118.35,
+     "ECG 12-lead (288 kb/s)": 1.23,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.71,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.36,
+     "ambulance video measured (12 Mb/s)": 0.03,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   }
+  },
+  {
+   "scenario": "highway, high",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 237.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04f"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 557661.0,
+    "T1_pretty": "557.7 kB",
+    "T2_bytes_per_h_f1pct": 5576.610000000001,
+    "T2_bytes_per_h_f5pct": 27883.050000000003,
+    "T2_bytes_per_h_f10pct": 55766.100000000006,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 41.31,
+     "ECG 12-lead (288 kb/s)": 0.43,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.25,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.12,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 1080483.0,
+    "T1_pretty": "1.08 MB",
+    "T2_bytes_per_h_f1pct": 10804.83,
+    "T2_bytes_per_h_f5pct": 54024.15000000001,
+    "T2_bytes_per_h_f10pct": 108048.30000000002,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 80.04,
+     "ECG 12-lead (288 kb/s)": 0.83,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.48,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.24,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 4793088.0,
+    "T1_pretty": "4.79 MB",
+    "T2_bytes_per_h_f1pct": 47930.880000000005,
+    "T2_bytes_per_h_f5pct": 239654.40000000002,
+    "T2_bytes_per_h_f10pct": 479308.80000000005,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 355.04,
+     "ECG 12-lead (288 kb/s)": 3.7,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 2.13,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 1.07,
+     "ambulance video measured (12 Mb/s)": 0.09,
+     "surgical video measured (40 Mb/s)": 0.03
+    }
+   }
+  },
+  {
+   "scenario": "high-speed train",
+   "kind": "analytic (Lin 2013, hex-grid density from TR 38.913 ISD)",
+   "ho_per_h": 395.0,
+   "ledger": [
+    "MOB-01a",
+    "NTN-04f",
+    "NTN-04e"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 929435.0,
+    "T1_pretty": "929.4 kB",
+    "T2_bytes_per_h_f1pct": 9294.35,
+    "T2_bytes_per_h_f5pct": 46471.75,
+    "T2_bytes_per_h_f10pct": 92943.5,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 68.85,
+     "ECG 12-lead (288 kb/s)": 0.72,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.41,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.21,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 1800805.0,
+    "T1_pretty": "1.80 MB",
+    "T2_bytes_per_h_f1pct": 18008.05,
+    "T2_bytes_per_h_f5pct": 90040.25,
+    "T2_bytes_per_h_f10pct": 180080.5,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 133.39,
+     "ECG 12-lead (288 kb/s)": 1.39,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.8,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.4,
+     "ambulance video measured (12 Mb/s)": 0.03,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 7988480.0,
+    "T1_pretty": "7.99 MB",
+    "T2_bytes_per_h_f1pct": 79884.8,
+    "T2_bytes_per_h_f5pct": 399424.0,
+    "T2_bytes_per_h_f10pct": 798848.0,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 591.74,
+     "ECG 12-lead (288 kb/s)": 6.16,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 3.55,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 1.78,
+     "ambulance video measured (12 Mb/s)": 0.15,
+     "surgical video measured (40 Mb/s)": 0.04
+    }
+   }
+  },
+  {
+   "scenario": "NSA 5G freeway (low-band)",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 250.0,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 588250.0,
+    "T1_pretty": "588.2 kB",
+    "T2_bytes_per_h_f1pct": 5882.5,
+    "T2_bytes_per_h_f5pct": 29412.5,
+    "T2_bytes_per_h_f10pct": 58825.0,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 43.57,
+     "ECG 12-lead (288 kb/s)": 0.45,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.26,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.13,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 1139750.0,
+    "T1_pretty": "1.14 MB",
+    "T2_bytes_per_h_f1pct": 11397.5,
+    "T2_bytes_per_h_f5pct": 56987.5,
+    "T2_bytes_per_h_f10pct": 113975.0,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 84.43,
+     "ECG 12-lead (288 kb/s)": 0.88,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.51,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.25,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 5056000.0,
+    "T1_pretty": "5.06 MB",
+    "T2_bytes_per_h_f1pct": 50560.0,
+    "T2_bytes_per_h_f5pct": 252800.0,
+    "T2_bytes_per_h_f10pct": 505600.0,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 374.52,
+     "ECG 12-lead (288 kb/s)": 3.9,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 2.25,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 1.12,
+     "ambulance video measured (12 Mb/s)": 0.09,
+     "surgical video measured (40 Mb/s)": 0.03
+    }
+   }
+  },
+  {
+   "scenario": "NSA 5G freeway (low-band)",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 325.0,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 764725.0,
+    "T1_pretty": "764.7 kB",
+    "T2_bytes_per_h_f1pct": 7647.25,
+    "T2_bytes_per_h_f5pct": 38236.25,
+    "T2_bytes_per_h_f10pct": 76472.5,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 56.65,
+     "ECG 12-lead (288 kb/s)": 0.59,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.34,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.17,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 1481675.0,
+    "T1_pretty": "1.48 MB",
+    "T2_bytes_per_h_f1pct": 14816.75,
+    "T2_bytes_per_h_f5pct": 74083.75,
+    "T2_bytes_per_h_f10pct": 148167.5,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 109.75,
+     "ECG 12-lead (288 kb/s)": 1.14,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.66,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.33,
+     "ambulance video measured (12 Mb/s)": 0.03,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 6572800.0,
+    "T1_pretty": "6.57 MB",
+    "T2_bytes_per_h_f1pct": 65728.0,
+    "T2_bytes_per_h_f5pct": 328640.0,
+    "T2_bytes_per_h_f10pct": 657280.0,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 486.87,
+     "ECG 12-lead (288 kb/s)": 5.07,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 2.92,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 1.46,
+     "ambulance video measured (12 Mb/s)": 0.12,
+     "surgical video measured (40 Mb/s)": 0.04
+    }
+   }
+  },
+  {
+   "scenario": "SA 5G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 111.1,
+   "ledger": [
+    "MOB-02b"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 261418.3,
+    "T1_pretty": "261.4 kB",
+    "T2_bytes_per_h_f1pct": 2614.183,
+    "T2_bytes_per_h_f5pct": 13070.914999999999,
+    "T2_bytes_per_h_f10pct": 26141.829999999998,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 19.36,
+     "ECG 12-lead (288 kb/s)": 0.2,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.12,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.06,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 506504.89999999997,
+    "T1_pretty": "506.5 kB",
+    "T2_bytes_per_h_f1pct": 5065.049,
+    "T2_bytes_per_h_f5pct": 25325.245,
+    "T2_bytes_per_h_f10pct": 50650.49,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 37.52,
+     "ECG 12-lead (288 kb/s)": 0.39,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.23,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.11,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 2246886.4,
+    "T1_pretty": "2.25 MB",
+    "T2_bytes_per_h_f1pct": 22468.864,
+    "T2_bytes_per_h_f5pct": 112344.31999999999,
+    "T2_bytes_per_h_f10pct": 224688.63999999998,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 166.44,
+     "ECG 12-lead (288 kb/s)": 1.73,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.0,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.5,
+     "ambulance video measured (12 Mb/s)": 0.04,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   }
+  },
+  {
+   "scenario": "SA 5G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 144.4,
+   "ledger": [
+    "MOB-02b"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 339773.2,
+    "T1_pretty": "339.8 kB",
+    "T2_bytes_per_h_f1pct": 3397.7320000000004,
+    "T2_bytes_per_h_f5pct": 16988.66,
+    "T2_bytes_per_h_f10pct": 33977.32,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 25.17,
+     "ECG 12-lead (288 kb/s)": 0.26,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.15,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.08,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 658319.6,
+    "T1_pretty": "658.3 kB",
+    "T2_bytes_per_h_f1pct": 6583.196000000001,
+    "T2_bytes_per_h_f5pct": 32915.98,
+    "T2_bytes_per_h_f10pct": 65831.96,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 48.76,
+     "ECG 12-lead (288 kb/s)": 0.51,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.29,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.15,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 2920345.6,
+    "T1_pretty": "2.92 MB",
+    "T2_bytes_per_h_f1pct": 29203.456000000002,
+    "T2_bytes_per_h_f5pct": 146017.28,
+    "T2_bytes_per_h_f10pct": 292034.56,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 216.32,
+     "ECG 12-lead (288 kb/s)": 2.25,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.3,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.65,
+     "ambulance video measured (12 Mb/s)": 0.05,
+     "surgical video measured (40 Mb/s)": 0.02
+    }
+   }
+  },
+  {
+   "scenario": "NSA mmWave",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 230.8,
+   "ledger": [
+    "MOB-02c"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 543072.4,
+    "T1_pretty": "543.1 kB",
+    "T2_bytes_per_h_f1pct": 5430.724000000001,
+    "T2_bytes_per_h_f5pct": 27153.620000000003,
+    "T2_bytes_per_h_f10pct": 54307.240000000005,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 40.23,
+     "ECG 12-lead (288 kb/s)": 0.42,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.24,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.12,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 1052217.2,
+    "T1_pretty": "1.05 MB",
+    "T2_bytes_per_h_f1pct": 10522.172,
+    "T2_bytes_per_h_f5pct": 52610.86,
+    "T2_bytes_per_h_f10pct": 105221.72,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 77.94,
+     "ECG 12-lead (288 kb/s)": 0.81,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.47,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.23,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 4667699.2,
+    "T1_pretty": "4.67 MB",
+    "T2_bytes_per_h_f1pct": 46676.992000000006,
+    "T2_bytes_per_h_f5pct": 233384.96000000002,
+    "T2_bytes_per_h_f10pct": 466769.92000000004,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 345.76,
+     "ECG 12-lead (288 kb/s)": 3.6,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 2.07,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 1.04,
+     "ambulance video measured (12 Mb/s)": 0.09,
+     "surgical video measured (40 Mb/s)": 0.03
+    }
+   }
+  },
+  {
+   "scenario": "NSA mmWave",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 769.2,
+   "ledger": [
+    "MOB-02c"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 1809927.6,
+    "T1_pretty": "1.81 MB",
+    "T2_bytes_per_h_f1pct": 18099.276,
+    "T2_bytes_per_h_f5pct": 90496.38000000002,
+    "T2_bytes_per_h_f10pct": 180992.76000000004,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 134.07,
+     "ECG 12-lead (288 kb/s)": 1.4,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.8,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.4,
+     "ambulance video measured (12 Mb/s)": 0.03,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 3506782.8000000003,
+    "T1_pretty": "3.51 MB",
+    "T2_bytes_per_h_f1pct": 35067.828,
+    "T2_bytes_per_h_f5pct": 175339.14000000004,
+    "T2_bytes_per_h_f10pct": 350678.2800000001,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 259.76,
+     "ECG 12-lead (288 kb/s)": 2.71,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.56,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.78,
+     "ambulance video measured (12 Mb/s)": 0.06,
+     "surgical video measured (40 Mb/s)": 0.02
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 15556300.8,
+    "T1_pretty": "15.56 MB",
+    "T2_bytes_per_h_f1pct": 155563.00800000003,
+    "T2_bytes_per_h_f5pct": 777815.0400000002,
+    "T2_bytes_per_h_f10pct": 1555630.0800000003,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 1152.32,
+     "ECG 12-lead (288 kb/s)": 12.0,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 6.91,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 3.46,
+     "ambulance video measured (12 Mb/s)": 0.29,
+     "surgical video measured (40 Mb/s)": 0.09
+    }
+   }
+  },
+  {
+   "scenario": "4G freeway",
+   "kind": "measured distance per HO (Hassan 2022) x assumed speed",
+   "ho_per_h": 166.7,
+   "ledger": [
+    "MOB-02a"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 392245.1,
+    "T1_pretty": "392.2 kB",
+    "T2_bytes_per_h_f1pct": 3922.4509999999996,
+    "T2_bytes_per_h_f5pct": 19612.254999999997,
+    "T2_bytes_per_h_f10pct": 39224.509999999995,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 29.06,
+     "ECG 12-lead (288 kb/s)": 0.3,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.17,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.09,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 759985.2999999999,
+    "T1_pretty": "760.0 kB",
+    "T2_bytes_per_h_f1pct": 7599.852999999999,
+    "T2_bytes_per_h_f5pct": 37999.265,
+    "T2_bytes_per_h_f10pct": 75998.53,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 56.3,
+     "ECG 12-lead (288 kb/s)": 0.59,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.34,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.17,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 3371340.8,
+    "T1_pretty": "3.37 MB",
+    "T2_bytes_per_h_f1pct": 33713.407999999996,
+    "T2_bytes_per_h_f5pct": 168567.03999999998,
+    "T2_bytes_per_h_f10pct": 337134.07999999996,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 249.73,
+     "ECG 12-lead (288 kb/s)": 2.6,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.5,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.75,
+     "ambulance video measured (12 Mb/s)": 0.06,
+     "surgical video measured (40 Mb/s)": 0.02
+    }
+   }
+  },
+  {
+   "scenario": "5G at 130 km/h (authors' own figure)",
+   "kind": "measured (Hassan 2022 \u00a75.3)",
+   "ho_per_h": 553,
+   "ledger": [
+    "MOB-02d"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 1301209,
+    "T1_pretty": "1.30 MB",
+    "T2_bytes_per_h_f1pct": 13012.09,
+    "T2_bytes_per_h_f5pct": 65060.450000000004,
+    "T2_bytes_per_h_f10pct": 130120.90000000001,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 96.39,
+     "ECG 12-lead (288 kb/s)": 1.0,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.58,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.29,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 2521127,
+    "T1_pretty": "2.52 MB",
+    "T2_bytes_per_h_f1pct": 25211.27,
+    "T2_bytes_per_h_f5pct": 126056.35,
+    "T2_bytes_per_h_f10pct": 252112.7,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 186.75,
+     "ECG 12-lead (288 kb/s)": 1.95,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.12,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.56,
+     "ambulance video measured (12 Mb/s)": 0.05,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 11183872,
+    "T1_pretty": "11.18 MB",
+    "T2_bytes_per_h_f1pct": 111838.72,
+    "T2_bytes_per_h_f5pct": 559193.6000000001,
+    "T2_bytes_per_h_f10pct": 1118387.2000000002,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 828.43,
+     "ECG 12-lead (288 kb/s)": 8.63,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 4.97,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 2.49,
+     "ambulance video measured (12 Mb/s)": 0.21,
+     "surgical video measured (40 Mb/s)": 0.06
+    }
+   }
+  },
+  {
+   "scenario": "LEO 600 km, 1000 km earth-moving cell, stationary UE",
+   "kind": "TR 38.821 cell dwell (SECONDARY)",
+   "ho_per_h": 27.2,
+   "ledger": [
+    "NTN-05c"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 64001.6,
+    "T1_pretty": "64.0 kB",
+    "T2_bytes_per_h_f1pct": 640.0160000000001,
+    "T2_bytes_per_h_f5pct": 3200.0800000000004,
+    "T2_bytes_per_h_f10pct": 6400.160000000001,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 4.74,
+     "ECG 12-lead (288 kb/s)": 0.05,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.03,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.01,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 124004.8,
+    "T1_pretty": "124.0 kB",
+    "T2_bytes_per_h_f1pct": 1240.048,
+    "T2_bytes_per_h_f5pct": 6200.240000000001,
+    "T2_bytes_per_h_f10pct": 12400.480000000001,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 9.19,
+     "ECG 12-lead (288 kb/s)": 0.1,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.06,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.03,
+     "ambulance video measured (12 Mb/s)": 0.0,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 550092.7999999999,
+    "T1_pretty": "550.1 kB",
+    "T2_bytes_per_h_f1pct": 5500.928000000001,
+    "T2_bytes_per_h_f5pct": 27504.640000000003,
+    "T2_bytes_per_h_f10pct": 55009.280000000006,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 40.75,
+     "ECG 12-lead (288 kb/s)": 0.42,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.24,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.12,
+     "ambulance video measured (12 Mb/s)": 0.01,
+     "surgical video measured (40 Mb/s)": 0.0
+    }
+   }
+  },
+  {
+   "scenario": "LEO 600 km, 50 km cell, stationary UE",
+   "kind": "TR 38.821 cell dwell (SECONDARY)",
+   "ho_per_h": 544.6,
+   "ledger": [
+    "NTN-05c"
+   ],
+   "C0_classical": {
+    "T1_bytes_per_h": 1281443.8,
+    "T1_pretty": "1.28 MB",
+    "T2_bytes_per_h_f1pct": 12814.438000000002,
+    "T2_bytes_per_h_f5pct": 64072.19000000001,
+    "T2_bytes_per_h_f10pct": 128144.38000000002,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 94.92,
+     "ECG 12-lead (288 kb/s)": 0.99,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.57,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.28,
+     "ambulance video measured (12 Mb/s)": 0.02,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C1_hybrid_kex_classical_auth": {
+    "T1_bytes_per_h": 2482831.4,
+    "T1_pretty": "2.48 MB",
+    "T2_bytes_per_h_f1pct": 24828.314000000002,
+    "T2_bytes_per_h_f5pct": 124141.57000000002,
+    "T2_bytes_per_h_f10pct": 248283.14000000004,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 183.91,
+     "ECG 12-lead (288 kb/s)": 1.92,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 1.1,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 0.55,
+     "ambulance video measured (12 Mb/s)": 0.05,
+     "surgical video measured (40 Mb/s)": 0.01
+    }
+   },
+   "C2_full_pq": {
+    "T1_bytes_per_h": 11013990.4,
+    "T1_pretty": "11.01 MB",
+    "T2_bytes_per_h_f1pct": 110139.90400000001,
+    "T2_bytes_per_h_f5pct": 550699.5200000001,
+    "T2_bytes_per_h_f10pct": 1101399.0400000003,
+    "T1_share_of_stream_pct": {
+     "ECG wearable (3 kb/s)": 815.85,
+     "ECG 12-lead (288 kb/s)": 8.5,
+     "cardiac telemetry TR 22.826 (0.5 Mb/s)": 4.9,
+     "ambulance vitals TR 22.826 (1 Mb/s)": 2.45,
+     "ambulance video measured (12 Mb/s)": 0.2,
+     "surgical video measured (40 Mb/s)": 0.06
+    }
+   }
+  }
+ ],
+ "policy_rehandshake_T3_share_of_stream_pct_per_hourly_handshake": {
+  "C0_classical": {
+   "ECG wearable (3 kb/s)": 0.1743,
+   "ECG 12-lead (288 kb/s)": 0.0018,
+   "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.001,
+   "ambulance vitals TR 22.826 (1 Mb/s)": 0.0005,
+   "ambulance video measured (12 Mb/s)": 0.0,
+   "surgical video measured (40 Mb/s)": 0.0
+  },
+  "C1_hybrid_kex_classical_auth": {
+   "ECG wearable (3 kb/s)": 0.3377,
+   "ECG 12-lead (288 kb/s)": 0.0035,
+   "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.002,
+   "ambulance vitals TR 22.826 (1 Mb/s)": 0.001,
+   "ambulance video measured (12 Mb/s)": 0.0001,
+   "surgical video measured (40 Mb/s)": 0.0
+  },
+  "C2_full_pq": {
+   "ECG wearable (3 kb/s)": 1.4981,
+   "ECG 12-lead (288 kb/s)": 0.0156,
+   "cardiac telemetry TR 22.826 (0.5 Mb/s)": 0.009,
+   "ambulance vitals TR 22.826 (1 Mb/s)": 0.0045,
+   "ambulance video measured (12 Mb/s)": 0.0004,
+   "surgical video measured (40 Mb/s)": 0.0001
+  }
+ },
+ "reestablishment_latency": {
+  "5G ambulance field test (Berlet 2022, parked, sliced core)": {
+   "rtt_ms": 10,
+   "ledger": "STR-07",
+   "handshake_1rtt_ms": 10,
+   "with_transport_setup_2rtt_ms": 20,
+   "vs_RAS_local_2ms": 5.0,
+   "vs_RAD_remote_20ms": 0.5,
+   "vs_telemetry_100ms": 0.1,
+   "vs_measured_5G_HO_interruption_NSA_167ms": 0.06
+  },
+  "5G telesurgery demo (Moustris 2023, ~300 km, one 5G end)": {
+   "rtt_ms": 18,
+   "ledger": "STR-06",
+   "handshake_1rtt_ms": 18,
+   "with_transport_setup_2rtt_ms": 36,
+   "vs_RAS_local_2ms": 9.0,
+   "vs_RAD_remote_20ms": 0.9,
+   "vs_telemetry_100ms": 0.18,
+   "vs_measured_5G_HO_interruption_NSA_167ms": 0.11
+  },
+  "LEO 600 km transparent (TR 38.821 max RTD)": {
+   "rtt_ms": 25.77,
+   "ledger": "NTN-01e",
+   "handshake_1rtt_ms": 25.77,
+   "with_transport_setup_2rtt_ms": 51.54,
+   "vs_RAS_local_2ms": 12.9,
+   "vs_RAD_remote_20ms": 1.29,
+   "vs_telemetry_100ms": 0.26,
+   "vs_measured_5G_HO_interruption_NSA_167ms": 0.15
+  },
+  "LEO 600 km regenerative": {
+   "rtt_ms": 12.89,
+   "ledger": "NTN-01e",
+   "handshake_1rtt_ms": 12.89,
+   "with_transport_setup_2rtt_ms": 25.78,
+   "vs_RAS_local_2ms": 6.4,
+   "vs_RAD_remote_20ms": 0.64,
+   "vs_telemetry_100ms": 0.13,
+   "vs_measured_5G_HO_interruption_NSA_167ms": 0.08
+  },
+  "GEO transparent": {
+   "rtt_ms": 541.46,
+   "ledger": "NTN-01e",
+   "handshake_1rtt_ms": 541.46,
+   "with_transport_setup_2rtt_ms": 1082.92,
+   "vs_RAS_local_2ms": 270.7,
+   "vs_RAD_remote_20ms": 27.07,
+   "vs_telemetry_100ms": 5.41,
+   "vs_measured_5G_HO_interruption_NSA_167ms": 3.24
+  }
+ },
+ "reading": [
+  "T1 is an upper bound: 5G derives fresh AS keys at handover from the existing KAMF-rooted context (TS 33.501 \u00a76.9.2.1.1, SECONDARY) and the PDU session persists; an application-layer PQ re-handshake per handover only happens if the transport session is torn down.",
+  "Even so, for a 3 kb/s wearable ECG the per-handover full-PQ bound exceeds the stream itself at highway handover rates (see T1_share_of_stream_pct); DTLS CID (RFC 9146/9147) and PSK resumption (RFC 9846 \u00a72.2) are the mechanisms that keep sessions across address changes.",
+  "Every RTT anchor exceeds the 2 ms local-surgery budget by an order of magnitude and the LEO RTD exceeds the 20 ms remote budget: no key establishment can sit inside a URLLC control loop; it must be pre-established and rekeyed symmetrically."
+ ]
+}

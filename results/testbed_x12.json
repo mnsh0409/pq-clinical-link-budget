@@ -1,0 +1,2035 @@
+{
+ "5G-hosp|C0|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C0",
+  "chain": 2,
+  "group": "secp256r1",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    250,
+    1
+   ],
+   [
+    "S>C",
+    886,
+    1
+   ],
+   [
+    "C>S",
+    1629,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 1877,
+   "max": 2902
+  },
+  "payload_S2C_B": {
+   "min": 908,
+   "max": 910
+  },
+  "n_flights": [
+   4,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.698000000047614
+  },
+  "t_hs_client_ms": {
+   "median": 22.672500000055607,
+   "p90": 23.470000000088476
+  },
+  "t_first_record_ms": {
+   "median": 28.445500000032098,
+   "p10": 28.058999999984735,
+   "p90": 29.73500000007334,
+   "min": 27.708999999958905,
+   "max": 47.037999999929525
+  },
+  "wall_s": 27.8
+ },
+ "5G-hosp|C1|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C1",
+  "chain": 2,
+  "group": "X25519MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1393,
+    1
+   ],
+   [
+    "S>C",
+    1941,
+    2
+   ],
+   [
+    "C>S",
+    1628,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 3021,
+   "max": 6045
+  },
+  "payload_S2C_B": {
+   "min": 1963,
+   "max": 3930
+  },
+  "n_flights": [
+   4,
+   8
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.676999999986947
+  },
+  "t_hs_client_ms": {
+   "median": 22.82950000000028,
+   "p90": 23.394000000052984
+  },
+  "t_first_record_ms": {
+   "median": 28.53449999992108,
+   "p10": 28.222000000027947,
+   "p90": 29.32399999997415,
+   "min": 28.001000000017484,
+   "max": 31.893999999965672
+  },
+  "wall_s": 27.8
+ },
+ "5G-hosp|C2|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C2",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10275,
+    8
+   ],
+   [
+    "C>S",
+    9994,
+    8
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 11355,
+   "max": 11355
+  },
+  "payload_S2C_B": {
+   "min": 10299,
+   "max": 10299
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.685499999965486
+  },
+  "t_hs_client_ms": {
+   "median": 24.77550000003248,
+   "p90": 27.15800000009949
+  },
+  "t_first_record_ms": {
+   "median": 30.893500000047425,
+   "p10": 29.625000000010004,
+   "p90": 33.18100000001323,
+   "min": 29.017999999950916,
+   "max": 41.00900000003094
+  },
+  "wall_s": 28.4
+ },
+ "5G-hosp|C2u|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C2u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10200,
+    8
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2463,
+   "max": 2463
+  },
+  "payload_S2C_B": {
+   "min": 10224,
+   "max": 10224
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.73100000002114
+  },
+  "t_hs_client_ms": {
+   "median": 23.775000000000546,
+   "p90": 25.62399999999343
+  },
+  "t_first_record_ms": {
+   "median": 29.11549999998897,
+   "p10": 28.277000000002772,
+   "p90": 31.086999999956788,
+   "min": 27.8489999999465,
+   "max": 61.320999999907144
+  },
+  "wall_s": 28.0
+ },
+ "5G-hosp|C2|ch3": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C2",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    15806,
+    12
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 16886
+  },
+  "payload_S2C_B": {
+   "min": 15830,
+   "max": 15830
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.72599999997692
+  },
+  "t_hs_client_ms": {
+   "median": 34.08300000000963,
+   "p90": 36.03499999996984
+  },
+  "t_first_record_ms": {
+   "median": 48.765000000003056,
+   "p10": 48.39900000001762,
+   "p90": 49.57200000001194,
+   "min": 48.18899999997939,
+   "max": 52.589000000011765
+  },
+  "wall_s": 31.9
+ },
+ "5G-tele|C0|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C0",
+  "chain": 2,
+  "group": "secp256r1",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    250,
+    1
+   ],
+   [
+    "S>C",
+    885,
+    1
+   ],
+   [
+    "C>S",
+    1630,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 1878,
+   "max": 1880
+  },
+  "payload_S2C_B": {
+   "min": 907,
+   "max": 910
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.75599999999622
+  },
+  "t_hs_client_ms": {
+   "median": 38.791000000060194,
+   "p90": 39.34100000003582
+  },
+  "t_first_record_ms": {
+   "median": 48.570500000039374,
+   "p10": 48.21299999991879,
+   "p90": 49.3539999999939,
+   "min": 48.03100000003724,
+   "max": 54.08599999998387
+  },
+  "wall_s": 32.6
+ },
+ "5G-tele|C1|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C1",
+  "chain": 2,
+  "group": "X25519MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1393,
+    1
+   ],
+   [
+    "S>C",
+    1940,
+    2
+   ],
+   [
+    "C>S",
+    1630,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 3021,
+   "max": 3023
+  },
+  "payload_S2C_B": {
+   "min": 1963,
+   "max": 1965
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.8085000000342
+  },
+  "t_hs_client_ms": {
+   "median": 39.2460000000483,
+   "p90": 40.41400000005524
+  },
+  "t_first_record_ms": {
+   "median": 49.10199999994802,
+   "p10": 48.566999999934524,
+   "p90": 50.54900000004636,
+   "min": 48.29800000004525,
+   "max": 55.94900000005509
+  },
+  "wall_s": 32.8
+ },
+ "5G-tele|C2|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C2",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10275,
+    8
+   ],
+   [
+    "C>S",
+    9994,
+    8
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 11355,
+   "max": 11355
+  },
+  "payload_S2C_B": {
+   "min": 10299,
+   "max": 10299
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.793999999957123
+  },
+  "t_hs_client_ms": {
+   "median": 41.295499999989715,
+   "p90": 43.628000000012435
+  },
+  "t_first_record_ms": {
+   "median": 51.381499999990865,
+   "p10": 49.856999999974505,
+   "p90": 53.834000000051674,
+   "min": 49.36699999996108,
+   "max": 59.25999999999476
+  },
+  "wall_s": 33.2
+ },
+ "5G-tele|C2u|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C2u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10200,
+    8
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2463,
+   "max": 2463
+  },
+  "payload_S2C_B": {
+   "min": 10224,
+   "max": 10224
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.747500000074524
+  },
+  "t_hs_client_ms": {
+   "median": 39.679999999975735,
+   "p90": 41.54700000003686
+  },
+  "t_first_record_ms": {
+   "median": 49.01999999998452,
+   "p10": 48.28099999997448,
+   "p90": 50.95500000004449,
+   "min": 48.01499999996395,
+   "max": 53.12800000001516
+  },
+  "wall_s": 32.8
+ },
+ "5G-tele|C2|ch3": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C2",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    15806,
+    12
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 16886
+  },
+  "payload_S2C_B": {
+   "min": 15830,
+   "max": 15830
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.711999999823092
+  },
+  "t_hs_client_ms": {
+   "median": 57.84350000004679,
+   "p90": 59.48399999988396
+  },
+  "t_first_record_ms": {
+   "median": 84.69450000006873,
+   "p10": 84.40299999983836,
+   "p90": 85.52499999996144,
+   "min": 84.17600000007042,
+   "max": 87.65399999992951
+  },
+  "wall_s": 39.9
+ },
+ "LTE-M|C0|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C0",
+  "chain": 2,
+  "group": "secp256r1",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    250,
+    1
+   ],
+   [
+    "S>C",
+    886,
+    1
+   ],
+   [
+    "C>S",
+    2652,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2900,
+   "max": 2902
+  },
+  "payload_S2C_B": {
+   "min": 908,
+   "max": 910
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.171000000033018
+  },
+  "t_hs_client_ms": {
+   "median": 60.556000000019594,
+   "p90": 60.77899999991132
+  },
+  "t_first_record_ms": {
+   "median": 103.49799999994502,
+   "p10": 103.34100000000035,
+   "p90": 103.84099999987484,
+   "min": 103.31300000007104,
+   "max": 105.71999999979198
+  },
+  "wall_s": 7.3
+ },
+ "LTE-M|C1|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C1",
+  "chain": 2,
+  "group": "X25519MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1393,
+    1
+   ],
+   [
+    "S>C",
+    2432,
+    3
+   ],
+   [
+    "C>S",
+    2651,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 4043,
+   "max": 4045
+  },
+  "payload_S2C_B": {
+   "min": 2454,
+   "max": 2458
+  },
+  "n_flights": [
+   4,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.175999999906708
+  },
+  "t_hs_client_ms": {
+   "median": 114.43249999990712,
+   "p90": 115.003999999999
+  },
+  "t_first_record_ms": {
+   "median": 157.4560000000247,
+   "p10": 157.35200000017358,
+   "p90": 158.0229999999574,
+   "min": 157.29400000009264,
+   "max": 159.9830000000111
+  },
+  "wall_s": 9.0
+ },
+ "LTE-M|C2|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C2",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10910,
+    9
+   ],
+   [
+    "C>S",
+    11016,
+    9
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 12377,
+   "max": 12377
+  },
+  "payload_S2C_B": {
+   "min": 10934,
+   "max": 10934
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.20800000005329
+  },
+  "t_hs_client_ms": {
+   "median": 347.4944999999252,
+   "p90": 348.75000000010914
+  },
+  "t_first_record_ms": {
+   "median": 574.196000000029,
+   "p10": 574.0479999999479,
+   "p90": 574.4709999999031,
+   "min": 573.9679999999225,
+   "max": 574.869999999919
+  },
+  "wall_s": 21.5
+ },
+ "LTE-M|C2u|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C2u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    10760,
+    9
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2463,
+   "max": 2463
+  },
+  "payload_S2C_B": {
+   "min": 10784,
+   "max": 10784
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.257499999985157
+  },
+  "t_hs_client_ms": {
+   "median": 344.55900000000383,
+   "p90": 345.57700000004843
+  },
+  "t_first_record_ms": {
+   "median": 376.74700000002304,
+   "p10": 376.5970000001744,
+   "p90": 377.4719999998979,
+   "min": 376.453999999967,
+   "max": 379.1870000000017
+  },
+  "wall_s": 15.6
+ },
+ "LTE-M|C2|ch3": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C2",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    15806,
+    12
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 16886
+  },
+  "payload_S2C_B": {
+   "min": 15830,
+   "max": 15830
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.294499999891741
+  },
+  "t_hs_client_ms": {
+   "median": 502.2040000000061,
+   "p90": 504.0270000001783
+  },
+  "t_first_record_ms": {
+   "median": 850.770000000125,
+   "p10": 850.6290000000263,
+   "p90": 851.0029999999915,
+   "min": 850.4310000000714,
+   "max": 851.1899999998604
+  },
+  "wall_s": 29.8
+ },
+ "NB-IoT|C0|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C0",
+  "chain": 2,
+  "group": "secp256r1",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    250,
+    1
+   ],
+   [
+    "S>C",
+    1770,
+    2
+   ],
+   [
+    "C>S",
+    2651,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2900,
+   "max": 2902
+  },
+  "payload_S2C_B": {
+   "min": 1792,
+   "max": 1796
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.451999999912005
+  },
+  "t_hs_client_ms": {
+   "median": 413.1030000000919,
+   "p90": 413.4630000000925
+  },
+  "t_first_record_ms": {
+   "median": 639.0700000001743,
+   "p10": 638.883000000078,
+   "p90": 639.6599999998216,
+   "min": 638.7049999998453,
+   "max": 641.0590000000411
+  },
+  "wall_s": 14.1
+ },
+ "NB-IoT|C1|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C1",
+  "chain": 2,
+  "group": "X25519MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1393,
+    1
+   ],
+   [
+    "S>C",
+    2432,
+    3
+   ],
+   [
+    "C>S",
+    2651,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 4043,
+   "max": 4649
+  },
+  "payload_S2C_B": {
+   "min": 2454,
+   "max": 3902
+  },
+  "n_flights": [
+   4,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 51.97700000007899
+  },
+  "t_hs_client_ms": {
+   "median": 906.2340000000404,
+   "p90": 906.6159999999854
+  },
+  "t_first_record_ms": {
+   "median": 1132.2490000000016,
+   "p10": 1122.867000000042,
+   "p90": 1132.675000000063,
+   "min": 1122.0579999999245,
+   "max": 1133.0380000001696
+  },
+  "wall_s": 20.6
+ },
+ "NB-IoT|C2|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C2",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    12358,
+    10
+   ],
+   [
+    "C>S",
+    11016,
+    9
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 12377,
+   "max": 13825
+  },
+  "payload_S2C_B": {
+   "min": 12382,
+   "max": 12382
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 61.55399999988731
+  },
+  "t_hs_client_ms": {
+   "median": 3601.134000000002,
+   "p90": 3782.423999999992
+  },
+  "t_first_record_ms": {
+   "median": 4886.289999999917,
+   "p10": 4885.915999999952,
+   "p90": 5069.778000000042,
+   "min": 4867.926000000125,
+   "max": 5070.007999999916
+  },
+  "wall_s": 77.8
+ },
+ "NB-IoT|C2u|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C2u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    12208,
+    10
+   ],
+   [
+    "C>S",
+    2124,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ],
+   [
+    "C>S",
+    1102,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 0,
+   "max": 4587
+  },
+  "payload_S2C_B": {
+   "min": 0,
+   "max": 12232
+  },
+  "n_flights": [
+   0,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.46800000009898
+  },
+  "t_hs_client_ms": {
+   "median": 3555.894999999964,
+   "p90": 3558.5759999999027
+  },
+  "t_first_record_ms": {
+   "median": 3718.3789999999135,
+   "p10": 3718.1359999999586,
+   "p90": 3720.8550000000287,
+   "min": 3718.057999999928,
+   "max": 3721.1260000001403
+  },
+  "wall_s": 66.7
+ },
+ "NB-IoT|C2|ch3": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C2",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    17254,
+    13
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 18334
+  },
+  "payload_S2C_B": {
+   "min": 17278,
+   "max": 17278
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.936000000054264
+  },
+  "t_hs_client_ms": {
+   "median": 5422.347999999829,
+   "p90": 5426.108999999997
+  },
+  "t_first_record_ms": {
+   "median": 7357.334000000037,
+   "p10": 7352.772000000186,
+   "p90": 7412.973000000193,
+   "min": 7352.662000000009,
+   "max": 7420.692000000145
+  },
+  "wall_s": 114.0
+ },
+ "5G-hosp|C3|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C3",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3911,
+    3
+   ],
+   [
+    "C>S",
+    3617,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 4983,
+   "max": 4998
+  },
+  "payload_S2C_B": {
+   "min": 3932,
+   "max": 3944
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.79149999998208
+  },
+  "t_hs_client_ms": {
+   "median": 23.666500000047108,
+   "p90": 25.49599999997554
+  },
+  "t_first_record_ms": {
+   "median": 29.627500000003693,
+   "p10": 29.148999999961234,
+   "p90": 31.73000000003867,
+   "min": 28.874999999970896,
+   "max": 48.77899999996771
+  },
+  "wall_s": 28.2
+ },
+ "5G-hosp|C3u|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C3u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3824,
+    3
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2475,
+   "max": 2475
+  },
+  "payload_S2C_B": {
+   "min": 3846,
+   "max": 3856
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.813499999983378
+  },
+  "t_hs_client_ms": {
+   "median": 23.39200000000119,
+   "p90": 24.629000000004453
+  },
+  "t_first_record_ms": {
+   "median": 28.787500000021282,
+   "p10": 28.297999999949752,
+   "p90": 30.342000000018743,
+   "min": 27.892999999949097,
+   "max": 36.539000000061606
+  },
+  "wall_s": 28.0
+ },
+ "5G-hosp|C3|ch3": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C3",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5727,
+    5
+   ],
+   [
+    "C>S",
+    5437,
+    5
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 6803,
+   "max": 6813
+  },
+  "payload_S2C_B": {
+   "min": 5745,
+   "max": 5936
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.806500000001051
+  },
+  "t_hs_client_ms": {
+   "median": 23.771000000010645,
+   "p90": 25.71100000000115
+  },
+  "t_first_record_ms": {
+   "median": 30.07300000001578,
+   "p10": 29.40000000000964,
+   "p90": 32.4039999999286,
+   "min": 29.032000000029257,
+   "max": 70.27700000003279
+  },
+  "wall_s": 28.3
+ },
+ "5G-tele|C3|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C3",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3914,
+    3
+   ],
+   [
+    "C>S",
+    3621,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 4986,
+   "max": 4996
+  },
+  "payload_S2C_B": {
+   "min": 3933,
+   "max": 3943
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.83999999995467
+  },
+  "t_hs_client_ms": {
+   "median": 39.77450000002136,
+   "p90": 41.80199999996148
+  },
+  "t_first_record_ms": {
+   "median": 49.751000000014756,
+   "p10": 49.37399999994341,
+   "p90": 51.884999999970205,
+   "min": 49.098999999955595,
+   "max": 57.04400000001897
+  },
+  "wall_s": 33.0
+ },
+ "5G-tele|C3u|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C3u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3830,
+    3
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2475,
+   "max": 4950
+  },
+  "payload_S2C_B": {
+   "min": 3844,
+   "max": 7704
+  },
+  "n_flights": [
+   4,
+   8
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.81900000000769
+  },
+  "t_hs_client_ms": {
+   "median": 39.38949999997021,
+   "p90": 40.39799999998195
+  },
+  "t_first_record_ms": {
+   "median": 48.83749999999054,
+   "p10": 48.384000000055494,
+   "p90": 49.85799999997198,
+   "min": 48.054999999976644,
+   "max": 73.67199999998775
+  },
+  "wall_s": 32.7
+ },
+ "5G-tele|C3|ch3": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C3",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5726,
+    5
+   ],
+   [
+    "C>S",
+    5434,
+    5
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 6803,
+   "max": 6814
+  },
+  "payload_S2C_B": {
+   "min": 5746,
+   "max": 5755
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.81300000002284
+  },
+  "t_hs_client_ms": {
+   "median": 39.76849999997967,
+   "p90": 41.340999999988526
+  },
+  "t_first_record_ms": {
+   "median": 49.924499999974614,
+   "p10": 49.38400000003185,
+   "p90": 51.65199999999004,
+   "min": 49.10899999993035,
+   "max": 58.92600000004222
+  },
+  "wall_s": 33.0
+ },
+ "LTE-M|C3|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C3",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    4934,
+    4
+   ],
+   [
+    "C>S",
+    4638,
+    4
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 6008,
+   "max": 6017
+  },
+  "payload_S2C_B": {
+   "min": 4942,
+   "max": 4964
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.278999999987718
+  },
+  "t_hs_client_ms": {
+   "median": 169.12249999995765,
+   "p90": 169.97200000002977
+  },
+  "t_first_record_ms": {
+   "median": 255.11500000004617,
+   "p10": 254.88399999994726,
+   "p90": 255.98600000000715,
+   "min": 254.79699999993954,
+   "max": 256.5230000000156
+  },
+  "wall_s": 11.9
+ },
+ "LTE-M|C3u|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C3u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    4764,
+    4
+   ],
+   [
+    "C>S",
+    1102,
+    2
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 2475,
+   "max": 2475
+  },
+  "payload_S2C_B": {
+   "min": 4772,
+   "max": 4792
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.315000000010514
+  },
+  "t_hs_client_ms": {
+   "median": 166.46099999996977,
+   "p90": 166.78300000000945
+  },
+  "t_first_record_ms": {
+   "median": 198.43500000001768,
+   "p10": 198.23299999995925,
+   "p90": 198.73499999994237,
+   "min": 198.03000000001703,
+   "max": 198.8529999999855
+  },
+  "wall_s": 10.2
+ },
+ "LTE-M|C3|ch3": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C3",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5906,
+    6
+   ],
+   [
+    "C>S",
+    6456,
+    6
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 7826,
+   "max": 7834
+  },
+  "payload_S2C_B": {
+   "min": 5922,
+   "max": 5942
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.313500000014301
+  },
+  "t_hs_client_ms": {
+   "median": 220.65300000002708,
+   "p90": 222.80299999999897
+  },
+  "t_first_record_ms": {
+   "median": 347.9620000000523,
+   "p10": 347.6269999999886,
+   "p90": 349.47699999997894,
+   "min": 347.5970000000643,
+   "max": 352.36299999996845
+  },
+  "wall_s": 14.6
+ },
+ "NB-IoT|C3|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C3",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    6374,
+    5
+   ],
+   [
+    "C>S",
+    6086,
+    5
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 7457,
+   "max": 8910
+  },
+  "payload_S2C_B": {
+   "min": 6396,
+   "max": 7422
+  },
+  "n_flights": [
+   4,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.54700000001321
+  },
+  "t_hs_client_ms": {
+   "median": 1522.3969999999554,
+   "p90": 1523.9350000000513
+  },
+  "t_first_record_ms": {
+   "median": 1997.1349999999575,
+   "p10": 1996.0470000000896,
+   "p90": 1998.4460000000581,
+   "min": 1995.712000000026,
+   "max": 2015.0030000000925
+  },
+  "wall_s": 38.9
+ },
+ "NB-IoT|C3u|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C3u",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    6200,
+    5
+   ],
+   [
+    "C>S",
+    2124,
+    3
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ],
+   [
+    "C>S",
+    1102,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 4599,
+   "max": 4599
+  },
+  "payload_S2C_B": {
+   "min": 6222,
+   "max": 6234
+  },
+  "n_flights": [
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.47099999997772
+  },
+  "t_hs_client_ms": {
+   "median": 1494.8660000000018,
+   "p90": 1496.5640000000349
+  },
+  "t_first_record_ms": {
+   "median": 1657.25000000009,
+   "p10": 1656.5749999999753,
+   "p90": 1659.49999999998,
+   "min": 1656.0770000000957,
+   "max": 1660.1369999999633
+  },
+  "wall_s": 37.5
+ },
+ "NB-IoT|C3|ch3": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C3",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    7354,
+    7
+   ],
+   [
+    "C>S",
+    7906,
+    7
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 7828,
+   "max": 9280
+  },
+  "payload_S2C_B": {
+   "min": 7368,
+   "max": 7388
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 61.603999999988446
+  },
+  "t_hs_client_ms": {
+   "median": 2139.4279999999526,
+   "p90": 2322.791999999936
+  },
+  "t_first_record_ms": {
+   "median": 2850.751999999943,
+   "p10": 2849.4909999999436,
+   "p90": 3034.226999999987,
+   "min": 2831.7870000000767,
+   "max": 3035.800999999992
+  },
+  "wall_s": 47.3
+ }
+}

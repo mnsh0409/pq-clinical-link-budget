@@ -1,0 +1,7 @@
+\begin{tabular}{@{}llrl@{}}\toprule
+Config. & Key exchange / authentication & Bytes & Basis \\ \midrule
+C0 & ECDHE / ECDSA P-256, mutual & 2,353 & measured~\cite{tasopoulos2022} \\
+C1 & X25519MLKEM768 / ECDSA & 4,559 & C0 + hybrid shares~\cite{rfc10024} \\
+C2 & Kyber-768 / Dilithium-3, mutual & 20,224 & measured~\cite{tasopoulos2022} \\
+C2$'$ & C2, server-only auth. & 11,654 & C2 $-$ client cert./CV \\
+\bottomrule\end{tabular}

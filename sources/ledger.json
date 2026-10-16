@@ -1,0 +1,1899 @@
+{
+ "meta": {
+  "built": "2026-10-15",
+  "access_date_of_sources": "2026-09-27",
+  "rule": "Every value copied verbatim from sources/*.md; ids refer to entries there; no arithmetic in this file.",
+  "status_tags": "VERIFIED = quoted from primary; SECONDARY = via mirror/secondary (check by hand before submission)"
+ },
+ "cites": {
+  "ietf-mlkem-05": "K. Kwiatkowski, P. Kampanakis, B. E. Westerbaan, D. Stebila, 'Post-quantum hybrid ECDHE-MLKEM Key Agreement for TLSv1.3', draft-ietf-tls-ecdhe-mlkem-05, 26 May 2026 (IESG approved; RFC Editor queue, no RFC number on 2026-09-27)",
+  "fips203": "NIST FIPS 203, Module-Lattice-Based Key-Encapsulation Mechanism Standard, 13 Aug 2024",
+  "fips204": "NIST FIPS 204, Module-Lattice-Based Digital Signature Standard, 13 Aug 2024",
+  "falcon-cose-04": "draft-ietf-cose-falcon-04 (Mar 2026), Table 1; FIPS 206 unpublished as of 2026-09-27",
+  "pqm4-falcon": "mupq/pqm4 benchmarks.md at commit 94435189596a70ee62815a9ff31f5bb5a74a3c8a (3 Feb 2025), last version listing Falcon-512; 24 MHz",
+  "pqm4": "mupq/pqm4 benchmarks.md + README.md (GitHub master, accessed 2026-09-27); 24 MHz, arm-none-eabi-gcc 11.3.1; Nucleo-L4R5ZI default board",
+  "tasopoulos2022": "G. Tasopoulos et al., 'Performance Evaluation of Post-Quantum TLS 1.3 on Resource-Constrained Embedded Systems', ISPEC 2022, LNCS 13620, pp. 432-451, doi:10.1007/978-3-031-21280-2_24 (IACR ePrint 2021/1553)",
+  "tasopoulos2023": "G. Tasopoulos et al., 'Energy Consumption Evaluation of Post-Quantum TLS 1.3 for Resource-Constrained Embedded Devices', ACM CF'23, pp. 366-374, doi:10.1145/3587135.3592821 (IACR ePrint 2023/506)",
+  "rfc4944": "RFC 4944, Transmission of IPv6 Packets over IEEE 802.15.4 Networks, Sept 2007",
+  "rfc4919": "RFC 4919, 6LoWPAN overview, Aug 2007",
+  "rfc8200": "RFC 8200, IPv6 Specification (STD 86), July 2017",
+  "rfc9846": "RFC 9846, TLS 1.3, July 2026 (obsoletes RFC 8446)",
+  "rfc9147": "RFC 9147, DTLS 1.3, April 2022",
+  "rfc9000": "RFC 9000, QUIC: A UDP-Based Multiplexed and Secure Transport, May 2021",
+  "rfc6928": "RFC 6928, J. Chu, N. Dukkipati, Y. Cheng, M. Mathis, Increasing TCP's Initial Window, April 2013",
+  "rfc9146": "RFC 9146, Connection Identifier for DTLS 1.2, March 2022",
+  "rfc7925": "RFC 7925, TLS/DTLS Profiles for the Internet of Things, July 2016",
+  "ble-sig": "Bluetooth SIG: Karr 2017 blog (Core 4.2/5.0 payload and PHY); LE Primer v1.2.0 (2024); NIST SP 800-121r2-upd1 (LE Secure Connections P-256)",
+  "ts36306": "3GPP TS 36.306 (ETSI TS 136 306 V13.2.0 / V14.2.0), UE radio access capabilities",
+  "gsma-nbiot": "GSMA, 'What is the Difference in Data Throughput between LTE-M/NB-IoT and 3G or 4G?', 29 Oct 2019",
+  "ieee802156": "IEEE Std 802.15.6-2012 via Culjak et al. Sensors 20(12):3587 2020; Ullah et al. IJDSN 9(4):950704 2013; Toorani arXiv:1501.02601. Superseded by IEEE 802.15.6-2026 (published 2026-08-28)",
+  "tr38821": "3GPP TR 38.821 V16.0.0 (Rel-16), Solutions for NR to support NTN, Table 4.2-2 (ATIS transposition); latest V16.2.0",
+  "tr38811": "3GPP TR 38.811 V15.3.0 (Rel-15), Study on NR to support NTN (ATIS transposition; some clauses via iTecSpec mirror)",
+  "tr38913": "ETSI TR 138 913 V19.0.0 (2025-10) = 3GPP TR 38.913 V19.0.0, Tables 6.1.x-1 and clauses 7.7, 7.18",
+  "ts38300": "3GPP TS 38.300 Rel-19 \u00a716.14 (ETSI TS 138 300 V19.3.0 TOC; clause bodies via iTecSpec mirror)",
+  "lin2013": "X. Lin, R. K. Ganti, P. J. Fleming, J. G. Andrews, 'Towards Understanding the Fundamentals of Mobility in Cellular Networks', IEEE TWC 2013 (arXiv:1204.3447v2, Prop. 7, Eq. 31)",
+  "hassan2022": "A. Hassan et al., 'Vivisecting Mobility Management in 5G Cellular Networks', ACM SIGCOMM 2022, doi:10.1145/3544216.3544217 (NSF-PAR copy)",
+  "ts33501": "3GPP TS 33.501 (ETSI TS 133 501 V19.7.0, 2026-08); clause text via iTecSpec Rel-20 mirror -- CHECK BY HAND before submission",
+  "ts33210": "ETSI TS 133 210 V19.3.0 (2026-02) = 3GPP TS 33.210, NDS/IP, clauses 5.4.2 and 6.2",
+  "tr33703": "3GPP TR 33.703, Study on transitioning to PQC in 3GPP, Rel-20, V20.0.1 (2026-07); 3GPP portal specificationId=4422",
+  "ts35240": "ETSI TS 135 240 V18.0.0 (2024-05) / V19.0.0 (2026-03) = 3GPP TS 35.240, SNOW 5G 256-bit set (256-NEA4/NIA4/NCA4)",
+  "cloudflare": "Cloudflare Blog: Radar Year in Review 15 Dec 2025 (52%); 'Cloudflare targets 2029 for full post-quantum security', 7 Apr 2026 (over 65%)",
+  "gsma-pq05": "GSMA PQ.05, Quantum-safe Cryptography for 4G and 5G Roaming, v1.0, 26 June 2025",
+  "gsma-pq07": "GSMA PQ.07, Post Quantum Cryptography for Non-Terrestrial Networks, v1.0, 4 Feb 2026",
+  "ts22104": "ETSI TS 122 104 V19.2.0 (2026-01) = 3GPP TS 22.104 V19.2.0 Rel-19, Table 5.2-1",
+  "tr22826": "3GPP TR 22.826 V17.2.0 (Rel-17), Study on communication services for critical medical applications -- via tech-invite mirror (SECONDARY)",
+  "ts22261": "3GPP TS 22.261 V19.14.0 (ETSI TS 122 261, 2026-07) clause 3.1; Table 7.11-1 via iTecSpec Rel-20 mirror",
+  "itu-tactile-2014": "ITU-T Technology Watch Report, 'The Tactile Internet', Aug 2014",
+  "itu-m2160": "Rec. ITU-R M.2160-0 (11/2023), Framework and overall objectives of IMT-2030",
+  "ieee1918": "IEEE Std 1918.1-2024 (published 2026-01-23); latency figures via Holland et al., Proc. IEEE 107(2):256-279, 2019",
+  "tian2020": "W. Tian et al., 'Telerobotic Spinal Surgery Based on 5G Network: The First 12 Cases', Neurospine 17(1):114-120, 2020",
+  "ye2026": "Z. Ye et al., '5G wireless + wired network-based multi-console robotic telesurgery ... a case report', Transl. Androl. Urol. 15(4):140, 2026",
+  "movassaghi2014": "S. Movassaghi et al., 'Wireless Body Area Networks: A Survey', IEEE COMST 16(3):1658-1686, 2014, Table II (accepted version)",
+  "latre2011": "B. Latre et al., 'A survey on wireless body area networks', Wireless Networks 17(1):1-18, 2011, Table 1 (author manuscript)",
+  "acns-g1": "ACNS Guideline 1 (Sinha et al.), J Clin Neurophysiol 33(4):303-307, 2016",
+  "acns-g4": "ACNS Guideline 4 (Halford et al.), J Clin Neurophysiol 33(4):317-319, 2016",
+  "kligfield2007": "P. Kligfield et al., AHA/ACCF/HRS ECG standardization Part I, Circulation 115:1306-1324, 2007 (JACC co-publication text)",
+  "mimic3wdb": "Moody et al., MIMIC-III Waveform Database v1.0, PhysioNet 2020, doi:10.13026/c2607m",
+  "vitaldb": "Lee et al., VitalDB, Scientific Data 9:279, 2022",
+  "steinbach2012": "E. Steinbach et al., 'Haptic Communications', Proc. IEEE 100(4):937-956, 2012",
+  "aijaz2017": "A. Aijaz et al., 'Realizing the Tactile Internet', IEEE Wireless Commun. 24(2):82-89, 2017 (arXiv:1510.02826)",
+  "moustris2023": "G. Moustris et al., IJCARS 18(9):1577-1587, 2023, doi:10.1007/s11548-023-02913-2 (phantoms; 5G at surgeon side only)",
+  "chen2024jmir": "B. Chen et al., J Med Internet Res 26:e52404, 2024, Table 3 and Results",
+  "berlet2022": "M. Berlet et al., JMIR Formative Research 6(5):e36824, 2022 (5G ambulance field test, parked)",
+  "herman2015": "S. T. Herman et al., Consensus Statement on Continuous EEG ... Part II, J Clin Neurophysiol 32(2):96-108, 2015"
+ },
+ "params": {
+  "kex_x25519mlkem768_client_B": {
+   "value": 1216,
+   "unit": "byte",
+   "id": "SEC-06b",
+   "status": "VERIFIED",
+   "condition": "TLS 1.3 ClientHello key_share, X25519MLKEM768 (1184 ML-KEM + 32 X25519)",
+   "cite": "ietf-mlkem-05"
+  },
+  "kex_x25519mlkem768_server_B": {
+   "value": 1120,
+   "unit": "byte",
+   "id": "SEC-06c",
+   "status": "VERIFIED",
+   "condition": "TLS 1.3 ServerHello key_share (1088 ML-KEM + 32 X25519)",
+   "cite": "ietf-mlkem-05"
+  },
+  "kex_secp256r1mlkem768_client_B": {
+   "value": 1249,
+   "unit": "byte",
+   "id": "SEC-06d",
+   "status": "VERIFIED",
+   "condition": "65 B secp256r1 + 1184 B ML-KEM",
+   "cite": "ietf-mlkem-05"
+  },
+  "kex_secp256r1mlkem768_server_B": {
+   "value": 1153,
+   "unit": "byte",
+   "id": "SEC-06d",
+   "status": "VERIFIED",
+   "condition": "1088 B ML-KEM + 65 B secp256r1",
+   "cite": "ietf-mlkem-05"
+  },
+  "mlkem768_ek_B": {
+   "value": 1184,
+   "unit": "byte",
+   "id": "PQC-01",
+   "status": "VERIFIED",
+   "condition": "FIPS 203 Table 3",
+   "cite": "fips203"
+  },
+  "mlkem768_dk_B": {
+   "value": 2400,
+   "unit": "byte",
+   "id": "PQC-01",
+   "status": "VERIFIED",
+   "condition": "FIPS 203 Table 3",
+   "cite": "fips203"
+  },
+  "mlkem768_ct_B": {
+   "value": 1088,
+   "unit": "byte",
+   "id": "PQC-01",
+   "status": "VERIFIED",
+   "condition": "FIPS 203 Table 3",
+   "cite": "fips203"
+  },
+  "mldsa65_pk_B": {
+   "value": 1952,
+   "unit": "byte",
+   "id": "PQC-02",
+   "status": "VERIFIED",
+   "condition": "FIPS 204 Table 2",
+   "cite": "fips204"
+  },
+  "mldsa65_sig_B": {
+   "value": 3309,
+   "unit": "byte",
+   "id": "PQC-02",
+   "status": "VERIFIED",
+   "condition": "FIPS 204 Table 2",
+   "cite": "fips204"
+  },
+  "mldsa44_pk_B": {
+   "value": 1312,
+   "unit": "byte",
+   "id": "PQC-02",
+   "status": "VERIFIED",
+   "condition": "FIPS 204 Table 2",
+   "cite": "fips204"
+  },
+  "mldsa44_sig_B": {
+   "value": 2420,
+   "unit": "byte",
+   "id": "PQC-02",
+   "status": "VERIFIED",
+   "condition": "FIPS 204 Table 2",
+   "cite": "fips204"
+  },
+  "falcon512_pk_B": {
+   "value": 897,
+   "unit": "byte",
+   "id": "PQC-03",
+   "status": "SECONDARY",
+   "condition": "FN-DSA-512 per draft-ietf-cose-falcon-04 Table 1; FIPS 206 not yet published",
+   "cite": "falcon-cose-04"
+  },
+  "falcon512_sig_B": {
+   "value": 666,
+   "unit": "byte",
+   "id": "PQC-03",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "falcon-cose-04"
+  },
+  "p256_uncompressed_point_B": {
+   "value": 65,
+   "unit": "byte",
+   "id": "SEC-06d",
+   "status": "VERIFIED",
+   "condition": "secp256r1 share size as stated in draft-ietf-tls-ecdhe-mlkem-05 \u00a74.1 ('65 bytes for the secp256r1 part')",
+   "cite": "ietf-mlkem-05"
+  },
+  "quic_amplification_factor": {
+   "value": 3,
+   "unit": "ratio",
+   "id": "RFC-07",
+   "status": "VERIFIED",
+   "condition": "RFC 9000 sec. 8.1: servers MUST NOT send more than three times as many bytes as received before validating the client address",
+   "cite": "rfc9000"
+  },
+  "quic_initial_min_udp_payload_B": {
+   "value": 1200,
+   "unit": "byte",
+   "id": "RFC-07",
+   "status": "VERIFIED",
+   "condition": "RFC 9000 sec. 8.1: UDP datagrams containing Initial packets have UDP payloads of at least 1200 bytes",
+   "cite": "rfc9000"
+  },
+  "tcp_iw_segments": {
+   "value": 10,
+   "unit": "segment",
+   "id": "RFC-07",
+   "status": "VERIFIED",
+   "condition": "RFC 6928: initial window upper bound min(10*MSS, max(2*MSS, 14600))",
+   "cite": "rfc6928"
+  },
+  "tcp_iw_cap_B": {
+   "value": 14600,
+   "unit": "byte",
+   "id": "RFC-07",
+   "status": "VERIFIED",
+   "condition": "RFC 6928: the 14600 in min(10*MSS, max(2*MSS, 14600))",
+   "cite": "rfc6928"
+  },
+  "tcp_mss_ethernet_B": {
+   "value": 1460,
+   "unit": "byte",
+   "id": "RFC-07",
+   "status": "VERIFIED",
+   "condition": "RFC 6928: 14600 = 10 x 1460 (MSS of a 1500-byte MTU); used only to state the window in bytes",
+   "cite": "rfc6928"
+  },
+  "tls_hs_bytes_ecdsa_ecdhe": {
+   "value": 2353,
+   "unit": "byte",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "Table 2 'Communication Sizes'; ECDSA+ECDHE secp256r1; wolfSSL; pre-FIPS",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_bytes_dil2_kyb1": {
+   "value": 14748,
+   "unit": "byte",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "Dilithium2 + Kyber512",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_bytes_dil3_kyb3": {
+   "value": 20224,
+   "unit": "byte",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "Dilithium3 + Kyber768 (pre-FIPS analogues of ML-DSA-65 + ML-KEM-768; notation confirmed 2026-09-27 re-fetch)",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_ms_client_ecdsa_ecdhe": {
+   "value": 109.171,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "Avg handshake time, client; NUCLEO-F439ZI 180 MHz; Ethernet RTT 0.493 ms",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_ms_server_ecdsa_ecdhe": {
+   "value": 106.927,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "as above, server",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_ms_client_dil3_kyb3": {
+   "value": 157.126,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_ms_server_dil3_kyb3": {
+   "value": 153.492,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_ms_client_dil2_kyb1": {
+   "value": 96.318,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "tasopoulos2022"
+  },
+  "tls_hs_mJ_client_mut_dil3_kyb3": {
+   "value": 25.392,
+   "unit": "mJ",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "energy per handshake, client, mutual auth (CF'23 Table 2)",
+   "cite": "tasopoulos2023"
+  },
+  "tls_hs_mJ_client_mut_ecdsa_ecdhe": {
+   "value": 18.242,
+   "unit": "mJ",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "tasopoulos2023"
+  },
+  "tls_hs_mJ_client_uni_dil3_kyb3": {
+   "value": 17.569,
+   "unit": "mJ",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "client, unilateral auth",
+   "cite": "tasopoulos2023"
+  },
+  "tls_hs_mJ_client_uni_ecdsa_ecdhe": {
+   "value": 18.533,
+   "unit": "mJ",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "client, unilateral auth",
+   "cite": "tasopoulos2023"
+  },
+  "tasopoulos_clock_Hz": {
+   "value": 180000000.0,
+   "unit": "Hz",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "NUCLEO-F439ZI Cortex-M4",
+   "cite": "tasopoulos2022"
+  },
+  "tasopoulos_bench_rtt_ms": {
+   "value": 0.493,
+   "unit": "ms",
+   "id": "PQC-05",
+   "status": "VERIFIED",
+   "condition": "mean RTT of the wired bench",
+   "cite": "tasopoulos2022"
+  },
+  "pqm4_clock_Hz": {
+   "value": 24000000.0,
+   "unit": "Hz",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "README: all cycle counts at 24 MHz",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_keygen_cyc_m4fspeed": {
+   "value": 642096,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-kem-768 m4fspeed AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_encaps_cyc_m4fspeed": {
+   "value": 658754,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-kem-768 m4fspeed AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_decaps_cyc_m4fspeed": {
+   "value": 707827,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-kem-768 m4fspeed AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_keygen_cyc_clean": {
+   "value": 988722,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-kem-768 clean (PQClean reference) AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_encaps_cyc_clean": {
+   "value": 1138225,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "clean AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mlkem768_decaps_cyc_clean": {
+   "value": 1387984,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "clean AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mldsa65_keygen_cyc_m4f": {
+   "value": 2516006,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-dsa-65 m4f AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_mldsa65_sign_cyc_m4f": {
+   "value": 6193171,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-dsa-65 m4f AVG (MIN 2,918,295; MAX 26,008,621 -- rejection sampling)",
+   "cite": "pqm4"
+  },
+  "pqm4_mldsa65_verify_cyc_m4f": {
+   "value": 2415944,
+   "unit": "cycle",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-dsa-65 m4f AVG",
+   "cite": "pqm4"
+  },
+  "pqm4_falcon512_keygen_cyc_m4ct": {
+   "value": 146357328,
+   "unit": "cycle",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct AVG (pqm4 @9443518, last version with Falcon)",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_falcon512_sign_cyc_m4ct": {
+   "value": 40191597,
+   "unit": "cycle",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct sign AVG",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_falcon512_verify_cyc_m4ct": {
+   "value": 482280,
+   "unit": "cycle",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct verify AVG",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_falcon512_stack_sign_B_m4ct": {
+   "value": 2428,
+   "unit": "byte",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct sign stack",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_falcon512_bss_B_m4ct": {
+   "value": 39936,
+   "unit": "byte",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct .bss (static RAM)",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_falcon512_stack_verify_B_m4ct": {
+   "value": 376,
+   "unit": "byte",
+   "id": "PQC-04f",
+   "status": "VERIFIED",
+   "condition": "falcon-512 m4-ct verify stack",
+   "cite": "pqm4-falcon"
+  },
+  "pqm4_mlkem768_stack_decaps_B_m4fstack": {
+   "value": 2844,
+   "unit": "byte",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-kem-768 m4fstack decapsulation stack",
+   "cite": "pqm4"
+  },
+  "pqm4_mldsa65_stack_verify_B_m4f": {
+   "value": 9888,
+   "unit": "byte",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-dsa-65 m4f verify stack",
+   "cite": "pqm4"
+  },
+  "pqm4_mldsa65_stack_sign_B_m4f": {
+   "value": 68872,
+   "unit": "byte",
+   "id": "PQC-04",
+   "status": "VERIFIED",
+   "condition": "ml-dsa-65 m4f sign stack",
+   "cite": "pqm4"
+  },
+  "ieee802154_rate_bps": {
+   "value": 250000.0,
+   "unit": "bit/s",
+   "id": "LNK-01",
+   "status": "SECONDARY",
+   "condition": "2.4 GHz PHY per RFC 4919 \u00a72 (restating IEEE 802.15.4)",
+   "cite": "rfc4919"
+  },
+  "ieee802154_phy_max_B": {
+   "value": 127,
+   "unit": "byte",
+   "id": "LNK-01",
+   "status": "SECONDARY",
+   "condition": "aMaxPHYPacketSize per RFC 4944 \u00a74",
+   "cite": "rfc4944"
+  },
+  "ieee802154_mac_max_B": {
+   "value": 102,
+   "unit": "byte",
+   "id": "LNK-01",
+   "status": "SECONDARY",
+   "condition": "max MAC frame with 25-octet overhead, RFC 4944 \u00a74",
+   "cite": "rfc4944"
+  },
+  "ieee802154_payload_ccm128_B": {
+   "value": 81,
+   "unit": "byte",
+   "id": "LNK-02",
+   "status": "VERIFIED",
+   "condition": "octets left with AES-CCM-128 link security, RFC 4944 \u00a74",
+   "cite": "rfc4944"
+  },
+  "ipv6_min_mtu_B": {
+   "value": 1280,
+   "unit": "byte",
+   "id": "LNK-02",
+   "status": "VERIFIED",
+   "condition": "RFC 8200 \u00a75",
+   "cite": "rfc8200"
+  },
+  "ble_le1m_protocol_bps": {
+   "value": 1000000.0,
+   "unit": "bit/s",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "LE 1M PHY protocol data rate (Bluetooth LE Primer \u00a76.3)",
+   "cite": "ble-sig"
+  },
+  "ble_le1m_app_bps_approx": {
+   "value": 800000.0,
+   "unit": "bit/s",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "Primer: 'Approximate Max. Application Data Rate' LE 1M",
+   "cite": "ble-sig"
+  },
+  "ble_le2m_protocol_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "LE 2M PHY (Core 5.0, optional)",
+   "cite": "ble-sig"
+  },
+  "ble_le2m_app_bps_approx": {
+   "value": 1400000.0,
+   "unit": "bit/s",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "Primer approximate max application rate LE 2M",
+   "cite": "ble-sig"
+  },
+  "ble_ll_payload_B": {
+   "value": 251,
+   "unit": "byte",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "LL data PDU payload, Core 4.2+ (Data Length Extension)",
+   "cite": "ble-sig"
+  },
+  "ble_ll_payload_legacy_B": {
+   "value": 27,
+   "unit": "byte",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "Core 4.0/4.1",
+   "cite": "ble-sig"
+  },
+  "nbiot_peak_dl_bps": {
+   "value": 26000.0,
+   "unit": "bit/s",
+   "id": "LNK-04",
+   "status": "SECONDARY",
+   "condition": "GSMA 2019, NB-IoT (Cat-NB1) peak DL",
+   "cite": "gsma-nbiot"
+  },
+  "nbiot_peak_ul_bps": {
+   "value": 66000.0,
+   "unit": "bit/s",
+   "id": "LNK-04",
+   "status": "SECONDARY",
+   "condition": "GSMA 2019, NB-IoT peak UL (multi-tone)",
+   "cite": "gsma-nbiot"
+  },
+  "ltem_hd_dl_bps": {
+   "value": 300000.0,
+   "unit": "bit/s",
+   "id": "LNK-04",
+   "status": "SECONDARY",
+   "condition": "GSMA 2019, LTE-M half duplex 'around 300 kbps' DL",
+   "cite": "gsma-nbiot"
+  },
+  "ltem_hd_ul_bps": {
+   "value": 380000.0,
+   "unit": "bit/s",
+   "id": "LNK-04",
+   "status": "SECONDARY",
+   "condition": "GSMA 2019, LTE-M half duplex 'around 380 kbps' UL",
+   "cite": "gsma-nbiot"
+  },
+  "nb1_max_tbs_dl_bit": {
+   "value": 680,
+   "unit": "bit/TTI",
+   "id": "LNK-04",
+   "status": "VERIFIED",
+   "condition": "TS 36.306 Table 4.1C-1 Cat NB1 (Rel-13)",
+   "cite": "ts36306"
+  },
+  "nb1_max_tbs_ul_bit": {
+   "value": 1000,
+   "unit": "bit/TTI",
+   "id": "LNK-04",
+   "status": "VERIFIED",
+   "condition": "TS 36.306 Table 4.1C-2 Cat NB1 (Rel-13)",
+   "cite": "ts36306"
+  },
+  "wban_nb_rate_min_bps": {
+   "value": 75900.0,
+   "unit": "bit/s",
+   "id": "LNK-05",
+   "status": "SECONDARY",
+   "condition": "IEEE 802.15.6-2012 narrowband PHY, across seven bands (Culjak 2020)",
+   "cite": "ieee802156"
+  },
+  "wban_nb_rate_max_bps": {
+   "value": 971400.0,
+   "unit": "bit/s",
+   "id": "LNK-05",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "ieee802156"
+  },
+  "wban_frame_body_max_B": {
+   "value": 255,
+   "unit": "byte",
+   "id": "LNK-05",
+   "status": "SECONDARY",
+   "condition": "max MAC frame body (Ullah 2013)",
+   "cite": "ieee802156"
+  },
+  "wban_2026_scope_rate_bps": {
+   "value": 50000000.0,
+   "unit": "bit/s",
+   "id": "LNK-05",
+   "status": "VERIFIED",
+   "condition": "IEEE 802.15.6-2026 scope: 'data rates up to 50 Mbps'",
+   "cite": "ieee802156"
+  },
+  "ul_5g_ye2026_bps": {
+   "value": 101000000.0,
+   "unit": "bit/s",
+   "id": "MED-09d",
+   "status": "VERIFIED",
+   "condition": "Beijing 5G CPE side upstream, measured during telesurgery",
+   "cite": "ye2026"
+  },
+  "dl_5g_ye2026_bps": {
+   "value": 177000000.0,
+   "unit": "bit/s",
+   "id": "MED-09d",
+   "status": "VERIFIED",
+   "condition": "Beijing 5G side downstream",
+   "cite": "ye2026"
+  },
+  "ul_5gsa_chen2024_avg_bps": {
+   "value": 91000000.0,
+   "unit": "bit/s",
+   "id": "STR-06b",
+   "status": "VERIFIED",
+   "condition": "private 5G SA hospital network, average upload",
+   "cite": "chen2024jmir"
+  },
+  "dl_5gsa_chen2024_avg_bps": {
+   "value": 790000000.0,
+   "unit": "bit/s",
+   "id": "STR-06b",
+   "status": "VERIFIED",
+   "condition": "average download",
+   "cite": "chen2024jmir"
+  },
+  "ul_5g_moustris2023_bps_lo": {
+   "value": 60000000.0,
+   "unit": "bit/s",
+   "id": "STR-06",
+   "status": "VERIFIED",
+   "condition": "portable 5G at surgeon site, speed test UL 60-70 Mbps",
+   "cite": "moustris2023"
+  },
+  "rtt_5g_berlet2022_ms": {
+   "value": 10,
+   "unit": "ms",
+   "id": "STR-07",
+   "status": "VERIFIED",
+   "condition": "E2E RTT incl. RAN and core, ambulance parked, core slicing",
+   "cite": "berlet2022"
+  },
+  "rtt_5g_berlet2022_noslice_ms": {
+   "value": 400,
+   "unit": "ms",
+   "id": "STR-07",
+   "status": "VERIFIED",
+   "condition": "latency rose 'up to 400 ms' without core slicing under added uplink load",
+   "cite": "berlet2022"
+  },
+  "rtt_5g_moustris2023_ms": {
+   "value": 18,
+   "unit": "ms",
+   "id": "STR-06",
+   "status": "VERIFIED",
+   "condition": "controllers-to-robot-and-back ping, ~300 km, 5G at one end",
+   "cite": "moustris2023"
+  },
+  "latency_5g_tian2020_ms": {
+   "value": 28,
+   "unit": "ms",
+   "id": "MED-09a",
+   "status": "VERIFIED",
+   "condition": "mean network latency, 12 clinical telerobotic cases, operator-reported; one-way/RTT unstated",
+   "cite": "tian2020"
+  },
+  "latency_5g_ye2026_ms": {
+   "value": 220,
+   "unit": "ms",
+   "id": "MED-09b",
+   "status": "VERIFIED",
+   "condition": "console-to-patient-cart, 5G + wired, ~700 km",
+   "cite": "ye2026"
+  },
+  "ho_dist_nsa5g_freeway_km": {
+   "value": 0.4,
+   "unit": "km",
+   "id": "MOB-02a",
+   "status": "VERIFIED",
+   "condition": "NSA 5G HO every 0.4 km on average, freeway drive tests, US commercial networks",
+   "cite": "hassan2022"
+  },
+  "ho_dist_4g_freeway_km": {
+   "value": 0.6,
+   "unit": "km",
+   "id": "MOB-02a",
+   "status": "VERIFIED",
+   "condition": "4G HO every 0.6 km",
+   "cite": "hassan2022"
+  },
+  "ho_dist_sa5g_km": {
+   "value": 0.9,
+   "unit": "km",
+   "id": "MOB-02b",
+   "status": "VERIFIED",
+   "condition": "SA 5G HO every 0.9 km",
+   "cite": "hassan2022"
+  },
+  "ho_dist_nsa_mmwave_km": {
+   "value": 0.13,
+   "unit": "km",
+   "id": "MOB-02c",
+   "status": "VERIFIED",
+   "condition": "NSA mmWave",
+   "cite": "hassan2022"
+  },
+  "ho_dist_nsa_midband_km": {
+   "value": 0.35,
+   "unit": "km",
+   "id": "MOB-02c",
+   "status": "VERIFIED",
+   "condition": "NSA mid-band",
+   "cite": "hassan2022"
+  },
+  "ho_dist_nsa_lowband_km": {
+   "value": 0.4,
+   "unit": "km",
+   "id": "MOB-02c",
+   "status": "VERIFIED",
+   "condition": "NSA low-band",
+   "cite": "hassan2022"
+  },
+  "ho_per_hour_130kmh": {
+   "value": 553,
+   "unit": "HO/h",
+   "id": "MOB-02d",
+   "status": "VERIFIED",
+   "condition": "'a smartphone traveling at 130 km/h for 1 hour can witness on average 553 5G HOs' (basis not stated)",
+   "cite": "hassan2022"
+  },
+  "ho_speed_for_553_kmh": {
+   "value": 130,
+   "unit": "km/h",
+   "id": "MOB-02d",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "hassan2022"
+  },
+  "ho_duration_nsa5g_ms": {
+   "value": 167,
+   "unit": "ms",
+   "id": "MOB-02e",
+   "status": "VERIFIED",
+   "condition": "average control-plane HO duration NSA 5G",
+   "cite": "hassan2022"
+  },
+  "ho_duration_sa5g_ms": {
+   "value": 110,
+   "unit": "ms",
+   "id": "MOB-02e",
+   "status": "VERIFIED",
+   "condition": "SA 5G",
+   "cite": "hassan2022"
+  },
+  "ho_duration_lte_ms": {
+   "value": 76,
+   "unit": "ms",
+   "id": "MOB-02e",
+   "status": "VERIFIED",
+   "condition": "4G/LTE",
+   "cite": "hassan2022"
+  },
+  "ho_rate_formula": {
+   "value": "H = (4/pi) * v * sqrt(mu)",
+   "unit": "1/s",
+   "id": "MOB-01a",
+   "status": "VERIFIED",
+   "condition": "PPP base stations of intensity mu (per m^2), nearest-BS association, constant speed v, no pause (Lin et al. Prop. 7 simplification, Eq. 31)",
+   "cite": "lin2013"
+  },
+  "isd_indoor_hotspot_m": {
+   "value": 20,
+   "unit": "m",
+   "id": "NTN-04a",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 Table 6.1.1-1",
+   "cite": "tr38913"
+  },
+  "isd_dense_urban_m": {
+   "value": 200,
+   "unit": "m",
+   "id": "NTN-04b",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 Table 6.1.2-1 macro layer",
+   "cite": "tr38913"
+  },
+  "isd_urban_macro_m": {
+   "value": 500,
+   "unit": "m",
+   "id": "NTN-04d",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 Table 6.1.4-1",
+   "cite": "tr38913"
+  },
+  "isd_rural_m": {
+   "value": 1732,
+   "unit": "m",
+   "id": "NTN-04c",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 Table 6.1.3-1 ISD 1 (ISD 2 = 5000 m)",
+   "cite": "tr38913"
+  },
+  "isd_highway_m": {
+   "value": 1732,
+   "unit": "m",
+   "id": "NTN-04f",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 Table 6.1.8-1 (500 m optional)",
+   "cite": "tr38913"
+  },
+  "ue_speed_urban_car_kmh": {
+   "value": 30,
+   "unit": "km/h",
+   "id": "NTN-04d",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 urban macro: 20% outdoor in cars 30 km/h",
+   "cite": "tr38913"
+  },
+  "ue_speed_rural_vehicle_kmh": {
+   "value": 120,
+   "unit": "km/h",
+   "id": "NTN-04c",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 rural: 50% outdoor vehicles 120 km/h",
+   "cite": "tr38913"
+  },
+  "ue_speed_highway_avg_kmh_lo": {
+   "value": 100,
+   "unit": "km/h",
+   "id": "NTN-04f",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 highway average speed 100-300 km/h",
+   "cite": "tr38913"
+  },
+  "ue_speed_highway_avg_kmh_hi": {
+   "value": 300,
+   "unit": "km/h",
+   "id": "NTN-04f",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "tr38913"
+  },
+  "ue_speed_hst_max_kmh": {
+   "value": 500,
+   "unit": "km/h",
+   "id": "NTN-04e",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 high-speed train max",
+   "cite": "tr38913"
+  },
+  "mobility_interruption_target_ms": {
+   "value": 0,
+   "unit": "ms",
+   "id": "MOB-03b",
+   "status": "VERIFIED",
+   "condition": "TR 38.913 \u00a77.7 target for mobility interruption time",
+   "cite": "tr38913"
+  },
+  "c_m_per_s": {
+   "value": 299792458,
+   "unit": "m/s",
+   "id": "NTN-01g",
+   "status": "VERIFIED",
+   "condition": "TR 38.821 Table 4.2-2 NOTE 4",
+   "cite": "tr38821"
+  },
+  "ntn_alt_leo1_km": {
+   "value": 600,
+   "unit": "km",
+   "id": "NTN-01a",
+   "status": "VERIFIED",
+   "condition": "TR 38.821 Table 4.2-2",
+   "cite": "tr38821"
+  },
+  "ntn_alt_leo2_km": {
+   "value": 1200,
+   "unit": "km",
+   "id": "NTN-01a",
+   "status": "VERIFIED",
+   "condition": "TR 38.821 Table 4.2-2",
+   "cite": "tr38821"
+  },
+  "ntn_alt_geo_km": {
+   "value": 35786,
+   "unit": "km",
+   "id": "NTN-01a",
+   "status": "VERIFIED",
+   "condition": "TR 38.821 Table 4.2-2",
+   "cite": "tr38821"
+  },
+  "ntn_min_elev_deg": {
+   "value": 10,
+   "unit": "deg",
+   "id": "NTN-01c",
+   "status": "VERIFIED",
+   "condition": "TR 38.821: 10 deg service link and feeder link",
+   "cite": "tr38821"
+  },
+  "ntn_slant_leo600_km": {
+   "value": 1932,
+   "unit": "km",
+   "id": "NTN-01d",
+   "status": "VERIFIED",
+   "condition": "max satellite-UE distance at 10 deg, 600 km",
+   "cite": "tr38821"
+  },
+  "ntn_slant_leo1200_km": {
+   "value": 3131,
+   "unit": "km",
+   "id": "NTN-01d",
+   "status": "VERIFIED",
+   "condition": "1200 km",
+   "cite": "tr38821"
+  },
+  "ntn_slant_geo_km": {
+   "value": 40581,
+   "unit": "km",
+   "id": "NTN-01d",
+   "status": "VERIFIED",
+   "condition": "GEO",
+   "cite": "tr38821"
+  },
+  "ntn_rtd_leo600_transparent_ms": {
+   "value": 25.77,
+   "unit": "ms",
+   "id": "NTN-01e",
+   "status": "VERIFIED",
+   "condition": "max RTD propagation only, service+feeder links, 600 km",
+   "cite": "tr38821"
+  },
+  "ntn_rtd_leo1200_transparent_ms": {
+   "value": 41.77,
+   "unit": "ms",
+   "id": "NTN-01e",
+   "status": "VERIFIED",
+   "condition": "1200 km transparent",
+   "cite": "tr38821"
+  },
+  "ntn_rtd_leo600_regen_ms": {
+   "value": 12.89,
+   "unit": "ms",
+   "id": "NTN-01e",
+   "status": "VERIFIED",
+   "condition": "600 km regenerative (service link only)",
+   "cite": "tr38821"
+  },
+  "ntn_rtd_geo_transparent_ms": {
+   "value": 541.46,
+   "unit": "ms",
+   "id": "NTN-01e",
+   "status": "VERIFIED",
+   "condition": "GEO transparent",
+   "cite": "tr38821"
+  },
+  "ntn_rtd_geo_regen_ms": {
+   "value": 270.73,
+   "unit": "ms",
+   "id": "NTN-01e",
+   "status": "VERIFIED",
+   "condition": "GEO regenerative",
+   "cite": "tr38821"
+  },
+  "ntn_diffdelay_leo600_ms": {
+   "value": 3.12,
+   "unit": "ms",
+   "id": "NTN-01f",
+   "status": "VERIFIED",
+   "condition": "max differential delay within a cell, 600 km",
+   "cite": "tr38821"
+  },
+  "ntn_beam_max_leo_km": {
+   "value": 1000,
+   "unit": "km",
+   "id": "NTN-01h",
+   "status": "VERIFIED",
+   "condition": "max beam footprint edge to edge, LEO",
+   "cite": "tr38821"
+  },
+  "ntn_sat_speed_600km_kms": {
+   "value": 7.5622,
+   "unit": "km/s",
+   "id": "NTN-01j",
+   "status": "SECONDARY",
+   "condition": "TR 38.811 \u00a75.3.4.3 via iTecSpec",
+   "cite": "tr38811"
+  },
+  "ntn_sat_speed_tr38821_kms": {
+   "value": 7.56,
+   "unit": "km/s",
+   "id": "NTN-01i",
+   "status": "SECONDARY",
+   "condition": "TR 38.821 Table 7.3.2.1.4-1 (altitude not stated, NOTE 1)",
+   "cite": "tr38821"
+  },
+  "ntn_oneway_leo600_transparent_ms": {
+   "value": 14.204,
+   "unit": "ms",
+   "id": "NTN-03k",
+   "status": "SECONDARY",
+   "condition": "TR 38.811 Table 5.3.4.1-1, GW 5 deg / UE 10 deg",
+   "cite": "tr38811"
+  },
+  "ntn_oneway_leo600_regen_ms": {
+   "value": 6.44,
+   "unit": "ms",
+   "id": "NTN-03k",
+   "status": "SECONDARY",
+   "condition": "as above, regenerative",
+   "cite": "tr38811"
+  },
+  "ntn_oneway_geo_transparent_ms": {
+   "value": 272.375,
+   "unit": "ms",
+   "id": "NTN-03j",
+   "status": "VERIFIED",
+   "condition": "TR 38.811 Table 5.3.2.1-1 bent pipe one-way",
+   "cite": "tr38811"
+  },
+  "ntn_cell_dwell_50km_s": {
+   "value": 6.61,
+   "unit": "s",
+   "id": "NTN-05c",
+   "status": "SECONDARY",
+   "condition": "TR 38.821 \u00a77.3.2.1.4: max time in a 50 km LEO cell, UE stationary, 7.56 km/s",
+   "cite": "tr38821"
+  },
+  "ntn_cell_dwell_1000km_s": {
+   "value": 132.28,
+   "unit": "s",
+   "id": "NTN-05c",
+   "status": "SECONDARY",
+   "condition": "table value (text says 132.38 -- mismatch flagged)",
+   "cite": "tr38821"
+  },
+  "ntn_ue_speed_leo_kmh": {
+   "value": 500,
+   "unit": "km/h",
+   "id": "NTN-02a",
+   "status": "VERIFIED",
+   "condition": "TR 38.821: 500 km/h (HST), possibly 1200 km/h (aircraft)",
+   "cite": "tr38821"
+  },
+  "ntn_leo_inview_2h_orbit_min": {
+   "value": 20,
+   "unit": "min",
+   "id": "NTN-05a",
+   "status": "SECONDARY",
+   "condition": "TR 38.811 \u00a77.3.2.1.1: 2-hour orbit, horizon to horizon, stationary UE (NOT 600 km / 10 deg)",
+   "cite": "tr38811"
+  },
+  "ras_local_latency_ms": {
+   "value": 2,
+   "unit": "ms",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "TS 22.104 Table 5.2-1 Robotic Aided Surgery local: < 2 ms, one wireless link, one-way",
+   "cite": "ts22104"
+  },
+  "ras_local_rate_lo_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "2 Mbit/s to 16 Mbit/s",
+   "cite": "ts22104"
+  },
+  "ras_local_rate_hi_bps": {
+   "value": 16000000.0,
+   "unit": "bit/s",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "ts22104"
+  },
+  "ras_local_msg_lo_B": {
+   "value": 250,
+   "unit": "byte",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "message size 250 to 2,000 B",
+   "cite": "ts22104"
+  },
+  "ras_local_msg_hi_B": {
+   "value": 2000,
+   "unit": "byte",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "ts22104"
+  },
+  "ras_local_interval_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": "transfer interval 1 ms",
+   "cite": "ts22104"
+  },
+  "ras_local_availability": {
+   "value": "99.999 999 %",
+   "unit": "%",
+   "id": "MED-04a",
+   "status": "VERIFIED",
+   "condition": ">99.999 999 %, MTBF > 10 years",
+   "cite": "ts22104"
+  },
+  "ras_remote_latency_ms": {
+   "value": 20,
+   "unit": "ms",
+   "id": "MED-04b",
+   "status": "VERIFIED",
+   "condition": "TS 22.104 RAS remote: < 20 ms, < 400 km",
+   "cite": "ts22104"
+  },
+  "ras_remote_distance_km": {
+   "value": 400,
+   "unit": "km",
+   "id": "MED-04b",
+   "status": "VERIFIED",
+   "condition": "max straight-line distance between UEs",
+   "cite": "ts22104"
+  },
+  "rad_latency_ms": {
+   "value": 20,
+   "unit": "ms",
+   "id": "MED-04c",
+   "status": "VERIFIED",
+   "condition": "TS 22.104 Robotic Aided Diagnosis: < 20 ms, < 50 km",
+   "cite": "ts22104"
+  },
+  "rad_msg_B": {
+   "value": 80,
+   "unit": "byte",
+   "id": "MED-04c",
+   "status": "VERIFIED",
+   "condition": "message size 80 B",
+   "cite": "ts22104"
+  },
+  "rad_interval_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "MED-04c",
+   "status": "VERIFIED",
+   "condition": "transfer interval 1 ms",
+   "cite": "ts22104"
+  },
+  "rad_rate_lo_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "MED-04c",
+   "status": "VERIFIED",
+   "condition": "2-16 Mbit/s",
+   "cite": "ts22104"
+  },
+  "telemetry_inhospital_rate_bps": {
+   "value": 500000.0,
+   "unit": "bit/s",
+   "id": "MED-03a",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.4.2 cardiac telemetry inside hospital: 0.5 Mbit/s, <100 ms, <=1000 B, <=1000/km2",
+   "cite": "tr22826"
+  },
+  "telemetry_latency_ms": {
+   "value": 100,
+   "unit": "ms",
+   "id": "MED-03a",
+   "status": "SECONDARY",
+   "condition": "< 100 ms",
+   "cite": "tr22826"
+  },
+  "telemetry_msg_max_B": {
+   "value": 1000,
+   "unit": "byte",
+   "id": "MED-03a",
+   "status": "SECONDARY",
+   "condition": "<= 1000 B",
+   "cite": "tr22826"
+  },
+  "telemetry_density_per_km2": {
+   "value": 1000,
+   "unit": "1/km2",
+   "id": "MED-03a",
+   "status": "SECONDARY",
+   "condition": "<= 1000 per km2 (hospital)",
+   "cite": "tr22826"
+  },
+  "telemetry_outside_speed_kmh": {
+   "value": 500,
+   "unit": "km/h",
+   "id": "MED-03b",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.5.3 outside hospital: <= 500 km/h",
+   "cite": "tr22826"
+  },
+  "wearable_battery_V": {
+   "value": 3.3,
+   "unit": "V",
+   "id": "MED-03c",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.5.3 note",
+   "cite": "tr22826"
+  },
+  "wearable_battery_mAh_max": {
+   "value": 1000,
+   "unit": "mAh",
+   "id": "MED-03c",
+   "status": "SECONDARY",
+   "condition": "< 1000 mAh, >= 1 month without recharging",
+   "cite": "tr22826"
+  },
+  "wearable_tx_peak_mA_max": {
+   "value": 50,
+   "unit": "mA",
+   "id": "MED-03c",
+   "status": "SECONDARY",
+   "condition": "peak transmit current below 50 mA",
+   "cite": "tr22826"
+  },
+  "wearable_life_months_min": {
+   "value": 1,
+   "unit": "month",
+   "id": "MED-03c",
+   "status": "SECONDARY",
+   "condition": "at least 1 month",
+   "cite": "tr22826"
+  },
+  "ambulance_4k_rate_bps": {
+   "value": 25000000.0,
+   "unit": "bit/s",
+   "id": "MED-03d",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.5.2 compressed 4K 60 fps, <100 ms, UE speed 150 (unit not in cell)",
+   "cite": "tr22826"
+  },
+  "ambulance_scan_rate_bps": {
+   "value": 670000000.0,
+   "unit": "bit/s",
+   "id": "MED-03e",
+   "status": "SECONDARY",
+   "condition": "uncompressed 2048x2048x16-bit 10 fps scan stream",
+   "cite": "tr22826"
+  },
+  "ambulance_vitals_rate_bps": {
+   "value": 1000000.0,
+   "unit": "bit/s",
+   "id": "MED-03f",
+   "status": "SECONDARY",
+   "condition": "physical vital signs stream, ~80 B messages, <100 ms",
+   "cite": "tr22826"
+  },
+  "ambulance_vitals_msg_B": {
+   "value": 80,
+   "unit": "byte",
+   "id": "MED-03f",
+   "status": "SECONDARY",
+   "condition": "~80 B",
+   "cite": "tr22826"
+  },
+  "ambulance_ecg_payload_B": {
+   "value": 10,
+   "unit": "byte",
+   "id": "MED-03g",
+   "status": "SECONDARY",
+   "condition": "10 B digitised ECG at 200 Hz + 40 B IPv6/20 B IPv4 + 22 B Ethernet + 4 B CRC",
+   "cite": "tr22826"
+  },
+  "ambulance_ecg_rate_Hz": {
+   "value": 200,
+   "unit": "Hz",
+   "id": "MED-03g",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "tr22826"
+  },
+  "ambulance_audio_rate_bps": {
+   "value": 128000.0,
+   "unit": "bit/s",
+   "id": "MED-03h",
+   "status": "SECONDARY",
+   "condition": "~300 B every ~16 ms",
+   "cite": "tr22826"
+  },
+  "teleus_latency_oneway_ms": {
+   "value": 20,
+   "unit": "ms",
+   "id": "MED-02a",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.3.2 tele-ultrasound below 20 ms one-way",
+   "cite": "tr22826"
+  },
+  "teleus_4k_rate_bps": {
+   "value": 25000000.0,
+   "unit": "bit/s",
+   "id": "MED-02c",
+   "status": "SECONDARY",
+   "condition": "compressed 4K 60 fps, UL",
+   "cite": "tr22826"
+  },
+  "teleus_probe_rate_bps": {
+   "value": 160000000.0,
+   "unit": "bit/s",
+   "id": "MED-02d",
+   "status": "SECONDARY",
+   "condition": "uncompressed probe stream",
+   "cite": "tr22826"
+  },
+  "surgery_sensor_msg_B": {
+   "value": 50,
+   "unit": "byte",
+   "id": "MED-01g",
+   "status": "SECONDARY",
+   "condition": "TR 22.826 \u00a75.2.4.1.1: sensor return messages 50 B at 1 kHz",
+   "cite": "tr22826"
+  },
+  "surgery_sensor_rate_Hz": {
+   "value": 1000,
+   "unit": "Hz",
+   "id": "MED-01g",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "tr22826"
+  },
+  "surgery_per_link_latency_ms": {
+   "value": 2,
+   "unit": "ms",
+   "id": "MED-01h",
+   "status": "SECONDARY",
+   "condition": "'roughly 2 ms end-to-end latency constraint on each of the four radio links'",
+   "cite": "tr22826"
+  },
+  "surgery_video_8k_bps": {
+   "value": 240000000000.0,
+   "unit": "bit/s",
+   "id": "MED-01a",
+   "status": "SECONDARY",
+   "condition": "stereoscopic uncompressed 8K 120 fps",
+   "cite": "tr22826"
+  },
+  "surgery_video_4k_lossless_bps": {
+   "value": 24000000000.0,
+   "unit": "bit/s",
+   "id": "MED-01b",
+   "status": "SECONDARY",
+   "condition": "stereoscopic 4K 120 fps lossless (ratio 2.5)",
+   "cite": "tr22826"
+  },
+  "surgery_remote_video_bps": {
+   "value": 6000000000.0,
+   "unit": "bit/s",
+   "id": "MED-01k",
+   "status": "SECONDARY",
+   "condition": "remote telesurgery stereoscopic 4K 60 fps lossless, < 250 ms",
+   "cite": "tr22826"
+  },
+  "tactile_rtt_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "MED-07a",
+   "status": "VERIFIED",
+   "condition": "ITU-T 2014: ideal round-trip 1 ms for ~1000 Hz haptics",
+   "cite": "itu-tactile-2014"
+  },
+  "tactile_access_oneway_us": {
+   "value": 200,
+   "unit": "us",
+   "id": "MED-07c",
+   "status": "VERIFIED",
+   "condition": "access-network one-way 200 us share",
+   "cite": "itu-tactile-2014"
+  },
+  "telemed_e2e_lo_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "MED-07d",
+   "status": "VERIFIED",
+   "condition": "tele-medical end-to-end 1-10 ms (one-way/RTT unstated)",
+   "cite": "itu-tactile-2014"
+  },
+  "telemed_e2e_hi_ms": {
+   "value": 10,
+   "unit": "ms",
+   "id": "MED-07d",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "itu-tactile-2014"
+  },
+  "imt2030_ota_latency_lo_ms": {
+   "value": 0.1,
+   "unit": "ms",
+   "id": "MED-08a",
+   "status": "VERIFIED",
+   "condition": "IMT-2030 over-the-air research target 0.1-1 ms",
+   "cite": "itu-m2160"
+  },
+  "imt2030_ota_latency_hi_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "MED-08a",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "itu-m2160"
+  },
+  "imt2030_reliability_lo": {
+   "value": "1-10^-5",
+   "unit": "prob",
+   "id": "MED-08b",
+   "status": "VERIFIED",
+   "condition": "reliability research target 1-10^-5 to 1-10^-7",
+   "cite": "itu-m2160"
+  },
+  "ieee1918_telesurg_haptic_lo_ms": {
+   "value": 10,
+   "unit": "ms",
+   "id": "MED-06b",
+   "status": "SECONDARY",
+   "condition": "Holland et al. 2019: telesurgery-class haptic 10-100 ms",
+   "cite": "ieee1918"
+  },
+  "ieee1918_telesurg_haptic_hi_ms": {
+   "value": 100,
+   "unit": "ms",
+   "id": "MED-06b",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "ieee1918"
+  },
+  "ts22261_haptic_msg_per_dof_lo_B": {
+   "value": 2,
+   "unit": "byte",
+   "id": "MED-05d",
+   "status": "SECONDARY",
+   "condition": "TS 22.261 Table 7.11-1 remote control robot: 2-8 B (1 DoF), 1-20 ms, 99.999%",
+   "cite": "ts22261"
+  },
+  "ts22261_haptic_msg_per_dof_hi_B": {
+   "value": 8,
+   "unit": "byte",
+   "id": "MED-05d",
+   "status": "SECONDARY",
+   "condition": "as above",
+   "cite": "ts22261"
+  },
+  "haptic_rate_Hz": {
+   "value": 1000,
+   "unit": "Hz",
+   "id": "STR-05",
+   "status": "VERIFIED",
+   "condition": "Steinbach 2012: local 1 kHz control loop; packet rate 1 kHz",
+   "cite": "steinbach2012"
+  },
+  "haptic_bits_per_dof": {
+   "value": 16,
+   "unit": "bit",
+   "id": "STR-05c",
+   "status": "VERIFIED",
+   "condition": "Aijaz 2017: 16 bit per DoF",
+   "cite": "aijaz2017"
+  },
+  "haptic_payload_3dof_B": {
+   "value": 6,
+   "unit": "byte",
+   "id": "STR-05c",
+   "status": "VERIFIED",
+   "condition": "Aijaz 2017: 6-byte payload for 3 DoF",
+   "cite": "aijaz2017"
+  },
+  "ipv4_header_B": {
+   "value": 20,
+   "unit": "byte",
+   "id": "STR-05c",
+   "status": "VERIFIED",
+   "condition": "Aijaz 2017",
+   "cite": "aijaz2017"
+  },
+  "ipv6_header_B": {
+   "value": 40,
+   "unit": "byte",
+   "id": "STR-05c",
+   "status": "VERIFIED",
+   "condition": "Aijaz 2017",
+   "cite": "aijaz2017"
+  },
+  "ecg_wban_bps": {
+   "value": 3000.0,
+   "unit": "bit/s",
+   "id": "STR-01",
+   "status": "VERIFIED",
+   "condition": "Movassaghi 2014 Table II ECG '3 Kbps' (lead count unstated)",
+   "cite": "movassaghi2014"
+  },
+  "spo2_wban_bps": {
+   "value": 32000.0,
+   "unit": "bit/s",
+   "id": "STR-01",
+   "status": "VERIFIED",
+   "condition": "Movassaghi Table II SpO2 32 Kbps",
+   "cite": "movassaghi2014"
+  },
+  "bp_wban_bps": {
+   "value": 10,
+   "unit": "bit/s",
+   "id": "STR-01",
+   "status": "VERIFIED",
+   "condition": "Blood Pressure < 10 bps",
+   "cite": "movassaghi2014"
+  },
+  "capsule_endoscope_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "STR-01",
+   "status": "VERIFIED",
+   "condition": "Endoscope capsule > 2 Mbps",
+   "cite": "movassaghi2014"
+  },
+  "ecg12_bps": {
+   "value": 288000.0,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "Latre 2011 Table 1: ECG 12 leads 288 kbps, 12 bits",
+   "cite": "latre2011"
+  },
+  "ecg6_bps": {
+   "value": 71000.0,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "ECG 6 leads 71 kbps",
+   "cite": "latre2011"
+  },
+  "emg_bps": {
+   "value": 320000.0,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "EMG 320 kbps, 16 bits",
+   "cite": "latre2011"
+  },
+  "eeg12_bps": {
+   "value": 43200.0,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "EEG 12 leads 43.2 kbps, 12 bits",
+   "cite": "latre2011"
+  },
+  "glucose_bps": {
+   "value": 1600,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "Glucose monitoring 1600 bps",
+   "cite": "latre2011"
+  },
+  "temperature_bps": {
+   "value": 120,
+   "unit": "bit/s",
+   "id": "STR-01b",
+   "status": "VERIFIED",
+   "condition": "Temperature 120 bps",
+   "cite": "latre2011"
+  },
+  "eeg_min_samples_per_s": {
+   "value": 256,
+   "unit": "S/s",
+   "id": "STR-02b",
+   "status": "VERIFIED",
+   "condition": "ACNS Guideline 4: minimum 256 samples/s (512 Hz preferable)",
+   "cite": "acns-g4"
+  },
+  "eeg_pref_samples_per_s": {
+   "value": 512,
+   "unit": "S/s",
+   "id": "STR-02b",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "acns-g4"
+  },
+  "eeg_min_bits": {
+   "value": 16,
+   "unit": "bit",
+   "id": "STR-02b",
+   "status": "VERIFIED",
+   "condition": "at least 16 bits per sample; 24-bit typical",
+   "cite": "acns-g4"
+  },
+  "eeg_typical_bits": {
+   "value": 24,
+   "unit": "bit",
+   "id": "STR-02b",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "acns-g4"
+  },
+  "eeg_min_channels": {
+   "value": 16,
+   "unit": "ch",
+   "id": "STR-02",
+   "status": "VERIFIED",
+   "condition": "ACNS Guideline 1: 16 channels minimum; 21 electrodes",
+   "cite": "acns-g1"
+  },
+  "ceeg_typical_channels": {
+   "value": 32,
+   "unit": "ch",
+   "id": "STR-08",
+   "status": "VERIFIED",
+   "condition": "Herman 2015 Part II: typical equipment 32 or more channels plus video",
+   "cite": "herman2015"
+  },
+  "ceeg_min_hours": {
+   "value": 24,
+   "unit": "h",
+   "id": "STR-08b",
+   "status": "VERIFIED",
+   "condition": "Herman 2015 Part I: at least 24 h for most indications",
+   "cite": "herman2015"
+  },
+  "ceeg_storage_GB_per_day_video_eeg": {
+   "value": 12,
+   "unit": "GB/day",
+   "id": "STR-08",
+   "status": "VERIFIED",
+   "condition": "Herman 2015 Part II example: 12 GB/day (video + EEG) per machine ('+' glyph unverified)",
+   "cite": "herman2015"
+  },
+  "ecg_diag_samples_per_s": {
+   "value": 500,
+   "unit": "S/s",
+   "id": "STR-03",
+   "status": "VERIFIED",
+   "condition": "Kligfield 2007: 500 samples/s needed for 150 Hz cutoff (adults)",
+   "cite": "kligfield2007"
+  },
+  "ecg_diag_kB_per_10s_lead": {
+   "value": 10,
+   "unit": "kB",
+   "id": "STR-03",
+   "status": "VERIFIED",
+   "condition": "~10 kB per 10 s of one lead at 500 S/s",
+   "cite": "kligfield2007"
+  },
+  "icu_mimic3_channels": {
+   "value": 8,
+   "unit": "ch",
+   "id": "STR-04",
+   "status": "VERIFIED",
+   "condition": "MIMIC-III waveforms: up to eight simultaneous signals",
+   "cite": "mimic3wdb"
+  },
+  "icu_mimic3_rate_Hz": {
+   "value": 125,
+   "unit": "Hz",
+   "id": "STR-04",
+   "status": "VERIFIED",
+   "condition": "digitised at 125 Hz (stored rate)",
+   "cite": "mimic3wdb"
+  },
+  "icu_mimic3_bits_lo": {
+   "value": 8,
+   "unit": "bit",
+   "id": "STR-04",
+   "status": "VERIFIED",
+   "condition": "8-, 10-, or (occasionally) 12-bit",
+   "cite": "mimic3wdb"
+  },
+  "icu_mimic3_bits_hi": {
+   "value": 12,
+   "unit": "bit",
+   "id": "STR-04",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "mimic3wdb"
+  },
+  "or_vitaldb_rate_lo_Hz": {
+   "value": 62.5,
+   "unit": "Hz",
+   "id": "STR-04c",
+   "status": "VERIFIED",
+   "condition": "VitalDB waveform tracks 62.5-500 Hz, up to 12 tracks",
+   "cite": "vitaldb"
+  },
+  "or_vitaldb_rate_hi_Hz": {
+   "value": 500,
+   "unit": "Hz",
+   "id": "STR-04c",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "vitaldb"
+  },
+  "surg_video_1080p_bps_lo": {
+   "value": 1500000.0,
+   "unit": "bit/s",
+   "id": "STR-06",
+   "status": "VERIFIED",
+   "condition": "Moustris 2023: 1080p25 H264 VBR 1.5-2 Mbps (configured; phantoms)",
+   "cite": "moustris2023"
+  },
+  "surg_video_1080p_bps_hi": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "STR-06",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "moustris2023"
+  },
+  "clinical_4k_video_need_bps": {
+   "value": 36000000.0,
+   "unit": "bit/s",
+   "id": "STR-06b",
+   "status": "VERIFIED",
+   "condition": "Chen 2024 Table 3: 4K video 'Basic needs' 36 Mbps (ward rounds, not surgery)",
+   "cite": "chen2024jmir"
+  },
+  "surg_video_measured_ye2026_bps": {
+   "value": 40000000.0,
+   "unit": "bit/s",
+   "id": "MED-09c",
+   "status": "VERIFIED",
+   "condition": "Ye 2026: real-time video 40 Mbps during telesurgery",
+   "cite": "ye2026"
+  },
+  "ambulance_video_measured_bps": {
+   "value": 12000000.0,
+   "unit": "bit/s",
+   "id": "STR-07",
+   "status": "VERIFIED",
+   "condition": "Berlet 2022: measured video stream 12 Mbps (parked ambulance, 5G)",
+   "cite": "berlet2022"
+  },
+  "ambulance_ultrasound_measured_bps": {
+   "value": 4000000.0,
+   "unit": "bit/s",
+   "id": "STR-07",
+   "status": "VERIFIED",
+   "condition": "measured ultrasound ~4 Mbps",
+   "cite": "berlet2022"
+  },
+  "remote_ultrasound_ul_avg_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "STR-06b",
+   "status": "VERIFIED",
+   "condition": "Chen 2024: remote ultrasound average uplink 2 Mbps",
+   "cite": "chen2024jmir"
+  },
+  "pq_tls_share_dec2025": {
+   "value": 52,
+   "unit": "%",
+   "id": "SEC-07a",
+   "status": "VERIFIED",
+   "condition": "Cloudflare: PQ-encrypted share of human web traffic, early Dec 2025 (29% at start of 2025)",
+   "cite": "cloudflare"
+  },
+  "pq_tls_share_apr2026": {
+   "value": 65,
+   "unit": "%",
+   "id": "SEC-07c",
+   "status": "VERIFIED",
+   "condition": "'over 65%' (blog 7 Apr 2026)",
+   "cite": "cloudflare"
+  },
+  "tr33703_release": {
+   "value": "Rel-20",
+   "unit": "-",
+   "id": "SEC-04a",
+   "status": "VERIFIED",
+   "condition": "TR 33.703 PQC transition study, V20.0.1 2026-07, 'Under change control'",
+   "cite": "tr33703"
+  },
+  "rel20_freeze": {
+   "value": "mid-2027",
+   "unit": "-",
+   "id": "SEC-04f",
+   "status": "VERIFIED",
+   "condition": "3GPP article June 2026: Rel-20 frozen by mid-2027; Rel-21 not before early 2029",
+   "cite": "tr33703"
+  },
+  "suci_profile_a": {
+   "value": "Curve25519 / X25519",
+   "unit": "-",
+   "id": "SEC-02a",
+   "status": "SECONDARY",
+   "condition": "TS 33.501 Annex C.3.4.1",
+   "cite": "ts33501"
+  },
+  "suci_profile_b": {
+   "value": "secp256r1",
+   "unit": "-",
+   "id": "SEC-02b",
+   "status": "SECONDARY",
+   "condition": "TS 33.501 Annex C.3.4.2",
+   "cite": "ts33501"
+  },
+  "nr_as_algorithms": {
+   "value": "128-NEA1/2/3, 128-NIA1/2/3",
+   "unit": "-",
+   "id": "SEC-03a",
+   "status": "SECONDARY",
+   "condition": "TS 33.501 \u00a75.11.1; no 256-bit identifier listed",
+   "cite": "ts33501"
+  },
+  "snow5g_256_spec": {
+   "value": "TS 35.240 V18.0.0 (2024-05) / V19.0.0 (2026-03)",
+   "unit": "-",
+   "id": "SEC-03d",
+   "status": "VERIFIED",
+   "condition": "256-NEA4/NIA4/NCA4 published; integration into AS/NAS still a Rel-20 6G study (TR 33.771)",
+   "cite": "ts35240"
+  },
+  "ble_pairing_curve": {
+   "value": "P-256 ECDH (LE Secure Connections, Core 4.2)",
+   "unit": "-",
+   "id": "LNK-03",
+   "status": "SECONDARY",
+   "condition": "NIST SP 800-121r2",
+   "cite": "ble-sig"
+  },
+  "wban_assoc_curve": {
+   "value": "P-256 ECDH (IEEE 802.15.6-2012 security association)",
+   "unit": "-",
+   "id": "LNK-05",
+   "status": "SECONDARY",
+   "condition": "Toorani 2015 / Ullah 2013",
+   "cite": "ieee802156"
+  },
+  "ikev2_dh_group_shall": {
+   "value": "group 19 (256-bit random ECP)",
+   "unit": "-",
+   "id": "SEC-08f",
+   "status": "VERIFIED",
+   "condition": "TS 33.210 V19.3.0 \u00a75.4.2",
+   "cite": "ts33210"
+  },
+  "n32_tls_kex": {
+   "value": "ECDHE or DHE",
+   "unit": "-",
+   "id": "SEC-05b",
+   "status": "VERIFIED",
+   "condition": "GSMA PQ.05 p.17: N32 TLS 1.2/1.3 'relies on either ECDHE or DHE'",
+   "cite": "gsma-pq05"
+  }
+ }
+}

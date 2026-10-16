@@ -1,0 +1,741 @@
+{
+ "handshake_bytes": {
+  "C0_classical": 2353,
+  "C1_hybrid_kex": 4559,
+  "C2_full_pq": 20224,
+  "C2_server_only_derived": 11654,
+  "key_share_bytes_only_X25519MLKEM768": 2336,
+  "C2_server_only_derivation": "C2 - ML-DSA-65 public key (1952 B) - 2 x ML-DSA-65 signature (3309 B): client certificate and CertificateVerify removed; FIPS 204 sizes, 16 B above Dilithium3 per signature"
+ },
+ "resumption_key_share_airtime": {
+  "802.15.4, both shares": {
+   "bytes": 2336,
+   "airtime_s": 0.117856
+  },
+  "NB-IoT, client share uplink + server share downlink": {
+   "uplink_s": 0.14739393939393938,
+   "downlink_s": 0.3446153846153846,
+   "total_s": 0.49200932400932396,
+   "bytes": 2336
+  },
+  "note": "psk_dhe_ke resumption re-sends the hybrid key shares (RFC 9846 sec. 4.2.9/2.2); psk_ke sends none but has no forward secrecy"
+ },
+ "first_flight": {
+  "server_flight_C2_B": {
+   "min": 9658,
+   "max": 10470
+  },
+  "server_flight_C1_max_B": 3343,
+  "server_flight_C0_max_B": 2288,
+  "tcp_initial_window_B_at_mss1460": 14600,
+  "C2_fits_tcp_iw": true,
+  "quic_allowance_after_one_1200B_datagram_B": 3600,
+  "C1_fits_quic_after_one_datagram": true,
+  "quic_client_bytes_needed_for_C2_B": 3219.3333333333335,
+  "C2_one_send_with_one_tx_cert_per_side": "a side sending two ML-DSA-65 certificates needs >= 2*(pk+sig)+sig bytes; with the other side's cert+CV and both KEM objects this exceeds the 20,224-B total, so each side sends one certificate",
+  "C2_with_two_certs_one_side_min_B": 24673,
+  "ledger": [
+   "RFC-07",
+   "PQC-02",
+   "SEC-06b",
+   "SEC-06d",
+   "PQC-05"
+  ]
+ },
+ "budgets_s": {
+  "RAS local <2 ms (TS 22.104)": 0.002,
+  "RAS remote / RAD <20 ms (TS 22.104)": 0.02,
+  "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.1,
+  "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.001
+ },
+ "airtime_table": [
+  {
+   "link": "IEEE 802.15.4 / 6LoWPAN, 2.4 GHz (AES-CCM-128 link security)",
+   "condition": "250 kb/s PHY, 127-B frames, 81 B payload after MAC + CCM-128 overhead (RFC 4944 \u00a74)",
+   "rate_bps": 250000.0,
+   "ledger": [
+    "LNK-01",
+    "LNK-02",
+    "LNK-01"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": 30,
+    "airtime_s": 0.12192,
+    "airtime": "121.9 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 61.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 6.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 121.9
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": 57,
+    "airtime_s": 0.231648,
+    "airtime": "231.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 115.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 11.6,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 2.3,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 231.6
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": 250,
+    "airtime_s": 1.016,
+    "airtime": "1.02 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 508.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 50.8,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 10.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1016.0
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": 144,
+    "airtime_s": 0.585216,
+    "airtime": "585.2 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 292.6,
+     "RAS remote / RAD <20 ms (TS 22.104)": 29.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 5.9,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 585.2
+    }
+   }
+  },
+  {
+   "link": "IEEE 802.15.6 WBAN narrowband, lowest PHY rate",
+   "condition": "75.9 kb/s; 255-B frame body; +9 B MAC header/FCS assumed (SECONDARY sources; 2012 standard)",
+   "rate_bps": 75900.0,
+   "ledger": [
+    "LNK-05",
+    "LNK-05"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": 10,
+    "airtime_s": 0.2782608695652174,
+    "airtime": "278.3 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 139.1,
+     "RAS remote / RAD <20 ms (TS 22.104)": 13.9,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 2.8,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 278.3
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": 18,
+    "airtime_s": 0.5008695652173913,
+    "airtime": "500.9 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 250.4,
+     "RAS remote / RAD <20 ms (TS 22.104)": 25.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 5.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 500.9
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": 80,
+    "airtime_s": 2.226086956521739,
+    "airtime": "2.23 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 1113.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 111.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 22.3,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 2226.1
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": 46,
+    "airtime_s": 1.28,
+    "airtime": "1.28 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 640.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 64.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 12.8,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1280.0
+    }
+   }
+  },
+  {
+   "link": "IEEE 802.15.6 WBAN narrowband, highest PHY rate",
+   "condition": "971.4 kb/s",
+   "rate_bps": 971400.0,
+   "ledger": [
+    "LNK-05",
+    "LNK-05"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": 10,
+    "airtime_s": 0.021741815935762816,
+    "airtime": "21.7 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 10.9,
+     "RAS remote / RAD <20 ms (TS 22.104)": 1.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 21.7
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": 18,
+    "airtime_s": 0.03913526868437307,
+    "airtime": "39.1 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 19.6,
+     "RAS remote / RAD <20 ms (TS 22.104)": 2.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.4,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 39.1
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": 80,
+    "airtime_s": 0.17393452748610252,
+    "airtime": "173.9 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 87.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 8.7,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.7,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 173.9
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": 46,
+    "airtime_s": 0.10001235330450896,
+    "airtime": "100.0 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 50.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 5.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 100.0
+    }
+   }
+  },
+  {
+   "link": "Bluetooth LE 1M (application-rate approximation)",
+   "condition": "~800 kb/s application throughput per Bluetooth SIG Primer; 251-B LL payload (Core 4.2+)",
+   "rate_bps": 800000.0,
+   "ledger": [
+    "LNK-03",
+    "LNK-03"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": 10,
+    "airtime_s": 0.02353,
+    "airtime": "23.5 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 11.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 1.2,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 23.5
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": 19,
+    "airtime_s": 0.04559,
+    "airtime": "45.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 22.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 2.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.5,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 45.6
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": 81,
+    "airtime_s": 0.20224,
+    "airtime": "202.2 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 101.1,
+     "RAS remote / RAD <20 ms (TS 22.104)": 10.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 2.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 202.2
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": 47,
+    "airtime_s": 0.11654,
+    "airtime": "116.5 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 58.3,
+     "RAS remote / RAD <20 ms (TS 22.104)": 5.8,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 116.5
+    }
+   }
+  },
+  {
+   "link": "Bluetooth LE 2M (application-rate approximation)",
+   "condition": "~1400 kb/s",
+   "rate_bps": 1400000.0,
+   "ledger": [
+    "LNK-03"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": 10,
+    "airtime_s": 0.013445714285714287,
+    "airtime": "13.4 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 6.7,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.7,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.1,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 13.4
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": 19,
+    "airtime_s": 0.026051428571428573,
+    "airtime": "26.1 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 13.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 1.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.3,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 26.1
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": 81,
+    "airtime_s": 0.11556571428571429,
+    "airtime": "115.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 57.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 5.8,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 115.6
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": 47,
+    "airtime_s": 0.06659428571428572,
+    "airtime": "66.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 33.3,
+     "RAS remote / RAD <20 ms (TS 22.104)": 3.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.7,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 66.6
+    }
+   }
+  },
+  {
+   "link": "NB-IoT uplink (peak, multi-tone)",
+   "condition": "66 kb/s peak per GSMA (Cat-NB1); the client share travels uplink",
+   "rate_bps": 66000.0,
+   "ledger": [
+    "LNK-04"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": null,
+    "airtime_s": 0.2852121212121212,
+    "airtime": "285.2 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 142.6,
+     "RAS remote / RAD <20 ms (TS 22.104)": 14.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 2.9,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 285.2
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": null,
+    "airtime_s": 0.5526060606060607,
+    "airtime": "552.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 276.3,
+     "RAS remote / RAD <20 ms (TS 22.104)": 27.6,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 5.5,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 552.6
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": null,
+    "airtime_s": 2.4513939393939395,
+    "airtime": "2.45 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 1225.7,
+     "RAS remote / RAD <20 ms (TS 22.104)": 122.6,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 24.5,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 2451.4
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": null,
+    "airtime_s": 1.4126060606060606,
+    "airtime": "1.41 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 706.3,
+     "RAS remote / RAD <20 ms (TS 22.104)": 70.6,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 14.1,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1412.6
+    }
+   }
+  },
+  {
+   "link": "NB-IoT downlink (peak)",
+   "condition": "26 kb/s peak per GSMA",
+   "rate_bps": 26000.0,
+   "ledger": [
+    "LNK-04"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": null,
+    "airtime_s": 0.724,
+    "airtime": "724.0 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 362.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 36.2,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 7.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 724.0
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": null,
+    "airtime_s": 1.4027692307692308,
+    "airtime": "1.40 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 701.4,
+     "RAS remote / RAD <20 ms (TS 22.104)": 70.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 14.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1402.8
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": null,
+    "airtime_s": 6.222769230769231,
+    "airtime": "6.22 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 3111.4,
+     "RAS remote / RAD <20 ms (TS 22.104)": 311.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 62.2,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 6222.8
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": null,
+    "airtime_s": 3.5858461538461537,
+    "airtime": "3.59 s",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 1792.9,
+     "RAS remote / RAD <20 ms (TS 22.104)": 179.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 35.9,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 3585.8
+    }
+   }
+  },
+  {
+   "link": "LTE-M half-duplex uplink",
+   "condition": "~380 kb/s per GSMA",
+   "rate_bps": 380000.0,
+   "ledger": [
+    "LNK-04"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": null,
+    "airtime_s": 0.04953684210526316,
+    "airtime": "49.5 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 24.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 2.5,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.5,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 49.5
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": null,
+    "airtime_s": 0.09597894736842105,
+    "airtime": "96.0 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 48.0,
+     "RAS remote / RAD <20 ms (TS 22.104)": 4.8,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 1.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 96.0
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": null,
+    "airtime_s": 0.4257684210526316,
+    "airtime": "425.8 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 212.9,
+     "RAS remote / RAD <20 ms (TS 22.104)": 21.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 4.3,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 425.8
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": null,
+    "airtime_s": 0.24534736842105262,
+    "airtime": "245.3 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 122.7,
+     "RAS remote / RAD <20 ms (TS 22.104)": 12.3,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 2.5,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 245.3
+    }
+   }
+  },
+  {
+   "link": "5G NR uplink, measured in a clinical deployment (Chen 2024 avg)",
+   "condition": "91 Mb/s average upload, private 5G SA hospital network",
+   "rate_bps": 91000000.0,
+   "ledger": [
+    "STR-06b"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": null,
+    "airtime_s": 0.00020685714285714285,
+    "airtime": "207 us",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.1,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.2
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": null,
+    "airtime_s": 0.0004007912087912088,
+    "airtime": "401 us",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.2,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.4
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": null,
+    "airtime_s": 0.0017779340659340658,
+    "airtime": "1.8 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.9,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1.8
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": null,
+    "airtime_s": 0.0010245274725274726,
+    "airtime": "1.0 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.5,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1.0
+    }
+   }
+  },
+  {
+   "link": "5G NR uplink, measured during telesurgery (Ye 2026)",
+   "condition": "101 Mb/s upstream at the 5G CPE side",
+   "rate_bps": 101000000.0,
+   "ledger": [
+    "MED-09d"
+   ],
+   "C0_classical": {
+    "bytes": 2353,
+    "frames": null,
+    "airtime_s": 0.0001863762376237624,
+    "airtime": "186 us",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.1,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.2
+    }
+   },
+   "C1_hybrid_kex": {
+    "bytes": 4559,
+    "frames": null,
+    "airtime_s": 0.00036110891089108913,
+    "airtime": "361 us",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.2,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.4
+    }
+   },
+   "C2_full_pq": {
+    "bytes": 20224,
+    "frames": null,
+    "airtime_s": 0.00160190099009901,
+    "airtime": "1.6 ms",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.8,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.1,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 1.6
+    }
+   },
+   "C2_server_only_derived": {
+    "bytes": 11654,
+    "frames": null,
+    "airtime_s": 0.0009230891089108911,
+    "airtime": "923 us",
+    "x_budget": {
+     "RAS local <2 ms (TS 22.104)": 0.5,
+     "RAS remote / RAD <20 ms (TS 22.104)": 0.0,
+     "cardiac telemetry <100 ms (TR 22.826, SECONDARY)": 0.0,
+     "Tactile Internet 1 ms RTT (ITU-T 2014)": 0.9
+    }
+   }
+  }
+ ],
+ "device_compute": {
+  "note": "pqm4 counts are at 24 MHz on a Cortex-M4 (Nucleo-L4R5ZI default board); the 180 MHz column is a linear rescaling (assumption: no wait states) and is bracketed by the Tasopoulos measurement on a 180 MHz Cortex-M4",
+  "ML-KEM-768 client (keygen+decaps)": {
+   "cycles": 1349923,
+   "ms_at_24MHz": 56.2,
+   "ms_at_180MHz_scaled": 7.5,
+   "ledger": [
+    "PQC-04",
+    "PQC-04"
+   ]
+  },
+  "ML-KEM-768 server (encaps)": {
+   "cycles": 658754,
+   "ms_at_24MHz": 27.4,
+   "ms_at_180MHz_scaled": 3.7,
+   "ledger": [
+    "PQC-04"
+   ]
+  },
+  "ML-DSA-65 verify (one certificate or CertificateVerify)": {
+   "cycles": 2415944,
+   "ms_at_24MHz": 100.7,
+   "ms_at_180MHz_scaled": 13.4,
+   "ledger": [
+    "PQC-04"
+   ]
+  },
+  "ML-DSA-65 sign (mutual auth, client)": {
+   "cycles": 6193171,
+   "ms_at_24MHz": 258.0,
+   "ms_at_180MHz_scaled": 34.4,
+   "ledger": [
+    "PQC-04"
+   ]
+  },
+  "client total, unilateral auth (KEM client + 2 verifies)": {
+   "ms_at_24MHz": 257.6,
+   "ms_at_180MHz_scaled": 34.3,
+   "assumption": "two signature verifications (server CertificateVerify + one CA certificate)"
+  },
+  "measured full PQ-TLS handshake, client, 180 MHz, wired (Tasopoulos 2022)": {
+   "ms": 157.126,
+   "ledger": "PQC-05"
+  },
+  "measured classical handshake, client, 180 MHz, wired": {
+   "ms": 109.171,
+   "ledger": "PQC-05"
+  },
+  "measured energy per handshake, client, mutual auth (CF'23)": {
+   "PQ_mJ": 25.392,
+   "classical_mJ": 18.242,
+   "ledger": [
+    "PQC-05",
+    "PQC-05"
+   ]
+  },
+  "client total, unilateral auth, ms_at_64MHz_scaled": 96.6,
+  "ML-DSA-65 sign range (pqm4 MIN/MAX of 1000 executions, m4f)": {
+   "cycles_min": 2918295,
+   "cycles_max": 26008621,
+   "ms_at_24MHz_min": 121.6,
+   "ms_at_24MHz_max": 1083.7,
+   "ledger": "PQC-04 quote (g) in sources/constrained-pqc-links.md (benchmarks.md row ml-dsa-65 m4f)"
+  }
+ },
+ "wearable_energy": {
+  "battery_J": 11880.0,
+  "pq_handshake_J": 0.025391999999999998,
+  "handshakes_per_day_costing_1pct_battery_over_30_days": 156,
+  "ledger": [
+   "MED-03c",
+   "MED-03c",
+   "MED-03c",
+   "PQC-05"
+  ],
+  "assumption": "TR 22.826 wearable envelope (3.3 V, <1000 mAh, >=1 month); Tasopoulos bench energy (180 MHz Cortex-M4, wired Ethernet, radio energy excluded)",
+  "reading": "the handshake's cryptographic energy is not the wearable's constraint; radio airtime for 20 kB on a constrained link is (not measured here)"
+ },
+ "per_packet_overhead": {
+  "haptic 3-DoF (Aijaz 2017)": {
+   "payload_B": 6,
+   "overhead_B": 22,
+   "overhead_pct": 366.7,
+   "overhead_pct_with_4B_cid": 433.3
+  },
+  "surgery sensor msg (TR 22.826)": {
+   "payload_B": 50,
+   "overhead_B": 22,
+   "overhead_pct": 44.0,
+   "overhead_pct_with_4B_cid": 52.0
+  },
+  "RAD msg (TS 22.104)": {
+   "payload_B": 80,
+   "overhead_B": 22,
+   "overhead_pct": 27.5,
+   "overhead_pct_with_4B_cid": 32.5
+  },
+  "RAS min msg (TS 22.104)": {
+   "payload_B": 250,
+   "overhead_B": 22,
+   "overhead_pct": 8.8,
+   "overhead_pct_with_4B_cid": 10.4
+  },
+  "RAS max msg (TS 22.104)": {
+   "payload_B": 2000,
+   "overhead_B": 22,
+   "overhead_pct": 1.1,
+   "overhead_pct_with_4B_cid": 1.3
+  },
+  "telemetry max msg (TR 22.826)": {
+   "payload_B": 1000,
+   "overhead_B": 22,
+   "overhead_pct": 2.2,
+   "overhead_pct_with_4B_cid": 2.6
+  },
+  "note": "per-record cost is symmetric (AEAD) and identical before and after PQ migration; PQ changes the handshake and certificates only. 16-B tag + 5-B DTLS 1.3 unified header + 1-B inner content type = 22 B assumed; a connection identifier adds its length (4 B shown); AES-CCM-8 profiles (RFC 7925) halve the tag; IP/UDP headers excluded."
+ },
+ "reading": [
+  "On every constrained radio (802.15.4, WBAN, BLE, NB-IoT, LTE-M) a cold full-PQ handshake's airtime alone is 10^2-10^4 times the 2 ms surgery budget and 1-60 times the 100 ms telemetry budget; even the hybrid-KEM-only configuration exceeds 2 ms on all of them.",
+  "On 5G-class uplinks the bytes serialize in ~2 ms, so the round trip (10-28 ms measured; 25.77 ms LEO) is what breaks the 2 ms budget -- not the bytes.",
+  "On a 24 MHz Cortex-M4 the client's computation (KEM + two ML-DSA-65 verifications) is ~260 ms, comparable to the airtime on a 250 kb/s link; on a 180 MHz M4 it is ~35 ms (measured full handshake 157 ms incl. wolfSSL and Ethernet). The August plan's claim that 'computation is not the binding constraint' holds for x86-class endpoints only; on sensor-class MCUs computation and transmission are both binding.",
+  "Conclusion for the design section: key establishment must be pre-established and amortised (PSK resumption, DTLS CID, session survival across handovers); the per-packet cost inside the control loop is symmetric and unchanged."
+ ]
+}

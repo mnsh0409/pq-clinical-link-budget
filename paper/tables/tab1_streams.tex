@@ -1,0 +1,13 @@
+\begin{tabular}{@{}lrr@{}}\toprule
+Stream & Rate & Latency req. \\ \midrule
+Wearable ECG, survey rate~\cite{movassaghi2014} & 3\,kb/s & -- \\
+12-lead ECG, 12 bit, survey rate~\cite{latre2011} & 288\,kb/s & -- \\
+ICU monitor as archived, $8{\times}125$\,Hz${\times}12$\,bit~\cite{mimic3wdb} & 12\,kb/s & -- \\
+Cardiac telemetry, TR 22.826~\cite{tr22826} & 500\,kb/s & $<$100\,ms \\
+RAD, 80\,B/1\,ms~\cite{ts22104} & 2--16\,Mb/s & $<$20\,ms \\
+RAS, local link, 250--2,000\,B/1\,ms~\cite{ts22104} & 2--16\,Mb/s & $<$2\,ms \\
+RAS, remote ($<$400\,km)~\cite{ts22104} & 2--16\,Mb/s & $<$20\,ms \\
+Ambulance vital signs, TR 22.826~\cite{tr22826} & 1\,Mb/s & $<$100\,ms \\
+Ambulance video, measured~\cite{berlet2022} & 12\,Mb/s & $<$100\,ms~\cite{tr22826} \\
+Surgical video, measured~\cite{ye2026} & 40\,Mb/s & -- \\
+\bottomrule\end{tabular}

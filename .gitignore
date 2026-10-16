@@ -1,0 +1,11 @@
+# datasets are fetched locally (data/README.md), never committed
+data/*
+!data/README.md
+# testbed binaries, keys and certificates are built locally
+testbed/hs
+testbed/tele
+testbed/quic
+testbed/pki/*
+!testbed/pki/mkpki.sh
+__pycache__/
+*.pyc
