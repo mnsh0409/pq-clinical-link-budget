@@ -7,7 +7,9 @@ Such a stall marks the attribution window that contains it (x3.py: from 0.5 s be
 the next) invalid. The rule looks only at the emulator's timing, never at whether records were late, and it is applied
 to every cell; models/testbed_tables.py then compares cells over the windows valid in both.
 Also reported, not used by the rule: "false", a new connection opened while the current one was alive in the emulator
-(a session-loss declaration without an interruption; most coincide with a stall).
+(a session-loss declaration without an interruption; most coincide with a stall), and "client_start_after_origin_ms",
+when the client's first connection request reached the emulator relative to the fitted schedule origin: the client's
+record clock starts then, so the phase of the 16-ms record grid at an interruption onset differs between cells.
 Each run's interruption schedule is replayed from its seed exactly as x3.py draws it (durations, then start jitter);
 its time origin is fitted to the frames the emulator dropped in interruptions.
 
@@ -58,8 +60,9 @@ def check(logf, seed, owd_s, T2):
                 i = win(ti)
                 if i >= 0: false[i] = True
         if d == "AB" and pl > 0: cur = cp                                 # the connection that carries records now
+    t0 = min((float(r[0]) for r in rows if r[1] == "AB" and int(r[2]) == 74 and float(r[0]) >= best[1] - 0.5), default=float("nan"))
     return {"stall": stall, "false": false, "invalid": list(stall), "syn_dropped_in_interruption": syn_lost,
-            "drops_in_schedule": best[0], "drops": int(len(drops))}
+            "drops_in_schedule": best[0], "drops": int(len(drops)), "client_start_after_origin_ms": (t0 - best[1]) * 1e3}
 
 def main():
     T2 = t2_nsa_ms()
@@ -79,6 +82,8 @@ def main():
     fa = sum(sum(q["false"]) for v in out["cells"].values() for q in v.values())
     both = sum(sum(s and f for s, f in zip(q["stall"], q["false"])) for v in out["cells"].values() for q in v.values())
     print(f"{bad} of {n} windows invalid (emulator stall); false detections in {fa} windows, {both} of them with a stall")
+    st0 = [q["client_start_after_origin_ms"] for v in out["cells"].values() for q in v.values()]
+    print(f"client start after the schedule origin: {min(st0):.1f} to {max(st0):.1f} ms")
     for k, v in out["cells"].items():
         print(k, {s: sum(q["invalid"]) for s, q in v.items()}, "schedule fit:", [f"{q['drops_in_schedule']}/{q['drops']}" for q in v.values()])
 

@@ -1091,7 +1091,29 @@
     "outage_ms_median": 47.0,
     "outage_ms_max": 94.0,
     "late_given_failed_attempt": null,
-    "late_given_no_failed_attempt": 0.07142857142857142
+    "late_given_no_failed_attempt": 0.07142857142857142,
+    "diff_from_lost_c0": -0.36363636363636365,
+    "diff_from_lost_c0_ci95": [
+     -0.68,
+     -0.047619047619047616
+    ],
+    "n_common_with_lost_c0": 22,
+    "diff_from_lost_c0_all_windows": -0.42857142857142855,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -1.2285714285714286,
+     0.2
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.7768265527409708,
+     0.11682655274097081
+    ],
+    "diff_from_lost_c0_run_means": [
+     -0.25,
+     0.0,
+     -0.6,
+     0.0,
+     -0.8
+    ]
    },
    "5G-hosp|detect|C0|ch2": {
     "n_interruptions": 35,
@@ -1115,13 +1137,7 @@
     "late_given_failed_attempt": 0.6666666666666666,
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 22,
-    "syn_dropped_in_interruption_valid": 22,
-    "excess_over_keep": 0.4285714285714286,
-    "excess_over_keep_ci95": [
-     0.0,
-     0.8571428571428571
-    ],
-    "excess_over_keep_all_windows": 0.4285714285714286
+    "syn_dropped_in_interruption_valid": 22
    },
    "5G-hosp|detect|C1|ch2": {
     "n_interruptions": 35,
@@ -1146,12 +1162,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 22,
     "syn_dropped_in_interruption_valid": 22,
-    "excess_over_keep": 0.3035714285714286,
-    "excess_over_keep_ci95": [
-     -0.06293771043771045,
-     0.7661507936507934
+    "diff_from_lost_c0": -0.12,
+    "diff_from_lost_c0_ci95": [
+     -0.4139321468298108,
+     0.19047619047619047
     ],
-    "excess_over_keep_all_windows": 0.17142857142857146
+    "n_common_with_lost_c0": 25,
+    "diff_from_lost_c0_all_windows": -0.2571428571428571,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -1.000714285714285,
+     0.17142857142857143
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.5020467450542507,
+     0.3382372212447269
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.3333333333333333,
+     0.0,
+     -0.6,
+     0.0,
+     -0.14285714285714285
+    ]
    },
    "5G-hosp|detect|C2|ch2": {
     "n_interruptions": 35,
@@ -1176,12 +1208,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 22,
     "syn_dropped_in_interruption_valid": 22,
-    "excess_over_keep": 0.49523809523809526,
-    "excess_over_keep_ci95": [
-     0.06896012931034483,
-     1.0687830687830688
+    "diff_from_lost_c0": 0.21739130434782608,
+    "diff_from_lost_c0_ci95": [
+     0.041666666666666664,
+     0.43478260869565216
     ],
-    "excess_over_keep_all_windows": 0.4571428571428572
+    "n_common_with_lost_c0": 23,
+    "diff_from_lost_c0_all_windows": 0.02857142857142857,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.8285714285714286,
+     0.4857142857142857
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     0.04114003577649422,
+     0.39885996422350584
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.2,
+     0.25,
+     0.25,
+     0.0,
+     0.4
+    ]
    },
    "5G-hosp|detect|C2|ch3": {
     "n_interruptions": 35,
@@ -1206,12 +1254,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 23,
     "syn_dropped_in_interruption_valid": 23,
-    "excess_over_keep": 1.161904761904762,
-    "excess_over_keep_ci95": [
-     0.6500638569604087,
-     1.7666666666666666
+    "diff_from_lost_c0": 0.9166666666666666,
+    "diff_from_lost_c0_ci95": [
+     0.43478260869565216,
+     1.48
     ],
-    "excess_over_keep_all_windows": 1.0571428571428572
+    "n_common_with_lost_c0": 24,
+    "diff_from_lost_c0_all_windows": 0.6285714285714286,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.11428571428571428,
+     1.1714285714285715
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     0.2548124607545895,
+     1.5451875392454104
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.6,
+     0.8,
+     0.5,
+     1.8,
+     0.8
+    ]
    },
    "5G-hosp|detect|C3m|ch3": {
     "n_interruptions": 35,
@@ -1236,12 +1300,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 21,
     "syn_dropped_in_interruption_valid": 21,
-    "excess_over_keep": 0.3214285714285714,
-    "excess_over_keep_ci95": [
-     -0.037037037037037035,
-     0.7142857142857143
+    "diff_from_lost_c0": -0.043478260869565216,
+    "diff_from_lost_c0_ci95": [
+     -0.4782608695652174,
+     0.42857142857142855
     ],
-    "excess_over_keep_all_windows": 0.34285714285714286
+    "n_common_with_lost_c0": 23,
+    "diff_from_lost_c0_all_windows": -0.08571428571428572,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.7714285714285715,
+     0.6
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.6084075536526764,
+     0.5484075536526763
+    ],
+    "diff_from_lost_c0_run_means": [
+     -0.25,
+     0.4,
+     -0.6,
+     0.5,
+     -0.2
+    ]
    },
    "5G-hosp|detect-resume|C2|ch3": {
     "n_interruptions": 35,
@@ -1266,12 +1346,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 23,
     "syn_dropped_in_interruption_valid": 23,
-    "excess_over_keep": 0.347926267281106,
-    "excess_over_keep_ci95": [
-     -0.04074074074074074,
-     0.7419354838709677
+    "diff_from_lost_c0": 0.0,
+    "diff_from_lost_c0_ci95": [
+     -0.4230769230769231,
+     0.4782608695652174
     ],
-    "excess_over_keep_all_windows": 0.4571428571428572
+    "n_common_with_lost_c0": 24,
+    "diff_from_lost_c0_all_windows": 0.02857142857142857,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.7714285714285715,
+     0.9428571428571428
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.6662651207007084,
+     0.6595984540340418
+    ],
+    "diff_from_lost_c0_run_means": [
+     -0.5,
+     0.25,
+     -0.4,
+     0.8,
+     -0.16666666666666666
+    ]
    },
    "5G-tele|keep|C2|ch2": {
     "n_interruptions": 35,
@@ -1293,7 +1389,29 @@
     "outage_ms_median": 47.0,
     "outage_ms_max": 94.0,
     "late_given_failed_attempt": null,
-    "late_given_no_failed_attempt": 0.1111111111111111
+    "late_given_no_failed_attempt": 0.1111111111111111,
+    "diff_from_lost_c0": -1.1666666666666667,
+    "diff_from_lost_c0_ci95": [
+     -1.8695652173913044,
+     -0.6071428571428571
+    ],
+    "n_common_with_lost_c0": 24,
+    "diff_from_lost_c0_all_windows": -1.1714285714285715,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -1.6857142857142857,
+     -0.6857142857142857
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -2.1048678661262157,
+     -0.4684654672071177
+    ],
+    "diff_from_lost_c0_run_means": [
+     -1.2,
+     -0.5,
+     -1.2,
+     -1.2,
+     -2.3333333333333335
+    ]
    },
    "5G-tele|detect|C0|ch2": {
     "n_interruptions": 35,
@@ -1317,13 +1435,7 @@
     "late_given_failed_attempt": 2.3333333333333335,
     "late_given_no_failed_attempt": 0.07692307692307693,
     "failed_attempts_valid": 18,
-    "syn_dropped_in_interruption_valid": 18,
-    "excess_over_keep": 1.2759856630824373,
-    "excess_over_keep_ci95": [
-     0.7388206831119544,
-     1.8064516129032258
-    ],
-    "excess_over_keep_all_windows": 1.1714285714285715
+    "syn_dropped_in_interruption_valid": 18
    },
    "5G-tele|detect|C1|ch2": {
     "n_interruptions": 35,
@@ -1348,12 +1460,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 18,
     "syn_dropped_in_interruption_valid": 18,
-    "excess_over_keep": 1.1888888888888889,
-    "excess_over_keep_ci95": [
-     0.566058651026393,
-     1.7854474548440065
+    "diff_from_lost_c0": -0.037037037037037035,
+    "diff_from_lost_c0_ci95": [
+     -0.4827586206896552,
+     0.46153846153846156
     ],
-    "excess_over_keep_all_windows": 1.0857142857142856
+    "n_common_with_lost_c0": 27,
+    "diff_from_lost_c0_all_windows": -0.08571428571428572,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.42857142857142855,
+     0.22857142857142856
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.5930678561701686,
+     0.7549726180749305
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.0,
+     -0.42857142857142855,
+     1.0,
+     -0.16666666666666666,
+     0.0
+    ]
    },
    "5G-tele|detect|C2|ch2": {
     "n_interruptions": 35,
@@ -1378,12 +1506,28 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 14,
     "syn_dropped_in_interruption_valid": 14,
-    "excess_over_keep": 1.4222222222222223,
-    "excess_over_keep_ci95": [
-     0.28421560846560856,
-     2.5244326825557795
+    "diff_from_lost_c0": -0.19230769230769232,
+    "diff_from_lost_c0_ci95": [
+     -1.08,
+     0.6071428571428571
     ],
-    "excess_over_keep_all_windows": 2.0
+    "n_common_with_lost_c0": 26,
+    "diff_from_lost_c0_all_windows": 0.8285714285714286,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.37142857142857144,
+     2.942857142857143
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -1.4515001348031902,
+     0.9181668014698566
+    ],
+    "diff_from_lost_c0_run_means": [
+     -1.6,
+     -0.4,
+     -0.5,
+     0.16666666666666666,
+     1.0
+    ]
    },
    "5G-tele|detect|C2|ch3": {
     "n_interruptions": 35,
@@ -1408,12 +1552,28 @@
     "late_given_no_failed_attempt": 1.5714285714285714,
     "failed_attempts_valid": 18,
     "syn_dropped_in_interruption_valid": 18,
-    "excess_over_keep": 3.5985663082437274,
-    "excess_over_keep_ci95": [
-     2.7116533105177556,
-     4.47108129789272
+    "diff_from_lost_c0": 2.2857142857142856,
+    "diff_from_lost_c0_ci95": [
+     1.7575757575757576,
+     2.88
     ],
-    "excess_over_keep_all_windows": 3.8571428571428568
+    "n_common_with_lost_c0": 28,
+    "diff_from_lost_c0_all_windows": 2.6857142857142855,
+    "diff_from_lost_c0_all_windows_ci95": [
+     1.9142857142857144,
+     3.7142857142857144
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     1.6444381024652683,
+     3.005085707058541
+    ],
+    "diff_from_lost_c0_run_means": [
+     2.8,
+     1.8571428571428572,
+     3.0,
+     2.1666666666666665,
+     1.8
+    ]
    },
    "5G-tele|detect|C3m|ch3": {
     "n_interruptions": 35,
@@ -1438,12 +1598,28 @@
     "late_given_no_failed_attempt": 0.14285714285714285,
     "failed_attempts_valid": 15,
     "syn_dropped_in_interruption_valid": 15,
-    "excess_over_keep": 1.2681992337164751,
-    "excess_over_keep_ci95": [
-     0.6538461538461539,
-     1.9
+    "diff_from_lost_c0": -0.07407407407407407,
+    "diff_from_lost_c0_ci95": [
+     -0.44,
+     0.2413793103448276
     ],
-    "excess_over_keep_all_windows": 1.3142857142857143
+    "n_common_with_lost_c0": 27,
+    "diff_from_lost_c0_all_windows": 0.14285714285714285,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.2,
+     0.6571428571428571
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.44740574509133413,
+     0.2874057450913341
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.3333333333333333,
+     -0.3333333333333333,
+     0.0,
+     0.0,
+     -0.4
+    ]
    },
    "5G-tele|detect-resume|C2|ch3": {
     "n_interruptions": 35,
@@ -1468,21 +1644,50 @@
     "late_given_no_failed_attempt": 0.0,
     "failed_attempts_valid": 21,
     "syn_dropped_in_interruption_valid": 21,
-    "excess_over_keep": 1.3131313131313131,
-    "excess_over_keep_ci95": [
-     0.7074346763497904,
-     1.9982620320855606
+    "diff_from_lost_c0": -0.10344827586206896,
+    "diff_from_lost_c0_ci95": [
+     -0.36666666666666664,
+     0.13793103448275862
     ],
-    "excess_over_keep_all_windows": 1.1428571428571428
+    "n_common_with_lost_c0": 29,
+    "diff_from_lost_c0_all_windows": -0.02857142857142857,
+    "diff_from_lost_c0_all_windows_ci95": [
+     -0.4,
+     0.4
+    ],
+    "diff_from_lost_c0_run_t_ci95": [
+     -0.21334789677637617,
+     0.013347896776376142
+    ],
+    "diff_from_lost_c0_run_means": [
+     0.0,
+     -0.16666666666666666,
+     0.0,
+     -0.16666666666666666,
+     -0.16666666666666666
+    ]
    }
   },
+  "contrast": "per interruption, late in a cell minus late in lost C0 on the same interruption (same seed and index); mean over the interruptions valid in both cells; 95 % CI from a paired two-stage bootstrap (runs, then interruptions, 10,000 replicates); also over all interruptions, and a t-interval over the five run means",
   "qc": {
    "stall_ms": 15.0,
-   "rule": "a window is invalid if the emulator delivered a frame more than stall_ms late or the client opened a new connection while its current one was alive (testbed/x3_qc.py)"
+   "rule": "a window is invalid if the emulator delivered a frame more than stall_ms late (testbed/x3_qc.py)"
   },
   "failed_attempts_valid_total": 237,
   "syn_dropped_in_interruption_valid_total": 237,
   "windows_total": 490,
-  "windows_invalid": 72
+  "windows_invalid": 72,
+  "n_common_with_lost_c0_range": [
+   22,
+   29
+  ],
+  "detect_before_end_share": {
+   "5G-hosp": 0.7094972067039106,
+   "5G-tele": 0.5706521739130435
+  },
+  "client_start_after_origin_ms_range": [
+   -2.1109999315740424,
+   29.51100002314888
+  ]
  }
 }

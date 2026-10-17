@@ -65,21 +65,26 @@ which runs without Retry; 10 ms RTT on every link, assumed for LTE-M and NB-IoT;
 
 **Session loss at a handover** (Table IV of the paper: a 0.5 Mb/s telemetry stream, one 1,000-B record every
 16 ms acknowledged by the server, 100 ms deadline from generation to receipt, through seven interruptions per
-80-s run, five runs per cell, durations drawn from the measured NSA handover interruptions and the same in every
-cell. Lost: the emulator drops the old connection at the interruption's start and the client detects the loss
-by a probe timeout, then reconnects and resends. Windows in which the host ran the emulator more than 15 ms late are
-excluded, 72 of 490, by `testbed/x3_qc.py`; excess = difference of the two cells' means; no record was lost;
+80-s run, five runs per condition, durations drawn from the measured NSA handover interruptions and the same in
+every condition. Kept: the session survives and TCP retransmits; no detector. Lost: the emulator drops the old connection at
+the interruption's start and the client, not told, follows one recovery policy chosen for this study: it declares
+the loss after one probe timeout in the RFC 9002 form with a 25-ms margin, reconnects with each socket call bounded
+by that timeout, and resends. Windows in which the host ran the emulator more than 15 ms late are excluded, 72 of
+490, by `testbed/x3_qc.py`. Late: per condition, over its own valid windows (context only; the paper's Table IV
+prints the differences and n). Difference: per interruption, late in the condition minus late in lost C0 on the
+same interruption, averaged over the n windows valid in both, with a 95 % interval from a two-stage bootstrap
+(runs, then interruptions); it is not the difference of the late values. No record was lost;
 `models/testbed_tables.py`):
 
-| Session, configuration | Late per interruption, 10 ms RTT | 18 ms RTT | Excess over kept, 10 ms [95 % CI] | 18 ms [95 % CI] |
-|---|---:|---:|---|---|
-| Kept (no handshake) | 0.07 | 0.11 | | |
-| Lost, C0 | 0.50 | 1.39 | 0.43 [0.00, 0.86] | 1.28 [0.74, 1.81] |
-| Lost, C1 | 0.38 | 1.30 | 0.30 [-0.06, 0.77] | 1.19 [0.57, 1.79] |
-| Lost, C2 | 0.57 | 1.53 | 0.50 [0.07, 1.07] | 1.42 [0.28, 2.52] |
-| Lost, C2 + intermediates | 1.23 | 3.71 | 1.16 [0.65, 1.77] | 3.60 [2.71, 4.47] |
-| Lost, C3m + intermediates | 0.39 | 1.38 | 0.32 [-0.04, 0.71] | 1.27 [0.65, 1.90] |
-| Resumed (psk_dhe_ke), C2 + intermediates | 0.42 | 1.42 | 0.35 [-0.04, 0.74] | 1.31 [0.71, 2.00] |
+| Session, configuration | Late per interruption, 10 / 18 ms RTT | Difference from lost C0, 10 ms [95 % CI] (n) | 18 ms [95 % CI] (n) |
+|---|---:|---|---|
+| Kept (no detector) | 0.07 / 0.11 | −0.36 [−0.68, −0.05] (22) | −1.17 [−1.87, −0.61] (24) |
+| Lost, C0 | 0.50 / 1.39 | reference | reference |
+| Lost, C1 | 0.38 / 1.30 | −0.12 [−0.41, 0.19] (25) | −0.04 [−0.48, 0.46] (27) |
+| Lost, C2 | 0.57 / 1.53 | 0.22 [0.04, 0.43] (23) | −0.19 [−1.08, 0.61] (26) |
+| Lost, C2 + intermediates | 1.23 / 3.71 | 0.92 [0.43, 1.48] (24) | 2.29 [1.76, 2.88] (28) |
+| Lost, C3m + intermediates | 0.39 / 1.38 | −0.04 [−0.48, 0.43] (23) | −0.07 [−0.44, 0.24] (27) |
+| Resumed (psk_dhe_ke), C2 + intermediates | 0.42 / 1.42 | 0.00 [−0.42, 0.48] (24) | −0.10 [−0.37, 0.14] (29) |
 
 In short:
 
@@ -91,11 +96,14 @@ In short:
   intermediate certificates, the server and client flights exceed TCP's initial window. Falcon-512 server
   certificates (with the device keeping ML-DSA-65, C3m) avoid both in the testbed; a padded client Initial or a
   larger initial window should too (not measured).
-- A session lost at a handover costs telemetry deadlines even with a classical handshake: detection (median 38
-  to 47 ms) fires before the link returns, and every failed reconnection attempt was a connection request sent
-  into the interruption. ML-DSA-65 chains with intermediates nearly triple the cost at 18 ms RTT (3.6 against 1.2
-  to 1.4 more late records per interruption); resumption or Falcon-512 server and CA certificates keep it at the
-  classical level. No record was lost in any cell.
+- Under the recovery policy used here, a session lost at a handover costs telemetry deadlines even with a
+  classical handshake (1.17 more late records per interruption than a kept session at 18 ms RTT; the gap combines
+  losing the session with this one policy): detection (median 38 to 47 ms after the onset) fires before the
+  interruption ends in 71 % (10 ms) and 57 % (18 ms) of lost-session windows, and every failed reconnection
+  attempt was a connection request sent into the interruption. Against classical reconnection under the same
+  policy, ML-DSA-65 chains with intermediates add 0.92 (10 ms) and 2.29 (18 ms) late records per interruption;
+  C1, Falcon-512 server and CA certificates (C3m) and resumption differ from it by −0.12 to 0.00, with intervals
+  that include zero (equivalence not tested). No record was lost in any condition.
 - In a public mobility dataset the handover interruption alone exceeds 20 ms in 13,971 of 13,975 fully
   timestamped U.S. events, independently of cryptography, and the handshake's airtime at recorded throughput
   exceeds 2 ms in 15 % of U.S. samples (the Irish trace analysis stays in `results/fig2_stats.json`).
@@ -103,7 +111,8 @@ In short:
 ## Quick start
 
 Regenerates Tables I to IV of the paper and their JSON from the ledger and the stored testbed results. Python 3.9
-or later, standard library only, no datasets, a few seconds:
+or later, no datasets, a few seconds; `testbed_tables.py` (Tables III and IV) needs numpy for the seeded bootstrap
+of Table IV (tested with numpy 2.4.4), the other scripts only the standard library:
 
 ```bash
 git clone https://github.com/mnsh0409/pq-clinical-link-budget
@@ -143,7 +152,7 @@ three means in `results/trace_profile.json` (summation order).
 | Table I (clinical streams) | `models/tables.py` | ledger |
 | Table II (link classes and handshake airtime) | `models/tables.py` | `results/urllc_transmission.json` |
 | Table III (testbed) and testbed text | `models/testbed_tables.py` | `results/testbed_x12.json` (TCP), `testbed_x4.json` (QUIC), `testbed_timeline.json` (TCP flight timeline) |
-| Table IV (session loss at a handover) | `models/testbed_tables.py` | `results/testbed_x3.json` |
+| Table IV (session loss at a handover) | `models/testbed_tables.py` | `results/testbed_x3.json`, `results/testbed_x3_qc.json` (host-stall windows) |
 | Fig. 1 (airtime versus link rate) | `models/figures.py` | `results/urllc_transmission.json` |
 | Fig. 2 and handover statistics | `models/figures.py` | DATA-01 (DATA-02 only for statistics outside the paper) -> `results/fig2_stats.json` |
 | Testbed measurements | `testbed/x12.py`, `x4.py`, `x3.py`, `x3_qc.py`, `timeline.py` | ledger profiles; X3 also DATA-01 |
@@ -174,7 +183,9 @@ MMSys 2020; GPL-3.0) are analyzed and cited, not redistributed.
   assumed 10 ms RTT, so those rows isolate serialization.
 - Falcon-512 is the round-3 Falcon in oqs-provider 0.12.0 (experimental TLS code point); FN-DSA (FIPS 206) was
   not yet published when the experiments ran.
-- Session loss is modeled as a silent drop of the old connection, detected by one probe-timeout rule.
+- Session loss is modeled as a silent drop of the old connection, recovered by one detector and retry policy;
+  the gap between a kept and a lost session belongs to that policy (a client that cannot tell whether its
+  session survived and runs the same detector pays the lost-session cost whenever the detector fires).
 - Keys and certificates are generated locally (`testbed/pki/mkpki.sh`) and are not included.
 
 ## License

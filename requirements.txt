@@ -1,5 +1,5 @@
-# Only needed for the dataset analyses and figures (trace_profile.py, figures.py, testbed/x3.py).
-# The quick start (Tables I-IV and their JSON) uses the Python standard library only.
+# numpy, pandas and matplotlib: the dataset analyses and figures (trace_profile.py, figures.py, testbed/x3.py).
+# The quick start needs numpy only, for the seeded bootstrap of Table IV in testbed_tables.py.
 # Tested with Python 3.11, numpy 2.4.4, pandas 3.0.2, matplotlib 3.10.9.
 numpy>=1.24
 pandas>=2.0

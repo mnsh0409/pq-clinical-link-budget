@@ -129,7 +129,9 @@ X3_CELLS="detect:C2:3" X3_PROFILES=5G-tele X3_MERGE=1 sudo -E python3 x3.py 5 80
   The server acknowledges every message with its 4-byte sequence number.
 - Outages: seven per 80-s run, one roughly every 10 s (+/-1 s). Each duration is drawn (seeded, the same in every
   cell, so cells are paired) from the measured NSA primary-cell execution-stage interruptions T2 of the SIGCOMM'22
-  artifact.
+  artifact. A run's seed fixes the durations and the onsets relative to the schedule origin; the client's record
+  clock starts when the client process does, 0 to 30 ms after that origin (`x3_qc.py`,
+  `client_start_after_origin_ms`), so the phase of the 16-ms record grid at an onset is not matched across cells.
 - Policies (`tele.c`): `keep` (the session and TCP connection survive; TCP recovers on its own); `detect` (the
   session is lost at the outage: the emulator runs with `--kill-flows` and drops the old connection's frames from
   the outage start on; the client is not told, declares the session lost when its oldest unacknowledged message
@@ -141,9 +143,20 @@ X3_CELLS="detect:C2:3" X3_PROFILES=5G-tele X3_MERGE=1 sudo -E python3 x3.py 5 80
 - Output: `results/testbed_x3.json`. Per cell and run: per outage, late messages (attributed by generation time
   to the outage whose window [start - 0.5 s, next start - 0.5 s) contains them), time from the outage end to the
   next delivered message, longest delivery gap, detection delay, handshake time, failed attempts; per run, lost
-  and duplicate messages. `models/testbed_tables.py` writes Table IV of the paper (`tab5_session.tex`) with the
-  excess over `keep` and a two-stage bootstrap 95 % interval (runs, then interruptions), over the windows that
-  `x3_qc.py` leaves valid.
+  and duplicate messages. `models/testbed_tables.py` writes Table IV of the paper (`tab5_session.tex`): the paired
+  difference from the lost classical cell (`detect` C0): per interruption (same seed and index), late in the cell
+  minus late in C0, averaged over the n windows valid in both cells (n is printed per comparison), with a 95 %
+  interval from a two-stage bootstrap of those differences (runs, the independent unit, then interruptions; 10,000
+  draws). Each cell's own mean over its own valid windows (`late_per_interruption`) stays in
+  `results/testbed_summary.json` but is not printed in the table: the differences use the common windows, so the
+  own means do not subtract to them. Two checks are stored with each difference: the same difference over all 35 windows,
+  and a t-interval over the five run means (`diff_from_lost_c0_all_windows*`, `diff_from_lost_c0_run_t_ci95`).
+  `detect_before_end_share`: share of valid lost-session windows in which the loss was declared before the
+  interruption ended (measured from the onset).
+- The `keep` cell runs no detector: its row is the ideal of a client that knows its session survived. Its gap to
+  `detect` C0 is therefore the cost of losing a session under this particular detector and retry policy (the
+  detector fires before most interruptions end, so reconnection attempts go into the interruption), not a
+  policy-independent cost of session loss.
 
 ## X3 quality control: host stalls
 
@@ -157,16 +170,18 @@ of 490 interruption windows; such a stall can delay acknowledgments past the pro
 loss that the link model does not contain. `x3_qc.py` replays each run's seeded schedule, marks the windows that
 contain a stall (the rule looks only at the emulator's timing, never at late records) and also reports
 connection requests dropped in an interruption and loss declarations made while the connection was alive.
-`models/testbed_tables.py` computes Table IV over each cell's windows without a stall; the excess over the kept
-session is the difference of the two cells' means, with a 95 % interval from independent two-stage bootstraps
-(runs, then valid interruptions) of the two cells. Running the emulator under `chrt -f 50` with Python's collector disabled did not
-remove the stalls in a test.
+`models/testbed_tables.py` uses, for the paired difference from `detect` C0, the windows valid in both cells (22 to
+29 of 35 per comparison). The `keep` cells lost 7 and 8 of their 35 windows, the other cells 2 to 7; the all-window
+check above shows how much the exclusion matters. Running the emulator
+under `chrt -f 50` with Python's collector disabled did not remove the stalls in a test.
 
 ## Reproducibility notes
 
 - With freshly generated keys, ML-DSA-65 byte counts reproduce exactly. ECDSA and Falcon signatures vary in
   length, so C0, C1 and C3 flights can differ by a few bytes (a rerun gave 885 vs 886 B for the C0 server
   flight and 3,910 vs 3,911 B for C3).
+- v1.7 of the paper (Oct 17, 2026) changed only the analysis of X3 (paired difference from `detect` C0 instead of
+  the unpaired excess over `keep`); no cell was rerun.
 - The script paths (`TESTBED_TMP`, `cleanup.sh`) were parameterized after the first runs. For v1.6 of the paper
   (Oct 17, 2026) the C3m cells, `timeline.py` and the X3 `detect` policies were added and X3 was rerun with
   5 runs per cell; X12/X4 cells measured before were kept (a rerun on Oct 17 reproduced C0, C2, C2 + int. and C3
