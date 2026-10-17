@@ -23,7 +23,15 @@ CONFIGS = {  # name: (groups, family, mutual)
     "C3":      ("MLKEM768",       "falcon", 1),   # Falcon-512 certificates (round-3 Falcon via oqs-provider 0.12.0, experimental code point 0xfed7)
     "C3u":     ("MLKEM768",       "falcon", 0),
     "C3m":     ("MLKEM768",       "mixed",  1),   # Falcon-512 server and CA, ML-DSA-65 device certificate (pki/mixed)
+    "C2w":     ("MLKEM768",       "mldsa", 1),    # C2 with the TCP initial window raised to IW_SEGMENTS on both endpoints (same keys and certificates as C2)
 }
+IW = {"C2w": 20}          # TCP initial congestion and receive window, in segments, set per case on both namespaces (kernel default otherwise)
+def set_iw(cfg):
+    """Apply the case's initial window to the cli and srv routes (a route attribute, so it needs no sysctl); default route otherwise."""
+    iw = IW.get(cfg)
+    for ns, dev in (("cli", "c0"), ("srv", "s0")):
+        cmd = ["ip", "-n", ns, "route", "change", "10.9.0.0/24", "dev", dev] + ([] if iw is None else ["initcwnd", str(iw), "initrwnd", str(iw)])
+        subprocess.run(cmd, check=True)
 OQS_CONF = os.path.join(HERE, "oqs.cnf")
 def env_for(fam):
     """Falcon needs oqs-provider; other families run without it so their ClientHello is unchanged."""
@@ -38,6 +46,7 @@ def sh(cmd, **kw):
 
 def run_case(profile, cfg, chain=2, n=1, gap_ms=50, pcap=True, outages=None, tag=None):
     groups, fam, mutual = CONFIGS[cfg]
+    set_iw(cfg)
     P = os.path.join(PKI, fam)
     tag = tag or f"{profile['name']}_{cfg}_ch{chain}"
     pc = f"{TMP}/emu_{tag}.log"

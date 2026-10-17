@@ -41,7 +41,25 @@
     "5G-tele": 50.04999999982829
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     28.058999999984735,
+     29.73500000007334
+    ],
+    "5G-tele": [
+     48.21299999991879,
+     49.3539999999939
+    ],
+    "LTE-M": [
+     103.34100000000035,
+     103.84099999987484
+    ],
+    "NB-IoT": [
+     638.883000000078,
+     639.6599999998216
+    ]
+   }
   },
   "C1|ch2": {
    "label": "C1",
@@ -84,7 +102,25 @@
     "5G-tele": 68.87949999986631
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     28.222000000027947,
+     29.32399999997415
+    ],
+    "5G-tele": [
+     48.566999999934524,
+     50.54900000004636
+    ],
+    "LTE-M": [
+     157.35200000017358,
+     158.0229999999574
+    ],
+    "NB-IoT": [
+     1122.867000000042,
+     1132.675000000063
+    ]
+   }
   },
   "C2|ch2": {
    "label": "C2",
@@ -127,7 +163,25 @@
     "5G-tele": 89.87200000001394
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     29.625000000010004,
+     33.18100000001323
+    ],
+    "5G-tele": [
+     49.856999999974505,
+     53.834000000051674
+    ],
+    "LTE-M": [
+     574.0479999999479,
+     574.4709999999031
+    ],
+    "NB-IoT": [
+     4885.915999999952,
+     5069.778000000042
+    ]
+   }
   },
   "C2u|ch2": {
    "label": "C2$'$",
@@ -170,7 +224,25 @@
     "5G-tele": 69.11450000029618
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     28.277000000002772,
+     31.086999999956788
+    ],
+    "5G-tele": [
+     48.28099999997448,
+     50.95500000004449
+    ],
+    "LTE-M": [
+     376.5970000001744,
+     377.4719999998979
+    ],
+    "NB-IoT": [
+     3718.1359999999586,
+     3720.8550000000287
+    ]
+   }
   },
   "C2|ch3": {
    "label": "C2 + int.",
@@ -213,7 +285,80 @@
     "5G-tele": 129.04200000002675
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     48.39900000001762,
+     49.57200000001194
+    ],
+    "5G-tele": [
+     84.40299999983836,
+     85.52499999996144
+    ],
+    "LTE-M": [
+     850.6290000000263,
+     851.0029999999915
+    ],
+    "NB-IoT": [
+     7352.772000000186,
+     7412.973000000193
+    ]
+   }
+  },
+  "C2w|ch3": {
+   "label": "C2 + int., IW\\,20",
+   "hs_bytes": 31670,
+   "server_flight_B": 15806,
+   "client_B": 15864,
+   "server_B": 15806,
+   "tcp_ms": {
+    "5G-hosp": 31.30650000002788,
+    "5G-tele": 51.51649999999108,
+    "LTE-M": 851.0449999999992,
+    "NB-IoT": 7353.028999999992
+   },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     30.012999999939893,
+     33.63899999999376
+    ],
+    "5G-tele": [
+     50.23100000005343,
+     54.211000000009335
+    ]
+   },
+   "quic_ms": {
+    "5G-hosp": null,
+    "5G-tele": null
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": null,
+    "5G-tele": null
+   },
+   "quic_retry_ms": {
+    "5G-hosp": null,
+    "5G-tele": null
+   },
+   "n_tcp_5g": 200,
+   "n_quic": null,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     30.012999999939893,
+     33.63899999999376
+    ],
+    "5G-tele": [
+     50.23100000005343,
+     54.211000000009335
+    ],
+    "LTE-M": [
+     850.8370000000696,
+     851.2629999999035
+    ],
+    "NB-IoT": [
+     7352.58500000009,
+     7441.519999999969
+    ]
+   }
   },
   "C3|ch2": {
    "label": "C3",
@@ -256,7 +401,25 @@
     "5G-tele": 70.17550000000483
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     29.148999999961234,
+     31.73000000003867
+    ],
+    "5G-tele": [
+     49.37399999994341,
+     51.884999999970205
+    ],
+    "LTE-M": [
+     254.88399999994726,
+     255.98600000000715
+    ],
+    "NB-IoT": [
+     1996.0470000000896,
+     1998.4460000000581
+    ]
+   }
   },
   "C3|ch3": {
    "label": "C3 + int.",
@@ -299,7 +462,25 @@
     "5G-tele": 70.69449999983135
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     29.40000000000964,
+     32.4039999999286
+    ],
+    "5G-tele": [
+     49.38400000003185,
+     51.65199999999004
+    ],
+    "LTE-M": [
+     347.6269999999886,
+     349.47699999997894
+    ],
+    "NB-IoT": [
+     2849.4909999999436,
+     3034.226999999987
+    ]
+   }
   },
   "C3m|ch2": {
    "label": "C3m",
@@ -342,7 +523,25 @@
     "5G-tele": 88.54550000006611
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     29.36699999997927,
+     32.14900000000398
+    ],
+    "5G-tele": [
+     49.486000000001695,
+     51.79299999997511
+    ],
+    "LTE-M": [
+     337.2359999999617,
+     340.29400000008536
+    ],
+    "NB-IoT": [
+     2489.987000000042,
+     2674.233999999956
+    ]
+   }
   },
   "C3m|ch3": {
    "label": "C3m + int.",
@@ -385,11 +584,29 @@
     "5G-tele": 88.81000000002359
    },
    "n_tcp_5g": 200,
-   "n_quic": 50
+   "n_quic": 50,
+   "tcp_p10_p90_ms_all": {
+    "5G-hosp": [
+     29.07300000003943,
+     31.514000000015585
+    ],
+    "5G-tele": [
+     49.27600000007715,
+     51.96200000000317
+    ],
+    "LTE-M": [
+     428.62700000000586,
+     429.0530000000672
+    ],
+    "NB-IoT": [
+     3315.356999999949,
+     3500.5029999999806
+    ]
+   }
   }
  },
  "spread_5g_hosp_p10_p90_max_ms": 7.074999999986176,
- "spread_5g_hosp_p10_p90_tcp_max_ms": 3.5560000000032232,
+ "spread_5g_hosp_p10_p90_tcp_max_ms": 3.626000000053864,
  "spread_5g_hosp_p10_p90_quic_max_ms": 7.074999999986176,
  "quic_C2_first_bursts": {
   "client_initial_udp_B": 2400,
@@ -644,6 +861,54 @@
    "up_ms": 2150.7878787878785,
    "down_ms": 5107.076923076924,
    "rtt_ms": 45.0
+  },
+  "5G-hosp|C2w|ch3": {
+   "model_ms": 26.727993100570316,
+   "meas_ms": 31.30650000002788,
+   "diff_ms": 4.578506899457565,
+   "rel": 0.17130006290520444,
+   "k_rtt": 2.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 1.5599120879120878,
+   "down_ms": 0.16808101265822784,
+   "rtt_ms": 25.0
+  },
+  "5G-tele|C2w|ch3": {
+   "model_ms": 47.155657436930134,
+   "meas_ms": 51.51649999999108,
+   "diff_ms": 4.360842563060949,
+   "rel": 0.09247761138509202,
+   "k_rtt": 2.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 1.4054653465346534,
+   "down_ms": 0.7501920903954803,
+   "rtt_ms": 45.0
+  },
+  "LTE-M|C2w|ch3": {
+   "model_ms": 841.1712280701754,
+   "meas_ms": 851.0449999999992,
+   "diff_ms": 9.87377192982376,
+   "rel": 0.011738123702205413,
+   "k_rtt": 2.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 373.5578947368421,
+   "down_ms": 442.61333333333334,
+   "rtt_ms": 25.0
+  },
+  "NB-IoT|C2w|ch3": {
+   "model_ms": 7282.864801864802,
+   "meas_ms": 7353.028999999992,
+   "diff_ms": 70.16419813519042,
+   "rel": 0.009634148105732326,
+   "k_rtt": 2.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 2150.7878787878785,
+   "down_ms": 5107.076923076924,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C3|ch2": {
    "model_ms": 25.503500236472387,
@@ -1045,6 +1310,67 @@
         "payload_B": 24,
         "t_first_ms": 48.386000000391505,
         "t_last_ms": 48.386000000391505
+       }
+      ],
+      "payload_B": 24,
+      "segments": 1,
+      "stalls_ms": []
+     }
+    ]
+   },
+   "C2w|ch3": {
+    "t_first_record_ms": 40.95500000039465,
+    "flights": [
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 1361,
+        "t_first_ms": 10.678999999981897,
+        "t_last_ms": 10.678999999981897
+       }
+      ],
+      "payload_B": 1361,
+      "segments": 1,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 12,
+        "payload_B": 15806,
+        "t_first_ms": 16.459999999824504,
+        "t_last_ms": 16.969999999673746
+       }
+      ],
+      "payload_B": 15806,
+      "segments": 12,
+      "stalls_ms": []
+     },
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 12,
+        "payload_B": 15525,
+        "t_first_ms": 23.060000000441505,
+        "t_last_ms": 24.473000000398315
+       }
+      ],
+      "payload_B": 15525,
+      "segments": 12,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 24,
+        "t_first_ms": 30.3169999997408,
+        "t_last_ms": 30.3169999997408
        }
       ],
       "payload_B": 24,
@@ -1689,5 +2015,673 @@
    -2.1109999315740424,
    29.51100002314888
   ]
+ },
+ "x3_model": {
+  "constants": {
+   "pto_ms": "RTT + 25 + 1 + 0.5 (margin, variation floor, host turnaround per sample)",
+   "period_ms": 16.0,
+   "deadline_ms": 100.0,
+   "phase": "g0 uniform on [-OWD, 16 - OWD); records generated before the onset were delivered, only their acknowledgments were lost"
+  },
+  "development": {
+   "summary": {
+    "n_intervals": 363,
+    "mae": 0.4981060606060606,
+    "bias_model_minus_obs": -0.0540633608815427,
+    "corr": 0.897406850750855,
+    "late_obs": 1.1955922865013775,
+    "late_model": 1.1415289256198347,
+    "failed_attempts_obs": 0.6538926478755457,
+    "failed_attempts_model": 0.6531781589664373
+   },
+   "cells": {
+    "5G-hosp|detect|C0|ch2": {
+     "H_ms": 28.445500000032098,
+     "n_valid": 28,
+     "late_obs": 0.5,
+     "late_model": 0.546875,
+     "mae": 0.34375,
+     "failed_attempts_obs": 0.7857142857142857,
+     "failed_attempts_model": 0.7935267857142857,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.12053571428571429,
+     "late_obs_retry": 0.6666666666666666,
+     "late_model_retry": 0.6889880952380952
+    },
+    "5G-hosp|detect|C1|ch2": {
+     "H_ms": 28.53449999992108,
+     "n_valid": 32,
+     "late_obs": 0.375,
+     "late_model": 0.478515625,
+     "mae": 0.357421875,
+     "failed_attempts_obs": 0.6875,
+     "failed_attempts_model": 0.7041015625,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.05397727272727273,
+     "late_obs_retry": 0.5714285714285714,
+     "late_model_retry": 0.7008928571428571
+    },
+    "5G-hosp|detect|C2|ch2": {
+     "H_ms": 30.893500000047425,
+     "n_valid": 30,
+     "late_obs": 0.5666666666666667,
+     "late_model": 0.4875,
+     "mae": 0.3416666666666667,
+     "failed_attempts_obs": 0.7333333333333333,
+     "failed_attempts_model": 0.7083333333333334,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.034722222222222224,
+     "late_obs_retry": 0.8095238095238095,
+     "late_model_retry": 0.6815476190476191
+    },
+    "5G-hosp|detect|C2|ch3": {
+     "H_ms": 48.765000000003056,
+     "n_valid": 30,
+     "late_obs": 1.2333333333333334,
+     "late_model": 1.215625,
+     "mae": 0.46979166666666666,
+     "failed_attempts_obs": 0.7666666666666667,
+     "failed_attempts_model": 0.7395833333333334,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.15234375,
+     "late_obs_retry": 1.6818181818181819,
+     "late_model_retry": 1.6022727272727273
+    },
+    "5G-hosp|detect|C3m|ch3": {
+     "H_ms": 29.853500000058375,
+     "n_valid": 28,
+     "late_obs": 0.39285714285714285,
+     "late_model": 0.4921875,
+     "mae": 0.34933035714285715,
+     "failed_attempts_obs": 0.75,
+     "failed_attempts_model": 0.7220982142857143,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.1015625,
+     "late_obs_retry": 0.55,
+     "late_model_retry": 0.6484375
+    },
+    "5G-hosp|detect-resume|C2|ch3": {
+     "H_ms": 28.445500000032098,
+     "n_valid": 31,
+     "late_obs": 0.41935483870967744,
+     "late_model": 0.5060483870967742,
+     "mae": 0.32661290322580644,
+     "failed_attempts_obs": 0.7419354838709677,
+     "failed_attempts_model": 0.7399193548387096,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.06597222222222222,
+     "late_obs_retry": 0.5909090909090909,
+     "late_model_retry": 0.6860795454545454
+    },
+    "5G-tele|detect|C0|ch2": {
+     "H_ms": 48.570500000039374,
+     "n_valid": 31,
+     "late_obs": 1.3870967741935485,
+     "late_model": 1.2973790322580645,
+     "mae": 0.4949596774193548,
+     "failed_attempts_obs": 0.5806451612903226,
+     "failed_attempts_model": 0.5574596774193549,
+     "late_obs_no_retry": 0.07692307692307693,
+     "late_model_no_retry": 0.2692307692307692,
+     "late_obs_retry": 2.3333333333333335,
+     "late_model_retry": 2.0399305555555554
+    },
+    "5G-tele|detect|C1|ch2": {
+     "H_ms": 49.10199999994802,
+     "n_valid": 30,
+     "late_obs": 1.3,
+     "late_model": 1.28125,
+     "mae": 0.5041666666666667,
+     "failed_attempts_obs": 0.6,
+     "failed_attempts_model": 0.55,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.3151041666666667,
+     "late_obs_retry": 2.1666666666666665,
+     "late_model_retry": 1.9253472222222223
+    },
+    "5G-tele|detect|C2|ch2": {
+     "H_ms": 51.381499999990865,
+     "n_valid": 30,
+     "late_obs": 1.5333333333333334,
+     "late_model": 1.403125,
+     "mae": 0.840625,
+     "failed_attempts_obs": 0.4666666666666667,
+     "failed_attempts_model": 0.5947916666666667,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.59765625,
+     "late_obs_retry": 3.2857142857142856,
+     "late_model_retry": 2.3236607142857144
+    },
+    "5G-tele|detect|C2|ch3": {
+     "H_ms": 84.69450000006873,
+     "n_valid": 31,
+     "late_obs": 3.7096774193548385,
+     "late_model": 3.1673387096774195,
+     "mae": 1.0423387096774193,
+     "failed_attempts_obs": 0.5806451612903226,
+     "failed_attempts_model": 0.5766129032258065,
+     "late_obs_no_retry": 1.5714285714285714,
+     "late_model_no_retry": 1.8526785714285714,
+     "late_obs_retry": 5.470588235294118,
+     "late_model_retry": 4.25
+    },
+    "5G-tele|detect|C3m|ch3": {
+     "H_ms": 50.08950000001278,
+     "n_valid": 29,
+     "late_obs": 1.3793103448275863,
+     "late_model": 1.2844827586206897,
+     "mae": 0.4396551724137931,
+     "failed_attempts_obs": 0.5172413793103449,
+     "failed_attempts_model": 0.5484913793103449,
+     "late_obs_no_retry": 0.14285714285714285,
+     "late_model_no_retry": 0.4017857142857143,
+     "late_obs_retry": 2.533333333333333,
+     "late_model_retry": 2.1083333333333334
+    },
+    "5G-tele|detect-resume|C2|ch3": {
+     "H_ms": 48.570500000039374,
+     "n_valid": 33,
+     "late_obs": 1.4242424242424243,
+     "late_model": 1.4242424242424243,
+     "mae": 0.44696969696969696,
+     "failed_attempts_obs": 0.6363636363636364,
+     "failed_attempts_model": 0.603219696969697,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.3293269230769231,
+     "late_obs_retry": 2.35,
+     "late_model_retry": 2.1359375
+    }
+   }
+  },
+  "boundary": {
+   "5G-hosp": {
+    "pto_ms": 36.5,
+    "H_no_retry_limit_ms": 63.5,
+    "H_one_retry_limit_ms": 27.0,
+    "cells": {
+     "C0|ch2": {
+      "H_ms": 28.445500000032098,
+      "late_by_retries": [
+       0.0,
+       0.6875,
+       2.6875
+      ]
+     },
+     "C1|ch2": {
+      "H_ms": 28.53449999992108,
+      "late_by_retries": [
+       0.0,
+       0.6875,
+       2.6875
+      ]
+     },
+     "C2|ch2": {
+      "H_ms": 30.893500000047425,
+      "late_by_retries": [
+       0.0,
+       0.6875,
+       2.6875
+      ]
+     },
+     "C2|ch3": {
+      "H_ms": 48.765000000003056,
+      "late_by_retries": [
+       0.0,
+       1.6875,
+       3.6875
+      ]
+     },
+     "C2w|ch3": {
+      "H_ms": 31.30650000002788,
+      "late_by_retries": [
+       0.0,
+       0.6875,
+       2.6875
+      ]
+     },
+     "C3m|ch3": {
+      "H_ms": 29.853500000058375,
+      "late_by_retries": [
+       0.0,
+       0.6875,
+       2.6875
+      ]
+     }
+    }
+   },
+   "5G-tele": {
+    "pto_ms": 44.5,
+    "H_no_retry_limit_ms": 55.5,
+    "H_one_retry_limit_ms": 11.0,
+    "cells": {
+     "C0|ch2": {
+      "H_ms": 48.570500000039374,
+      "late_by_retries": [
+       0.0,
+       2.4375,
+       5.4375
+      ]
+     },
+     "C1|ch2": {
+      "H_ms": 49.10199999994802,
+      "late_by_retries": [
+       0.0,
+       2.4375,
+       5.4375
+      ]
+     },
+     "C2|ch2": {
+      "H_ms": 51.381499999990865,
+      "late_by_retries": [
+       0.0,
+       2.4375,
+       5.4375
+      ]
+     },
+     "C2|ch3": {
+      "H_ms": 84.69450000006873,
+      "late_by_retries": [
+       1.4375,
+       4.4375,
+       7.4375
+      ]
+     },
+     "C2w|ch3": {
+      "H_ms": 51.51649999999108,
+      "late_by_retries": [
+       0.0,
+       2.4375,
+       5.4375
+      ]
+     },
+     "C3m|ch3": {
+      "H_ms": 50.08950000001278,
+      "late_by_retries": [
+       0.0,
+       2.4375,
+       5.4375
+      ]
+     }
+    }
+   }
+  },
+  "heldout": {
+   "prereg_sha256": "7fc547475ab5a242e9eb027a5a576ac3f010c06a67529f615b78d39c0abdf690",
+   "prereg_written": "2026-10-17T18:14:24+00:00",
+   "seeds": [
+    20261020,
+    20261021,
+    20261022,
+    20261023,
+    20261024
+   ],
+   "summary": {
+    "n_intervals": 198,
+    "mae": 0.5844404040404041,
+    "bias_model_minus_obs": -0.13415353535353533,
+    "corr": 0.9286670775564281,
+    "late_obs": 1.9696969696969697,
+    "late_model": 1.8355434343434343,
+    "failed_attempts_obs": 0.8535647879841591,
+    "failed_attempts_model": 0.8762633622953491
+   },
+   "cells": {
+    "5G-hosp|detect|C0|ch2": {
+     "H_ms": 28.445500000032098,
+     "n_valid": 34,
+     "late_obs": 0.7647058823529411,
+     "late_model": 0.797335294117647,
+     "mae": 0.4195764705882353,
+     "failed_attempts_obs": 0.9411764705882353,
+     "failed_attempts_model": 0.9402573529411765,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.0,
+     "late_obs_retry": 0.9285714285714286,
+     "late_model_retry": 0.9681928571428571,
+     "late_total_valid": 26,
+     "late_in_failed_attempt_intervals_valid": 26,
+     "intervals_with_failed_attempt_valid": 28,
+     "late_model_minus_obs": 0.03262941176470591,
+     "n_interruptions": 35,
+     "late_prereg": 0.7941971428571429,
+     "failed_attempts_prereg": 0.9428599999999999,
+     "late_obs_all_windows": 0.8,
+     "lost": 0,
+     "dup": 21,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 39.095999999972264
+    },
+    "5G-hosp|detect|C2|ch3": {
+     "H_ms": 48.765000000003056,
+     "n_valid": 35,
+     "late_obs": 1.5714285714285714,
+     "late_model": 1.60536,
+     "mae": 0.5482171428571427,
+     "failed_attempts_obs": 0.8857142857142857,
+     "failed_attempts_model": 0.9419642857142857,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.32032499999999997,
+     "late_obs_retry": 2.037037037037037,
+     "late_model_retry": 1.9861111111111112,
+     "late_total_valid": 55,
+     "late_in_failed_attempt_intervals_valid": 55,
+     "intervals_with_failed_attempt_valid": 27,
+     "late_model_minus_obs": 0.0339314285714285,
+     "n_interruptions": 35,
+     "late_prereg": 1.60536,
+     "failed_attempts_prereg": 0.9428599999999999,
+     "late_obs_all_windows": 1.5714285714285714,
+     "lost": 0,
+     "dup": 12,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 40.411999999832915
+    },
+    "5G-hosp|detect|C2w|ch3": {
+     "H_ms": 31.30650000002788,
+     "n_valid": 32,
+     "late_obs": 0.96875,
+     "late_model": 0.8349625,
+     "mae": 0.3681625,
+     "failed_attempts_obs": 0.9375,
+     "failed_attempts_model": 0.9775390625,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.0677,
+     "late_obs_retry": 1.1923076923076923,
+     "late_model_retry": 1.012023076923077,
+     "late_total_valid": 31,
+     "late_in_failed_attempt_intervals_valid": 31,
+     "intervals_with_failed_attempt_valid": 26,
+     "late_model_minus_obs": -0.13378749999999995,
+     "n_interruptions": 35,
+     "late_prereg": 0.7941971428571429,
+     "failed_attempts_prereg": 0.9428599999999999,
+     "late_obs_all_windows": 0.8857142857142857,
+     "lost": 0,
+     "dup": 15,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 40.860999999949854
+    },
+    "5G-tele|detect|C0|ch2": {
+     "H_ms": 48.570500000039374,
+     "n_valid": 34,
+     "late_obs": 1.9705882352941178,
+     "late_model": 1.963694117647059,
+     "mae": 0.5951352941176471,
+     "failed_attempts_obs": 0.7941176470588235,
+     "failed_attempts_model": 0.8023897058823529,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.32986666666666664,
+     "late_obs_retry": 2.68,
+     "late_model_retry": 2.551872,
+     "late_total_valid": 67,
+     "late_in_failed_attempt_intervals_valid": 67,
+     "intervals_with_failed_attempt_valid": 25,
+     "late_model_minus_obs": -0.006894117647058717,
+     "n_interruptions": 35,
+     "late_prereg": 1.9772314285714288,
+     "failed_attempts_prereg": 0.8084828571428572,
+     "late_obs_all_windows": 1.9714285714285715,
+     "lost": 0,
+     "dup": 25,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 41.7090000000826
+    },
+    "5G-tele|detect|C2|ch3": {
+     "H_ms": 84.69450000006873,
+     "n_valid": 34,
+     "late_obs": 4.264705882352941,
+     "late_model": 3.7909,
+     "mae": 0.8727058823529413,
+     "failed_attempts_obs": 0.7352941176470589,
+     "failed_attempts_model": 0.7840073529411765,
+     "late_obs_no_retry": 1.6,
+     "late_model_no_retry": 2.075,
+     "late_obs_retry": 5.375,
+     "late_model_retry": 4.505858333333333,
+     "late_total_valid": 145,
+     "late_in_failed_attempt_intervals_valid": 129,
+     "intervals_with_failed_attempt_valid": 24,
+     "late_model_minus_obs": -0.47380588235294097,
+     "n_interruptions": 35,
+     "late_prereg": 3.8629457142857144,
+     "failed_attempts_prereg": 0.8084828571428572,
+     "late_obs_all_windows": 4.371428571428571,
+     "lost": 0,
+     "dup": 21,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 43.38899999993373
+    },
+    "5G-tele|detect|C2w|ch3": {
+     "H_ms": 51.51649999999108,
+     "n_valid": 29,
+     "late_obs": 2.2758620689655173,
+     "late_model": 1.9919172413793103,
+     "mae": 0.709593103448276,
+     "failed_attempts_obs": 0.8275862068965517,
+     "failed_attempts_model": 0.8114224137931034,
+     "late_obs_no_retry": 0.0,
+     "late_model_no_retry": 0.4277375,
+     "late_obs_retry": 3.142857142857143,
+     "late_model_retry": 2.587795238095238,
+     "late_total_valid": 66,
+     "late_in_failed_attempt_intervals_valid": 66,
+     "intervals_with_failed_attempt_valid": 21,
+     "late_model_minus_obs": -0.2839448275862071,
+     "n_interruptions": 35,
+     "late_prereg": 1.9772314285714288,
+     "failed_attempts_prereg": 0.8084828571428572,
+     "late_obs_all_windows": 3.5142857142857142,
+     "lost": 0,
+     "dup": 46,
+     "failed_runs": 0,
+     "outage_ms_median": 53.0,
+     "outage_ms_max": 111.0,
+     "detect_ms_median": 42.17999999991662
+    }
+   },
+   "contrasts": {
+    "5G-hosp|C2int_minus_C0": {
+     "diff": 0.8235294117647058,
+     "ci95": [
+      0.45714285714285713,
+      1.2
+     ],
+     "n_common": 34,
+     "diff_all_windows": 0.7714285714285715,
+     "ci95_all_windows": [
+      0.37142857142857144,
+      1.1714285714285715
+     ],
+     "model_diff_common": 0.8056088235294117,
+     "model_diff_prereg": 0.811162857142857,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      0.4488549383545793,
+      1.1892402997406588
+     ],
+     "run_t_contains_model": true
+    },
+    "5G-hosp|C2w_minus_C0": {
+     "diff": 0.1935483870967742,
+     "ci95": [
+      -0.13793103448275862,
+      0.4857142857142857
+     ],
+     "n_common": 31,
+     "diff_all_windows": 0.08571428571428572,
+     "ci95_all_windows": [
+      -0.2857142857142857,
+      0.45714285714285713
+     ],
+     "model_diff_common": 0.0,
+     "model_diff_prereg": 0.0,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      -0.20230822961424832,
+      0.5223082296142483
+     ],
+     "run_t_contains_model": true
+    },
+    "5G-hosp|C2w_minus_C2int": {
+     "diff": -0.65625,
+     "ci95": [
+      -0.967741935483871,
+      -0.3548387096774194
+     ],
+     "n_common": 32,
+     "diff_all_windows": -0.6857142857142857,
+     "ci95_all_windows": [
+      -0.9714285714285714,
+      -0.4
+     ],
+     "model_diff_common": -0.8339875,
+     "model_diff_prereg": -0.811162857142857,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      -0.9760897073425812,
+      -0.36676743551456176
+     ],
+     "run_t_contains_model": true
+    },
+    "5G-tele|C2int_minus_C0": {
+     "diff": 2.303030303030303,
+     "ci95": [
+      1.7428571428571429,
+      2.838709677419355
+     ],
+     "n_common": 33,
+     "diff_all_windows": 2.4,
+     "ci95_all_windows": [
+      1.7714285714285714,
+      3.0285714285714285
+     ],
+     "model_diff_common": 1.878787878787879,
+     "model_diff_prereg": 1.8857142857142857,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      1.6959650100485901,
+      2.989749275665696
+     ],
+     "run_t_contains_model": true
+    },
+    "5G-tele|C2w_minus_C0": {
+     "diff": 0.21428571428571427,
+     "ci95": [
+      -0.2903225806451613,
+      0.8697010869565197
+     ],
+     "n_common": 28,
+     "diff_all_windows": 1.542857142857143,
+     "ci95_all_windows": [
+      -0.05714285714285714,
+      4.914285714285715
+     ],
+     "model_diff_common": 0.0,
+     "model_diff_prereg": 0.0,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      -0.4354024472402555,
+      1.0192119710497791
+     ],
+     "run_t_contains_model": true
+    },
+    "5G-tele|C2w_minus_C2int": {
+     "diff": -2.1785714285714284,
+     "ci95": [
+      -2.7777777777777777,
+      -1.6363636363636365
+     ],
+     "n_common": 28,
+     "diff_all_windows": -0.8571428571428571,
+     "ci95_all_windows": [
+      -2.342857142857143,
+      2.1714285714285713
+     ],
+     "model_diff_common": -1.8772321428571428,
+     "model_diff_prereg": -1.8857142857142857,
+     "ci_contains_model": true,
+     "run_t_ci95": [
+      -2.7137462588235155,
+      -1.7081585030812456
+     ],
+     "run_t_contains_model": true
+    }
+   },
+   "outage_ms_median": 53.0,
+   "outage_ms_max": 111.0,
+   "n_interruptions_per_cell": 35,
+   "windows_total": 210,
+   "windows_invalid": 12,
+   "cell_mean_abs_dev_max": 0.47380588235294097,
+   "exclusions_per_cell": {
+    "5G-hosp|detect|C0|ch2": 1,
+    "5G-hosp|detect|C2w|ch3": 3,
+    "5G-tele|detect|C0|ch2": 1,
+    "5G-tele|detect|C2|ch3": 1,
+    "5G-tele|detect|C2w|ch3": 6
+   },
+   "stall_first_ms_after_onset_range": [
+    697.618334098479,
+    8340.329570904032
+   ],
+   "stall_overlaps_reconnection": false,
+   "late_in_excluded_windows": {
+    "5G-hosp|detect|C0|ch2": [
+     2
+    ],
+    "5G-hosp|detect|C2|ch3": [],
+    "5G-hosp|detect|C2w|ch3": [
+     0,
+     0,
+     0
+    ],
+    "5G-tele|detect|C0|ch2": [
+     2
+    ],
+    "5G-tele|detect|C2|ch3": [
+     8
+    ],
+    "5G-tele|detect|C2w|ch3": [
+     35,
+     11,
+     2,
+     3,
+     4,
+     2
+    ]
+   },
+   "failed_attempt_window_share_C0": {
+    "5G-hosp": 0.8235294117647058,
+    "5G-tele": 0.7352941176470589
+   },
+   "sensitivity_host_turnaround_ms": {
+    "0.0": {
+     "development_mae": 0.5020661157024794,
+     "heldout_mae": 0.5814393939393939
+    },
+    "0.5": {
+     "development_mae": 0.4981060606060606,
+     "heldout_mae": 0.5841224747474747
+    },
+    "1.0": {
+     "development_mae": 0.49586776859504134,
+     "heldout_mae": 0.5896464646464646
+    },
+    "2.0": {
+     "development_mae": 0.5008608815426997,
+     "heldout_mae": 0.603219696969697
+    }
+   }
+  }
  }
 }

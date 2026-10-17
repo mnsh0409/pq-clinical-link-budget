@@ -18,7 +18,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.join(HERE, "..")
 sys.path.insert(0, os.path.join(ROOT, "models"))
 from common import p
-from run import CONFIGS, PKI, TMP, CLEANUP, env_for
+from run import CONFIGS, PKI, TMP, CLEANUP, env_for, set_iw
 
 RUNS = int(sys.argv[1]) if len(sys.argv) > 1 else 5
 DUR = float(sys.argv[2]) if len(sys.argv) > 2 else 80.0
@@ -43,6 +43,7 @@ def t2_nsa_ms():
 
 def one(policy, cfg, chain, seed, T2, PROFILE):
     groups, fam, mutual = CONFIGS[cfg]
+    set_iw(cfg)
     P = os.path.join(PKI, fam)
     rng = np.random.default_rng(seed)
     n_out = int(DUR // OUT_EVERY_S) - 1
@@ -138,7 +139,8 @@ def main():
      for policy, cfg, ch in CELLS:
         if only and policy != only: continue
         key = f"{pname}|{policy}|{cfg}|ch{ch}"
-        runs = [one(policy, cfg, ch, 20261015 + r, T2, PROFILE) for r in range(RUNS)]   # same seeds => same outage durations in every cell
+        seed0 = int(os.environ.get("X3_SEED0", "20261015"))       # the paper's development block: 20261015..19; held-out block: 20261020..24
+        runs = [one(policy, cfg, ch, seed0 + r, T2, PROFILE) for r in range(RUNS)]   # same seeds => same outage durations in every cell
         per = [x for r in runs for x in r.get("per_outage", [])]
         med = lambda v: statistics.median(v) if v else None
         res["cells"][key] = {"policy": policy, "cfg": cfg, "chain": ch, "runs": runs,

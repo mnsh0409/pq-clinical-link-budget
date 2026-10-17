@@ -12,7 +12,7 @@ claims are checked on an OpenSSL 3.5 testbed.
   <img src="docs/fig1_airtime.png" width="600" alt="Handshake airtime versus link rate for the classical, hybrid and fully post-quantum TLS 1.3 handshakes, with the 2, 20 and 100 ms clinical latency budgets">
 </p>
 <p align="center"><sub>Handshake airtime versus link rate for C0 (classical), C1 (hybrid key exchange) and C2
-(fully post-quantum), against the 3GPP medical latency budgets (paper, Fig. 1).</sub></p>
+(fully post-quantum), against the 3GPP medical latency budgets (the values are Table II of the paper).</sub></p>
 
 This is the companion repository of the paper *Can Post-Quantum Key Establishment Fit Clinical Latency
 Budgets? A Per-Link Budget for Healthcare 5.0 Wireless Streams*.
@@ -58,6 +58,7 @@ which runs without Retry; 10 ms RTT on every link, assumed for LTE-M and NB-IoT;
 | C2 | 10,275 | 20,608 | 30.9 | 32.4 | 574 | 4.89 s |
 | C2′ | 10,200 | 11,641 | 29.1 | 30.2 | 377 | 3.72 s |
 | C2 + one intermediate certificate per side | 15,806 | 31,670 | 48.8 | 43.7 | 851 | 7.36 s |
+| C2 + intermediates, TCP initial windows of 20 segments (same keys and certificates) | 15,806 | 31,670 | 31.3 | n/a | 851 | 7.35 s |
 | C3 (Falcon-512) | 3,911 | 7,879 | 29.6 | 19.5 | 255 | 2.00 s |
 | C3 + one intermediate certificate per side | 5,727 | 11,515 | 30.1 | 19.8 | 348 | 2.85 s |
 | C3m (Falcon-512 server, ML-DSA-65 device) | 3,914 | 11,598 | 30.4 | 19.8 | 338 | 2.49 s |
@@ -86,6 +87,35 @@ same interruption, averaged over the n windows valid in both, with a 95 % interv
 | Lost, C3m + intermediates | 0.39 / 1.38 | −0.04 [−0.48, 0.43] (23) | −0.07 [−0.44, 0.24] (27) |
 | Resumed (psk_dhe_ke), C2 + intermediates | 0.42 / 1.42 | 0.00 [−0.42, 0.48] (24) | −0.10 [−0.37, 0.14] (29) |
 
+**A model of the late records, tested on held-out runs** (Sec. V and Fig. 1 of the paper; `models/x3_model.py`).
+Under the recovery policy above, a lost session keeps every record within 100 ms only if its cold
+connect-to-first-record time H (median, Table III) is at most 100 ms − (k + 1) τ, with τ = RTT + 26.5 ms the timeout
+once the RTT variation is small (0.5 ms of host turnaround assumed) and k the failed reconnection attempts: 63.5 and 55.5 ms at 10 and 18 ms RTT without a failed attempt, 27.0 and 11.0 ms
+after one; one more record is late per 16 ms beyond the limit. The model has no parameter fitted to the telemetry
+runs, but its form, the acknowledgment rule included, was fixed after seeing the development runs above (mean
+absolute error 0.50 late records over their 363 lost-session windows). Its prediction for every interruption of five new seeds was written to
+`results/testbed_x3_heldout_prereg.json` (SHA-256 `7fc547475ab5a242...`, written 2026-10-17 18:14:24 UTC) before those runs started; on
+the 198 of 210 held-out windows the unchanged exclusion rule kept, its mean absolute error was 0.58 per window, and every
+paired 95 % interval (and every t-interval over the five run means) contains its prediction:
+
+| Held-out, lost session | Difference from lost C0, 10 ms [95 % CI] (n) | predicted | 18 ms [95 % CI] (n) | predicted |
+|---|---|---:|---|---:|
+| C2 + intermediates | 0.82 [0.46, 1.20] (34) | 0.81 | 2.30 [1.74, 2.84] (33) | 1.88 |
+| C2 + intermediates, initial windows of 20 segments | 0.19 [−0.14, 0.49] (31) | 0.00 | 0.21 [−0.29, 0.87] (28) | 0.00 |
+
+With the window and the same keys and certificates, no chain penalty is detectable (upper bounds 0.49 and
+0.87; equivalence not tested); against the default window it changed the late records by −0.66 [−0.97, −0.35] and
+−2.18 [−2.78, −1.64] (n = 32 and 28; predicted −0.83 and −1.88). It does not remove the cost of the recovery policy: with
+it, as with C0, every late record falls in a window with a failed reconnection attempt. Weak points: the model
+underestimates C2 + intermediates at 18 ms by about half a record (development and held-out alike) and misses the
+0.22 of C2 with leaf certificates at 10 ms in the development runs (0 predicted); the window runs hold
+9 of the 12 excluded held-out windows, whose host stalls all came 0.7 to 8.3 s after the onset, after the
+reconnection, yet the 18 ms window results rest on that exclusion (with all windows: 1.54 [−0.06, 4.91] against C0, −0.86 [−2.34, 2.17] against the default window).
+The window's cost is a first burst of up to 20 segments on both endpoints, the device included, where RFC 6928
+allows 10.
+
+<p align="center"><img src="docs/fig_model.png" width="560" alt="Expected late records per interruption against the cold handshake time, and model against measurement for the development and held-out runs"></p>
+
 In short:
 
 - On constrained radios a full post-quantum handshake takes 0.12 to 6.2 s of airtime alone. On the links that can
@@ -94,8 +124,8 @@ In short:
 - On 5G uplinks the bytes serialize in under 2 ms and round trips bind, for classical handshakes too.
 - The ML-DSA-65 server flight exceeds QUIC's anti-amplification allowance (one more round trip) and, with
   intermediate certificates, the server and client flights exceed TCP's initial window. Falcon-512 server
-  certificates (with the device keeping ML-DSA-65, C3m) avoid both in the testbed; a padded client Initial or a
-  larger initial window should too (not measured).
+  certificates (with the device keeping ML-DSA-65, C3m) avoid both in the testbed, and so do TCP initial windows of
+  20 segments with the ML-DSA-65 chain unchanged; a padded QUIC client Initial should too (not measured).
 - Under the recovery policy used here, a session lost at a handover costs telemetry deadlines even with a
   classical handshake (1.17 more late records per interruption than a kept session at 18 ms RTT; the gap combines
   losing the session with this one policy): detection (median 38 to 47 ms after the onset) fires before the
@@ -104,9 +134,12 @@ In short:
   policy, ML-DSA-65 chains with intermediates add 0.92 (10 ms) and 2.29 (18 ms) late records per interruption;
   C1, Falcon-512 server and CA certificates (C3m) and resumption differ from it by −0.12 to 0.00, with intervals
   that include zero (equivalence not tested). No record was lost in any condition.
+- A model of the late records, with predictions filed before held-out runs, predicted the chain's penalty, and a
+  20-segment initial window left none detectable; after one failed reconnection attempt at 18 ms RTT even a
+  classical reconnection leaves two or three records late, which only the recovery policy can avoid.
 - In a public mobility dataset the handover interruption alone exceeds 20 ms in 13,971 of 13,975 fully
-  timestamped U.S. events, independently of cryptography, and the handshake's airtime at recorded throughput
-  exceeds 2 ms in 15 % of U.S. samples (the Irish trace analysis stays in `results/fig2_stats.json`).
+  timestamped U.S. events, independently of cryptography (the throughput-proxy and Irish trace statistics of
+  earlier versions stay in `results/fig2_stats.json`).
 
 ## Quick start
 
@@ -133,9 +166,10 @@ python3 build_ledger.py               # sources/*.md -> sources/ledger.json (onl
 python3 urllc_transmission.py         # airtime per link, first-flight bounds, computation -> results/urllc_transmission.json
 python3 mobility_handshake_budget.py  # handshake cost per handover and session -> results/mobility_handshake_budget.json
 python3 trace_profile.py              # profile of both datasets -> results/trace_profile.json
-python3 figures.py                    # Fig. 1 and Fig. 2 -> paper/figs/, results/fig2_stats.json
+python3 figures.py                    # handover statistics -> results/fig2_stats.json (and the airtime and CDF figures of earlier versions)
 python3 tables.py                     # Tables I and II -> paper/tables/
-python3 testbed_tables.py             # Tables III and IV and testbed summary -> paper/tables/tab4_testbed.tex, tab5_session.tex, results/testbed_summary.json
+python3 testbed_tables.py             # Tables III and IV, model and held-out scoring -> paper/tables/tab4_testbed.tex, tab5_session.tex, results/testbed_summary.json
+python3 fig_model.py                  # Fig. 1 (model) -> paper/figs/fig3_model.pdf
 ```
 
 A rerun from a clean checkout (2026-10-16), with the two datasets fetched as `data/README.md` describes,
@@ -151,10 +185,10 @@ three means in `results/trace_profile.json` (summation order).
 |---|---|---|
 | Table I (clinical streams) | `models/tables.py` | ledger |
 | Table II (link classes and handshake airtime) | `models/tables.py` | `results/urllc_transmission.json` |
-| Table III (testbed) and testbed text | `models/testbed_tables.py` | `results/testbed_x12.json` (TCP), `testbed_x4.json` (QUIC), `testbed_timeline.json` (TCP flight timeline) |
-| Table IV (session loss at a handover) | `models/testbed_tables.py` | `results/testbed_x3.json`, `results/testbed_x3_qc.json` (host-stall windows) |
-| Fig. 1 (airtime versus link rate) | `models/figures.py` | `results/urllc_transmission.json` |
-| Fig. 2 and handover statistics | `models/figures.py` | DATA-01 (DATA-02 only for statistics outside the paper) -> `results/fig2_stats.json` |
+| Table III (testbed) and testbed text | `models/testbed_tables.py` | `results/testbed_x12.json` (TCP, including the 20-segment initial window), `testbed_x4.json` (QUIC), `testbed_timeline.json` (TCP flight timeline) |
+| Table IV (session loss at a handover) | `models/testbed_tables.py` | `results/testbed_x3.json`, `results/testbed_x3_qc.json` (host-stall windows); held-out rows: `testbed_x3_heldout.json`, `testbed_x3_heldout_qc.json`, `testbed_x3_heldout_prereg.json` |
+| Fig. 1 (model of the late records) and its paragraph | `models/x3_model.py`, `models/fig_model.py`, `models/testbed_tables.py` | `results/testbed_summary.json` (`x3_model`); predictions filed by `models/x3_prereg.py` |
+| Handover statistics (Sec. V) | `models/figures.py` | DATA-01 (DATA-02 only for statistics outside the paper) -> `results/fig2_stats.json` |
 | Testbed measurements | `testbed/x12.py`, `x4.py`, `x3.py`, `x3_qc.py`, `timeline.py` | ledger profiles; X3 also DATA-01 |
 
 Any input number can be traced to its quoted source: `sources/README.md` shows how.

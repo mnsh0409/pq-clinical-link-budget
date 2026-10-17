@@ -1,0 +1,1491 @@
+{
+ "written": "2026-10-17T18:14:24+00:00",
+ "seeds": [
+  20261020,
+  20261021,
+  20261022,
+  20261023,
+  20261024
+ ],
+ "model": {
+  "PTO_ms": "RTT + 25 + 1 (variation floor) + 0.5 (host turnaround) = RTT + 26.5",
+  "period_ms": 16.0,
+  "deadline_ms": 100.0,
+  "phase": "g0 uniform on [-OWD, 16 - OWD)",
+  "H_source": "results/testbed_x12.json t_first_record_ms.median"
+ },
+ "claims": [
+  "paired difference from C0 of C2w + int. (initial window 20, same ML-DSA-65 chain): +0.00 (10 ms) and +0.00 (18 ms) late records per interruption; its 95 % interval should include 0 and exclude the default-window difference",
+  "paired difference from C0 of C2 + int. (default window): +0.81 (10 ms) and +1.89 (18 ms)",
+  "late records per interruption: C0 0.79 / 1.98, C2 + int. 1.61 / 3.86, C2w + int. 0.79 / 1.98 (10 / 18 ms)",
+  "failed attempts per interruption 0.94 (10 ms) and 0.81 (18 ms), the same in every cell of a profile (the detector, not the configuration, sets them)",
+  "intervals that need no retry: C2 + int. late at 18 ms (about 1.4 per interruption), every other cell about 0; intervals that need a retry: every cell late (about 1 at 10 ms, 2 to 3 at 18 ms; C2 + int. 2 and 4 to 5): the initial window removes the certificate-chain penalty, not the retry cost",
+  "scoring: mean absolute error of the per-interval expectation against the observed count over the intervals testbed/x3_qc.py leaves valid (rule fixed before these runs: a frame delivered more than 15 ms late), cell means, and whether each paired 95 % interval (two-stage bootstrap, as Table IV) contains the prediction"
+ ],
+ "cells": {
+  "5G-hosp|detect|C0|ch2": {
+   "H_ms": 28.445500000032098,
+   "rtt_ms": 10.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 0.5938,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 1.0938,
+       "failed_attempts_expected": 1.2031,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 3.5,
+       "failed_attempts_expected": 2.4062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 0.5469,
+       "failed_attempts_expected": 0.8594,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 0.4062,
+       "failed_attempts_expected": 0.7188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 0.5312,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.1562,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2812,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 0.7941971428571429,
+   "failed_attempts_expected": 0.9428599999999999
+  },
+  "5G-hosp|detect|C2|ch3": {
+   "H_ms": 48.765000000003056,
+   "rtt_ms": 10.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 1.5,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0938,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0938,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.2188,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 3.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 2.0938,
+       "failed_attempts_expected": 1.2031,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 3.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 3.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 4.5,
+       "failed_attempts_expected": 2.4062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.2188,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 1.4062,
+       "failed_attempts_expected": 0.8594,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 1.125,
+       "failed_attempts_expected": 0.7188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 1.375,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 0.1562,
+       "failed_attempts_expected": 0.1562,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 0.2812,
+       "failed_attempts_expected": 0.2812,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 1.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 1.60536,
+   "failed_attempts_expected": 0.9428599999999999,
+   "diff_from_C0_expected": 0.811162857142857
+  },
+  "5G-hosp|detect|C2w|ch3": {
+   "H_ms": 31.30650000002788,
+   "rtt_ms": 10.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 0.5938,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0938,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 1.0938,
+       "failed_attempts_expected": 1.2031,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 2.6875,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 3.5,
+       "failed_attempts_expected": 2.4062,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 0.5469,
+       "failed_attempts_expected": 0.8594,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 0.4062,
+       "failed_attempts_expected": 0.7188,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 0.5312,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.1562,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.2812,
+       "detect_expected_ms": 39.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 0.6875,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 39.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 0.7941971428571429,
+   "failed_attempts_expected": 0.9428599999999999,
+   "diff_from_C0_expected": 0.0,
+   "diff_from_C2int_expected": -0.811162857142857
+  },
+  "5G-tele|detect|C0|ch2": {
+   "H_ms": 48.570500000039374,
+   "rtt_ms": 18.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 1.4062,
+       "failed_attempts_expected": 0.6562,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 2.3438,
+       "failed_attempts_expected": 0.9688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 4.3125,
+       "failed_attempts_expected": 1.625,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 3.375,
+       "failed_attempts_expected": 1.3125,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 1.7812,
+       "failed_attempts_expected": 0.7812,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 4.6875,
+       "failed_attempts_expected": 1.75,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 5.4375,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 1.2656,
+       "failed_attempts_expected": 0.6094,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 2.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 0.9375,
+       "failed_attempts_expected": 0.4688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 2.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 1.2188,
+       "failed_attempts_expected": 0.5938,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 0.0625,
+       "failed_attempts_expected": 0.0312,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 1.9772314285714288,
+   "failed_attempts_expected": 0.8084828571428572
+  },
+  "5G-tele|detect|C2|ch3": {
+   "H_ms": 84.69450000006873,
+   "rtt_ms": 18.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 3.4062,
+       "failed_attempts_expected": 0.6562,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 4.3438,
+       "failed_attempts_expected": 0.9688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 3.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 6.3125,
+       "failed_attempts_expected": 1.625,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 5.375,
+       "failed_attempts_expected": 1.3125,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 3.7812,
+       "failed_attempts_expected": 0.7812,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 3.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 6.6875,
+       "failed_attempts_expected": 1.75,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 7.4375,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 3.2656,
+       "failed_attempts_expected": 0.6094,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 4.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 2.8438,
+       "failed_attempts_expected": 0.4688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 4.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 3.2188,
+       "failed_attempts_expected": 0.5938,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 1.4375,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 1.5312,
+       "failed_attempts_expected": 0.0312,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 4.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 3.8629457142857144,
+   "failed_attempts_expected": 0.8084828571428572,
+   "diff_from_C0_expected": 1.8857142857142857
+  },
+  "5G-tele|detect|C2w|ch3": {
+   "H_ms": 51.51649999999108,
+   "rtt_ms": 18.0,
+   "runs": [
+    {
+     "seed": 20261020,
+     "per_outage": [
+      {
+       "outage_ms": 57.99999999999999,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 46.0,
+       "late_expected": 1.4062,
+       "failed_attempts_expected": 0.6562,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 51.0,
+       "late_expected": 2.3438,
+       "failed_attempts_expected": 0.9688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 33.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261021,
+     "per_outage": [
+      {
+       "outage_ms": 66.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.00000000000001,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 61.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 59.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 90.0,
+       "late_expected": 4.3125,
+       "failed_attempts_expected": 1.625,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 64.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261022,
+     "per_outage": [
+      {
+       "outage_ms": 64.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 71.00000000000001,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 84.99999999999999,
+       "late_expected": 3.375,
+       "failed_attempts_expected": 1.3125,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 60.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 54.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 48.0,
+       "late_expected": 1.7812,
+       "failed_attempts_expected": 0.7812,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 49.0,
+       "late_expected": 1.9688,
+       "failed_attempts_expected": 0.8438,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261023,
+     "per_outage": [
+      {
+       "outage_ms": 92.0,
+       "late_expected": 4.6875,
+       "failed_attempts_expected": 1.75,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 28.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 111.0,
+       "late_expected": 5.4375,
+       "failed_attempts_expected": 2.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 35.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.00000000000001,
+       "late_expected": 1.2656,
+       "failed_attempts_expected": 0.6094,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 55.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 2.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    },
+    {
+     "seed": 20261024,
+     "per_outage": [
+      {
+       "outage_ms": 43.0,
+       "late_expected": 0.9375,
+       "failed_attempts_expected": 0.4688,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 50.0,
+       "late_expected": 2.1562,
+       "failed_attempts_expected": 0.9062,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 53.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 45.0,
+       "late_expected": 1.2188,
+       "failed_attempts_expected": 0.5938,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 34.0,
+       "late_expected": 0.0,
+       "failed_attempts_expected": 0.0,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 36.0,
+       "late_expected": 0.0625,
+       "failed_attempts_expected": 0.0312,
+       "detect_expected_ms": 43.38
+      },
+      {
+       "outage_ms": 63.0,
+       "late_expected": 2.4375,
+       "failed_attempts_expected": 1.0,
+       "detect_expected_ms": 43.38
+      }
+     ]
+    }
+   ],
+   "late_per_interruption_expected": 1.9772314285714288,
+   "failed_attempts_expected": 0.8084828571428572,
+   "diff_from_C0_expected": 0.0,
+   "diff_from_C2int_expected": -1.8857142857142857
+  }
+ }
+}

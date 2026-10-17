@@ -2,7 +2,8 @@
 timeline.py -- per-segment timeline of one cold TCP connection on the 5G-hosp profile for C0, C2 and C2 + intermediate:
 which part of each data flight left in the first burst and when the rest followed (after the peer's acknowledgments).
 A burst ends at a gap of more than GAP_MS between consecutive data segments of the same flight.
-Results -> results/testbed_timeline.json.   usage: python3 timeline.py
+Results -> results/testbed_timeline.json.   usage: python3 timeline.py   (TL_CASES=C2w:3 python3 timeline.py adds the
+initial-window-20 case, C2 + intermediates with the same keys and certificates, to the existing file)
 """
 import json, os, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -37,14 +38,20 @@ def first_conn_flights(log):
 
 def main():
     subprocess.run(["bash", os.path.join(HERE, "netns_up.sh")], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-    out = {"profile": PROF, "gap_ms": GAP_MS, "cases": {}}
-    for cfg, ch in [("C0", 2), ("C2", 2), ("C2", 3)]:
+    dst = os.path.join(HERE, "..", "results", "testbed_timeline.json")
+    cases = [("C0", 2), ("C2", 2), ("C2", 3)]
+    if os.environ.get("TL_CASES"):          # e.g. TL_CASES=C2w:3 adds cases to the existing file without rerunning the others
+        cases = [(c.split(":")[0], int(c.split(":")[1])) for c in os.environ["TL_CASES"].split(",")]
+        out = json.load(open(dst))
+    else:
+        out = {"profile": PROF, "gap_ms": GAP_MS, "cases": {}}
+    for cfg, ch in cases:
         tag = f"tl_{cfg}_ch{ch}"
         r = run_case(PROF, cfg, chain=ch, n=1, gap_ms=100, tag=tag)
         out["cases"][f"{cfg}|ch{ch}"] = {"t_first_record_ms": r["runs"][0]["t_first_record_server_ms"], "flights": first_conn_flights(f"{TMP}/emu_{tag}.log")}
         subprocess.run(CLEANUP)
         print(cfg, ch, json.dumps(out["cases"][f"{cfg}|ch{ch}"]), flush=True)
-    json.dump(out, open(os.path.join(HERE, "..", "results", "testbed_timeline.json"), "w"), indent=1)
+    json.dump(out, open(dst, "w"), indent=1)
 
 if __name__ == "__main__":
     main()

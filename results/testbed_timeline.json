@@ -205,6 +205,67 @@
      "stalls_ms": []
     }
    ]
+  },
+  "C2w|ch3": {
+   "t_first_record_ms": 40.95500000039465,
+   "flights": [
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 1361,
+       "t_first_ms": 10.678999999981897,
+       "t_last_ms": 10.678999999981897
+      }
+     ],
+     "payload_B": 1361,
+     "segments": 1,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 12,
+       "payload_B": 15806,
+       "t_first_ms": 16.459999999824504,
+       "t_last_ms": 16.969999999673746
+      }
+     ],
+     "payload_B": 15806,
+     "segments": 12,
+     "stalls_ms": []
+    },
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 12,
+       "payload_B": 15525,
+       "t_first_ms": 23.060000000441505,
+       "t_last_ms": 24.473000000398315
+      }
+     ],
+     "payload_B": 15525,
+     "segments": 12,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 24,
+       "t_first_ms": 30.3169999997408,
+       "t_last_ms": 30.3169999997408
+      }
+     ],
+     "payload_B": 24,
+     "segments": 1,
+     "stalls_ms": []
+    }
+   ]
   }
  }
 }

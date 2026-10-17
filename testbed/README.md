@@ -77,6 +77,7 @@ left over from an interrupted cell.
 | C3 | ML-KEM-768 | Falcon-512 | mutual |
 | C3u | ML-KEM-768 | Falcon-512 | server only |
 | C3m | ML-KEM-768 | Falcon-512 server and CA, ML-DSA-65 device certificate | mutual |
+| C2w | ML-KEM-768 | ML-DSA-65 (C2's keys and certificates) | mutual; TCP initial congestion and receive windows of 20 segments on both endpoints (`run.py: IW`, `set_iw`) |
 
 `chain=2`: each side sends its leaf only (the peer holds the root). `chain=3`: leaf and intermediate.
 
@@ -84,6 +85,7 @@ left over from an interrupted cell.
 
 ```bash
 sudo python3 x12.py                      # all four profiles; or name some: 5G-hosp 5G-tele LTE-M NB-IoT
+X12_CASES=C2w:3 sudo -E python3 x12.py   # one case, merged into the existing results (v1.8: C2 + int. with IW 20)
 ```
 
 - Each connection is a cold TCP + TLS 1.3 full handshake (no tickets), then one 1,000-B application record.
@@ -112,6 +114,7 @@ sudo python3 x4.py 50                    # 50 connections per cell, 5G profiles,
 
 ```bash
 sudo python3 timeline.py                 # one cold connection each for C0, C2 and C2 + intermediate (5G-hosp)
+TL_CASES=C2w:3 sudo -E python3 timeline.py   # adds C2 + intermediate with IW 20 without rerunning the others
 ```
 
 - From the emulator's per-frame log: each data flight split into bursts at gaps of more than 4 ms, and the stall
@@ -175,11 +178,66 @@ connection requests dropped in an interruption and loss declarations made while 
 check above shows how much the exclusion matters. Running the emulator
 under `chrt -f 50` with Python's collector disabled did not remove the stalls in a test.
 
+## X3 held-out block and the model of the late records (v1.8)
+
+`models/x3_model.py` predicts the late records of a `detect` (lost-session) interval from the interruption length,
+the profile's RTT and one-way delay, and the configuration's cold connect-to-first-record time H (the X12 median of
+Table III); it has no parameter taken from the telemetry runs, but its form was settled on the development runs
+(seeds 20261015 to 20261019, `results/testbed_x3.json`). One constant is assumed: 0.5 ms of host turnaround in the
+smoothed RTT; `results/testbed_summary.json` (`x3_model.heldout.sensitivity_host_turnaround_ms`) shows the mean
+absolute errors with it at 0 to 2 ms.
+
+The held-out test was filed before it was run:
+
+```bash
+python3 ../models/x3_prereg.py           # writes results/testbed_x3_heldout_prereg.json (per-interruption predictions)
+X3_SEED0=20261020 X3_CELLS="detect:C0:2,detect:C2:3,detect:C2w:3" X3_OUT=$PWD/../results/testbed_x3_heldout.json \
+  sudo -E python3 x3.py 5 80             # five new seeds (20261020 to 20261024), both 5G profiles
+X3_RESULTS=testbed_x3_heldout.json python3 x3_qc.py   # the unchanged 15-ms host-stall rule -> testbed_x3_heldout_qc.json
+python3 ../models/testbed_tables.py      # held-out rows of Table IV, results/testbed_summary.json x3_model.heldout
+python3 ../models/fig_model.py           # Fig. 1 of the paper (paper/figs/fig3_model.pdf)
+```
+
+- The prediction file was written at 2026-10-17T18:14:24+00:00 (UTC); its SHA-256 is
+  `7fc547475ab5a242e9eb027a5a576ac3f010c06a67529f615b78d39c0abdf690`. The block started at 2026-10-17T18:14:51 UTC. A copy of
+  the file was placed on a second machine before the runs. `testbed_tables.py` checks that the filed numbers are
+  the model's predictions for the drawn interruptions and scores the runs against the filed numbers themselves.
+- Outcome on the 198 of 210 windows the unchanged exclusion (host-stall) rule kept: mean absolute
+  error 0.58 late records per interval (development: 0.50); every paired 95 % interval contains the
+  prediction. C2 + int. minus C0: 0.82 [0.46, 1.20] at 10 ms
+  (predicted 0.81) and 2.30 [1.74, 2.84] at 18 ms (predicted
+  1.88); C2w minus C0: 0.19 [-0.14, 0.49] and 0.21 [-0.29, 0.87]
+  (predicted 0). With the window, as with C0, every late record falls in a window with a failed attempt.
+- Negative control in numbers (`x3_model.heldout.cells`, valid windows, 10 / 18 ms): windows with a failed attempt
+  were 28 of 34 and 25 of 34 for C0, 26 of 32 and 21 of 29 with the window, 27 of 35 and 24 of 34 for C2 + int.
+  Per such window: C0 0.93 and 2.68 late records (model 0.97 and 2.55), the window 1.19 and 3.14 (model 1.01 and 2.59),
+  C2 + int. 2.04 and 5.38 (model 1.99 and 4.51). In the windows without one, C0 and the window had no late record at
+  either RTT; C2 + int. had none at 10 ms (model 0.32) and 1.60 per window at 18 ms (model 2.08).
+- Against the default window, on the same seeds, the window changed the late records of C2 + int. by
+  -0.66 [-0.97, -0.35] and -2.18 [-2.78, -1.64] (predicted -0.83 and -1.88). t-intervals over
+  the five run means (`run_t_ci95`) also contain every prediction.
+- Weak points, also in the paper: the model underestimates C2 + int. at 18 ms by about half a record per
+  interruption (development and held-out alike), and it misses the 0.22 of C2 with leaf certificates at 10 ms in
+  the development runs (0 predicted; cause not identified). The window runs hold 9 of the 12 excluded held-out
+  windows (`exclusions_per_cell`). `x3_qc.py` now also records when each window's first stall came after the onset
+  and when the reconnection request passed (`stall_first_ms_after_onset`, `reconnect_syn_ms_after_onset`; the
+  `invalid` flags are unchanged): every held-out stall came 0.7 to 8.3 s after the onset, after the
+  reconnection, so none coincides with the window's first burst. The largest excluded window (seed 20261021,
+  interruption 3 at 18 ms: 35 late records) held a stall about 7.4 s after the onset with false loss declarations
+  and six failed attempts. With all windows the 18 ms window contrasts are
+  1.54 [-0.06, 4.91] against C0 and -0.86 [-2.34, 2.17] against C2 + int., so at 18 ms both rest on the exclusion. Analysis jobs also ran on the same 2-vCPU host during the held-out block;
+  why the stalls fell mostly in the window cells is not known, and a quiet host is the remedy.
+- `set_iw` changes the route to the peer in both namespaces (`ip route change ... initcwnd 20 initrwnd 20`) for C2w
+  and restores the kernel default for every other case; after an interrupted run, `python3 -c "from run import
+  set_iw; set_iw('C0')"` restores it by hand.
+
 ## Reproducibility notes
 
 - With freshly generated keys, ML-DSA-65 byte counts reproduce exactly. ECDSA and Falcon signatures vary in
   length, so C0, C1 and C3 flights can differ by a few bytes (a rerun gave 885 vs 886 B for the C0 server
   flight and 3,910 vs 3,911 B for C3).
+- v1.8 (Oct 18, 2026) added the C2w case (X12, timeline) and the held-out X3 block above; the development cells
+  were not rerun.
 - v1.7 of the paper (Oct 17, 2026) changed only the analysis of X3 (paired difference from `detect` C0 instead of
   the unpaired excess over `keep`); no cell was rerun.
 - The script paths (`TESTBED_TMP`, `cleanup.sh`) were parameterized after the first runs. For v1.6 of the paper

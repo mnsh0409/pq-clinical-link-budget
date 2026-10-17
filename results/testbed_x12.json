@@ -2538,5 +2538,257 @@
    "max": 3507.7400000000125
   },
   "wall_s": 54.3
+ },
+ "5G-hosp|C2w|ch3": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C2w",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    15806,
+    12
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 16886
+  },
+  "payload_S2C_B": {
+   "min": 15830,
+   "max": 15830
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.745500000041375
+  },
+  "t_hs_client_ms": {
+   "median": 25.075500000014017,
+   "p90": 27.44200000006458
+  },
+  "t_first_record_ms": {
+   "median": 31.30650000002788,
+   "p10": 30.012999999939893,
+   "p90": 33.63899999999376,
+   "min": 29.582000000004882,
+   "max": 43.213999999920816
+  },
+  "wall_s": 28.4
+ },
+ "5G-tele|C2w|ch3": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C2w",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    15806,
+    12
+   ],
+   [
+    "C>S",
+    15525,
+    12
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16886,
+   "max": 16886
+  },
+  "payload_S2C_B": {
+   "min": 15830,
+   "max": 15830
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.809499999974832
+  },
+  "t_hs_client_ms": {
+   "median": 41.426500000056876,
+   "p90": 44.13499999998294
+  },
+  "t_first_record_ms": {
+   "median": 51.51649999999108,
+   "p10": 50.23100000005343,
+   "p90": 54.211000000009335,
+   "min": 49.94699999997465,
+   "max": 59.03799999998682
+  },
+  "wall_s": 33.3
+ },
+ "LTE-M|C2w|ch3": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C2w",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    16323,
+    13
+   ],
+   [
+    "C>S",
+    16547,
+    13
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 17908,
+   "max": 17908
+  },
+  "payload_S2C_B": {
+   "min": 16347,
+   "max": 16347
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.31999999999789
+  },
+  "t_hs_client_ms": {
+   "median": 502.32600000003913,
+   "p90": 503.69100000000344
+  },
+  "t_first_record_ms": {
+   "median": 851.0449999999992,
+   "p10": 850.8370000000696,
+   "p90": 851.2629999999035,
+   "min": 850.7040000000643,
+   "max": 851.3920000000326
+  },
+  "wall_s": 29.8
+ },
+ "NB-IoT|C2w|ch3": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C2w",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1361,
+    1
+   ],
+   [
+    "S>C",
+    17771,
+    14
+   ],
+   [
+    "C>S",
+    17064,
+    14
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 16977,
+   "max": 18425
+  },
+  "payload_S2C_B": {
+   "min": 17795,
+   "max": 17795
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 42.770999999902415
+  },
+  "t_hs_client_ms": {
+   "median": 5363.998000000038,
+   "p90": 5451.877999999965
+  },
+  "t_first_record_ms": {
+   "median": 7353.028999999992,
+   "p10": 7352.58500000009,
+   "p90": 7441.519999999969,
+   "min": 7352.497000000085,
+   "max": 7441.624999999931
+  },
+  "wall_s": 114.2
  }
 }

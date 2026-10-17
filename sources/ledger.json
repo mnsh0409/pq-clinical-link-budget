@@ -1,6 +1,6 @@
 {
  "meta": {
-  "built": "2026-10-17",
+  "built": "2026-10-18",
   "access_date_of_sources": "2026-09-27",
   "rule": "Every value copied verbatim from sources/*.md; ids refer to entries there; no arithmetic in this file.",
   "status_tags": "VERIFIED = quoted from primary; SECONDARY = via mirror/secondary (check by hand before submission)"
@@ -62,7 +62,8 @@
   "moustris2023": "G. Moustris et al., IJCARS 18(9):1577-1587, 2023, doi:10.1007/s11548-023-02913-2 (phantoms; 5G at surgeon side only)",
   "chen2024jmir": "B. Chen et al., J Med Internet Res 26:e52404, 2024, Table 3 and Results",
   "berlet2022": "M. Berlet et al., JMIR Formative Research 6(5):e36824, 2022 (5G ambulance field test, parked)",
-  "herman2015": "S. T. Herman et al., Consensus Statement on Continuous EEG ... Part II, J Clin Neurophysiol 32(2):96-108, 2015"
+  "herman2015": "S. T. Herman et al., Consensus Statement on Continuous EEG ... Part II, J Clin Neurophysiol 32(2):96-108, 2015",
+  "chou2026": "M. Chou, P. Cao, arXiv:2604.24869 (2026): post-quantum chain size vs time to first byte (PQC-06, qualitative)"
  },
  "params": {
   "kex_x25519mlkem768_client_B": {

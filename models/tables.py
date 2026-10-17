@@ -35,8 +35,8 @@ rows = [
  ("RAS, local link, 250--2,000\\,B/1\\,ms", None, "$<$2\\,ms", "ts22104"),
  ("RAS, remote ($<$400\\,km)", None, "$<$20\\,ms", "ts22104"),
  ("Ambulance vital signs, TR 22.826", p("ambulance_vitals_rate_bps"), "$<$100\\,ms", "tr22826"),
- ("Ambulance video, measured", p("ambulance_video_measured_bps"), "$<$100\\,ms~\\cite{tr22826}", "berlet2022"),
- ("Surgical video, measured", p("surg_video_measured_ye2026_bps"), "--", "ye2026"),
+ # v1.8: row dropped for space (not used in the text): ("Ambulance video, measured", p("ambulance_video_measured_bps"), "$<$100\\,ms~\\cite{tr22826}", "berlet2022"),
+ # v1.8: row dropped for space (not used in the text): ("Surgical video, measured", p("surg_video_measured_ye2026_bps"), "--", "ye2026"),
 ]
 L = []
 L.append("\\begin{tabular}{@{}lrr@{}}\\toprule")

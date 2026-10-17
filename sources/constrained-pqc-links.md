@@ -263,5 +263,15 @@ Raw markdown source rows (pqm4) are given in code spans exactly as in the file.
 - **Use in paper:** Session-loss detection rule of the telemetry experiment (Sec. V).
 - **Status:** VERIFIED (WebFetch extraction; read by hand before camera-ready)
 
+### PQC-06 (qualitative; no value used)
+- **Citation:** M. Chou, P. Cao, "Network Impact of Post-Quantum Certificate Chain sizes on Time to First Byte in TLS Deployments," arXiv:2604.24869, Apr. 2026. https://arxiv.org/abs/2604.24869
+- **Fetched URL:** https://arxiv.org/abs/2604.24869 and https://arxiv.org/pdf/2604.24869 (2026-10-17)
+- **Location:** Abstract.
+- **Quote (a):** "We observe discrete increases in TTFB as certificate chain sizes exceed transport layer data flight limits."
+- **Figure(s):** none used.
+- **Condition:** OpenSSL with OQS on two EC2 hosts, tc netem RTT 0 to 200 ms; per the PDF extraction the initial congestion window is discussed analytically and not varied, and packet loss is left to future work (read by hand before camera-ready).
+- **Use in paper:** Related work: the step in time to first byte when a chain exceeds a transport flight limit is known; its effect on deadlines after session loss is what this paper adds.
+- **Status:** VERIFIED (abstract sentence via WebFetch extraction)
+
 ### TB-01 (testbed, this work)
 - **What:** OpenSSL 3.5.4 (release tarball sha256 967311f8...5e99), oqs-provider 0.12.0 (commit 7e9d095a) on liboqs 0.16.0 (commit 5a1a854b); Falcon-512 TLS code point 0xfed7 and OID 1.3.9999.3.11 are oqs-provider experimental values, not FN-DSA (FIPS 206 unpublished). Results are measurements of this work, stored in results/testbed_*.json, not ledger inputs.

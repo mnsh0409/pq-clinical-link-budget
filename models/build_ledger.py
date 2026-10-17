@@ -73,6 +73,7 @@ CITES = {
  "chen2024jmir": "B. Chen et al., J Med Internet Res 26:e52404, 2024, Table 3 and Results",
  "berlet2022": "M. Berlet et al., JMIR Formative Research 6(5):e36824, 2022 (5G ambulance field test, parked)",
  "herman2015": "S. T. Herman et al., Consensus Statement on Continuous EEG ... Part II, J Clin Neurophysiol 32(2):96-108, 2015",
+ "chou2026": "M. Chou, P. Cao, arXiv:2604.24869 (2026): post-quantum chain size vs time to first byte (PQC-06, qualitative)",
 }
 
 L = {}

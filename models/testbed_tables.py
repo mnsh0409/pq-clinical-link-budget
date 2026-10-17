@@ -5,9 +5,11 @@ C2 and one C2 + intermediate connection; testbed_x3.json: telemetry through hand
 Handshake bytes are taken from the 5G-hosp runs (no retransmissions): all TCP payload of the first connection
 except the client's 1,022-B application record and the server's 24-B close_notify.
 """
-import json, os
+import json, os, sys
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HERE)
+import x3_model as M                                   # a-priori model of X3 (no parameter from the telemetry runs)
 RES = os.path.join(HERE, "..", "results")
 OUT = os.path.join(HERE, "..", "paper", "tables")
 X12 = json.load(open(os.path.join(RES, "testbed_x12.json")))
@@ -18,7 +20,8 @@ APP, CLOSE = 1022, 24
 ETH_IP_UDP = 14 + 20 + 8          # frame bytes in the X4 log minus these = UDP payload per datagram
 
 ROWS = [("C0", 2, "C0"), ("C1", 2, "C1"), ("C2", 2, "C2"), ("C2u", 2, "C2$'$"),
-        ("C2", 3, "C2 + int."), ("C3", 2, "C3"), ("C3", 3, "C3 + int."), ("C3m", 2, "C3m"), ("C3m", 3, "C3m + int.")]
+        ("C2", 3, "C2 + int."), ("C2w", 3, "C2 + int., IW\\,20"), ("C3", 2, "C3"), ("C3", 3, "C3 + int."), ("C3m", 2, "C3m"), ("C3m", 3, "C3m + int.")]
+NO_QUIC = {"C2w"}        # the initial-window case is a TCP setting; its QUIC column is not applicable
 
 def hs_bytes(cfg, ch):
     f = X12[f"5G-hosp|{cfg}|ch{ch}"]["flights_first_conn"]
@@ -34,15 +37,16 @@ for cfg, ch, lab in ROWS:
     S["rows"][k] = {"label": lab, "hs_bytes": tot, "server_flight_B": sf, "client_B": cs, "server_B": sc,
         "tcp_ms": {p: X12[f"{p}|{cfg}|ch{ch}"]["t_first_record_ms"]["median"] for p in ("5G-hosp", "5G-tele", "LTE-M", "NB-IoT")},
         "tcp_p10_p90_ms": {p: [X12[f"{p}|{cfg}|ch{ch}"]["t_first_record_ms"]["p10"], X12[f"{p}|{cfg}|ch{ch}"]["t_first_record_ms"]["p90"]] for p in ("5G-hosp", "5G-tele")},
-        "quic_ms": {p: X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["median"] for p in ("5G-hosp", "5G-tele")},
-        "quic_p10_p90_ms": {p: [X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["p10"], X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["p90"]] for p in ("5G-hosp", "5G-tele")},
-        "quic_retry_ms": {p: X4[f"{p}|{cfg}|ch{ch}|retry"]["t_first_record_ms"]["median"] for p in ("5G-hosp", "5G-tele")},
-        "n_tcp_5g": X12[f"5G-hosp|{cfg}|ch{ch}"]["n"], "n_quic": X4[f"5G-hosp|{cfg}|ch{ch}|noretry"]["n"]}
+        "quic_ms": {p: (None if cfg in NO_QUIC else X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["median"]) for p in ("5G-hosp", "5G-tele")},
+        "quic_p10_p90_ms": {p: (None if cfg in NO_QUIC else [X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["p10"], X4[f"{p}|{cfg}|ch{ch}|noretry"]["t_first_record_ms"]["p90"]]) for p in ("5G-hosp", "5G-tele")},
+        "quic_retry_ms": {p: (None if cfg in NO_QUIC else X4[f"{p}|{cfg}|ch{ch}|retry"]["t_first_record_ms"]["median"]) for p in ("5G-hosp", "5G-tele")},
+        "n_tcp_5g": X12[f"5G-hosp|{cfg}|ch{ch}"]["n"], "n_quic": None if cfg in NO_QUIC else X4[f"5G-hosp|{cfg}|ch{ch}|noretry"]["n"],
+        "tcp_p10_p90_ms_all": {p: [X12[f"{p}|{cfg}|ch{ch}"]["t_first_record_ms"]["p10"], X12[f"{p}|{cfg}|ch{ch}"]["t_first_record_ms"]["p90"]] for p in ("5G-hosp", "5G-tele", "LTE-M", "NB-IoT")}}
 # spread of the 5G cells of Table III (p90 - p10 of the time to the first record)
-spr = [v["tcp_p10_p90_ms"]["5G-hosp"][1] - v["tcp_p10_p90_ms"]["5G-hosp"][0] for v in S["rows"].values()] + \
-      [v["quic_p10_p90_ms"]["5G-hosp"][1] - v["quic_p10_p90_ms"]["5G-hosp"][0] for v in S["rows"].values()]
-S["spread_5g_hosp_p10_p90_max_ms"] = max(spr)
-S["spread_5g_hosp_p10_p90_tcp_max_ms"] = max(spr[:len(S["rows"])]); S["spread_5g_hosp_p10_p90_quic_max_ms"] = max(spr[len(S["rows"]):])
+spr_t = [v["tcp_p10_p90_ms"]["5G-hosp"][1] - v["tcp_p10_p90_ms"]["5G-hosp"][0] for v in S["rows"].values()]
+spr_q = [v["quic_p10_p90_ms"]["5G-hosp"][1] - v["quic_p10_p90_ms"]["5G-hosp"][0] for v in S["rows"].values() if v["quic_p10_p90_ms"]["5G-hosp"]]
+S["spread_5g_hosp_p10_p90_max_ms"] = max(spr_t + spr_q)
+S["spread_5g_hosp_p10_p90_tcp_max_ms"] = max(spr_t); S["spread_5g_hosp_p10_p90_quic_max_ms"] = max(spr_q)
 
 # QUIC, C2 without Retry: first bursts of the first connection, in UDP payload bytes
 fq = X4["5G-hosp|C2|ch2|noretry"]["flights_first_conn"]
@@ -59,7 +63,8 @@ X12P = {k.split("|")[0]: v["profile"] for k, v in X12.items()}
 err = {}
 for cfg, ch, lab in ROWS:
     f = X12[f"5G-hosp|{cfg}|ch{ch}"]["flights_first_conn"]
-    k_rtt = 2.5 + (f[1][2] > 10) + (f[2][2] > 10)
+    iw = 20 if cfg == "C2w" else 10
+    k_rtt = 2.5 + (f[1][2] > iw) + (f[2][2] > iw)
     cs = sum(x[1] + 66 * x[2] for x in f[:3] if x[0] == "C>S"); sc = sum(x[1] + 66 * x[2] for x in f[:3] if x[0] == "S>C")
     for p in ("5G-hosp", "5G-tele", "LTE-M", "NB-IoT"):
         pr = X12P[p]; up = cs * 8 / pr["ul"] * 1e3; down = sc * 8 / pr["dl"] * 1e3; rtt = k_rtt * 2 * pr["owd_ms"]
@@ -163,6 +168,117 @@ if QC is not None:
         S["x3"].setdefault("detect_before_end_share", {})[_pr] = float(np.mean(_dv))
     _o = [q["client_start_after_origin_ms"] for v in QC["cells"].values() for q in v.values() if "client_start_after_origin_ms" in q]
     if _o: S["x3"]["client_start_after_origin_ms_range"] = [min(_o), max(_o)]
+# ---------------------------------------------------------------- model of X3 (models/x3_model.py)
+PROF = {"5G-hosp": (10.0, 5.0), "5G-tele": (18.0, 9.0)}           # RTT, one-way delay (ms)
+def H_of(prof, pol, cfg, ch):
+    """Cold connect-to-first-record time of the configuration on the profile (Table III); a resumed session has the
+    round trips of C0 (PSK and key share, no certificates), so C0's time stands in for it."""
+    return S["rows"]["C0|ch2"]["tcp_ms"][prof] if pol == "detect-resume" else S["rows"][f"{cfg}|ch{ch}"]["tcp_ms"][prof]
+def model_cells(x3, qc, tag, filed=None):
+    """Per lost-session cell: observed and model-expected late count per interruption over the valid intervals.
+    filed: {cell key: per-interruption expectations filed before the runs}; used instead of recomputing when given."""
+    out = {}
+    for key, c in x3["cells"].items():
+        prof, pol, cfg, ch = key.split("|"); ch = int(ch[2:])
+        if not pol.startswith("detect"): continue
+        rtt, owd = PROF[prof]; H = H_of(prof, pol, cfg, ch)
+        ok = np.array([not v for r in c["runs"] for v in qc["cells"][key][str(r["seed"])]["invalid"]], bool)
+        per = [x for r in c["runs"] for x in r["per_outage"]]
+        ex = [M.late_expect(x["outage_ms"], H, rtt, owd) for x in per]
+        obs = np.array([x["late"] for x in per], float); pre = np.array([e[0] for e in ex])
+        if filed is not None:       # the filed predictions (4 decimals) are the model's predictions for the drawn durations
+            fp, fD = filed[key]
+            assert np.allclose(fD, [x["outage_ms"] for x in per], rtol=0, atol=1e-9), key        # same interruptions as filed
+            assert np.allclose(fp, [M.late_expect(d, H, rtt, owd)[0] for d in fD], rtol=0, atol=1e-4), key
+            pre = np.asarray(fp, float)
+        nf = np.array([x["failed_attempts"] for x in per], float); nfp = np.array([e[1] for e in ex])
+        retry = nf > 0
+        out[key] = {"H_ms": H, "n_valid": int(ok.sum()), "late_obs": float(obs[ok].mean()), "late_model": float(pre[ok].mean()),
+                    "mae": float(np.abs(obs[ok] - pre[ok]).mean()), "failed_attempts_obs": float(nf[ok].mean()), "failed_attempts_model": float(nfp[ok].mean()),
+                    "late_obs_no_retry": float(obs[ok & ~retry].mean()) if (ok & ~retry).any() else None, "late_model_no_retry": float(pre[ok & ~retry].mean()) if (ok & ~retry).any() else None,
+                    "late_obs_retry": float(obs[ok & retry].mean()) if (ok & retry).any() else None, "late_model_retry": float(pre[ok & retry].mean()) if (ok & retry).any() else None,
+                    "_obs": obs, "_pre": pre, "_ok": ok, "_nruns": len(c["runs"])}
+    allo = np.concatenate([v["_obs"][v["_ok"]] for v in out.values()]); allp = np.concatenate([v["_pre"][v["_ok"]] for v in out.values()])
+    summ = {"n_intervals": int(len(allo)), "mae": float(np.abs(allo - allp).mean()), "bias_model_minus_obs": float((allp - allo).mean()),
+            "corr": float(np.corrcoef(allo, allp)[0, 1]), "late_obs": float(allo.mean()), "late_model": float(allp.mean()),
+            "failed_attempts_obs": float(np.mean([v["failed_attempts_obs"] for v in out.values()])), "failed_attempts_model": float(np.mean([v["failed_attempts_model"] for v in out.values()]))}
+    return out, summ
+dev_cells, dev_summ = model_cells(X3, QC, "development")
+S["x3_model"] = {"constants": {"pto_ms": "RTT + 25 + 1 + 0.5 (margin, variation floor, host turnaround per sample)", "period_ms": M.PERIOD_MS, "deadline_ms": M.DEADLINE_MS,
+                               "phase": "g0 uniform on [-OWD, 16 - OWD); records generated before the onset were delivered, only their acknowledgments were lost"},
+                 "development": {"summary": dev_summ, "cells": {k: {kk: vv for kk, vv in v.items() if not kk.startswith("_")} for k, v in dev_cells.items()}},
+                 "boundary": {}}
+for prof, (rtt, owd) in PROF.items():
+    S["x3_model"]["boundary"][prof] = {"pto_ms": M.pto_ms(rtt), "H_no_retry_limit_ms": M.DEADLINE_MS - M.pto_ms(rtt), "H_one_retry_limit_ms": M.DEADLINE_MS - 2 * M.pto_ms(rtt), "cells": {}}
+    for cfg, ch in (("C0", 2), ("C1", 2), ("C2", 2), ("C2", 3), ("C2w", 3), ("C3m", 3)):
+        H = S["rows"][f"{cfg}|ch{ch}"]["tcp_ms"][prof]
+        S["x3_model"]["boundary"][prof]["cells"][f"{cfg}|ch{ch}"] = {"H_ms": H, "late_by_retries": [M.late_by_retries(H, rtt, owd, n) for n in (0, 1, 2)]}
+# ---------------------------------------------------------------- held-out block (seeds 20261020..24; predictions filed before the runs)
+HOF = os.path.join(RES, "testbed_x3_heldout.json"); HOQ = os.path.join(RES, "testbed_x3_heldout_qc.json"); PRE = os.path.join(RES, "testbed_x3_heldout_prereg.json")
+HO = None
+if os.path.exists(HOF) and os.path.exists(HOQ) and os.path.exists(PRE):
+    import hashlib
+    X3H = json.load(open(HOF)); QCH = json.load(open(HOQ)); PR = json.load(open(PRE))
+    FILED = {k: (np.array([x["late_expected"] for r in v["runs"] for x in r["per_outage"]]), [x["outage_ms"] for r in v["runs"] for x in r["per_outage"]]) for k, v in PR["cells"].items()}
+    ho_cells, ho_summ = model_cells(X3H, QCH, "held-out", filed=FILED)
+    HO = {"prereg_sha256": hashlib.sha256(open(PRE, "rb").read()).hexdigest(), "prereg_written": PR["written"], "seeds": PR["seeds"], "summary": ho_summ, "cells": {}, "contrasts": {}}
+    for key, v in ho_cells.items():
+        pr = PR["cells"][key]
+        c = X3H["cells"][key]; per = [x for r in c["runs"] for x in r["per_outage"]]
+        HO["cells"][key] = {kk: vv for kk, vv in v.items() if not kk.startswith("_")}
+        _ok, _obs = v["_ok"], v["_obs"]; _nf = np.array([x["failed_attempts"] for x in per], float)
+        HO["cells"][key].update({"late_total_valid": int(_obs[_ok].sum()), "late_in_failed_attempt_intervals_valid": int(_obs[_ok & (_nf > 0)].sum()),
+                                 "intervals_with_failed_attempt_valid": int((_ok & (_nf > 0)).sum()),
+                                 "late_model_minus_obs": float(v["late_model"] - v["late_obs"])})
+        HO["cells"][key].update({"n_interruptions": len(per), "late_prereg": pr["late_per_interruption_expected"], "failed_attempts_prereg": pr["failed_attempts_expected"],
+                                 "late_obs_all_windows": float(v["_obs"].mean()), "lost": c["lost"], "dup": c["dup"], "failed_runs": c["failed_runs"],
+                                 "outage_ms_median": float(np.median([x["outage_ms"] for x in per])), "outage_ms_max": float(np.max([x["outage_ms"] for x in per])),
+                                 "detect_ms_median": float(np.median([x["detect_ms"] for x in per if x["detect_ms"] is not None]))})
+    for prof in PROF:
+        k0 = f"{prof}|detect|C0|ch2"
+        if k0 not in ho_cells: continue
+        for ka, kb, name in ((f"{prof}|detect|C2|ch3", k0, "C2int_minus_C0"), (f"{prof}|detect|C2w|ch3", k0, "C2w_minus_C0"), (f"{prof}|detect|C2w|ch3", f"{prof}|detect|C2|ch3", "C2w_minus_C2int")):
+            if ka not in ho_cells or kb not in ho_cells: continue
+            a, b = ho_cells[ka], ho_cells[kb]; both = a["_ok"] & b["_ok"]; d = a["_obs"] - b["_obs"]; dm = a["_pre"] - b["_pre"]
+            assert [r["seed"] for r in X3H["cells"][ka]["runs"]] == [r["seed"] for r in X3H["cells"][kb]["runs"]]
+            bd = boot_means(d, both, a["_nruns"]); ba = boot_means(d, np.ones_like(both), a["_nruns"])
+            HO["contrasts"][f"{prof}|{name}"] = {"diff": float(d[both].mean()), "ci95": [float(np.percentile(bd, 2.5)), float(np.percentile(bd, 97.5))], "n_common": int(both.sum()),
+                                                "diff_all_windows": float(d.mean()), "ci95_all_windows": [float(np.percentile(ba, 2.5)), float(np.percentile(ba, 97.5))],
+                                                "model_diff_common": float(dm[both].mean()), "model_diff_prereg": float(np.mean(dm))}
+            HO["contrasts"][f"{prof}|{name}"]["ci_contains_model"] = bool(HO["contrasts"][f"{prof}|{name}"]["ci95"][0] <= HO["contrasts"][f"{prof}|{name}"]["model_diff_common"] <= HO["contrasts"][f"{prof}|{name}"]["ci95"][1])
+            _rm = np.array([dd[bb].mean() for dd, bb in zip(d.reshape(a["_nruns"], -1), both.reshape(a["_nruns"], -1)) if bb.any()])   # run means, t-interval (4 df)
+            _hw = T975_DF4 * _rm.std(ddof=1) / np.sqrt(len(_rm))
+            HO["contrasts"][f"{prof}|{name}"]["run_t_ci95"] = [float(_rm.mean() - _hw), float(_rm.mean() + _hw)]
+            HO["contrasts"][f"{prof}|{name}"]["run_t_contains_model"] = bool(_rm.mean() - _hw <= HO["contrasts"][f"{prof}|{name}"]["model_diff_common"] <= _rm.mean() + _hw)
+    _D = [x["outage_ms"] for r in X3H["cells"][next(iter(X3H["cells"]))]["runs"] for x in r["per_outage"]]
+    HO["outage_ms_median"] = float(np.median(_D)); HO["outage_ms_max"] = float(np.max(_D)); HO["n_interruptions_per_cell"] = len(_D)
+    HO["windows_total"] = sum(c["n_interruptions"] for c in HO["cells"].values()); HO["windows_invalid"] = sum(c["n_interruptions"] - c["n_valid"] for c in HO["cells"].values())
+    HO["cell_mean_abs_dev_max"] = max(abs(c["late_obs"] - c["late_model"]) for c in HO["cells"].values())
+    # where the excluded (host-stall) windows fell, and when their stalls came relative to the onset and the
+    # reconnection (testbed/x3_qc.py records both); a stall that came after the reconnection cannot be the window's burst
+    _ex, _sf, _ov = {}, [], []
+    for key, c in X3H["cells"].items():
+        for r in c["runs"]:
+            q = QCH["cells"][key][str(r["seed"])]
+            for i, bad in enumerate(q["invalid"]):
+                if not bad: continue
+                _ex[key] = _ex.get(key, 0) + 1; _sf.append(q["stall_first_ms_after_onset"][i])
+                rc = q["reconnect_syn_ms_after_onset"][i]
+                _ov.append(rc is not None and q["stall_first_ms_after_onset"][i] < rc + 300.0)     # within 300 ms of the reconnection request
+    HO["exclusions_per_cell"] = _ex; HO["stall_first_ms_after_onset_range"] = [min(_sf), max(_sf)]; HO["stall_overlaps_reconnection"] = any(_ov)
+    HO["late_in_excluded_windows"] = {key: [r["per_outage"][i]["late"] for r in c["runs"] for i, bad in enumerate(QCH["cells"][key][str(r["seed"])]["invalid"]) if bad] for key, c in X3H["cells"].items()}
+    for prof in PROF:      # share of valid lost-C0 windows with a failed reconnection attempt
+        c0 = HO["cells"].get(f"{prof}|detect|C0|ch2")
+        if c0: HO.setdefault("failed_attempt_window_share_C0", {})[prof] = c0["intervals_with_failed_attempt_valid"] / c0["n_valid"]
+    # sensitivity to the one assumed constant (host turnaround in the smoothed RTT): mean absolute error over the valid
+    # intervals, development and held-out, with the constant at 0 to 2 ms (the model is otherwise unchanged)
+    _keep = M.SRTT_EXTRA_MS; _sens = {}
+    for _e in (0.0, 0.5, 1.0, 2.0):
+        M.SRTT_EXTRA_MS = _e
+        _sens[f"{_e:.1f}"] = {"development_mae": model_cells(X3, QC, "development")[1]["mae"], "heldout_mae": model_cells(X3H, QCH, "held-out")[1]["mae"]}
+    M.SRTT_EXTRA_MS = _keep
+    HO["sensitivity_host_turnaround_ms"] = _sens
+    S["x3_model"]["heldout"] = HO
 json.dump(S, open(os.path.join(RES, "testbed_summary.json"), "w"), indent=1)
 
 def ms(x):
@@ -172,14 +288,14 @@ L = [r"\begin{tabular}{@{}lrrrrrr@{}}\toprule",
      r"Config. & server & total & 5G TCP & 5G QUIC & LTE-M & NB-IoT \\ \midrule"]
 for cfg, ch, lab in ROWS:
     r = S["rows"][f"{cfg}|ch{ch}"]
-    L.append(f"{lab} & {r['server_flight_B']:,} & {r['hs_bytes']:,} & {ms(r['tcp_ms']['5G-hosp'])} & {ms(r['quic_ms']['5G-hosp'])} & "
+    L.append(f"{lab} & {r['server_flight_B']:,} & {r['hs_bytes']:,} & {ms(r['tcp_ms']['5G-hosp'])} & {'--' if r['quic_ms']['5G-hosp'] is None else ms(r['quic_ms']['5G-hosp'])} & "
              f"{ms(r['tcp_ms']['LTE-M'])} & {ms(r['tcp_ms']['NB-IoT'])} \\\\")
 L.append(r"\bottomrule\end{tabular}")
 open(os.path.join(OUT, "tab4_testbed.tex"), "w").write("\n".join(L) + "\n")
 print("\n".join(L))
 
 # Table IV: the paired telemetry experiment
-X5 = [("keep", "C2", 2, "Kept (no detector)"), ("detect", "C0", 2, "Lost, C0"), ("detect", "C1", 2, "Lost, C1"), ("detect", "C2", 2, "Lost, C2"),
+X5 = [("keep", "C2", 2, "Kept (no detector)"), ("detect", "C1", 2, "Lost, C1"), ("detect", "C2", 2, "Lost, C2"),
       ("detect", "C2", 3, "Lost, C2 + int."), ("detect", "C3m", 3, "Lost, C3m + int."), ("detect-resume", "C2", 3, "Resumed, C2 + int.")]
 def f2(x): return "--" if x is None else (f"$-${-x:.2f}" if round(x, 2) < 0 else f"{abs(x) if round(x, 2) == 0 else x:.2f}")   # true minus sign; no "-0.00"
 def f0(x): return "--" if x is None else f"{x:.0f}"
@@ -193,6 +309,16 @@ for pol, cfg, ch, lab in X5:
     a = S["x3"]["cells"].get(f"5G-hosp|{pol}|{cfg}|ch{ch}"); b = S["x3"]["cells"].get(f"5G-tele|{pol}|{cfg}|ch{ch}")
     if a is None or b is None: continue
     L.append(f"{lab} & {exc(a)} & {exc(b)} \\\\")
+# v1.8: held-out block (new seeds; the model's per-interruption predictions were filed before the runs). Each measured
+# row is followed by the model's difference on the same intervals.
+if HO and all(f"{pr}|{nm}" in HO["contrasts"] for pr in PROF for nm in ("C2int_minus_C0", "C2w_minus_C0")):
+    L.append(r"\midrule")
+    def hoc(c): return f"{f2(c['diff'])} & [{f2(c['ci95'][0])}, {f2(c['ci95'][1])}] & {c['n_common']}"
+    def hom(c): return f"{f2(c['model_diff_common'])} & & "
+    for nm, lab in (("C2int_minus_C0", "Held-out, C2 + int."), ("C2w_minus_C0", "Held-out, C2 + int., IW\\,20")):
+        a, b = HO["contrasts"][f"5G-hosp|{nm}"], HO["contrasts"][f"5G-tele|{nm}"]
+        L.append(f"{lab} & {hoc(a)} & {hoc(b)} \\\\")
+        L.append(f"\\quad model, filed & {hom(a)} & {hom(b)} \\\\")
 L.append(r"\bottomrule\end{tabular}")
 open(os.path.join(OUT, "tab5_session.tex"), "w").write("\n".join(L) + "\n")
 print("\n".join(L))

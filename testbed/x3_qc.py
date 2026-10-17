@@ -13,7 +13,8 @@ record clock starts then, so the phase of the 16-ms record grid at an interrupti
 Each run's interruption schedule is replayed from its seed exactly as x3.py draws it (durations, then start jitter);
 its time origin is fitted to the frames the emulator dropped in interruptions.
 
-Output: results/testbed_x3_qc.json   usage: python3 x3_qc.py
+Output: results/testbed_x3_qc.json   usage: python3 x3_qc.py            (X3_RESULTS=testbed_x3_heldout.json for the held-out block
+                                                                          -> results/testbed_x3_heldout_qc.json)
 """
 import glob, json, os, re, sys
 import numpy as np
@@ -43,9 +44,13 @@ def check(logf, seed, owd_s, T2):
     lo = a - 0.5; hi = np.r_[a[1:] - 0.5, np.inf]
     win = lambda x: int(np.searchsorted(lo, x, side="right") - 1)       # -1: before the first window
     stall = [False] * N_OUT; false = [False] * N_OUT; syn_lost = [0] * N_OUT     # connection requests dropped in an interruption
-    for x in t[(tout > 0) & ((tout - t - owd_s) * 1e3 > STALL_MS)]:
+    stall_first = [None] * N_OUT; stall_max = [0.0] * N_OUT                      # v1.8: when, after the onset, a window's first stall came, and how long it was
+    late_mask = (tout > 0) & ((tout - t - owd_s) * 1e3 > STALL_MS)
+    for x, lag in zip(t[late_mask], ((tout - t - owd_s) * 1e3)[late_mask]):
         i = win(x)
-        if i >= 0: stall[i] = True
+        if i >= 0:
+            stall[i] = True; stall_max[i] = max(stall_max[i], float(lag))
+            if stall_first[i] is None: stall_first[i] = float((x - a[i]) * 1e3)
     seen, dead, cur = set(), set(), None
     for r in rows:
         ti, d, ln, to, sp, dp, pl = float(r[0]), r[1], int(r[2]), float(r[3]), int(r[4]), int(r[5]), int(r[6])
@@ -61,12 +66,17 @@ def check(logf, seed, owd_s, T2):
                 if i >= 0: false[i] = True
         if d == "AB" and pl > 0: cur = cp                                 # the connection that carries records now
     t0 = min((float(r[0]) for r in rows if r[1] == "AB" and int(r[2]) == 74 and float(r[0]) >= best[1] - 0.5), default=float("nan"))
+    # v1.8: the reconnection after each onset: the first connection request that passed the emulator after the onset
+    syn_ok = [min((float(r[0]) for r in rows if r[1] == "AB" and int(r[2]) == 74 and float(r[3]) > 0 and a[i] <= float(r[0]) < a[i] + 2.0), default=None) for i in range(N_OUT)]
+    reconnect = [None if x is None else float((x - a[i]) * 1e3) for i, x in enumerate(syn_ok)]
     return {"stall": stall, "false": false, "invalid": list(stall), "syn_dropped_in_interruption": syn_lost,
+            "stall_first_ms_after_onset": stall_first, "stall_max_ms": stall_max, "reconnect_syn_ms_after_onset": reconnect,
             "drops_in_schedule": best[0], "drops": int(len(drops)), "client_start_after_origin_ms": (t0 - best[1]) * 1e3}
 
 def main():
     T2 = t2_nsa_ms()
-    res = json.load(open(os.path.join(HERE, "..", "results", "testbed_x3.json")))
+    inp = os.environ.get("X3_RESULTS", "testbed_x3.json")
+    res = json.load(open(os.path.join(HERE, "..", "results", inp)))
     out = {"stall_ms": STALL_MS, "cells": {}}
     for key, c in res["cells"].items():
         prof, pol, cfg, ch = key.split("|")
@@ -75,7 +85,7 @@ def main():
             f = os.path.join(TMP, f"x3_emu_{prof}_{pol}_{cfg}_{ch[2:]}_{r['seed']}.log")
             q = check(f, r["seed"], owd, T2)
             out["cells"].setdefault(key, {})[str(r["seed"])] = q
-    json.dump(out, open(os.path.join(HERE, "..", "results", "testbed_x3_qc.json"), "w"), indent=1)
+    json.dump(out, open(os.path.join(HERE, "..", "results", inp.replace(".json", "_qc.json")), "w"), indent=1)
     n = sum(len(q["invalid"]) for v in out["cells"].values() for q in v.values())
     bad = sum(sum(q["invalid"]) for v in out["cells"].values() for q in v.values())
     st = sum(sum(q["stall"]) for v in out["cells"].values() for q in v.values())
