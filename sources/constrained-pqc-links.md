@@ -34,9 +34,10 @@ Raw markdown source rows (pqm4) are given in code spans exactly as in the file.
 - **Location:** Section 4 (Parameter Sets), Table 2, p. 16 (the note follows the table)
 - **Quote (a):** "Table 2. Sizes (in bytes) of keys and signatures of ML-DSA | Private Key | Public Key | Signature Size | ML-DSA-44 | 2560 | 1312 | 2420 | ML-DSA-65 | 4032 | 1952 | 3309 | ML-DSA-87 | 4896 | 2592 | 4627"
 - **Quote (b):** "Alternatively, if one wants to reduce the space needed for the private key, one can store only the 32-byte seed 𝜉, which is sufficient to generate the other parts of the private key."
+- **Quote (c) — Table 1 "ML-DSA parameter sets", p. 15, Section 4 (fetched 2026-10-17):** "Claimed security strength Category 2 Category 3 Category 5" (columns ML-DSA-44, ML-DSA-65, ML-DSA-87)
 - **Figure(s):** ML-DSA-44: private key 2560, public key 1312, signature 2420 (bytes). ML-DSA-65: 4032, 1952, 3309 (bytes). ML-DSA-87: 4896, 2592, 4627 (bytes). The private key can instead be stored as a 32-byte seed.
 - **Condition:** Final FIPS 204 (Aug 13, 2024). **Column order in the source is Private Key, Public Key, Signature Size** (private key first).
-- **Use in paper:** Authentication bytes per handshake (certificate public key + CertificateVerify signature, per certificate in the chain). Device key-storage budget.
+- **Use in paper:** Authentication bytes per handshake (certificate public key + CertificateVerify signature, per certificate in the chain). Device key-storage budget. Quote (c): ML-DSA-65 is security category 3 (Falcon comparison, Sec. VI).
 - **Status:** VERIFIED
 
 ### PQC-03
@@ -237,6 +238,30 @@ Raw markdown source rows (pqm4) are given in code spans exactly as in the file.
 - **Condition:** Round-3 Falcon (pre-FN-DSA), Cortex-M4 at 24 MHz as for PQC-04; 10 executions; m4-ct = constant-time M4 implementation.
 - **Use in paper:** Falcon-512 (C3) device cost: verification vs signing.
 - **Status:** VERIFIED (quoted from git object)
+
+### PQC-03b
+- **Citation:** Open Quantum Safe, liboqs 0.16.0, `docs/algorithms/sig/falcon.yml` (the algorithm datasheet of the library the testbed runs). https://github.com/open-quantum-safe/liboqs
+- **Fetched URL:** https://raw.githubusercontent.com/open-quantum-safe/liboqs/0.16.0/docs/algorithms/sig/falcon.yml (2026-10-17)
+- **Location:** `parameter-sets:` entries Falcon-512, Falcon-1024, Falcon-padded-512, Falcon-padded-1024.
+- **Quote (a):** "- name: Falcon-512 / claimed-nist-level: 1 / claimed-security: EUF-CMA / length-public-key: 897 / length-secret-key: 1281 / length-signature: 752"
+- **Quote (b):** "- name: Falcon-padded-512 / claimed-nist-level: 1 / claimed-security: EUF-CMA / length-public-key: 897 / length-secret-key: 1281 / length-signature: 666"
+- **Quote (c):** Falcon-1024: "claimed-nist-level: 5", "length-public-key: 1793", "length-signature: 1462"; Falcon-padded-1024: "length-signature: 1280"
+- **Figure(s):** Falcon-512 claimed NIST level 1 (Falcon-1024: 5). Signature length: 752 B maximum for the compressed (variable-length) encoding, 666 B for the padded encoding (Falcon-512).
+- **Condition:** Round-3 Falcon as implemented in liboqs 0.16.0 (spec-version 20211101), not FN-DSA. The testbed's oqs-provider `falcon512` uses the compressed encoding, so its signatures vary in length (server flights 3,911-3,916 B across runs).
+- **Use in paper:** Security category of Falcon-512 (category 1) against ML-DSA-65 (category 3, PQC-02 quote (c)): the Falcon comparison is a size-security trade-off.
+- **Status:** VERIFIED (official project repository, quoted from the file)
+
+### RFC-08
+- **Citation:** J. Iyengar, I. Swett (eds.), "QUIC Loss Detection and Congestion Control," RFC 9002, May 2021.
+- **Fetched URL:** https://www.rfc-editor.org/rfc/rfc9002.html (2026-10-17)
+- **Location:** sec. 6.2.1 "Computing PTO"; sec. 5.3 "Estimating smoothed_rtt and rttvar"; sec. 6.1.2 "Time Threshold".
+- **Quote (a) — sec. 6.2.1:** "When an ack-eliciting packet is transmitted, the sender schedules a timer for the PTO period as follows:" / "PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay"
+- **Quote (b) — sec. 5.3:** "smoothed_rtt = latest_rtt" / "rttvar = latest_rtt / 2" (first sample); "smoothed_rtt = 7/8 * smoothed_rtt + 1/8 * adjusted_rtt" / "rttvar = 3/4 * rttvar + 1/4 * rttvar_sample" (later samples)
+- **Quote (c) — sec. 6.1.2:** "The RECOMMENDED value of the timer granularity (kGranularity) is 1 millisecond."
+- **Figure(s):** PTO = smoothed_rtt + max(4 rttvar, 1 ms) + max_ack_delay; first sample: rttvar = sample/2; EWMA weights 1/8 (srtt) and 1/4 (rttvar).
+- **Condition:** QUIC's probe timeout. The X3 testbed client (testbed/tele.c, policy `detect`) borrows this form as an application-level session-loss detector on application acknowledgments, with max_ack_delay replaced by a 25-ms margin chosen in this work (not a ledger value; WebFetch could not reach the max_ack_delay default in RFC 9000 sec. 18.2).
+- **Use in paper:** Session-loss detection rule of the telemetry experiment (Sec. V).
+- **Status:** VERIFIED (WebFetch extraction; read by hand before camera-ready)
 
 ### TB-01 (testbed, this work)
 - **What:** OpenSSL 3.5.4 (release tarball sha256 967311f8...5e99), oqs-provider 0.12.0 (commit 7e9d095a) on liboqs 0.16.0 (commit 5a1a854b); Falcon-512 TLS code point 0xfed7 and OID 1.3.9999.3.11 are oqs-provider experimental values, not FN-DSA (FIPS 206 unpublished). Results are measurements of this work, stored in results/testbed_*.json, not ledger inputs.

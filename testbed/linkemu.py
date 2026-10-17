@@ -5,7 +5,10 @@ The kernel here has no netem, so delay, per-direction serialization rate and out
 applied in user space: every frame arriving on one side is queued FIFO behind earlier frames of the
 same direction (serialization at the direction's rate), then delivered after the one-way delay.
 Frames that arrive during an outage window are dropped (data plane halted, as in a handover's
-execution stage). Every frame is logged: t_in, direction, frame bytes, t_out (or -1 if dropped).
+execution stage). With --kill-flows, every TCP connection seen before an outage starts is dead from that
+moment on (session loss, e.g. an address change at the handover): its frames are dropped in both
+directions, while new connections pass once the outage ends. Every frame is logged: t_in, direction,
+frame bytes, t_out (-1 if dropped in an outage, -2 if dropped as a dead connection), ports, payload.
 
 usage: python3 linkemu.py IF_A IF_B --ab-rate R --ba-rate R --ab-delay-ms D --ba-delay-ms D
                           [--outages FILE] [--log FILE]
@@ -25,6 +28,7 @@ ap.add_argument("--ba-delay-ms", type=float, required=True)
 ap.add_argument("--outages", default=None, help="file with lines 'start_s end_s' relative to the time the file is (re)read; re-read on change")
 ap.add_argument("--log", default=None)
 ap.add_argument("--outages-abs", action="store_true", help="outage times are absolute CLOCK_MONOTONIC seconds")
+ap.add_argument("--kill-flows", action="store_true", help="at each outage start, TCP connections seen so far are dead (frames dropped from then on)")
 args = ap.parse_args()
 
 def raw(ifname):
@@ -70,6 +74,10 @@ def tcpinfo(frame):
 def in_outage(t):
     return any(a <= t < b for a, b in outages)
 
+seen, dead, killed = set(), set(), set()     # client-side TCP ports; outage starts already applied
+def client_port(d, ti):
+    return ti[0] if d == "AB" else ti[1]
+
 last_check = 0.0
 while True:
     now = time.monotonic()
@@ -87,6 +95,17 @@ while True:
                 continue
             t_in = time.monotonic()
             d, rate, delay = cfg[s]
+            if args.kill_flows:
+                for a, b in outages:
+                    if a <= t_in and a not in killed:
+                        dead.update(seen); killed.add(a)
+                ti = tcpinfo(frame)
+                if ti:
+                    cp = client_port(d, ti)
+                    if cp in dead:
+                        if logf: logf.write(f"{t_in:.6f} {d} {len(frame)} -2 {ti[0]} {ti[1]} {ti[2]}\n")
+                        continue
+                    seen.add(cp)
             if in_outage(t_in):
                 if logf: ti = tcpinfo(frame); logf.write(f"{t_in:.6f} {d} {len(frame)} -1 {ti[0] if ti else 0} {ti[1] if ti else 0} {ti[2] if ti else -1}\n")
                 continue

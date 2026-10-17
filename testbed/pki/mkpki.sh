@@ -4,7 +4,7 @@
 set -e
 export LD_LIBRARY_PATH=/opt/ossl35/lib; O=/opt/ossl35/bin/openssl
 key(){ case $1 in ec) $O genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out $2 2>/dev/null;; mldsa) $O genpkey -algorithm ML-DSA-65 -out $2;; falcon) $O genpkey -algorithm falcon512 -out $2;; esac; }
-FAMS=${FAMS:-"ec mldsa"}   # FAMS=falcon needs OPENSSL_CONF pointing at a config that loads oqsprovider (testbed/oqs.cnf)
+FAMS=${FAMS-"ec mldsa"}   # FAMS= (empty) skips the families, e.g. MIXED=1 FAMS= bash mkpki.sh   # FAMS=falcon needs OPENSSL_CONF pointing at a config that loads oqsprovider (testbed/oqs.cnf)
 for f in $FAMS; do
   mkdir -p $f; cd $f
   printf "basicConstraints=critical,CA:TRUE\nkeyUsage=critical,keyCertSign\n" > ca.ext
@@ -22,3 +22,18 @@ for f in $FAMS; do
   cd ..
 done
 for f in $FAMS; do for c in root int srv.byroot srv.byint; do printf "%s %s DER bytes: " $f $c; $O x509 -in $f/$c.crt -outform DER | wc -c; done; done
+# mixed (C3m): Falcon-512 root, intermediate and server copied from falcon/; the device keeps an ML-DSA-65 key,
+# certified by the Falcon root (chain of 2) and by the Falcon intermediate (chain of 3). Run after FAMS=falcon.
+if [ "${MIXED:-0}" = 1 ]; then
+  rm -rf mixed; mkdir -p mixed
+  for x in ca.ext srv.ext cli.ext root.crt root.key root.srl int.crt int.key int.srl srv.key srv.csr srv.byroot.crt srv.byint.crt srv.chain3.pem; do cp falcon/$x mixed/; done
+  cd mixed
+  key mldsa cli.key; $O req -new -key cli.key -subj "/CN=cli" -out cli.csr
+  export OPENSSL_CONF=$(cd ../.. && pwd)/oqs.cnf LD_LIBRARY_PATH=/opt/ossl35/lib:/opt/oqs/lib
+  $O x509 -req -in cli.csr -CA root.crt -CAkey root.key -CAcreateserial -days 3650 -extfile cli.ext -out cli.byroot.crt 2>/dev/null
+  $O x509 -req -in cli.csr -CA int.crt -CAkey int.key -CAcreateserial -days 3650 -extfile cli.ext -out cli.byint.crt 2>/dev/null
+  cat cli.byint.crt int.crt > cli.chain3.pem
+  unset OPENSSL_CONF
+  cd ..
+  for c in cli.byroot cli.byint; do printf "mixed %s DER bytes: " $c; OPENSSL_CONF=$(cd .. && pwd)/oqs.cnf LD_LIBRARY_PATH=/opt/ossl35/lib:/opt/oqs/lib $O x509 -in mixed/$c.crt -outform DER | wc -c; done
+fi

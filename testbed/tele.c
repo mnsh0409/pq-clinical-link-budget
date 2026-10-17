@@ -3,18 +3,28 @@
  *   keep      the TLS session and TCP connection survive the outage (TCP retransmits)
  *   reconnect at each outage the session state is lost; after it the client does a full handshake
  *   resume    as reconnect, but the new connection resumes with the last ticket (psk_dhe_ke: fresh key share, no certs)
+ *   detect    the session is lost at the outage (the emulator, run with --kill-flows, drops the old connection's frames from
+ *             the outage start on) and the client is NOT told: it declares the session lost when the oldest unacknowledged
+ *             message has waited one probe timeout (RFC 9002 form: srtt + max(4 rttvar, 1 ms) + 25 ms max_ack_delay, from
+ *             application-acknowledgment RTT samples, Karn's rule), reconnects with a connect timeout of the same length, and
+ *             resends every unacknowledged message on the new connection
+ *   detect-resume  as detect, resuming with the last ticket
+ * reconnect and resume read OUTAGE_FILE (an oracle: they drop the session at the outage start and reconnect at its end);
+ * keep and detect ignore it. The server acknowledges every message with its 4-byte sequence number (all policies).
  * Every message carries its sequence number and generation time (CLOCK_MONOTONIC, shared by all namespaces).
  *
  * server: tele s PORT CERT KEY CHAIN|- CAFILE GROUPS MUTUAL
  *         prints "R seq t_gen t_recv conn" per message and "H conn t_hs_done resumed" per connection
  * client: tele c HOST PORT CAFILE GROUPS CERT|- KEY|- CHAIN|- DURATION_S PERIOD_MS POLICY OUTAGE_FILE
  *         OUTAGE_FILE: lines "t_start t_end" in absolute CLOCK_MONOTONIC seconds (the emulator reads the same file)
- *         prints "K conn t_connect_start t_hs_done resumed" per connection
+ *         prints "K conn t_connect_start t_hs_done resumed" per connection, "D t conn" per declared loss (detect),
+ *         "F t" per connection attempt that timed out (detect)
  */
 #include <openssl/ssl.h>
 #include <openssl/err.h>
 #include <arpa/inet.h>
 #include <netinet/tcp.h>
+#include <sys/time.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <poll.h>
@@ -72,6 +82,7 @@ static void server(char **a) {
             memcpy(&seq, buf, 4); memcpy(&tg, buf + 4, 8);
             if (seq == 0xFFFFFFFFu) { printf("END\n"); fflush(stdout); exit(0); }
             printf("R %u %.6f %.6f %d\n", seq, tg, t, conn);
+            if (SSL_write(ssl, &seq, 4) <= 0) break;     /* application acknowledgment: the 4-byte sequence number */
         }
         fflush(stdout);
         SSL_free(ssl); close(s);
@@ -91,7 +102,9 @@ int main(int argc, char **argv) {
     FILE *f = fopen(argv[12], "r"); if (!f) die("outages");
     while (nw < 256 && fscanf(f, "%lf %lf", &W[nw].a, &W[nw].b) == 2) nw++;
     fclose(f);
-    int keep = !strcmp(policy, "keep"), resume = !strcmp(policy, "resume");
+    int keep = !strcmp(policy, "keep"), detect = !strncmp(policy, "detect", 6);
+    int resume = !strcmp(policy, "resume") || !strcmp(policy, "detect-resume");
+    if (!keep && !detect && strcmp(policy, "reconnect") && strcmp(policy, "resume")) die("policy");
     SSL_CTX *ctx = SSL_CTX_new(TLS_client_method());
     SSL_CTX_set_min_proto_version(ctx, TLS1_3_VERSION);
     SSL_CTX_set_mode(ctx, SSL_MODE_NO_AUTO_CHAIN);
@@ -106,7 +119,10 @@ int main(int argc, char **argv) {
     double t0 = now(), next = t0; unsigned int seq = 0;
     dbg_t0 = t0; signal(SIGALRM, on_alarm); alarm((unsigned)(dur + 40));
     /* queue of generated, unsent messages */
-    static double qt[1 << 16]; static unsigned int qs[1 << 16]; int qh = 0, qtail = 0;
+    static double qt[1 << 16], qsent[1 << 16]; static unsigned int qs[1 << 16]; static unsigned char qresent[1 << 16];
+    int qh = 0, qtail = 0, ua = 0;                 /* ua: oldest message not yet acknowledged by the server */
+    double srtt = -1, rttvar = 0, pto = 0.2;       /* probe timeout (s); first value replaced after the first connection */
+    unsigned char ab[4]; int an = 0;               /* partial acknowledgment across reads */
     SSL *ssl = NULL; int s = -1, conn = 0, wi = 0, down = 0;
     unsigned char msg[MSG]; memset(msg, 'x', MSG);
     for (;;) {
@@ -114,44 +130,77 @@ int main(int argc, char **argv) {
         dbg_qh = qh; dbg_qt = qtail; dbg_down = down; dbg_wi = wi; dbg_conn = conn; dbg_stage = 1;
         if (t >= t0 + dur && qh == qtail) break;
         while (next <= t && next < t0 + dur) { qt[qtail & 0xFFFF] = next; qs[qtail & 0xFFFF] = seq++; qtail++; next += period; }
-        if (!keep) {  /* session state is lost at an outage start; reconnect at its end */
+        if (!keep && !detect) {  /* oracle: session state is lost at an outage start; reconnect at its end */
             if (!down && wi < nw && t >= W[wi].a) { if (ssl) { SSL_set_shutdown(ssl, SSL_SENT_SHUTDOWN | SSL_RECEIVED_SHUTDOWN); SSL_free(ssl); close(s); ssl = NULL; } down = 1; }  /* nothing is sent; the flag only keeps the ticket resumable */
             if (down && t >= W[wi].b) { down = 0; wi++; }
+        }
+        if (detect && ssl && ua < qh && t - qsent[ua & 0xFFFF] > pto) {   /* one probe timeout without acknowledgment */
+            printf("D %.6f %d\n", t, conn); fflush(stdout);
+            struct linger lg = { 1, 0 }; setsockopt(s, SOL_SOCKET, SO_LINGER, &lg, sizeof lg);
+            SSL_set_shutdown(ssl, SSL_SENT_SHUTDOWN | SSL_RECEIVED_SHUTDOWN);   /* nothing is sent; without it SSL_free marks the ticket non-resumable */
+            SSL_free(ssl); close(s); ssl = NULL; s = -1;
+            qh = ua;                                   /* resend everything not acknowledged */
         }
         if (!ssl && !down) {
             s = socket(AF_INET, SOCK_STREAM, 0); int one = 1;
             setsockopt(s, IPPROTO_TCP, TCP_NODELAY, &one, sizeof one);
             struct sockaddr_in sa = {0}; sa.sin_family = AF_INET; sa.sin_port = htons(port); inet_pton(AF_INET, host, &sa.sin_addr);
+            if (detect && conn > 0) { struct timeval tv = { (time_t)pto, (suseconds_t)((pto - (time_t)pto) * 1e6) };   /* bounded connect and handshake */
+                setsockopt(s, SOL_SOCKET, SO_SNDTIMEO, &tv, sizeof tv); setsockopt(s, SOL_SOCKET, SO_RCVTIMEO, &tv, sizeof tv); }
             double tc = now();
-            if (connect(s, (void *)&sa, sizeof sa)) die("connect");
+            if (connect(s, (void *)&sa, sizeof sa)) { if (detect && conn > 0) { printf("F %.6f\n", tc); close(s); s = -1; continue; } die("connect"); }
+            double tcon = now();
             ssl = SSL_new(ctx); SSL_set_fd(ssl, s);
             if (resume && last_sess) SSL_set_session(ssl, last_sess);
             dbg_stage = 2;
-            if (SSL_connect(ssl) != 1) die("tls");
+            if (SSL_connect(ssl) != 1) { if (detect && conn > 0) { printf("F %.6f\n", tc); ERR_clear_error(); SSL_free(ssl); ssl = NULL; close(s); s = -1; continue; } die("tls"); }
             dbg_stage = 3;
             printf("K %d %.6f %.6f %d\n", conn++, tc, now(), SSL_session_reused(ssl)); fflush(stdout);
+            if (srtt < 0) { srtt = tcon - tc; rttvar = srtt / 2; pto = srtt + (4 * rttvar > 0.001 ? 4 * rttvar : 0.001) + 0.025; }   /* RFC 9002 initial estimate */
+            an = 0;
             fcntl(s, F_SETFL, fcntl(s, F_GETFL) | O_NONBLOCK);
         }
         if (ssl) {
-            unsigned char rb[256]; int r = SSL_read(ssl, rb, sizeof rb); (void)r;  /* processes NewSessionTicket */
+            unsigned char rb[256];
+            for (;;) {   /* acknowledgments (4-byte sequence numbers); also processes NewSessionTicket */
+                int r = SSL_read(ssl, rb, sizeof rb);
+                if (r <= 0) break;
+                for (int i = 0; i < r; i++) {
+                    ab[an++] = rb[i];
+                    if (an == 4) {
+                        unsigned int k; memcpy(&k, ab, 4); an = 0;
+                        if ((int)k + 1 > ua && (int)k < qh) {
+                            if (!qresent[k & 0xFFFF]) {   /* Karn: no RTT sample from a resent message */
+                                double smp = now() - qsent[k & 0xFFFF];
+                                rttvar = 0.75 * rttvar + 0.25 * (srtt > smp ? srtt - smp : smp - srtt); srtt = 0.875 * srtt + 0.125 * smp;
+                                pto = srtt + (4 * rttvar > 0.001 ? 4 * rttvar : 0.001) + 0.025;
+                            }
+                            ua = (int)k + 1;
+                        }
+                    }
+                }
+            }
             ERR_clear_error();
             while (qh < qtail) {
                 memcpy(msg, &qs[qh & 0xFFFF], 4); memcpy(msg + 4, &qt[qh & 0xFFFF], 8);
                 int w = SSL_write(ssl, msg, MSG);
-                if (w == MSG) { qh++; continue; }
+                if (w == MSG) { if (qsent[qh & 0xFFFF] > 0) qresent[qh & 0xFFFF] = 1; qsent[qh & 0xFFFF] = now(); qh++; continue; }
                 int e = SSL_get_error(ssl, w);
                 if (e == SSL_ERROR_WANT_WRITE || e == SSL_ERROR_WANT_READ) break;
+                if (detect) { ERR_clear_error(); break; }   /* a dead connection: the probe timeout will catch it */
                 die("write");
             }
         }
         double wake = next < t0 + dur ? next : t + 0.001;
-        if (!keep && wi < nw) { double ev = down ? W[wi].b : W[wi].a; if (ev < wake) wake = ev; }
+        if (!keep && !detect && wi < nw) { double ev = down ? W[wi].b : W[wi].a; if (ev < wake) wake = ev; }
+        if (detect && ssl && ua < qh) { double ev = qsent[ua & 0xFFFF] + pto; if (ev < wake) wake = ev; }
         double dt = wake - now();
-        struct pollfd pf = { s, POLLOUT, 0 };
-        if (ssl && qh < qtail) poll(&pf, 1, dt > 0 ? (int)(dt * 1e3) + 1 : 0);
+        struct pollfd pf = { s, (short)(POLLIN | (qh < qtail ? POLLOUT : 0)), 0 };   /* wake on acknowledgments too, so RTT samples are prompt */
+        if (ssl) poll(&pf, 1, dt > 0 ? (int)(dt * 1e3) + 1 : 0);
         else if (dt > 0) usleep((useconds_t)(dt * 1e6));
     }
     dbg_stage = 4;
+    if (!ssl) die("no session at the end of the run");
     /* end marker on a blocking socket */
     fcntl(s, F_SETFL, fcntl(s, F_GETFL) & ~O_NONBLOCK);
     unsigned int endm = 0xFFFFFFFFu; memcpy(msg, &endm, 4);

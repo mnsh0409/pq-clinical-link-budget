@@ -2031,5 +2031,512 @@
    "max": 3035.800999999992
   },
   "wall_s": 47.3
+ },
+ "5G-hosp|C3m|ch2": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C3m",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3914,
+    3
+   ],
+   [
+    "C>S",
+    7333,
+    6
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 8706,
+   "max": 8706
+  },
+  "payload_S2C_B": {
+   "min": 3932,
+   "max": 3946
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.739999999998417
+  },
+  "t_hs_client_ms": {
+   "median": 24.118499999985943,
+   "p90": 25.904999999966094
+  },
+  "t_first_record_ms": {
+   "median": 30.365000000017517,
+   "p10": 29.36699999997927,
+   "p90": 32.14900000000398,
+   "min": 28.845999999930427,
+   "max": 40.284999999926185
+  },
+  "wall_s": 28.2
+ },
+ "5G-hosp|C3m|ch3": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0,
+   "n": 200,
+   "src": "rates chen2024, RTT berlet2022"
+  },
+  "cfg": "C3m",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5727,
+    5
+   ],
+   [
+    "C>S",
+    9148,
+    7
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 10521,
+   "max": 10521
+  },
+  "payload_S2C_B": {
+   "min": 5744,
+   "max": 5756
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 10.704500000031203
+  },
+  "t_hs_client_ms": {
+   "median": 23.793000000068787,
+   "p90": 25.25700000001052
+  },
+  "t_first_record_ms": {
+   "median": 29.853500000058375,
+   "p10": 29.07300000003943,
+   "p90": 31.514000000015585,
+   "min": 28.49500000002081,
+   "max": 33.405000000016116
+  },
+  "wall_s": 28.1
+ },
+ "5G-tele|C3m|ch2": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C3m",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    3916,
+    3
+   ],
+   [
+    "C>S",
+    7333,
+    6
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 8706,
+   "max": 8706
+  },
+  "payload_S2C_B": {
+   "min": 3933,
+   "max": 3945
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.774500000006356
+  },
+  "t_hs_client_ms": {
+   "median": 40.156000000024505,
+   "p90": 41.757000000075095
+  },
+  "t_first_record_ms": {
+   "median": 50.25100000000293,
+   "p10": 49.486000000001695,
+   "p90": 51.79299999997511,
+   "min": 48.91799999995783,
+   "max": 54.6750000000884
+  },
+  "wall_s": 33.0
+ },
+ "5G-tele|C3m|ch3": {
+  "profile": {
+   "name": "5G-tele",
+   "ul": 101000000.0,
+   "dl": 177000000.0,
+   "owd_ms": 9.0,
+   "n": 200,
+   "src": "rates ye2026, RTT moustris2023"
+  },
+  "cfg": "C3m",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 200,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5729,
+    5
+   ],
+   [
+    "C>S",
+    9148,
+    7
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 10521,
+   "max": 21042
+  },
+  "payload_S2C_B": {
+   "min": 5744,
+   "max": 11504
+  },
+  "n_flights": [
+   4,
+   8
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 18.727000000012595
+  },
+  "t_hs_client_ms": {
+   "median": 40.009999999995216,
+   "p90": 42.198999999982334
+  },
+  "t_first_record_ms": {
+   "median": 50.08950000001278,
+   "p10": 49.27600000007715,
+   "p90": 51.96200000000317,
+   "min": 48.781999999960135,
+   "max": 57.64299999998457
+  },
+  "wall_s": 33.0
+ },
+ "LTE-M|C3m|ch2": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C3m",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    4930,
+    4
+   ],
+   [
+    "C>S",
+    8355,
+    7
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 9728,
+   "max": 9728
+  },
+  "payload_S2C_B": {
+   "min": 4948,
+   "max": 4964
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.273000000002867
+  },
+  "t_hs_client_ms": {
+   "median": 169.7309999999561,
+   "p90": 172.26100000004863
+  },
+  "t_first_record_ms": {
+   "median": 337.8265000000624,
+   "p10": 337.2359999999617,
+   "p90": 340.29400000008536,
+   "min": 336.98600000002443,
+   "max": 343.52799999999206
+  },
+  "wall_s": 14.4
+ },
+ "LTE-M|C3m|ch3": {
+  "profile": {
+   "name": "LTE-M",
+   "ul": 380000.0,
+   "dl": 300000.0,
+   "owd_ms": 5.0,
+   "n": 30,
+   "src": "rates gsma-nbiot; RTT 10 ms assumed (not a measured LTE-M RTT)"
+  },
+  "cfg": "C3m",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 30,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    5912,
+    6
+   ],
+   [
+    "C>S",
+    10170,
+    8
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 11543,
+   "max": 11543
+  },
+  "payload_S2C_B": {
+   "min": 5920,
+   "max": 5940
+  },
+  "n_flights": [
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 14.27449999999908
+  },
+  "t_hs_client_ms": {
+   "median": 220.85850000001983,
+   "p90": 224.18100000004415
+  },
+  "t_first_record_ms": {
+   "median": 428.7810000000718,
+   "p10": 428.62700000000586,
+   "p90": 429.0530000000672,
+   "min": 428.37600000007114,
+   "max": 433.5049999999683
+  },
+  "wall_s": 17.1
+ },
+ "NB-IoT|C3m|ch2": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C3m",
+  "chain": 2,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    6386,
+    5
+   ],
+   [
+    "C>S",
+    9803,
+    8
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 9728,
+   "max": 12624
+  },
+  "payload_S2C_B": {
+   "min": 6396,
+   "max": 7425
+  },
+  "n_flights": [
+   4,
+   5
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 61.626999999930376
+  },
+  "t_hs_client_ms": {
+   "median": 1544.104999999945,
+   "p90": 1726.0599999999613
+  },
+  "t_first_record_ms": {
+   "median": 2491.0999999999603,
+   "p10": 2489.987000000042,
+   "p90": 2674.233999999956,
+   "min": 2471.8899999999167,
+   "max": 2674.3869999999106
+  },
+  "wall_s": 42.1
+ },
+ "NB-IoT|C3m|ch3": {
+  "profile": {
+   "name": "NB-IoT",
+   "ul": 66000.0,
+   "dl": 26000.0,
+   "owd_ms": 5.0,
+   "n": 15,
+   "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"
+  },
+  "cfg": "C3m",
+  "chain": 3,
+  "group": "MLKEM768",
+  "n": 15,
+  "flights_first_conn": [
+   [
+    "C>S",
+    1373,
+    1
+   ],
+   [
+    "S>C",
+    7358,
+    7
+   ],
+   [
+    "C>S",
+    11618,
+    9
+   ],
+   [
+    "S>C",
+    24,
+    1
+   ]
+  ],
+  "payload_C2S_B": {
+   "min": 0,
+   "max": 12991
+  },
+  "payload_S2C_B": {
+   "min": 0,
+   "max": 7384
+  },
+  "n_flights": [
+   0,
+   4
+  ],
+  "app_record_B": 1022,
+  "t_tcp_ms": {
+   "median": 61.49199999993016
+  },
+  "t_hs_client_ms": {
+   "median": 2141.8370000000095,
+   "p90": 2323.3599999999797
+  },
+  "t_first_record_ms": {
+   "median": 3317.165999999929,
+   "p10": 3315.356999999949,
+   "p90": 3500.5029999999806,
+   "min": 3296.954000000028,
+   "max": 3507.7400000000125
+  },
+  "wall_s": 54.3
  }
 }

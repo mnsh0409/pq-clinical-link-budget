@@ -30,6 +30,8 @@ CITES = {
  "rfc9846": "RFC 9846, TLS 1.3, July 2026 (obsoletes RFC 8446)",
  "rfc9147": "RFC 9147, DTLS 1.3, April 2022",
  "rfc9000": "RFC 9000, QUIC: A UDP-Based Multiplexed and Secure Transport, May 2021",
+ "rfc9002": "RFC 9002, QUIC Loss Detection and Congestion Control, May 2021",
+ "liboqs-falcon": "open-quantum-safe/liboqs docs/algorithms/sig/falcon.yml at tag 0.16.0 (fetched 2026-10-17)",
  "rfc6928": "RFC 6928, J. Chu, N. Dukkipati, Y. Cheng, M. Mathis, Increasing TCP's Initial Window, April 2013",
  "rfc9146": "RFC 9146, Connection Identifier for DTLS 1.2, March 2022",
  "rfc7925": "RFC 7925, TLS/DTLS Profiles for the Internet of Things, July 2016",
@@ -89,6 +91,13 @@ L["mldsa44_pk_B"] = P(1312, "byte", "PQC-02", "VERIFIED", "FIPS 204 Table 2", "f
 L["mldsa44_sig_B"] = P(2420, "byte", "PQC-02", "VERIFIED", "FIPS 204 Table 2", "fips204")
 L["falcon512_pk_B"] = P(897, "byte", "PQC-03", "SECONDARY", "FN-DSA-512 per draft-ietf-cose-falcon-04 Table 1; FIPS 206 not yet published", "falcon-cose-04")
 L["falcon512_sig_B"] = P(666, "byte", "PQC-03", "SECONDARY", "as above", "falcon-cose-04")
+L["mldsa65_category"] = P(3, "NIST security category", "PQC-02", "VERIFIED", "FIPS 204 Table 1, claimed security strength", "fips204")
+L["falcon512_nist_level"] = P(1, "NIST security level", "PQC-03b", "VERIFIED", "liboqs 0.16.0 falcon.yml, Falcon-512 claimed-nist-level", "liboqs-falcon")
+L["falcon1024_nist_level"] = P(5, "NIST security level", "PQC-03b", "VERIFIED", "liboqs 0.16.0 falcon.yml, Falcon-1024 claimed-nist-level", "liboqs-falcon")
+L["falcon512_sig_max_B"] = P(752, "byte", "PQC-03b", "VERIFIED", "liboqs 0.16.0 falcon.yml, Falcon-512 (compressed) length-signature, a maximum", "liboqs-falcon")
+# RFC-08: QUIC probe timeout form, borrowed by the X3 session-loss detector (fetched 2026-10-17)
+L["pto_rttvar_factor"] = P(4, "ratio", "RFC-08", "VERIFIED", "RFC 9002 sec. 6.2.1: PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay", "rfc9002")
+L["pto_granularity_ms"] = P(1, "ms", "RFC-08", "VERIFIED", "RFC 9002 sec. 6.1.2: RECOMMENDED kGranularity 1 millisecond", "rfc9002")
 L["p256_uncompressed_point_B"] = P(65, "byte", "SEC-06d", "VERIFIED", "secp256r1 share size as stated in draft-ietf-tls-ecdhe-mlkem-05 §4.1 ('65 bytes for the secp256r1 part')", "ietf-mlkem-05")
 # RFC-07: what a transport lets a server send in its first flight (fetched 2026-10-15)
 L["quic_amplification_factor"] = P(3, "ratio", "RFC-07", "VERIFIED", "RFC 9000 sec. 8.1: servers MUST NOT send more than three times as many bytes as received before validating the client address", "rfc9000")

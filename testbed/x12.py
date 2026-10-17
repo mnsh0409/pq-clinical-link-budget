@@ -24,7 +24,7 @@ PROFILES = [
     {"name": "NB-IoT", "ul": p("nbiot_peak_ul_bps"), "dl": p("nbiot_peak_dl_bps"), "owd_ms": 5.0, "n": 15,
      "src": "peak rates gsma-nbiot; RTT 10 ms assumed (not a measured NB-IoT RTT)"},
 ]
-CASES = [("C0", 2), ("C1", 2), ("C2", 2), ("C2u", 2), ("C2", 3), ("C3", 2), ("C3u", 2), ("C3", 3)]
+CASES = [("C0", 2), ("C1", 2), ("C2", 2), ("C2u", 2), ("C2", 3), ("C3", 2), ("C3u", 2), ("C3", 3), ("C3m", 2), ("C3m", 3)]
 APP_RECORD = 1000 + 22   # 1,000-B payload + 5-B header + 16-B tag + 1-B content type
 
 def q(xs, f):

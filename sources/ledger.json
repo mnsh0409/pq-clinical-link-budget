@@ -1,6 +1,6 @@
 {
  "meta": {
-  "built": "2026-10-15",
+  "built": "2026-10-17",
   "access_date_of_sources": "2026-09-27",
   "rule": "Every value copied verbatim from sources/*.md; ids refer to entries there; no arithmetic in this file.",
   "status_tags": "VERIFIED = quoted from primary; SECONDARY = via mirror/secondary (check by hand before submission)"
@@ -20,6 +20,8 @@
   "rfc9846": "RFC 9846, TLS 1.3, July 2026 (obsoletes RFC 8446)",
   "rfc9147": "RFC 9147, DTLS 1.3, April 2022",
   "rfc9000": "RFC 9000, QUIC: A UDP-Based Multiplexed and Secure Transport, May 2021",
+  "rfc9002": "RFC 9002, QUIC Loss Detection and Congestion Control, May 2021",
+  "liboqs-falcon": "open-quantum-safe/liboqs docs/algorithms/sig/falcon.yml at tag 0.16.0 (fetched 2026-10-17)",
   "rfc6928": "RFC 6928, J. Chu, N. Dukkipati, Y. Cheng, M. Mathis, Increasing TCP's Initial Window, April 2013",
   "rfc9146": "RFC 9146, Connection Identifier for DTLS 1.2, March 2022",
   "rfc7925": "RFC 7925, TLS/DTLS Profiles for the Internet of Things, July 2016",
@@ -166,6 +168,54 @@
    "status": "SECONDARY",
    "condition": "as above",
    "cite": "falcon-cose-04"
+  },
+  "mldsa65_category": {
+   "value": 3,
+   "unit": "NIST security category",
+   "id": "PQC-02",
+   "status": "VERIFIED",
+   "condition": "FIPS 204 Table 1, claimed security strength",
+   "cite": "fips204"
+  },
+  "falcon512_nist_level": {
+   "value": 1,
+   "unit": "NIST security level",
+   "id": "PQC-03b",
+   "status": "VERIFIED",
+   "condition": "liboqs 0.16.0 falcon.yml, Falcon-512 claimed-nist-level",
+   "cite": "liboqs-falcon"
+  },
+  "falcon1024_nist_level": {
+   "value": 5,
+   "unit": "NIST security level",
+   "id": "PQC-03b",
+   "status": "VERIFIED",
+   "condition": "liboqs 0.16.0 falcon.yml, Falcon-1024 claimed-nist-level",
+   "cite": "liboqs-falcon"
+  },
+  "falcon512_sig_max_B": {
+   "value": 752,
+   "unit": "byte",
+   "id": "PQC-03b",
+   "status": "VERIFIED",
+   "condition": "liboqs 0.16.0 falcon.yml, Falcon-512 (compressed) length-signature, a maximum",
+   "cite": "liboqs-falcon"
+  },
+  "pto_rttvar_factor": {
+   "value": 4,
+   "unit": "ratio",
+   "id": "RFC-08",
+   "status": "VERIFIED",
+   "condition": "RFC 9002 sec. 6.2.1: PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay",
+   "cite": "rfc9002"
+  },
+  "pto_granularity_ms": {
+   "value": 1,
+   "unit": "ms",
+   "id": "RFC-08",
+   "status": "VERIFIED",
+   "condition": "RFC 9002 sec. 6.1.2: RECOMMENDED kGranularity 1 millisecond",
+   "cite": "rfc9002"
   },
   "p256_uncompressed_point_B": {
    "value": 65,

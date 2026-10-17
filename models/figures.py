@@ -41,43 +41,43 @@ def style_axes(ax):
 # ================================================================ Fig. 1 airtime vs link rate
 ut = json.load(open(os.path.join(ROOT, "results", "urllc_transmission.json")))
 rates = np.logspace(np.log10(2e4), np.log10(2e8), 200)
-fig, ax = plt.subplots(figsize=(3.45, 2.3))
+fig, ax = plt.subplots(figsize=(3.45, 2.0))
 for B, col, ls, lab in [(C0, BLUE, "-", f"C0 classical, {C0:,} B"),
                         (C1, ORANGE, "--", f"C1 hybrid KEM, {C1:,} B"),
                         (C2, AQUA, ":", f"C2 post-quantum, {C2:,} B")]:
     ax.plot(rates, B * 8 / rates * 1e3, color=col, ls=ls, lw=1.4, label=lab)
 short = {"IEEE 802.15.4 / 6LoWPAN, 2.4 GHz (AES-CCM-128 link security)": "802.15.4",
-         "IEEE 802.15.6 WBAN narrowband, lowest PHY rate": "WBAN lo",
-         "IEEE 802.15.6 WBAN narrowband, highest PHY rate": "WBAN hi",
-         "Bluetooth LE 1M (application-rate approximation)": "BLE 1M",
+         "IEEE 802.15.6 WBAN narrowband, lowest PHY rate": "NB-IoT UL, WBAN lo",
+         "IEEE 802.15.6 WBAN narrowband, highest PHY rate": None,
+         "Bluetooth LE 1M (application-rate approximation)": "BLE 1M, WBAN hi",
          "Bluetooth LE 2M (application-rate approximation)": "BLE 2M",
-         "NB-IoT uplink (peak, multi-tone)": "NB-IoT UL", "NB-IoT downlink (peak)": "NB-IoT DL",
+         "NB-IoT uplink (peak, multi-tone)": None, "NB-IoT downlink (peak)": "NB-IoT DL",
          "LTE-M half-duplex uplink": "LTE-M UL",
          "5G NR uplink, measured in a clinical deployment (Chen 2024 avg)": "5G UL",
          "5G NR uplink, measured during telesurgery (Ye 2026)": None}
-offs = {"NB-IoT DL": (6, 4, "left"), "NB-IoT UL": (-6, -8, "right"), "WBAN lo": (6, 4, "left"), "802.15.4": (-6, -8, "right"),
-        "LTE-M UL": (6, 4, "left"), "BLE 1M": (-6, -8, "right"), "WBAN hi": (6, 4, "left"), "BLE 2M": (6, -8, "left"),
-        "5G UL": (-6, 4, "right")}   # alternate upper-right / lower-left so no two labels overlap
+offs = {"NB-IoT DL": (6, 4, "left"), "NB-IoT UL, WBAN lo": (6, 4, "left"), "802.15.4": (6, 3, "left"),
+        "LTE-M UL": (6, 4, "left"), "BLE 1M, WBAN hi": (6, 4, "left"), "BLE 2M": (6, 3, "left"),
+        "5G UL": (-4, 8, "right")}   # every label above and right of its marker, clear of the lines below; near-coincident markers share one label
 xs, ys = [], []
 for row in ut["airtime_table"]:
     lab = short.get(row["link"], "")
     x, y = row["rate_bps"], row["C2_full_pq"]["airtime_s"] * 1e3
     xs.append(x); ys.append(y)
-    if lab is None: continue          # second 5G uplink: marker only (it sits next to the first)
+    if lab is None: continue          # marker only: it shares the label of its near-coincident neighbor
     dx, dy, ha = offs.get(lab, (4, 4, "left"))
     ax.annotate(lab, (x, y), xytext=(dx, dy), textcoords="offset points", fontsize=6.5, color=INK, ha=ha)
-ax.scatter(xs, ys, s=16, facecolor="white", edgecolor=AQUA, lw=1.1, zorder=5, label="C2 per link (framing for 802.15.4/.6)")
+ax.scatter(xs, ys, s=16, facecolor="white", edgecolor=AQUA, lw=1.1, zorder=5, label="C2 per link (Table II)")
 for ms, lab in BUDGETS:
     ax.axhline(ms, color=MUTED, ls=(0, (3, 2)), lw=0.7)
     above = ms < 10        # the 2 ms label sits above its line (clear of the legend); 20 and 100 ms below (clear of the point labels)
-    ax.text(2.3e4, ms * 1.18 if above else ms / 1.18, lab, ha="left", va="bottom" if above else "top", fontsize=6.5, color=MUTED)
+    ax.text(8e3, ms * 1.18 if above else ms / 1.18, lab, ha="left", va="bottom" if above else "top", fontsize=6.5, color=MUTED)
 ax.set_xscale("log"); ax.set_yscale("log")
 ax.set_xlim(7e3, 2e8); ax.set_ylim(0.03, 3e4)
 ax.set_xlabel("Link rate (b/s)"); ax.set_ylabel("Handshake airtime (ms)")
 ax.set_xticks([1e5, 1e6, 1e7, 1e8]); ax.set_xticklabels(["100 k", "1 M", "10 M", "100 M"])
 ax.set_yticks([0.1, 1, 10, 100, 1000, 1e4]); ax.set_yticklabels(["0.1", "1", "10", "100", "1 000", "10 000"])
 style_axes(ax)
-ax.legend(loc="lower left", frameon=False, handlelength=2.0, fontsize=6.5, labelspacing=0.25, borderaxespad=0.3)
+ax.legend(loc="lower left", frameon=False, handlelength=1.4, handletextpad=0.4, fontsize=6.0, labelspacing=0.2, borderaxespad=0.15, ncol=2, columnspacing=0.6)
 fig.tight_layout(pad=0.3)
 fig.savefig(os.path.join(OUT, "fig1_airtime.pdf")); plt.close(fig)
 print("fig1 points:", list(zip([short.get(r["link"]) for r in ut["airtime_table"]], [round(r["C2_full_pq"]["airtime_s"]*1e3, 2) for r in ut["airtime_table"]])))
@@ -135,34 +135,19 @@ def cdf(ax, a, color, ls, label, show_n=True, lw=1.3):
     ax.plot(a, y, color=color, ls=ls, lw=lw, label=(f"{label} (n={n:,})" if show_n else label))
     return a
 
-fig, (a1, a2) = plt.subplots(2, 1, figsize=(3.45, 4.0), gridspec_kw={"height_ratios": [1, 1.2]})
+# v1.6: one panel (handover interruption); the airtime-under-mobility proxy is reported in the text only
+fig, a1 = plt.subplots(1, 1, figsize=(3.45, 1.4))
 for tech, col, ls, lab in [("LTE", BLUE, "-", "LTE"), ("NSA", ORANGE, "--", "NSA"), ("SA", AQUA, ":", "SA")]:
     cdf(a1, pos(tech), col, ls, lab)
 for ms, lab in BUDGETS:
-    for ax in (a1, a2):
-        ax.axvline(ms, color=MUTED, ls=(0, (3, 2)), lw=0.7)
+    a1.axvline(ms, color=MUTED, ls=(0, (3, 2)), lw=0.7)
 a1.text(20 * 1.08, 0.97, "20 ms", fontsize=6.5, color=MUTED, va="top"); a1.text(100 * 1.08, 0.97, "100 ms", fontsize=6.5, color=MUTED, va="top")
 a1.set_xscale("log"); a1.set_xlim(10, 2000); a1.set_ylim(0, 1)
 a1.set_xticks([10, 20, 50, 100, 200, 500, 1000, 2000]); a1.set_xticklabels(["10", "20", "50", "100", "200", "500", "1 000", "2 000"])
 a1.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-a1.set_xlabel("Handover execution interruption $T_2$ (ms)"); a1.set_ylabel("CDF of events")
-a1.set_title("(a) Primary-cell handovers, U.S. (released artifact)", fontsize=7.5, loc="left", color=INK)
+a1.set_xlabel("Handover execution interruption $T_2$ (ms)"); a1.set_ylabel("CDF"); a1.set_yticks([0, 0.5, 1])
 a1.legend(loc="center right", frameon=False)
 style_axes(a1)
-
-cdf(a2, us_air, BLUE, "-", "U.S., PDSCH (LTE + NR legs), walking loop", show_n=False)
-cdf(a2, ie5_air, ORANGE, "--", "Ireland, app-layer DL while driving, 5G samples", show_n=False)
-cdf(a2, ie_all_air, ORANGE, ":", f"Ireland, all modes ({100*float((irish['mode'] != '5G').mean()):.0f} % LTE/3G)", show_n=False, lw=1.0)
-a2.text(2 * 1.08, 0.04, "2 ms", fontsize=6.5, color=MUTED); a2.text(20 * 1.08, 0.04, "20 ms", fontsize=6.5, color=MUTED)
-a2.text(100 * 1.08, 0.13, "100 ms", fontsize=6.5, color=MUTED)
-a2.set_xscale("log"); a2.set_xlim(0.03, 1e5); a2.set_ylim(0, 1)
-a2.set_xticks([0.1, 1, 10, 100, 1e3, 1e4, 1e5]); a2.set_xticklabels(["0.1", "1", "10", "100", "1 000", "10 000", "100 000"])
-a2.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
-a2.set_xlabel("C2 airtime at measured per-sample throughput (ms)")
-a2.set_ylabel("CDF of samples")
-a2.set_title(f"(b) {C2:,}-B post-quantum handshake under mobility", fontsize=7.5, loc="left", color=INK)
-a2.legend(loc="upper center", bbox_to_anchor=(0.5, -0.26), ncol=1, frameon=False, handlelength=1.8, fontsize=6.5, labelspacing=0.25)
-style_axes(a2)
 fig.tight_layout(pad=0.4)
 fig.savefig(os.path.join(OUT, "fig2_traces.pdf")); plt.close(fig)
 

@@ -22,12 +22,13 @@ CONFIGS = {  # name: (groups, family, mutual)
     "C1u":     ("X25519MLKEM768", "ec",    0),
     "C3":      ("MLKEM768",       "falcon", 1),   # Falcon-512 certificates (round-3 Falcon via oqs-provider 0.12.0, experimental code point 0xfed7)
     "C3u":     ("MLKEM768",       "falcon", 0),
+    "C3m":     ("MLKEM768",       "mixed",  1),   # Falcon-512 server and CA, ML-DSA-65 device certificate (pki/mixed)
 }
 OQS_CONF = os.path.join(HERE, "oqs.cnf")
 def env_for(fam):
     """Falcon needs oqs-provider; other families run without it so their ClientHello is unchanged."""
     e = dict(os.environ)
-    if fam == "falcon":
+    if fam in ("falcon", "mixed"):
         e["OPENSSL_CONF"] = OQS_CONF
         e["LD_LIBRARY_PATH"] = "/opt/ossl35/lib:/opt/oqs/lib"
     return e

@@ -1,5 +1,6 @@
 """
-tables.py -- Tables I-III of the paper as LaTeX fragments, generated from
+tables.py -- Tables I-II of the paper (and tab3_handshakes.tex, the configuration table that v1.6 folded
+into Sec. III and the Table II caption) as LaTeX fragments, generated from
 sources/ledger.json and results/urllc_transmission.json so that every cell is traceable.
 Writes ../paper/tables/*.tex
 """
@@ -61,12 +62,13 @@ short = {
 }
 L = []
 L.append("\\begin{tabular}{@{}lrrrrr@{}}\\toprule")
-L.append("Link class & Rate & C0 & C1 & C2 & $\\le$100\\,ms? \\\\ \\midrule")
+L.append("Link class & Rate & C0 & C1 & C2 & $<$100\\,ms \\\\ \\midrule")
 tel = p("telemetry_latency_ms") / 1e3
 for r in ut["airtime_table"]:
     name, key = short[r["link"]]
     c0, c1, c2 = (r[k]["airtime_s"] for k in ("C0_classical", "C1_hybrid_kex", "C2_full_pq"))
-    v = ("yes" if c0 <= tel else "no") + "\\,/\\," + ("yes" if c2 <= tel else "no")   # C0 / C2 airtime within the 100 ms telemetry budget
+    # C0 / C1 / C2 airtime below the 100 ms telemetry budget; n/a where the link cannot carry the 0.5 Mb/s stream itself
+    v = "n/a" if r["rate_bps"] < p("telemetry_inhospital_rate_bps") else "/".join("yes" if c < tel else "no" for c in (c0, c1, c2))
     L.append(f"{name}~\\cite{{{key}}} & {kb(r['rate_bps'])} & {ms(c0)} & {ms(c1)} & {ms(c2)} & {v} \\\\")
 L.append("\\bottomrule\\end{tabular}")
 open(os.path.join(OUT, "tab2_links.tex"), "w").write("\n".join(L) + "\n")

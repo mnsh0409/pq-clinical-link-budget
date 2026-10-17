@@ -1,0 +1,210 @@
+{
+ "profile": {
+  "name": "5G-hosp",
+  "ul": 91000000.0,
+  "dl": 790000000.0,
+  "owd_ms": 5.0
+ },
+ "gap_ms": 4.0,
+ "cases": {
+  "C0|ch2": {
+   "t_first_record_ms": 40.00900000028196,
+   "flights": [
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 250,
+       "t_first_ms": 11.0740000000078,
+       "t_last_ms": 11.0740000000078
+      }
+     ],
+     "payload_B": 250,
+     "segments": 1,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 886,
+       "t_first_ms": 16.990000000078,
+       "t_last_ms": 16.990000000078
+      }
+     ],
+     "payload_B": 886,
+     "segments": 1,
+     "stalls_ms": []
+    },
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 2,
+       "payload_B": 1628,
+       "t_first_ms": 23.409000000356173,
+       "t_last_ms": 23.430999999618507
+      }
+     ],
+     "payload_B": 1628,
+     "segments": 2,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 24,
+       "t_first_ms": 29.368000000431493,
+       "t_last_ms": 29.368000000431493
+      }
+     ],
+     "payload_B": 24,
+     "segments": 1,
+     "stalls_ms": []
+    }
+   ]
+  },
+  "C2|ch2": {
+   "t_first_record_ms": 39.17099999944185,
+   "flights": [
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 1361,
+       "t_first_ms": 14.078999999583175,
+       "t_last_ms": 14.078999999583175
+      }
+     ],
+     "payload_B": 1361,
+     "segments": 1,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 8,
+       "payload_B": 10275,
+       "t_first_ms": 22.022999999535386,
+       "t_last_ms": 25.622000000112166
+      }
+     ],
+     "payload_B": 10275,
+     "segments": 8,
+     "stalls_ms": []
+    },
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 8,
+       "payload_B": 9994,
+       "t_first_ms": 31.72900000026857,
+       "t_last_ms": 32.89200000017445
+      }
+     ],
+     "payload_B": 9994,
+     "segments": 8,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 24,
+       "t_first_ms": 38.9709999999468,
+       "t_last_ms": 38.9709999999468
+      }
+     ],
+     "payload_B": 24,
+     "segments": 1,
+     "stalls_ms": []
+    }
+   ]
+  },
+  "C2|ch3": {
+   "t_first_record_ms": 48.553999999967346,
+   "flights": [
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 1361,
+       "t_first_ms": 10.904000000664382,
+       "t_last_ms": 10.904000000664382
+      }
+     ],
+     "payload_B": 1361,
+     "segments": 1,
+     "stalls_ms": []
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 10,
+       "payload_B": 13841,
+       "t_first_ms": 16.638000000057218,
+       "t_last_ms": 17.915000000357395
+      },
+      {
+       "segments": 2,
+       "payload_B": 1965,
+       "t_first_ms": 27.044000000387314,
+       "t_last_ms": 27.05500000047323
+      }
+     ],
+     "payload_B": 15806,
+     "segments": 12,
+     "stalls_ms": [
+      9.129000000029919
+     ]
+    },
+    {
+     "dir": "C>S",
+     "bursts": [
+      {
+       "segments": 11,
+       "payload_B": 15434,
+       "t_first_ms": 32.634000000143715,
+       "t_last_ms": 33.50399999999354
+      },
+      {
+       "segments": 1,
+       "payload_B": 91,
+       "t_first_ms": 43.113000000630564,
+       "t_last_ms": 43.113000000630564
+      }
+     ],
+     "payload_B": 15525,
+     "segments": 12,
+     "stalls_ms": [
+      9.609000000637025
+     ]
+    },
+    {
+     "dir": "S>C",
+     "bursts": [
+      {
+       "segments": 1,
+       "payload_B": 24,
+       "t_first_ms": 48.386000000391505,
+       "t_last_ms": 48.386000000391505
+      }
+     ],
+     "payload_B": 24,
+     "segments": 1,
+     "stalls_ms": []
+    }
+   ]
+  }
+ }
+}

@@ -12,9 +12,29 @@
     "LTE-M": 103.49799999994502,
     "NB-IoT": 639.0700000001743
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     28.058999999984735,
+     29.73500000007334
+    ],
+    "5G-tele": [
+     48.21299999991879,
+     49.3539999999939
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 18.385500000022148,
     "5G-tele": 30.92000000015105
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     18.01999999997861,
+     18.950000000131695
+    ],
+    "5G-tele": [
+     30.49299999975119,
+     31.511000000136846
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 29.202500000110376,
@@ -35,9 +55,29 @@
     "LTE-M": 157.4560000000247,
     "NB-IoT": 1132.2490000000016
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     28.222000000027947,
+     29.32399999997415
+    ],
+    "5G-tele": [
+     48.566999999934524,
+     50.54900000004636
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 18.794500000012704,
     "5G-tele": 31.13700000017161
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     18.269000000145752,
+     20.35200000000259
+    ],
+    "5G-tele": [
+     30.623999999988882,
+     31.78200000002107
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 40.677000000187036,
@@ -58,9 +98,29 @@
     "LTE-M": 574.196000000029,
     "NB-IoT": 4886.289999999917
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     29.625000000010004,
+     33.18100000001323
+    ],
+    "5G-tele": [
+     49.856999999974505,
+     53.834000000051674
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 32.383000000208995,
     "5G-tele": 52.57050000000163
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     31.107000000247353,
+     35.73899999992136
+    ],
+    "5G-tele": [
+     51.03800000006231,
+     56.40399999992951
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 53.46200000008139,
@@ -81,9 +141,29 @@
     "LTE-M": 376.74700000002304,
     "NB-IoT": 3718.3789999999135
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     28.277000000002772,
+     31.086999999956788
+    ],
+    "5G-tele": [
+     48.28099999997448,
+     50.95500000004449
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 30.196499999874504,
     "5G-tele": 50.01649999985602
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     29.381000000284985,
+     32.334999999875436
+    ],
+    "5G-tele": [
+     49.19400000017049,
+     52.361999999902764
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 40.897500000255604,
@@ -104,9 +184,29 @@
     "LTE-M": 850.770000000125,
     "NB-IoT": 7357.334000000037
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     48.39900000001762,
+     49.57200000001194
+    ],
+    "5G-tele": [
+     84.40299999983836,
+     85.52499999996144
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 43.723999999883745,
     "5G-tele": 70.81099999982143
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     42.28200000034121,
+     45.89099999975588
+    ],
+    "5G-tele": [
+     69.77499999993597,
+     73.94800000020041
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 76.02250000013555,
@@ -116,7 +216,7 @@
    "n_quic": 50
   },
   "C3|ch2": {
-   "label": "C3 (Falcon-512)",
+   "label": "C3",
    "hs_bytes": 7879,
    "server_flight_B": 3911,
    "client_B": 3968,
@@ -127,9 +227,29 @@
     "LTE-M": 255.11500000004617,
     "NB-IoT": 1997.1349999999575
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     29.148999999961234,
+     31.73000000003867
+    ],
+    "5G-tele": [
+     49.37399999994341,
+     51.884999999970205
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 19.542500000000018,
     "5G-tele": 31.760999999960404
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     19.038000000023203,
+     21.50199999994129
+    ],
+    "5G-tele": [
+     31.330000000025393,
+     35.74700000012854
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 41.468499999950836,
@@ -150,9 +270,29 @@
     "LTE-M": 347.9620000000523,
     "NB-IoT": 2850.751999999943
    },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     29.40000000000964,
+     32.4039999999286
+    ],
+    "5G-tele": [
+     49.38400000003185,
+     51.65199999999004
+    ]
+   },
    "quic_ms": {
     "5G-hosp": 19.762000000014268,
     "5G-tele": 32.25099999997383
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     19.4059999998899,
+     20.49099999999271
+    ],
+    "5G-tele": [
+     31.627999999955136,
+     99.6700000000601
+    ]
    },
    "quic_retry_ms": {
     "5G-hosp": 42.14850000005299,
@@ -160,7 +300,109 @@
    },
    "n_tcp_5g": 200,
    "n_quic": 50
+  },
+  "C3m|ch2": {
+   "label": "C3m",
+   "hs_bytes": 11598,
+   "server_flight_B": 3914,
+   "client_B": 7684,
+   "server_B": 3914,
+   "tcp_ms": {
+    "5G-hosp": 30.365000000017517,
+    "5G-tele": 50.25100000000293,
+    "LTE-M": 337.8265000000624,
+    "NB-IoT": 2491.0999999999603
+   },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     29.36699999997927,
+     32.14900000000398
+    ],
+    "5G-tele": [
+     49.486000000001695,
+     51.79299999997511
+    ]
+   },
+   "quic_ms": {
+    "5G-hosp": 19.765999999947326,
+    "5G-tele": 31.9025000000579
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     19.044000000008054,
+     26.11899999999423
+    ],
+    "5G-tele": [
+     31.32099999993443,
+     34.849000000008346
+    ]
+   },
+   "quic_retry_ms": {
+    "5G-hosp": 51.9350000000145,
+    "5G-tele": 88.54550000006611
+   },
+   "n_tcp_5g": 200,
+   "n_quic": 50
+  },
+  "C3m|ch3": {
+   "label": "C3m + int.",
+   "hs_bytes": 15226,
+   "server_flight_B": 5727,
+   "client_B": 9499,
+   "server_B": 5727,
+   "tcp_ms": {
+    "5G-hosp": 29.853500000058375,
+    "5G-tele": 50.08950000001278,
+    "LTE-M": 428.7810000000718,
+    "NB-IoT": 3317.165999999929
+   },
+   "tcp_p10_p90_ms": {
+    "5G-hosp": [
+     29.07300000003943,
+     31.514000000015585
+    ],
+    "5G-tele": [
+     49.27600000007715,
+     51.96200000000317
+    ]
+   },
+   "quic_ms": {
+    "5G-hosp": 19.856000000061158,
+    "5G-tele": 32.29500000003327
+   },
+   "quic_p10_p90_ms": {
+    "5G-hosp": [
+     19.28299999997307,
+     21.625000000085493
+    ],
+    "5G-tele": [
+     31.56300000000556,
+     33.55199999998604
+    ]
+   },
+   "quic_retry_ms": {
+    "5G-hosp": 52.62299999998277,
+    "5G-tele": 88.81000000002359
+   },
+   "n_tcp_5g": 200,
+   "n_quic": 50
   }
+ },
+ "spread_5g_hosp_p10_p90_max_ms": 7.074999999986176,
+ "spread_5g_hosp_p10_p90_tcp_max_ms": 3.5560000000032232,
+ "spread_5g_hosp_p10_p90_quic_max_ms": 7.074999999986176,
+ "quic_C2_first_bursts": {
+  "client_initial_udp_B": 2400,
+  "client_initial_datagrams": 2,
+  "server_first_udp_B": 7200,
+  "server_first_datagrams": 6,
+  "server_first_t_ms": 7.5,
+  "client_next_udp_B": 1200,
+  "client_next_t_ms": 13.5,
+  "server_rest_udp_B": 3391,
+  "server_rest_datagrams": 3,
+  "server_rest_t_ms": 19.0,
+  "ratio_server_first_to_client_initial": 3.0
  },
  "model_check": {
   "5G-hosp|C0|ch2": {
@@ -168,196 +410,432 @@
    "meas_ms": 28.445500000032098,
    "diff_ms": 3.25326608710958,
    "rel": 0.12913765799232263,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2077,
+   "down_framed_B": 952,
+   "up_ms": 0.1825934065934066,
+   "down_ms": 0.009640506329113924,
+   "rtt_ms": 25.0
   },
   "5G-tele|C0|ch2": {
    "model_ms": 45.20754310007272,
    "meas_ms": 48.570500000039374,
    "diff_ms": 3.3629568999666546,
    "rel": 0.07438928703827846,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2077,
+   "down_framed_B": 952,
+   "up_ms": 0.16451485148514852,
+   "down_ms": 0.04302824858757062,
+   "rtt_ms": 45.0
   },
   "LTE-M|C0|ch2": {
    "model_ms": 94.11298245614036,
    "meas_ms": 103.49799999994502,
    "diff_ms": 9.385017543804665,
    "rel": 0.09972075370343705,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2077,
+   "down_framed_B": 952,
+   "up_ms": 43.72631578947368,
+   "down_ms": 25.386666666666667,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C0|ch2": {
    "model_ms": 569.6806526806527,
    "meas_ms": 639.0700000001743,
    "diff_ms": 69.38934731952168,
    "rel": 0.12180393873832229,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2077,
+   "down_framed_B": 952,
+   "up_ms": 251.75757575757572,
+   "down_ms": 292.9230769230769,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C1|ch2": {
    "model_ms": 25.303981416052302,
    "meas_ms": 28.53449999992108,
    "diff_ms": 3.230518583868779,
    "rel": 0.12766839062802218,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 3219,
+   "down_framed_B": 2073,
+   "up_ms": 0.282989010989011,
+   "down_ms": 0.02099240506329114,
+   "rtt_ms": 25.0
   },
   "5G-tele|C1|ch2": {
    "model_ms": 45.34866521228394,
    "meas_ms": 49.10199999994802,
    "diff_ms": 3.7533347876640804,
    "rel": 0.08276615794740935,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 3219,
+   "down_framed_B": 2073,
+   "up_ms": 0.254970297029703,
+   "down_ms": 0.09369491525423729,
+   "rtt_ms": 45.0
   },
   "LTE-M|C1|ch2": {
    "model_ms": 148.04842105263157,
    "meas_ms": 157.4560000000247,
    "diff_ms": 9.40757894739312,
    "rel": 0.06354393299506182,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 3219,
+   "down_framed_B": 2073,
+   "up_ms": 67.76842105263158,
+   "down_ms": 55.28,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C1|ch2": {
    "model_ms": 1053.027972027972,
    "meas_ms": 1132.2490000000016,
    "diff_ms": 79.22102797202956,
    "rel": 0.07523164633458111,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 3219,
+   "down_framed_B": 2073,
+   "up_ms": 390.1818181818182,
+   "down_ms": 637.8461538461538,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C2|ch2": {
    "model_ms": 26.159859006815967,
    "meas_ms": 30.893500000047425,
    "diff_ms": 4.733640993231457,
    "rel": 0.18095055451170836,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 11949,
+   "down_framed_B": 10803,
+   "up_ms": 1.0504615384615386,
+   "down_ms": 0.10939746835443037,
+   "rtt_ms": 25.0
   },
   "5G-tele|C2|ch2": {
    "model_ms": 46.434726631985235,
    "meas_ms": 51.381499999990865,
    "diff_ms": 4.94677336800563,
    "rel": 0.10653176462544707,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 11949,
+   "down_framed_B": 10803,
+   "up_ms": 0.9464554455445545,
+   "down_ms": 0.48827118644067796,
+   "rtt_ms": 45.0
   },
   "LTE-M|C2|ch2": {
    "model_ms": 564.6378947368421,
    "meas_ms": 574.196000000029,
    "diff_ms": 9.558105263186917,
    "rel": 0.016927849427537296,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 11949,
+   "down_framed_B": 10803,
+   "up_ms": 251.5578947368421,
+   "down_ms": 288.08,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C2|ch2": {
    "model_ms": 4797.363636363636,
    "meas_ms": 4886.289999999917,
    "diff_ms": 88.92636363628117,
    "rel": 0.01853650679348682,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 11949,
+   "down_framed_B": 10803,
+   "up_ms": 1448.3636363636363,
+   "down_ms": 3324.0,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C2u|ch2": {
    "model_ms": 25.342572040617608,
    "meas_ms": 29.11549999998897,
    "diff_ms": 3.772927959371362,
    "rel": 0.1488770734605916,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2661,
+   "down_framed_B": 10728,
+   "up_ms": 0.23393406593406596,
+   "down_ms": 0.1086379746835443,
+   "rtt_ms": 25.0
   },
   "5G-tele|C2u|ch2": {
    "model_ms": 45.69565363315993,
    "meas_ms": 49.01999999998452,
    "diff_ms": 3.3243463668245923,
    "rel": 0.07274972787372969,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2661,
+   "down_framed_B": 10728,
+   "up_ms": 0.21077227722772277,
+   "down_ms": 0.4848813559322034,
+   "rtt_ms": 45.0
   },
   "LTE-M|C2u|ch2": {
    "model_ms": 367.1010526315789,
    "meas_ms": 376.74700000002304,
    "diff_ms": 9.645947368444126,
    "rel": 0.026276000298274163,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2661,
+   "down_framed_B": 10728,
+   "up_ms": 56.021052631578954,
+   "down_ms": 286.08,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C2u|ch2": {
    "model_ms": 3648.468531468531,
    "meas_ms": 3718.3789999999135,
    "diff_ms": 69.91046853138232,
    "rel": 0.019161592851464973,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 2661,
+   "down_framed_B": 10728,
+   "up_ms": 322.5454545454545,
+   "down_ms": 3300.9230769230767,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C2|ch3": {
    "model_ms": 46.727993100570316,
    "meas_ms": 48.765000000003056,
    "diff_ms": 2.0370068994327397,
    "rel": 0.043592860815755384,
-   "k_rtt": 4.5
+   "k_rtt": 4.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 1.5599120879120878,
+   "down_ms": 0.16808101265822784,
+   "rtt_ms": 45.0
   },
   "5G-tele|C2|ch3": {
    "model_ms": 83.15565743693014,
    "meas_ms": 84.69450000006873,
    "diff_ms": 1.5388425631385871,
    "rel": 0.018505566675433124,
-   "k_rtt": 4.5
+   "k_rtt": 4.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 1.4054653465346534,
+   "down_ms": 0.7501920903954803,
+   "rtt_ms": 81.0
   },
   "LTE-M|C2|ch3": {
    "model_ms": 861.1712280701754,
    "meas_ms": 850.770000000125,
    "diff_ms": -10.401228070050365,
    "rel": -0.012078002296196995,
-   "k_rtt": 4.5
+   "k_rtt": 4.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 373.5578947368421,
+   "down_ms": 442.61333333333334,
+   "rtt_ms": 45.0
   },
   "NB-IoT|C2|ch3": {
    "model_ms": 7302.864801864802,
    "meas_ms": 7357.334000000037,
    "diff_ms": 54.469198135235274,
    "rel": 0.007458606945773725,
-   "k_rtt": 4.5
+   "k_rtt": 4.5,
+   "up_framed_B": 17744,
+   "down_framed_B": 16598,
+   "up_ms": 2150.7878787878785,
+   "down_ms": 5107.076923076924,
+   "rtt_ms": 45.0
   },
   "5G-hosp|C3|ch2": {
    "model_ms": 25.503500236472387,
    "meas_ms": 29.627500000003693,
    "diff_ms": 4.123999763531305,
    "rel": 0.16170328485474322,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 5254,
+   "down_framed_B": 4109,
+   "up_ms": 0.46189010989010987,
+   "down_ms": 0.04161012658227848,
+   "rtt_ms": 25.0
   },
   "5G-tele|C3|ch2": {
    "model_ms": 45.60187592996588,
    "meas_ms": 49.751000000014756,
    "diff_ms": 4.149124070048877,
    "rel": 0.0909858198908525,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 5254,
+   "down_framed_B": 4109,
+   "up_ms": 0.4161584158415842,
+   "down_ms": 0.1857175141242938,
+   "rtt_ms": 45.0
   },
   "LTE-M|C3|ch2": {
    "model_ms": 245.1838596491228,
    "meas_ms": 255.11500000004617,
    "diff_ms": 9.931140350923357,
    "rel": 0.040504869958143216,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 5254,
+   "down_framed_B": 4109,
+   "up_ms": 110.61052631578949,
+   "down_ms": 109.57333333333332,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C3|ch2": {
    "model_ms": 1926.1561771561774,
    "meas_ms": 1997.1349999999575,
    "diff_ms": 70.97882284378011,
    "rel": 0.036849983238937005,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 5254,
+   "down_framed_B": 4109,
+   "up_ms": 636.8484848484849,
+   "down_ms": 1264.3076923076924,
+   "rtt_ms": 25.0
   },
   "5G-hosp|C3|ch3": {
    "model_ms": 25.694831214355265,
    "meas_ms": 30.07300000001578,
    "diff_ms": 4.378168785660517,
    "rel": 0.17039103114304593,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 7206,
+   "down_framed_B": 6057,
+   "up_ms": 0.6334945054945055,
+   "down_ms": 0.06133670886075949,
+   "rtt_ms": 25.0
   },
   "5G-tele|C3|ch3": {
    "model_ms": 45.84453498909213,
    "meas_ms": 49.924499999974614,
    "diff_ms": 4.079965010882482,
    "rel": 0.08899566789919966,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 7206,
+   "down_framed_B": 6057,
+   "up_ms": 0.5707722772277227,
+   "down_ms": 0.27376271186440676,
+   "rtt_ms": 45.0
   },
   "LTE-M|C3|ch3": {
    "model_ms": 338.22526315789474,
    "meas_ms": 347.9620000000523,
    "diff_ms": 9.73673684215754,
    "rel": 0.028787727892496635,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 7206,
+   "down_framed_B": 6057,
+   "up_ms": 151.70526315789473,
+   "down_ms": 161.52,
+   "rtt_ms": 25.0
   },
   "NB-IoT|C3|ch3": {
    "model_ms": 2762.1468531468536,
    "meas_ms": 2850.751999999943,
    "diff_ms": 88.60514685308954,
    "rel": 0.032078362072655055,
-   "k_rtt": 2.5
+   "k_rtt": 2.5,
+   "up_framed_B": 7206,
+   "down_framed_B": 6057,
+   "up_ms": 873.4545454545455,
+   "down_ms": 1863.6923076923078,
+   "rtt_ms": 25.0
+  },
+  "5G-hosp|C3m|ch2": {
+   "model_ms": 25.847618528307134,
+   "meas_ms": 30.365000000017517,
+   "diff_ms": 4.517381471710383,
+   "rel": 0.17476973620463923,
+   "k_rtt": 2.5,
+   "up_framed_B": 9168,
+   "down_framed_B": 4112,
+   "up_ms": 0.805978021978022,
+   "down_ms": 0.041640506329113924,
+   "rtt_ms": 25.0
+  },
+  "5G-tele|C3m|ch2": {
+   "model_ms": 45.91203132516642,
+   "meas_ms": 50.25100000000293,
+   "diff_ms": 4.338968674836515,
+   "rel": 0.09450613596480394,
+   "k_rtt": 2.5,
+   "up_framed_B": 9168,
+   "down_framed_B": 4112,
+   "up_ms": 0.7261782178217822,
+   "down_ms": 0.18585310734463276,
+   "rtt_ms": 45.0
+  },
+  "LTE-M|C3m|ch2": {
+   "model_ms": 327.6638596491228,
+   "meas_ms": 337.8265000000624,
+   "diff_ms": 10.162640350939625,
+   "rel": 0.031015444797061958,
+   "k_rtt": 2.5,
+   "up_framed_B": 9168,
+   "down_framed_B": 4112,
+   "up_ms": 193.01052631578946,
+   "down_ms": 109.65333333333334,
+   "rtt_ms": 25.0
+  },
+  "NB-IoT|C3m|ch2": {
+   "model_ms": 2401.5034965034965,
+   "meas_ms": 2491.0999999999603,
+   "diff_ms": 89.59650349646381,
+   "rel": 0.037308504287798507,
+   "k_rtt": 2.5,
+   "up_framed_B": 9168,
+   "down_framed_B": 4112,
+   "up_ms": 1111.2727272727273,
+   "down_ms": 1265.230769230769,
+   "rtt_ms": 25.0
+  },
+  "5G-hosp|C3m|ch3": {
+   "model_ms": 26.03267736820142,
+   "meas_ms": 29.853500000058375,
+   "diff_ms": 3.820822631856956,
+   "rel": 0.14677025254897683,
+   "k_rtt": 2.5,
+   "up_framed_B": 11049,
+   "down_framed_B": 6057,
+   "up_ms": 0.9713406593406594,
+   "down_ms": 0.06133670886075949,
+   "rtt_ms": 25.0
+  },
+  "5G-tele|C3m|ch3": {
+   "model_ms": 46.14893102869609,
+   "meas_ms": 50.08950000001278,
+   "diff_ms": 3.9405689713166865,
+   "rel": 0.08538808772984108,
+   "k_rtt": 2.5,
+   "up_framed_B": 11049,
+   "down_framed_B": 6057,
+   "up_ms": 0.8751683168316832,
+   "down_ms": 0.27376271186440676,
+   "rtt_ms": 45.0
+  },
+  "LTE-M|C3m|ch3": {
+   "model_ms": 419.13052631578944,
+   "meas_ms": 428.7810000000718,
+   "diff_ms": 9.65047368428236,
+   "rel": 0.023024984052369676,
+   "k_rtt": 2.5,
+   "up_framed_B": 11049,
+   "down_framed_B": 6057,
+   "up_ms": 232.61052631578946,
+   "down_ms": 161.52,
+   "rtt_ms": 25.0
+  },
+  "NB-IoT|C3m|ch3": {
+   "model_ms": 3227.965034965035,
+   "meas_ms": 3317.165999999929,
+   "diff_ms": 89.20096503489412,
+   "rel": 0.027633807698868192,
+   "k_rtt": 2.5,
+   "up_framed_B": 11049,
+   "down_framed_B": 6057,
+   "up_ms": 1339.2727272727273,
+   "down_ms": 1863.6923076923078,
+   "rtt_ms": 25.0
   }
  },
  "model_check_summary": {
@@ -367,95 +845,644 @@
    4.94677336800563
   ]
  },
- "quic_C2_first_bursts": {
-  "client_B": 2484,
-  "server_B": 7452,
-  "ratio": 3.0
+ "timeline": {
+  "profile": {
+   "name": "5G-hosp",
+   "ul": 91000000.0,
+   "dl": 790000000.0,
+   "owd_ms": 5.0
+  },
+  "gap_ms": 4.0,
+  "cases": {
+   "C0|ch2": {
+    "t_first_record_ms": 40.00900000028196,
+    "flights": [
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 250,
+        "t_first_ms": 11.0740000000078,
+        "t_last_ms": 11.0740000000078
+       }
+      ],
+      "payload_B": 250,
+      "segments": 1,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 886,
+        "t_first_ms": 16.990000000078,
+        "t_last_ms": 16.990000000078
+       }
+      ],
+      "payload_B": 886,
+      "segments": 1,
+      "stalls_ms": []
+     },
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 2,
+        "payload_B": 1628,
+        "t_first_ms": 23.409000000356173,
+        "t_last_ms": 23.430999999618507
+       }
+      ],
+      "payload_B": 1628,
+      "segments": 2,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 24,
+        "t_first_ms": 29.368000000431493,
+        "t_last_ms": 29.368000000431493
+       }
+      ],
+      "payload_B": 24,
+      "segments": 1,
+      "stalls_ms": []
+     }
+    ]
+   },
+   "C2|ch2": {
+    "t_first_record_ms": 39.17099999944185,
+    "flights": [
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 1361,
+        "t_first_ms": 14.078999999583175,
+        "t_last_ms": 14.078999999583175
+       }
+      ],
+      "payload_B": 1361,
+      "segments": 1,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 8,
+        "payload_B": 10275,
+        "t_first_ms": 22.022999999535386,
+        "t_last_ms": 25.622000000112166
+       }
+      ],
+      "payload_B": 10275,
+      "segments": 8,
+      "stalls_ms": []
+     },
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 8,
+        "payload_B": 9994,
+        "t_first_ms": 31.72900000026857,
+        "t_last_ms": 32.89200000017445
+       }
+      ],
+      "payload_B": 9994,
+      "segments": 8,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 24,
+        "t_first_ms": 38.9709999999468,
+        "t_last_ms": 38.9709999999468
+       }
+      ],
+      "payload_B": 24,
+      "segments": 1,
+      "stalls_ms": []
+     }
+    ]
+   },
+   "C2|ch3": {
+    "t_first_record_ms": 48.553999999967346,
+    "flights": [
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 1361,
+        "t_first_ms": 10.904000000664382,
+        "t_last_ms": 10.904000000664382
+       }
+      ],
+      "payload_B": 1361,
+      "segments": 1,
+      "stalls_ms": []
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 10,
+        "payload_B": 13841,
+        "t_first_ms": 16.638000000057218,
+        "t_last_ms": 17.915000000357395
+       },
+       {
+        "segments": 2,
+        "payload_B": 1965,
+        "t_first_ms": 27.044000000387314,
+        "t_last_ms": 27.05500000047323
+       }
+      ],
+      "payload_B": 15806,
+      "segments": 12,
+      "stalls_ms": [
+       9.129000000029919
+      ]
+     },
+     {
+      "dir": "C>S",
+      "bursts": [
+       {
+        "segments": 11,
+        "payload_B": 15434,
+        "t_first_ms": 32.634000000143715,
+        "t_last_ms": 33.50399999999354
+       },
+       {
+        "segments": 1,
+        "payload_B": 91,
+        "t_first_ms": 43.113000000630564,
+        "t_last_ms": 43.113000000630564
+       }
+      ],
+      "payload_B": 15525,
+      "segments": 12,
+      "stalls_ms": [
+       9.609000000637025
+      ]
+     },
+     {
+      "dir": "S>C",
+      "bursts": [
+       {
+        "segments": 1,
+        "payload_B": 24,
+        "t_first_ms": 48.386000000391505,
+        "t_last_ms": 48.386000000391505
+       }
+      ],
+      "payload_B": 24,
+      "segments": 1,
+      "stalls_ms": []
+     }
+    ]
+   }
+  }
  },
  "x3": {
-  "5G-hosp|keep|C2|ch2": {
-   "reestablish_ms_median": null,
-   "misses_per_outage": 0.14285714285714285,
-   "longest_gap_ms_max": 151.2800000000425,
-   "n_outages": 21,
-   "failed_runs": 0
+  "setup": {
+   "period_ms": 16.0,
+   "msg_B": 1000,
+   "deadline_ms": 100,
+   "duration_s": 80.0,
+   "runs": 5,
+   "outage_every_s": 10.0,
+   "outage_source": "NSA primary-cell T2 (HO+RCH), SIGCOMM'22 artifact, measured events",
+   "T2_pool_n": 7821,
+   "T2_pool_median_ms": 49.0,
+   "detect_rule": "session declared lost when the oldest unacknowledged message has waited one probe timeout, srtt + max(4 rttvar, 1 ms) + 25 ms (RFC 9002 form, application-acknowledgment RTT samples, Karn); connect and handshake bounded by the same timeout, then retried; unacknowledged messages resent",
+   "session_loss": "emulator --kill-flows: connections seen before an outage start are dropped from then on",
+   "attribution": "late messages assigned to the outage whose window [start - 0.5 s, next start - 0.5 s) contains their generation time"
   },
-  "5G-hosp|reconnect|C0|ch2": {
-   "reestablish_ms_median": 22.576999999728287,
-   "misses_per_outage": 0.0,
-   "longest_gap_ms_max": 102.50600000017585,
-   "n_outages": 21,
-   "failed_runs": 0
+  "cells": {
+   "5G-hosp|keep|C2|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 28,
+    "late_per_interruption": 0.07142857142857142,
+    "late_total": 2,
+    "late_per_interruption_all_windows": 0.22857142857142856,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 0,
+    "resume_delivery_ms_median": 29.78100000007089,
+    "resume_delivery_ms_p90": 44.21160000008513,
+    "gap_ms_max": 122.62400000008711,
+    "detect_ms_median": null,
+    "handshake_ms_median": null,
+    "failed_attempts_per_interruption": 0.0,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": null,
+    "late_given_no_failed_attempt": 0.07142857142857142
+   },
+   "5G-hosp|detect|C0|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 28,
+    "late_per_interruption": 0.5,
+    "late_total": 14,
+    "late_per_interruption_all_windows": 0.6571428571428571,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 31,
+    "resume_delivery_ms_median": 52.31400000002395,
+    "resume_delivery_ms_p90": 67.12789999996858,
+    "gap_ms_max": 145.53999999998268,
+    "detect_ms_median": 39.84650000006695,
+    "handshake_ms_median": 22.471999999993386,
+    "failed_attempts_per_interruption": 0.7857142857142857,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 0.6666666666666666,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 22,
+    "syn_dropped_in_interruption_valid": 22,
+    "excess_over_keep": 0.4285714285714286,
+    "excess_over_keep_ci95": [
+     0.0,
+     0.8571428571428571
+    ],
+    "excess_over_keep_all_windows": 0.4285714285714286
+   },
+   "5G-hosp|detect|C1|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 32,
+    "late_per_interruption": 0.375,
+    "late_total": 12,
+    "late_per_interruption_all_windows": 0.4,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 20,
+    "resume_delivery_ms_median": 49.944500000037806,
+    "resume_delivery_ms_p90": 68.12540000005356,
+    "gap_ms_max": 164.13999999986117,
+    "detect_ms_median": 38.032499999872016,
+    "handshake_ms_median": 22.65149999982441,
+    "failed_attempts_per_interruption": 0.6875,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 0.5714285714285714,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 22,
+    "syn_dropped_in_interruption_valid": 22,
+    "excess_over_keep": 0.3035714285714286,
+    "excess_over_keep_ci95": [
+     -0.06293771043771045,
+     0.7661507936507934
+    ],
+    "excess_over_keep_all_windows": 0.17142857142857146
+   },
+   "5G-hosp|detect|C2|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 30,
+    "late_per_interruption": 0.5666666666666667,
+    "late_total": 17,
+    "late_per_interruption_all_windows": 0.6857142857142857,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 16,
+    "resume_delivery_ms_median": 51.839500000141925,
+    "resume_delivery_ms_p90": 68.89769999979762,
+    "gap_ms_max": 163.9580000000933,
+    "detect_ms_median": 39.20250000010128,
+    "handshake_ms_median": 24.68500000009044,
+    "failed_attempts_per_interruption": 0.7333333333333333,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 0.8095238095238095,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 22,
+    "syn_dropped_in_interruption_valid": 22,
+    "excess_over_keep": 0.49523809523809526,
+    "excess_over_keep_ci95": [
+     0.06896012931034483,
+     1.0687830687830688
+    ],
+    "excess_over_keep_all_windows": 0.4571428571428572
+   },
+   "5G-hosp|detect|C2|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 30,
+    "late_per_interruption": 1.2333333333333334,
+    "late_total": 37,
+    "late_per_interruption_all_windows": 1.2857142857142858,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 23,
+    "resume_delivery_ms_median": 75.58100000005652,
+    "resume_delivery_ms_p90": 83.50990000012644,
+    "gap_ms_max": 185.19599999990533,
+    "detect_ms_median": 37.89150000011432,
+    "handshake_ms_median": 33.571500000107335,
+    "failed_attempts_per_interruption": 0.7666666666666667,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 1.6818181818181819,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 23,
+    "syn_dropped_in_interruption_valid": 23,
+    "excess_over_keep": 1.161904761904762,
+    "excess_over_keep_ci95": [
+     0.6500638569604087,
+     1.7666666666666666
+    ],
+    "excess_over_keep_all_windows": 1.0571428571428572
+   },
+   "5G-hosp|detect|C3m|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 28,
+    "late_per_interruption": 0.39285714285714285,
+    "late_total": 11,
+    "late_per_interruption_all_windows": 0.5714285714285714,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 30,
+    "resume_delivery_ms_median": 57.347500000105356,
+    "resume_delivery_ms_p90": 67.26930000004359,
+    "gap_ms_max": 147.77400000002672,
+    "detect_ms_median": 37.86200000013196,
+    "handshake_ms_median": 23.67550000008123,
+    "failed_attempts_per_interruption": 0.75,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 0.55,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 21,
+    "syn_dropped_in_interruption_valid": 21,
+    "excess_over_keep": 0.3214285714285714,
+    "excess_over_keep_ci95": [
+     -0.037037037037037035,
+     0.7142857142857143
+    ],
+    "excess_over_keep_all_windows": 0.34285714285714286
+   },
+   "5G-hosp|detect-resume|C2|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 31,
+    "late_per_interruption": 0.41935483870967744,
+    "late_total": 13,
+    "late_per_interruption_all_windows": 0.6857142857142857,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 18,
+    "resume_delivery_ms_median": 55.411999999705586,
+    "resume_delivery_ms_p90": 67.0669999999518,
+    "gap_ms_max": 244.9610000003304,
+    "detect_ms_median": 38.19199999998091,
+    "handshake_ms_median": 22.468000000117172,
+    "failed_attempts_per_interruption": 0.7419354838709677,
+    "failed_runs": 0,
+    "resumed_share": 1.0,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 0.5909090909090909,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 23,
+    "syn_dropped_in_interruption_valid": 23,
+    "excess_over_keep": 0.347926267281106,
+    "excess_over_keep_ci95": [
+     -0.04074074074074074,
+     0.7419354838709677
+    ],
+    "excess_over_keep_all_windows": 0.4571428571428572
+   },
+   "5G-tele|keep|C2|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 27,
+    "late_per_interruption": 0.1111111111111111,
+    "late_total": 3,
+    "late_per_interruption_all_windows": 0.2571428571428571,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 0,
+    "resume_delivery_ms_median": 48.16899999968882,
+    "resume_delivery_ms_p90": 58.80600000009508,
+    "gap_ms_max": 147.55000000059226,
+    "detect_ms_median": null,
+    "handshake_ms_median": null,
+    "failed_attempts_per_interruption": 0.0,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": null,
+    "late_given_no_failed_attempt": 0.1111111111111111
+   },
+   "5G-tele|detect|C0|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 31,
+    "late_per_interruption": 1.3870967741935485,
+    "late_total": 43,
+    "late_per_interruption_all_windows": 1.4285714285714286,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 31,
+    "resume_delivery_ms_median": 77.03500000025088,
+    "resume_delivery_ms_p90": 95.05600000011327,
+    "gap_ms_max": 154.83299999959854,
+    "detect_ms_median": 42.8699999993114,
+    "handshake_ms_median": 38.633000000118045,
+    "failed_attempts_per_interruption": 0.5806451612903226,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 2.3333333333333335,
+    "late_given_no_failed_attempt": 0.07692307692307693,
+    "failed_attempts_valid": 18,
+    "syn_dropped_in_interruption_valid": 18,
+    "excess_over_keep": 1.2759856630824373,
+    "excess_over_keep_ci95": [
+     0.7388206831119544,
+     1.8064516129032258
+    ],
+    "excess_over_keep_all_windows": 1.1714285714285715
+   },
+   "5G-tele|detect|C1|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 30,
+    "late_per_interruption": 1.3,
+    "late_total": 39,
+    "late_per_interruption_all_windows": 1.3428571428571427,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 32,
+    "resume_delivery_ms_median": 79.7429999997803,
+    "resume_delivery_ms_p90": 95.3708000001825,
+    "gap_ms_max": 151.20899999965332,
+    "detect_ms_median": 41.99650000009569,
+    "handshake_ms_median": 38.9484999996057,
+    "failed_attempts_per_interruption": 0.6,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 2.1666666666666665,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 18,
+    "syn_dropped_in_interruption_valid": 18,
+    "excess_over_keep": 1.1888888888888889,
+    "excess_over_keep_ci95": [
+     0.566058651026393,
+     1.7854474548440065
+    ],
+    "excess_over_keep_all_windows": 1.0857142857142856
+   },
+   "5G-tele|detect|C2|ch2": {
+    "n_interruptions": 35,
+    "n_valid": 30,
+    "late_per_interruption": 1.5333333333333334,
+    "late_total": 46,
+    "late_per_interruption_all_windows": 2.257142857142857,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 30,
+    "resume_delivery_ms_median": 67.07649999862042,
+    "resume_delivery_ms_p90": 96.48979999965377,
+    "gap_ms_max": 158.3470000005036,
+    "detect_ms_median": 46.717500000340806,
+    "handshake_ms_median": 41.110500000286265,
+    "failed_attempts_per_interruption": 0.4666666666666667,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 3.2857142857142856,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 14,
+    "syn_dropped_in_interruption_valid": 14,
+    "excess_over_keep": 1.4222222222222223,
+    "excess_over_keep_ci95": [
+     0.28421560846560856,
+     2.5244326825557795
+    ],
+    "excess_over_keep_all_windows": 2.0
+   },
+   "5G-tele|detect|C2|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 31,
+    "late_per_interruption": 3.7096774193548385,
+    "late_total": 115,
+    "late_per_interruption_all_windows": 4.114285714285714,
+    "late_outside_outages": 2,
+    "lost": 0,
+    "dup": 26,
+    "resume_delivery_ms_median": 107.80400000021473,
+    "resume_delivery_ms_p90": 129.56500000018423,
+    "gap_ms_max": 222.23599999961152,
+    "detect_ms_median": 44.60800000015297,
+    "handshake_ms_median": 57.705999999598134,
+    "failed_attempts_per_interruption": 0.5806451612903226,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 5.470588235294118,
+    "late_given_no_failed_attempt": 1.5714285714285714,
+    "failed_attempts_valid": 18,
+    "syn_dropped_in_interruption_valid": 18,
+    "excess_over_keep": 3.5985663082437274,
+    "excess_over_keep_ci95": [
+     2.7116533105177556,
+     4.47108129789272
+    ],
+    "excess_over_keep_all_windows": 3.8571428571428568
+   },
+   "5G-tele|detect|C3m|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 29,
+    "late_per_interruption": 1.3793103448275863,
+    "late_total": 40,
+    "late_per_interruption_all_windows": 1.5714285714285714,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 31,
+    "resume_delivery_ms_median": 70.17799999994168,
+    "resume_delivery_ms_p90": 94.20100000024831,
+    "gap_ms_max": 187.96300000030897,
+    "detect_ms_median": 43.808000000353786,
+    "handshake_ms_median": 39.44599999977072,
+    "failed_attempts_per_interruption": 0.5172413793103449,
+    "failed_runs": 0,
+    "resumed_share": null,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 2.533333333333333,
+    "late_given_no_failed_attempt": 0.14285714285714285,
+    "failed_attempts_valid": 15,
+    "syn_dropped_in_interruption_valid": 15,
+    "excess_over_keep": 1.2681992337164751,
+    "excess_over_keep_ci95": [
+     0.6538461538461539,
+     1.9
+    ],
+    "excess_over_keep_all_windows": 1.3142857142857143
+   },
+   "5G-tele|detect-resume|C2|ch3": {
+    "n_interruptions": 35,
+    "n_valid": 33,
+    "late_per_interruption": 1.4242424242424243,
+    "late_total": 47,
+    "late_per_interruption_all_windows": 1.4,
+    "late_outside_outages": 0,
+    "lost": 0,
+    "dup": 29,
+    "resume_delivery_ms_median": 80.65200000055484,
+    "resume_delivery_ms_p90": 93.8453999997364,
+    "gap_ms_max": 185.97699999918405,
+    "detect_ms_median": 40.243000000373286,
+    "handshake_ms_median": 38.64799999973911,
+    "failed_attempts_per_interruption": 0.6363636363636364,
+    "failed_runs": 0,
+    "resumed_share": 1.0,
+    "outage_ms_median": 47.0,
+    "outage_ms_max": 94.0,
+    "late_given_failed_attempt": 2.35,
+    "late_given_no_failed_attempt": 0.0,
+    "failed_attempts_valid": 21,
+    "syn_dropped_in_interruption_valid": 21,
+    "excess_over_keep": 1.3131313131313131,
+    "excess_over_keep_ci95": [
+     0.7074346763497904,
+     1.9982620320855606
+    ],
+    "excess_over_keep_all_windows": 1.1428571428571428
+   }
   },
-  "5G-hosp|reconnect|C1|ch2": {
-   "reestablish_ms_median": 22.78200000000652,
-   "misses_per_outage": 0.0,
-   "longest_gap_ms_max": 98.43300000011368,
-   "n_outages": 21,
-   "failed_runs": 0
+  "qc": {
+   "stall_ms": 15.0,
+   "rule": "a window is invalid if the emulator delivered a frame more than stall_ms late or the client opened a new connection while its current one was alive (testbed/x3_qc.py)"
   },
-  "5G-hosp|reconnect|C2|ch2": {
-   "reestablish_ms_median": 24.12300000014511,
-   "misses_per_outage": 0.0,
-   "longest_gap_ms_max": 106.07400000026246,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-hosp|reconnect|C2|ch3": {
-   "reestablish_ms_median": 33.21300000061456,
-   "misses_per_outage": 0.19047619047619047,
-   "longest_gap_ms_max": 116.28699999982928,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-hosp|resume|C2|ch2": {
-   "reestablish_ms_median": 22.85999999998012,
-   "misses_per_outage": 0.0,
-   "longest_gap_ms_max": 96.67500000000473,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|keep|C2|ch2": {
-   "reestablish_ms_median": null,
-   "misses_per_outage": 0.9047619047619048,
-   "longest_gap_ms_max": 141.13799999995535,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|reconnect|C0|ch2": {
-   "reestablish_ms_median": 38.33699999995588,
-   "misses_per_outage": 0.14285714285714285,
-   "longest_gap_ms_max": 116.88099999992119,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|reconnect|C1|ch2": {
-   "reestablish_ms_median": 38.8280000006489,
-   "misses_per_outage": 0.14285714285714285,
-   "longest_gap_ms_max": 121.43900000046415,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|reconnect|C2|ch2": {
-   "reestablish_ms_median": 40.62800000065181,
-   "misses_per_outage": 0.23809523809523808,
-   "longest_gap_ms_max": 124.49300000025687,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|reconnect|C2|ch3": {
-   "reestablish_ms_median": 57.87200000031589,
-   "misses_per_outage": 1.8571428571428572,
-   "longest_gap_ms_max": 156.2819999999192,
-   "n_outages": 21,
-   "failed_runs": 0
-  },
-  "5G-tele|resume|C2|ch2": {
-   "reestablish_ms_median": 38.827000000026146,
-   "misses_per_outage": 0.14285714285714285,
-   "longest_gap_ms_max": 115.08800000001429,
-   "n_outages": 21,
-   "failed_runs": 0
-  }
+  "failed_attempts_valid_total": 237,
+  "syn_dropped_in_interruption_valid_total": 237,
+  "windows_total": 490,
+  "windows_invalid": 72
  }
 }

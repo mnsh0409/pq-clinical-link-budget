@@ -16,7 +16,7 @@ PROFILES = [
     {"name": "5G-hosp", "ul": p("ul_5gsa_chen2024_avg_bps"), "dl": p("dl_5gsa_chen2024_avg_bps"), "owd_ms": p("rtt_5g_berlet2022_ms") / 2},
     {"name": "5G-tele", "ul": p("ul_5g_ye2026_bps"), "dl": p("dl_5g_ye2026_bps"), "owd_ms": p("rtt_5g_moustris2023_ms") / 2},
 ]
-CASES = [("C0", 2), ("C1", 2), ("C2", 2), ("C2u", 2), ("C2", 3), ("C3", 2), ("C3u", 2), ("C3", 3)]
+CASES = [("C0", 2), ("C1", 2), ("C2", 2), ("C2u", 2), ("C2", 3), ("C3", 2), ("C3u", 2), ("C3", 3), ("C3m", 2), ("C3m", 3)]
 
 def flights(log):
     """datagram bursts of the first connection: direction, bytes, datagrams (gap > 2 ms or direction change splits)."""

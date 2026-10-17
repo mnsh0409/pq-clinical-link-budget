@@ -1,0 +1,2833 @@
+{
+ "stall_ms": 15.0,
+ "cells": {
+  "5G-hosp|keep|C2|ch2": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 23,
+    "drops": 23
+   },
+   "20261016": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 20,
+    "drops": 20
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 23,
+    "drops": 23
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 25
+   },
+   "20261019": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 29,
+    "drops": 29
+   }
+  },
+  "5G-hosp|detect|C0|ch2": {
+   "20261015": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     1
+    ],
+    "drops_in_schedule": 28,
+    "drops": 92
+   },
+   "20261016": {
+    "stall": [
+     false,
+     true,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 27,
+    "drops": 94
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 96
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 36,
+    "drops": 98
+   }
+  },
+  "5G-hosp|detect|C1|ch2": {
+   "20261015": {
+    "stall": [
+     true,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 94
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 93
+   },
+   "20261017": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 27,
+    "drops": 94
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 96
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 97
+   }
+  },
+  "5G-hosp|detect|C2|ch2": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 30,
+    "drops": 95
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 93
+   },
+   "20261017": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 96
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 34,
+    "drops": 97
+   }
+  },
+  "5G-hosp|detect|C2|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261016": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 27,
+    "drops": 94
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 95
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261019": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 97
+   }
+  },
+  "5G-hosp|detect|C3m|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     1,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 26,
+    "drops": 93
+   },
+   "20261017": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 95
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 32,
+    "drops": 96
+   },
+   "20261019": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 97
+   }
+  },
+  "5G-hosp|detect-resume|C2|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 96
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 94
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 32,
+    "drops": 99
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 96
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 36,
+    "drops": 99
+   }
+  },
+  "5G-tele|keep|C2|ch2": {
+   "20261015": {
+    "stall": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 25
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 21,
+    "drops": 21
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 25
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 25
+   },
+   "20261019": {
+    "stall": [
+     true,
+     false,
+     false,
+     true,
+     true,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     true,
+     true,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 31,
+    "drops": 31
+   }
+  },
+  "5G-tele|detect|C0|ch2": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 93
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 23,
+    "drops": 90
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 30,
+    "drops": 93
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 30,
+    "drops": 93
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 34,
+    "drops": 94
+   }
+  },
+  "5G-tele|detect|C1|ch2": {
+   "20261015": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 93
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 23,
+    "drops": 90
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 30,
+    "drops": 94
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 94
+   },
+   "20261019": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 34,
+    "drops": 94
+   }
+  },
+  "5G-tele|detect|C2|ch2": {
+   "20261015": {
+    "stall": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 91
+   },
+   "20261016": {
+    "stall": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 25,
+    "drops": 93
+   },
+   "20261017": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 28,
+    "drops": 94
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 97
+   }
+  },
+  "5G-tele|detect|C2|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     true,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 92
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 24,
+    "drops": 90
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 94
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 30,
+    "drops": 93
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 34,
+    "drops": 94
+   }
+  },
+  "5G-tele|detect|C3m|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 93
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 26,
+    "drops": 90
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 93
+   },
+   "20261018": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 93
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     true,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     1,
+     0,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 34,
+    "drops": 93
+   }
+  },
+  "5G-tele|detect-resume|C2|ch3": {
+   "20261015": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95
+   },
+   "20261016": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     0,
+     0
+    ],
+    "drops_in_schedule": 26,
+    "drops": 93
+   },
+   "20261017": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     0,
+     1,
+     1
+    ],
+    "drops_in_schedule": 29,
+    "drops": 95
+   },
+   "20261018": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0
+    ],
+    "drops_in_schedule": 31,
+    "drops": 94
+   },
+   "20261019": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     2,
+     1,
+     1
+    ],
+    "drops_in_schedule": 35,
+    "drops": 98
+   }
+  }
+ }
+}

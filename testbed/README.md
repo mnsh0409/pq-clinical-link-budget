@@ -49,6 +49,7 @@ have to come from `tcpdump`.
 cd testbed
 (cd pki && bash mkpki.sh)                                          # P-256 and ML-DSA-65: root, intermediate, server and client leaves
 (cd pki && OPENSSL_CONF=$PWD/../oqs.cnf FAMS=falcon bash mkpki.sh)  # Falcon-512 (needs oqs-provider)
+(cd pki && MIXED=1 FAMS= bash mkpki.sh)                            # C3m: Falcon root/intermediate/server, ML-DSA-65 device (chains included)
 for f in ec mldsa falcon; do
   cat pki/$f/srv.byint.crt pki/$f/int.crt > pki/$f/srv.chain3.pem
   cat pki/$f/cli.byint.crt pki/$f/int.crt > pki/$f/cli.chain3.pem
@@ -75,6 +76,7 @@ left over from an interrupted cell.
 | C2u | ML-KEM-768 | ML-DSA-65 | server only |
 | C3 | ML-KEM-768 | Falcon-512 | mutual |
 | C3u | ML-KEM-768 | Falcon-512 | server only |
+| C3m | ML-KEM-768 | Falcon-512 server and CA, ML-DSA-65 device certificate | mutual |
 
 `chain=2`: each side sends its leaf only (the peer holds the root). `chain=3`: leaf and intermediate.
 
@@ -102,31 +104,80 @@ sudo python3 x4.py 50                    # 50 connections per cell, 5G profiles,
 - Does the server's first flight exceed QUIC's anti-amplification limit (three times the bytes received before
   address validation), and what does address validation with Retry add?
 - Output: `results/testbed_x4.json`. Byte counts there are **Ethernet frame bytes** (UDP payload + 42 B per
-  datagram). With an ML-KEM-768 key share the client's Initial takes two datagrams (2 x 1,242 B), and the C2
-  server sends exactly three times that (7,452 B) before it waits for the client.
+  datagram). With an ML-KEM-768 key share the client's Initial takes two datagrams (2 x 1,200 B of UDP payload,
+  2 x 1,242 B of frames), and the C2 server sends exactly three times that (7,200 B of UDP payload) before it
+  waits for the client; `models/testbed_tables.py` converts to UDP payload for the paper.
+
+## Timeline: where the TCP flights stall
+
+```bash
+sudo python3 timeline.py                 # one cold connection each for C0, C2 and C2 + intermediate (5G-hosp)
+```
+
+- From the emulator's per-frame log: each data flight split into bursts at gaps of more than 4 ms, and the stall
+  between bursts. Output: `results/testbed_timeline.json`.
 
 ## X3: a telemetry stream through measured handover interruptions
 
 ```bash
-sudo python3 x3.py 3 80                  # 3 runs x 80 s per cell (as in the paper); x3.py 1 20 for a quick check
+sudo python3 x3.py 5 80                  # 5 runs x 80 s per cell (as in the paper); x3.py 1 25 for a quick check
+X3_CELLS="detect:C2:3" X3_PROFILES=5G-tele X3_MERGE=1 sudo -E python3 x3.py 5 80   # rerun one cell and merge it in
 ```
 
-- Stream: a 1,000-B message every 16 ms (0.5 Mb/s, the TR 22.826 cardiac-telemetry target), 100 ms deadline,
-  over TCP on the 5G profiles.
-- Outages: one roughly every 10 s (+/-1 s). Each duration is drawn (seeded, the same in every cell) from the
-  measured NSA primary-cell execution-stage interruptions T2 of the SIGCOMM'22 artifact.
-- Policies: `keep` (session and TCP connection survive; TCP retransmits), `reconnect` (state lost at the
-  outage; a full handshake after it), `resume` (as reconnect, with PSK resumption, psk_dhe_ke).
-- Output: `results/testbed_x3.json`. Per cell: share of messages over 100 ms, misses per outage, longest gap
-  between deliveries, re-establishment time, p99 delay.
+- Stream: a 1,000-B message generated every 16 ms (0.5 Mb/s, the TR 22.826 cardiac-telemetry target), 100 ms
+  deadline from generation to the server's receipt, over TLS 1.3/TCP on the 5G profiles (10 and 18 ms RTT).
+  The server acknowledges every message with its 4-byte sequence number.
+- Outages: seven per 80-s run, one roughly every 10 s (+/-1 s). Each duration is drawn (seeded, the same in every
+  cell, so cells are paired) from the measured NSA primary-cell execution-stage interruptions T2 of the SIGCOMM'22
+  artifact.
+- Policies (`tele.c`): `keep` (the session and TCP connection survive; TCP recovers on its own); `detect` (the
+  session is lost at the outage: the emulator runs with `--kill-flows` and drops the old connection's frames from
+  the outage start on; the client is not told, declares the session lost when its oldest unacknowledged message
+  has waited one probe timeout, srtt + max(4 rttvar, 1 ms) + 25 ms, the RFC 9002 form with a 25-ms margin chosen
+  here, from application-acknowledgment RTT samples with Karn's rule; it reconnects with the same timeout on
+  connect and handshake, retries, and resends every unacknowledged message); `detect-resume` (as detect, with
+  PSK resumption, psk_dhe_ke). `reconnect` and `resume` are the earlier oracle policies (they read the outage
+  file); they are kept in the code but not used in the paper.
+- Output: `results/testbed_x3.json`. Per cell and run: per outage, late messages (attributed by generation time
+  to the outage whose window [start - 0.5 s, next start - 0.5 s) contains them), time from the outage end to the
+  next delivered message, longest delivery gap, detection delay, handshake time, failed attempts; per run, lost
+  and duplicate messages. `models/testbed_tables.py` writes Table IV of the paper (`tab5_session.tex`) with the
+  excess over `keep` and a two-stage bootstrap 95 % interval (runs, then interruptions), over the windows that
+  `x3_qc.py` leaves valid.
+
+## X3 quality control: host stalls
+
+```bash
+python3 x3_qc.py                         # reads the emulator logs in $TESTBED_TMP -> results/testbed_x3_qc.json
+```
+
+The emulated link has a constant delay, so a frame that `linkemu.py` delivers more than 15 ms after its schedule
+means the host did not run the emulator in time. On the 2-vCPU cloud host used for the paper this happened in 72
+of 490 interruption windows; such a stall can delay acknowledgments past the probe timeout and trigger a session
+loss that the link model does not contain. `x3_qc.py` replays each run's seeded schedule, marks the windows that
+contain a stall (the rule looks only at the emulator's timing, never at late records) and also reports
+connection requests dropped in an interruption and loss declarations made while the connection was alive.
+`models/testbed_tables.py` computes Table IV over each cell's windows without a stall; the excess over the kept
+session is the difference of the two cells' means, with a 95 % interval from independent two-stage bootstraps
+(runs, then valid interruptions) of the two cells. Running the emulator under `chrt -f 50` with Python's collector disabled did not
+remove the stalls in a test.
 
 ## Reproducibility notes
 
 - With freshly generated keys, ML-DSA-65 byte counts reproduce exactly. ECDSA and Falcon signatures vary in
   length, so C0, C1 and C3 flights can differ by a few bytes (a rerun gave 885 vs 886 B for the C0 server
   flight and 3,910 vs 3,911 B for C3).
-- The script paths (`TESTBED_TMP`, `cleanup.sh`) were parameterized after the runs reported in the paper;
-  nothing else in the testbed code changed.
+- The script paths (`TESTBED_TMP`, `cleanup.sh`) were parameterized after the first runs. For v1.6 of the paper
+  (Oct 17, 2026) the C3m cells, `timeline.py` and the X3 `detect` policies were added and X3 was rerun with
+  5 runs per cell; X12/X4 cells measured before were kept (a rerun on Oct 17 reproduced C0, C2, C2 + int. and C3
+  over TCP within 0.3 ms of Table III).
+- The 5G-tele `detect` C2 cell (no intermediate) was rerun on Oct 17 because a test overwrote its emulator logs,
+  which `x3_qc.py` needs.
+- The `detect-resume` cells were rerun on Oct 17 after a fix in `tele.c`: the first run freed the lost
+  connection without marking it shut down, so OpenSSL marked its session ticket non-resumable and every
+  reconnection was a full handshake (resumed share 0). The client now sets the shutdown flags before freeing
+  (nothing is sent), and the rerun resumed every reconnection. The other policies use no ticket and were not
+  affected.
 - In `testbed_x4.json`, the first burst of two cells (5G-hosp C0 and C3 without Retry) is a 42-B frame that is
   not QUIC (the flight parser counts every frame the emulator logs). Their timings are unaffected; the paper uses
   the bursts of the C2 cells only.
