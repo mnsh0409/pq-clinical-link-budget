@@ -1,0 +1,2062 @@
+{
+ "rule": "A stall episode is a set of frames that the emulator delivered more than STALL_MS after their schedule (x3_qc.py's\nrule), with overlapping windows W = [t_in + one-way delay, t_sent]. Over the hostmon.py samples that bracket W\n(Delta t between the last sample at or before its start and the first at or after its end):\n  steal   = steal jiffies of the emulator's CPU x 10 ms        (the hypervisor ran something else on that vCPU)\n  wait    = the emulator's run-queue wait                       (runnable, but another task or interrupt work ran)\n  run     = the emulator's on-CPU time                          (the emulator itself was computing)\nClass, in this order: \"steal\" if steal >= Delta t / 2; \"preempted\" if wait >= Delta t / 2; \"busy\" if run >= Delta t / 2;\n\"blocked\" if any sample inside W shows state D (uninterruptible wait) or T (stopped); else \"idle\" (the emulator slept\nalthough a frame was due). Only \"busy\" can come from the emulator's own processing, and so from the condition;\n\"steal\", \"preempted\" and \"blocked\" are interference from outside the emulator.\nAn invalid interval (x3_qc.py) takes the class of the episode that holds its latest frame.",
+ "stall_ms": 15.0,
+ "cells": {
+  "5G-tele|detect|C2|ch3": {
+   "20261030": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 28.464999999997417
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 823.2492,
+      "t_sent": 823.282938,
+      "lag_ms": 33.73799999998573,
+      "frames": 1,
+      "t_latest_frame_in": 823.2402,
+      "window_s": 0.03505100000006678,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0004316852586223267,
+      "run_frac": 0.006860888419718177,
+      "states": {
+       "R": 6
+      },
+      "samples": 8,
+      "class": "idle"
+     },
+     {
+      "t_due": 852.8555700000001,
+      "t_sent": 852.884035,
+      "lag_ms": 28.464999999997417,
+      "frames": 1,
+      "t_latest_frame_in": 852.84657,
+      "window_s": 0.03002599999990707,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0108900619463469,
+      "states": {
+       "R": 4,
+       "S": 1
+      },
+      "samples": 7,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261031": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 45.199999999809734
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 32.850999999951455
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1273.102626,
+      "t_sent": 1273.147847,
+      "lag_ms": 45.199999999809734,
+      "frames": 2,
+      "t_latest_frame_in": 1273.093626,
+      "window_s": 0.04718800000000556,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0,
+      "states": {
+       "R": 2,
+       "S": 2
+      },
+      "samples": 6,
+      "class": "idle"
+     },
+     {
+      "t_due": 1275.034926,
+      "t_sent": 1275.06783,
+      "lag_ms": 32.850999999951455,
+      "frames": 8,
+      "t_latest_frame_in": 1275.025926,
+      "window_s": 0.04303600000002916,
+      "cpu": 1,
+      "steal_frac": 0.23236360256513672,
+      "wait_frac": 0.0,
+      "run_frac": 0.015473835858340664,
+      "states": {
+       "R": 2
+      },
+      "samples": 4,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261032": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261033": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 45.89199999988159
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1636.610282,
+      "t_sent": 1636.656174,
+      "lag_ms": 45.89199999988159,
+      "frames": 1,
+      "t_latest_frame_in": 1636.601282,
+      "window_s": 0.047180999999909545,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0014613721625258511,
+      "run_frac": 0.003850278713896447,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 4,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261034": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261035": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2143.068545,
+      "t_sent": 2143.09164,
+      "lag_ms": 23.09500000002663,
+      "frames": 1,
+      "t_latest_frame_in": 2143.059545,
+      "window_s": 0.036908000000039465,
+      "cpu": 1,
+      "steal_frac": 0.8128319063608952,
+      "wait_frac": 0.0,
+      "run_frac": 0.00854473284923764,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "steal"
+     }
+    ]
+   },
+   "20261036": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261037": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 43.823999999873195
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2623.537973,
+      "t_sent": 2623.581797,
+      "lag_ms": 43.823999999873195,
+      "frames": 1,
+      "t_latest_frame_in": 2623.528973,
+      "window_s": 0.04887400000006892,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0002768343086299652,
+      "run_frac": 0.003987130171455686,
+      "states": {
+       "R": 1,
+       "S": 2
+      },
+      "samples": 5,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261038": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261039": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 2,
+      "class": "idle",
+      "lag_ms": 37.42599999988306
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 3078.325815,
+      "t_sent": 3078.34997,
+      "lag_ms": 24.15500000007887,
+      "frames": 1,
+      "t_latest_frame_in": 3078.316815,
+      "window_s": 0.028372000000217668,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0,
+      "states": {
+       "R": 2,
+       "S": 2
+      },
+      "samples": 6,
+      "class": "idle"
+     },
+     {
+      "t_due": 3078.3589,
+      "t_sent": 3078.39636,
+      "lag_ms": 37.42599999988306,
+      "frames": 3,
+      "t_latest_frame_in": 3078.3499,
+      "window_s": 0.03993700000000899,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0007438966372034281,
+      "run_frac": 0.0,
+      "states": {
+       "S": 1
+      },
+      "samples": 3,
+      "class": "idle"
+     }
+    ]
+   }
+  },
+  "5G-tele|detect|C2w|ch3": {
+   "20261030": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261031": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261032": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261033": {
+    "intervals": [
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 104.57900000007248
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 24.284999999978027
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1663.210754,
+      "t_sent": 1663.315333,
+      "lag_ms": 104.57900000007248,
+      "frames": 1,
+      "t_latest_frame_in": 1663.201754,
+      "window_s": 0.10657000000014705,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0,
+      "states": {
+       "R": 5
+      },
+      "samples": 7,
+      "class": "idle"
+     },
+     {
+      "t_due": 1692.987395,
+      "t_sent": 1693.011717,
+      "lag_ms": 24.284999999978027,
+      "frames": 2,
+      "t_latest_frame_in": 1692.978395,
+      "window_s": 0.029314000000113083,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00041202155966273477,
+      "run_frac": 0.0030197175410949894,
+      "states": {
+       "S": 1
+      },
+      "samples": 3,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261034": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 4,
+      "class": "idle",
+      "lag_ms": 75.45000000006075
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 29.271000000122513
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 25.499999999752617
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2001.985197,
+      "t_sent": 2002.060647,
+      "lag_ms": 75.45000000006075,
+      "frames": 1,
+      "t_latest_frame_in": 2001.976197,
+      "window_s": 0.07907700000009754,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00019282471515081747,
+      "run_frac": 0.0,
+      "states": {
+       "R": 2,
+       "S": 2
+      },
+      "samples": 6,
+      "class": "idle"
+     },
+     {
+      "t_due": 2002.069552,
+      "t_sent": 2002.101193,
+      "lag_ms": 31.576999999984764,
+      "frames": 6,
+      "t_latest_frame_in": 2002.060552,
+      "window_s": 0.08321399999999812,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 4.2288557213931306e-05,
+      "run_frac": 0.007726981036844936,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 2002.11023,
+      "t_sent": 2002.143997,
+      "lag_ms": 33.71999999991749,
+      "frames": 4,
+      "t_latest_frame_in": 2002.10123,
+      "window_s": 0.08352700000000368,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00043207585571130783,
+      "run_frac": 0.010436984448142056,
+      "states": {
+       "S": 1
+      },
+      "samples": 3,
+      "class": "idle"
+     },
+     {
+      "t_due": 2002.162412,
+      "t_sent": 2002.195428,
+      "lag_ms": 33.016000000103304,
+      "frames": 1,
+      "t_latest_frame_in": 2002.153412,
+      "window_s": 0.051383999999870866,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00027843297524591225,
+      "run_frac": 0.005764284602225292,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 2023.121784,
+      "t_sent": 2023.151055,
+      "lag_ms": 29.271000000122513,
+      "frames": 1,
+      "t_latest_frame_in": 2023.112784,
+      "window_s": 0.035182999999960884,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00038001307449662806,
+      "run_frac": 0.005960463860393746,
+      "states": {
+       "R": 4,
+       "S": 2
+      },
+      "samples": 8,
+      "class": "idle"
+     },
+     {
+      "t_due": 2055.457682,
+      "t_sent": 2055.483182,
+      "lag_ms": 25.499999999752617,
+      "frames": 1,
+      "t_latest_frame_in": 2055.448682,
+      "window_s": 0.026217000000087864,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261035": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 17.366000000052736
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2293.022721,
+      "t_sent": 2293.040087,
+      "lag_ms": 17.366000000052736,
+      "frames": 1,
+      "t_latest_frame_in": 2293.013721,
+      "window_s": 0.020244999999704305,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.004271276858545962,
+      "states": {
+       "R": 1
+      },
+      "samples": 3,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261036": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261037": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 2,
+      "class": "idle",
+      "lag_ms": 25.204999999928987
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2713.03672,
+      "t_sent": 2713.054334,
+      "lag_ms": 17.613999999881344,
+      "frames": 1,
+      "t_latest_frame_in": 2713.02772,
+      "window_s": 0.021013000000039028,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.007310617236934978,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 2714.006429,
+      "t_sent": 2714.031634,
+      "lag_ms": 25.204999999928987,
+      "frames": 1,
+      "t_latest_frame_in": 2713.997429,
+      "window_s": 0.03529399999979432,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.003911514705071811,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261038": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261039": {
+    "intervals": [
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "steal",
+      "lag_ms": 16.355000000217842
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 3222.758543,
+      "t_sent": 3222.774898,
+      "lag_ms": 16.355000000217842,
+      "frames": 1,
+      "t_latest_frame_in": 3222.749543,
+      "window_s": 0.019949999999880674,
+      "cpu": 1,
+      "steal_frac": 1.0025062656701567,
+      "wait_frac": 0.0,
+      "run_frac": 0.026929674185624735,
+      "states": {
+       "R": 3
+      },
+      "samples": 5,
+      "class": "steal"
+     }
+    ]
+   }
+  },
+  "5G-tele|detect|C0|ch2": {
+   "20261030": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261031": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 33.590999999902124
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1183.19271,
+      "t_sent": 1183.226301,
+      "lag_ms": 33.590999999902124,
+      "frames": 1,
+      "t_latest_frame_in": 1183.18371,
+      "window_s": 0.042699999999967986,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.006221522248248224,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261032": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 28.297999999964304
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1512.6406690000001,
+      "t_sent": 1512.668985,
+      "lag_ms": 28.297999999964304,
+      "frames": 2,
+      "t_latest_frame_in": 1512.631669,
+      "window_s": 0.03399800000011055,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0039012294840746133,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261033": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 2,
+      "class": "idle",
+      "lag_ms": 73.82499999995707
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1753.432131,
+      "t_sent": 1753.482382,
+      "lag_ms": 50.2509999999038,
+      "frames": 1,
+      "t_latest_frame_in": 1753.423131,
+      "window_s": 0.05537200000003395,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.005604113992628219,
+      "states": {
+       "R": 2
+      },
+      "samples": 4,
+      "class": "idle"
+     },
+     {
+      "t_due": 1753.491301,
+      "t_sent": 1753.565169,
+      "lag_ms": 73.82499999995707,
+      "frames": 4,
+      "t_latest_frame_in": 1753.482301,
+      "window_s": 0.08189700000002631,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.007434753409768421,
+      "states": {
+       "R": 3
+      },
+      "samples": 5,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261034": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 26.306999999875188
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 1812.692304,
+      "t_sent": 1812.711992,
+      "lag_ms": 19.688000000101965,
+      "frames": 1,
+      "t_latest_frame_in": 1812.683304,
+      "window_s": 0.025051000000075874,
+      "cpu": 1,
+      "steal_frac": 0.7983713224996777,
+      "wait_frac": 0.0,
+      "run_frac": 0.009270967226829132,
+      "states": {
+       "R": 4
+      },
+      "samples": 6,
+      "class": "steal"
+     },
+     {
+      "t_due": 1843.013001,
+      "t_sent": 1843.039327,
+      "lag_ms": 26.306999999875188,
+      "frames": 2,
+      "t_latest_frame_in": 1843.004001,
+      "window_s": 0.029336999999941327,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0005323311858755576,
+      "run_frac": 0.011157105361852085,
+      "states": {
+       "R": 2,
+       "S": 2
+      },
+      "samples": 6,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261035": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 1,
+      "class": "idle",
+      "lag_ms": 35.368000000304164
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2113.12166,
+      "t_sent": 2113.157028,
+      "lag_ms": 35.368000000304164,
+      "frames": 1,
+      "t_latest_frame_in": 2113.11266,
+      "window_s": 0.04034899999987829,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0038760316240915946,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261036": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": true,
+      "episodes": 3,
+      "class": "idle",
+      "lag_ms": 69.98299999988012
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 2448.578331,
+      "t_sent": 2448.648314,
+      "lag_ms": 69.98299999988012,
+      "frames": 1,
+      "t_latest_frame_in": 2448.569331,
+      "window_s": 0.12928099999999176,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00012699468599408303,
+      "run_frac": 0.006925990671483489,
+      "states": {
+       "R": 6
+      },
+      "samples": 8,
+      "class": "idle"
+     },
+     {
+      "t_due": 2448.656665,
+      "t_sent": 2448.706736,
+      "lag_ms": 49.967999999822496,
+      "frames": 7,
+      "t_latest_frame_in": 2448.647665,
+      "window_s": 0.05946499999981825,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.01505758008917408,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 2448.716038,
+      "t_sent": 2448.737703,
+      "lag_ms": 21.599000000165688,
+      "frames": 4,
+      "t_latest_frame_in": 2448.707038,
+      "window_s": 0.030386999999791442,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.0,
+      "states": {
+       "R": 1
+      },
+      "samples": 3,
+      "class": "idle"
+     }
+    ]
+   },
+   "20261037": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261038": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": []
+   },
+   "20261039": {
+    "intervals": [
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     },
+     {
+      "invalid": false,
+      "episodes": 0,
+      "class": null,
+      "lag_ms": null
+     }
+    ],
+    "episodes": [
+     {
+      "t_due": 3138.778887,
+      "t_sent": 3138.80577,
+      "lag_ms": 26.883000000012544,
+      "frames": 1,
+      "t_latest_frame_in": 3138.769887,
+      "window_s": 0.04014899999992849,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.0,
+      "run_frac": 0.009968442551513433,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 3138.814685,
+      "t_sent": 3138.860168,
+      "lag_ms": 45.394000000229425,
+      "frames": 4,
+      "t_latest_frame_in": 3138.805685,
+      "window_s": 0.05477199999995719,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00033268823486478933,
+      "run_frac": 0.008041134156144459,
+      "states": {
+       "R": 1,
+       "S": 1
+      },
+      "samples": 2,
+      "class": "idle"
+     },
+     {
+      "t_due": 3138.86924,
+      "t_sent": 3138.906057,
+      "lag_ms": 36.76600000018516,
+      "frames": 4,
+      "t_latest_frame_in": 3138.860272,
+      "window_s": 0.04556000000002314,
+      "cpu": 1,
+      "steal_frac": 0.8779631255482812,
+      "wait_frac": 0.0,
+      "run_frac": 0.005475175592622329,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "steal"
+     },
+     {
+      "t_due": 3138.915098,
+      "t_sent": 3138.961047,
+      "lag_ms": 45.922000000260596,
+      "frames": 2,
+      "t_latest_frame_in": 3138.906098,
+      "window_s": 0.054984000000331434,
+      "cpu": 1,
+      "steal_frac": 0.0,
+      "wait_frac": 0.00026593190746238655,
+      "run_frac": 0.004429543139795793,
+      "states": {
+       "S": 2
+      },
+      "samples": 2,
+      "class": "idle"
+     }
+    ]
+   }
+  }
+ },
+ "invalid_by_class": {
+  "5G-tele|detect|C2|ch3": {
+   "idle": 6
+  },
+  "5G-tele|detect|C2w|ch3": {
+   "idle": 7,
+   "steal": 1
+  },
+  "5G-tele|detect|C0|ch2": {
+   "idle": 6
+  }
+ }
+}

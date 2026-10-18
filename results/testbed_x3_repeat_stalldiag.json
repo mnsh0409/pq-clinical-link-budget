@@ -1,0 +1,433 @@
+{
+ "note": "x3_stalldiag.py -- post hoc diagnostic of the stall episodes of the controlled repeat (v1.9; NOT the rule filed before\nthe runs, which is testbed/x3_stallclass.py). The filed rule found no episode in which the emulator was busy; most\nwere \"idle\" (neither running nor waiting for a CPU nor blocked). This script asks whether the monitor itself, which runs\non the other vCPU (hostmon.py, a sample every 5 ms), missed samples during each episode: if both vCPUs stall together,\nthe cause is outside the guest (the virtual machine as a whole was not running), which the steal counter, kept in\n10 ms jiffies, records only in part. It also reports the emulator's state letters and steal in an extended window.\nOutput: results/testbed_x3_repeat_stalldiag.json        usage: python3 x3_stalldiag.py",
+ "gap_threshold_ms": 15.0,
+ "monitor_samples": 493849,
+ "monitor_gap_median_ms": 4.9980000003415626,
+ "monitor_gaps_over_threshold": 58,
+ "monitor_gaps_over_threshold_in_episodes": 29,
+ "episodes": 35,
+ "episodes_with_monitor_gap": 28,
+ "episodes_with_steal": 15,
+ "rows": [
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261030,
+   "lag_ms": 33.73799999998573,
+   "class": "idle",
+   "monitor_max_gap_ms": 5.048999999985426,
+   "R_share": 0.875,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261030,
+   "lag_ms": 28.464999999997417,
+   "class": "idle",
+   "monitor_max_gap_ms": 5.086000000005697,
+   "R_share": 0.7142857142857143,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261031,
+   "lag_ms": 45.199999999809734,
+   "class": "idle",
+   "monitor_max_gap_ms": 27.180999999927735,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261031,
+   "lag_ms": 32.850999999951455,
+   "class": "idle",
+   "monitor_max_gap_ms": 37.755999999944834,
+   "R_share": 0.75,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261033,
+   "lag_ms": 45.89199999988159,
+   "class": "idle",
+   "monitor_max_gap_ms": 37.11799999996401,
+   "R_share": 0.25,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261035,
+   "lag_ms": 23.09500000002663,
+   "class": "steal",
+   "monitor_max_gap_ms": 36.908000000039465,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    10,
+    50
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261037,
+   "lag_ms": 43.823999999873195,
+   "class": "idle",
+   "monitor_max_gap_ms": 33.906000000115455,
+   "R_share": 0.2,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261039,
+   "lag_ms": 24.15500000007887,
+   "class": "idle",
+   "monitor_max_gap_ms": 8.346999999957916,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2|ch3",
+   "seed": 20261039,
+   "lag_ms": 37.42599999988306,
+   "class": "idle",
+   "monitor_max_gap_ms": 35.02399999979389,
+   "R_share": 0.3333333333333333,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261033,
+   "lag_ms": 104.57900000007248,
+   "class": "idle",
+   "monitor_max_gap_ms": 65.01000000002932,
+   "R_share": 0.8571428571428571,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261033,
+   "lag_ms": 24.284999999978027,
+   "class": "idle",
+   "monitor_max_gap_ms": 24.33100000007471,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 75.45000000006075,
+   "class": "idle",
+   "monitor_max_gap_ms": 63.93600000001243,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 31.576999999984764,
+   "class": "idle",
+   "monitor_max_gap_ms": 83.21399999999812,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 33.71999999991749,
+   "class": "idle",
+   "monitor_max_gap_ms": 83.21399999999812,
+   "R_share": 0.3333333333333333,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 33.016000000103304,
+   "class": "idle",
+   "monitor_max_gap_ms": 51.383999999870866,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 29.271000000122513,
+   "class": "idle",
+   "monitor_max_gap_ms": 5.184000000099331,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261034,
+   "lag_ms": 25.499999999752617,
+   "class": "idle",
+   "monitor_max_gap_ms": 26.217000000087864,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261035,
+   "lag_ms": 17.366000000052736,
+   "class": "idle",
+   "monitor_max_gap_ms": 15.24699999981749,
+   "R_share": 0.6666666666666666,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261037,
+   "lag_ms": 17.613999999881344,
+   "class": "idle",
+   "monitor_max_gap_ms": 21.01300000003903,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261037,
+   "lag_ms": 25.204999999928987,
+   "class": "idle",
+   "monitor_max_gap_ms": 35.29399999979432,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C2w|ch3",
+   "seed": 20261039,
+   "lag_ms": 16.355000000217842,
+   "class": "steal",
+   "monitor_max_gap_ms": 5.041000000346685,
+   "R_share": 0.8,
+   "steal_ms_extended": [
+    0,
+    20
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261031,
+   "lag_ms": 33.590999999902124,
+   "class": "idle",
+   "monitor_max_gap_ms": 42.699999999967986,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    10
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261032,
+   "lag_ms": 28.297999999964304,
+   "class": "idle",
+   "monitor_max_gap_ms": 33.99800000011055,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    10,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261033,
+   "lag_ms": 50.2509999999038,
+   "class": "idle",
+   "monitor_max_gap_ms": 50.12899999996989,
+   "R_share": 0.75,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261033,
+   "lag_ms": 73.82499999995707,
+   "class": "idle",
+   "monitor_max_gap_ms": 71.56899999995403,
+   "R_share": 0.6,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261034,
+   "lag_ms": 19.688000000101965,
+   "class": "steal",
+   "monitor_max_gap_ms": 5.121000000144704,
+   "R_share": 0.8333333333333334,
+   "steal_ms_extended": [
+    0,
+    20
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261034,
+   "lag_ms": 26.306999999875188,
+   "class": "idle",
+   "monitor_max_gap_ms": 9.221999999908803,
+   "R_share": 0.3333333333333333,
+   "steal_ms_extended": [
+    10,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261035,
+   "lag_ms": 35.368000000304164,
+   "class": "idle",
+   "monitor_max_gap_ms": 40.34899999987829,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261036,
+   "lag_ms": 69.98299999988012,
+   "class": "idle",
+   "monitor_max_gap_ms": 59.46499999981825,
+   "R_share": 0.875,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261036,
+   "lag_ms": 49.967999999822496,
+   "class": "idle",
+   "monitor_max_gap_ms": 59.46499999981825,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261036,
+   "lag_ms": 21.599000000165688,
+   "class": "idle",
+   "monitor_max_gap_ms": 30.005000000073778,
+   "R_share": 0.6666666666666666,
+   "steal_ms_extended": [
+    0,
+    0
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261039,
+   "lag_ms": 26.883000000012544,
+   "class": "idle",
+   "monitor_max_gap_ms": 40.14899999992849,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    40
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261039,
+   "lag_ms": 45.394000000229425,
+   "class": "idle",
+   "monitor_max_gap_ms": 54.77199999995719,
+   "R_share": 0.5,
+   "steal_ms_extended": [
+    0,
+    40
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261039,
+   "lag_ms": 36.76600000018516,
+   "class": "steal",
+   "monitor_max_gap_ms": 45.56000000002314,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    40
+   ]
+  },
+  {
+   "cell": "5G-tele|detect|C0|ch2",
+   "seed": 20261039,
+   "lag_ms": 45.922000000260596,
+   "class": "idle",
+   "monitor_max_gap_ms": 54.984000000331434,
+   "R_share": 0.0,
+   "steal_ms_extended": [
+    0,
+    40
+   ]
+  }
+ ]
+}

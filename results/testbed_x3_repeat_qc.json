@@ -1,0 +1,2051 @@
+{
+ "stall_ms": 15.0,
+ "cells": {
+  "5G-tele|detect|C2|ch3": {
+   "20261030": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     10747.11228083197,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     28.464999999997417,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     94.87793446737669,
+     40.304280831946926,
+     100.23446282878012,
+     53.541108289437034,
+     99.07062956938262,
+     90.09562180744979,
+     42.654123659417564
+    ],
+    "drops_in_schedule": 29,
+    "drops": 94,
+    "client_start_after_origin_ms": 30.443000023410605
+   },
+   "20261031": {
+    "stall": [
+     false,
+     false,
+     true,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     8667.471718588558,
+     121.81981344201631,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     45.199999999809734,
+     32.850999999951455,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     94.32973266325462,
+     42.43563357272251,
+     94.15771858857624,
+     47.18681344206743,
+     56.482022695035994,
+     94.27242162519178,
+     98.37135078737447
+    ],
+    "drops_in_schedule": 28,
+    "drops": 92,
+    "client_start_after_origin_ms": 18.090000056872668
+   },
+   "20261032": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     46.54655410081432,
+     90.62377400891819,
+     97.30155287547859,
+     39.26891549076572,
+     45.28671519869931,
+     97.10441007541704,
+     44.82395889090185
+    ],
+    "drops_in_schedule": 29,
+    "drops": 91,
+    "client_start_after_origin_ms": 11.623000062400024
+   },
+   "20261033": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     3021.693217065149
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     45.89199999988159
+    ],
+    "reconnect_syn_ms_after_onset": [
+     87.9600503619713,
+     98.58700001200305,
+     99.33266914276828,
+     47.545927001465316,
+     98.19150630460172,
+     47.41048468281406,
+     92.62521706500593
+    ],
+    "drops_in_schedule": 32,
+    "drops": 95,
+    "client_start_after_origin_ms": 18.71900005335192
+   },
+   "20261034": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     93.67841986340864,
+     95.16997109312797,
+     88.85586246651656,
+     45.225177799238736,
+     102.37600317259421,
+     55.066787914938686,
+     97.85306673188643
+    ],
+    "drops_in_schedule": 32,
+    "drops": 95,
+    "client_start_after_origin_ms": 17.000000023244866
+   },
+   "20261035": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     0,
+     1,
+     1,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     42.35598442937771,
+     47.48204085672114,
+     94.85233503164636,
+     99.00728977208928,
+     90.0957608587305,
+     91.34682938065453,
+     38.50788344971079
+    ],
+    "drops_in_schedule": 32,
+    "drops": 93,
+    "client_start_after_origin_ms": 7.60899946135396
+   },
+   "20261036": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     87.28046196029027,
+     42.17470335515827,
+     51.12857020185402,
+     40.148898242478026,
+     86.66425400269873,
+     87.28818420831885,
+     44.72014441989813
+    ],
+    "drops_in_schedule": 27,
+    "drops": 91,
+    "client_start_after_origin_ms": 15.912999681404472
+   },
+   "20261037": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     410.7511625797997
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     43.823999999873195
+    ],
+    "reconnect_syn_ms_after_onset": [
+     100.41234577829528,
+     91.68855164307388,
+     53.11342914865236,
+     97.66797118572867,
+     94.59704542678082,
+     44.9456748965531,
+     114.17916258005789
+    ],
+    "drops_in_schedule": 32,
+    "drops": 95,
+    "client_start_after_origin_ms": 15.999999799532816
+   },
+   "20261038": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     40.73975881328806,
+     92.663223629188,
+     85.21728090227043,
+     90.40577059613497,
+     97.21229213619154,
+     50.91509683234108,
+     88.73427073012863
+    ],
+    "drops_in_schedule": 32,
+    "drops": 94,
+    "client_start_after_origin_ms": 15.586999506012944
+   },
+   "20261039": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     1,
+     2,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     1086.2468696868746,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     37.42599999988306,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     95.38614216717178,
+     97.46145358167269,
+     44.43786968658969,
+     99.27969729869801,
+     155.02507755991246,
+     52.862981210182625,
+     99.6286662766579
+    ],
+    "drops_in_schedule": 33,
+    "drops": 95,
+    "client_start_after_origin_ms": 17.99999979994027
+   }
+  },
+  "5G-tele|detect|C2w|ch3": {
+   "20261030": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     100.24693446723631,
+     46.928280831707525,
+     89.58646282860627,
+     44.02910828923723,
+     104.36862956919413,
+     95.46662180719068,
+     48.48712365924257
+    ],
+    "drops_in_schedule": 28,
+    "drops": 93,
+    "client_start_after_origin_ms": 18.00000002322122
+   },
+   "20261031": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     0,
+     1,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     88.35073266550353,
+     50.232633574978536,
+     83.99571859058597,
+     37.912813444108906,
+     47.88602269718467,
+     88.12442162729894,
+     92.56835078963377
+    ],
+    "drops_in_schedule": 29,
+    "drops": 92,
+    "client_start_after_origin_ms": 9.352000058925114
+   },
+   "20261032": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     46.86355409398857,
+     90.45277400196028,
+     97.17255286864201,
+     52.89391548376443,
+     95.21771519189315,
+     97.06041006847954,
+     44.533958883903324
+    ],
+    "drops_in_schedule": 29,
+    "drops": 92,
+    "client_start_after_origin_ms": 11.97300005537727
+   },
+   "20261033": {
+    "stall": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     true,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     7441.158050331751,
+     null,
+     null,
+     5658.254926971495,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     104.57900000007248,
+     0.0,
+     0.0,
+     24.284999999978027,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     103.63805033171047,
+     98.11599998192833,
+     98.87566911265822,
+     45.988926971404,
+     97.80250627454734,
+     46.85248465261793,
+     92.26621703487581
+    ],
+    "drops_in_schedule": 32,
+    "drops": 94,
+    "client_start_after_origin_ms": 18.00000002322122
+   },
+   "20261034": {
+    "stall": [
+     false,
+     true,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     true,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     true,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     6130.170971093094,
+     null,
+     6739.517177799144,
+     null,
+     null,
+     9461.38406673208
+    ],
+    "stall_max_ms": [
+     0.0,
+     75.45000000006075,
+     0.0,
+     29.271000000122513,
+     0.0,
+     0.0,
+     25.499999999752617
+    ],
+    "reconnect_syn_ms_after_onset": [
+     100.7584198632685,
+     98.14197109312772,
+     91.83986246625864,
+     48.390177799319645,
+     105.29000317251302,
+     91.96378791466486,
+     100.88906673195197
+    ],
+    "drops_in_schedule": 34,
+    "drops": 95,
+    "client_start_after_origin_ms": 20.000000023173925
+   },
+   "20261035": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     -4.187116231605614
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     17.366000000052736
+    ],
+    "reconnect_syn_ms_after_onset": [
+     36.827984748470044,
+     92.76704117564805,
+     89.9553353506235,
+     94.00829009109657,
+     100.93476117754108,
+     102.31782969958658,
+     66.95488376863068
+    ],
+    "drops_in_schedule": 32,
+    "drops": 95,
+    "client_start_after_origin_ms": 17.85699978017874
+   },
+   "20261036": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     92.21346176082079,
+     44.228703156022675,
+     37.543570002526394,
+     41.81889804340244,
+     91.6872538032294,
+     92.30318400886972,
+     48.03114422065846
+    ],
+    "drops_in_schedule": 29,
+    "drops": 92,
+    "client_start_after_origin_ms": 18.39699948186535
+   },
+   "20261037": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     true
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     7500.120162383155
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     25.204999999928987
+    ],
+    "reconnect_syn_ms_after_onset": [
+     51.83934558181136,
+     94.39455144638487,
+     89.1064289521637,
+     100.25097098878177,
+     97.2590452302029,
+     46.93367470008525,
+     92.58916238331949
+    ],
+    "drops_in_schedule": 32,
+    "drops": 94,
+    "client_start_after_origin_ms": 17.16699960297774
+   },
+   "20261038": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     39.926758718138444,
+     93.88722353378398,
+     86.32628080658833,
+     91.39577050063963,
+     98.36429204051456,
+     52.02309673677519,
+     89.80227063466373
+    ],
+    "drops_in_schedule": 31,
+    "drops": 95,
+    "client_start_after_origin_ms": 15.502999410273333
+   },
+   "20261039": {
+    "stall": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     true,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     1,
+     2,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     496.393142166653,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     16.355000000217842,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     95.05514216652955,
+     97.211453581167,
+     43.79286968651286,
+     98.93669729854082,
+     154.80307755979084,
+     52.726981210071244,
+     99.23666627628336
+    ],
+    "drops_in_schedule": 33,
+    "drops": 95,
+    "client_start_after_origin_ms": 17.99999979994027
+   }
+  },
+  "5G-tele|detect|C0|ch2": {
+   "20261030": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     92.22893449179992,
+     40.12928085637668,
+     97.63846285318323,
+     36.24310831378352,
+     96.42962959378565,
+     87.60462183181517,
+     40.937123683761456
+    ],
+    "drops_in_schedule": 31,
+    "drops": 93,
+    "client_start_after_origin_ms": 10.359000047742484
+   },
+   "20261031": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     1,
+     0,
+     0,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     1129.553718589932,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     33.590999999902124,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     94.3157326646542,
+     42.1136335742176,
+     94.12571859002128,
+     47.53581344334634,
+     41.95802269646265,
+     45.62142162671989,
+     98.4103507889813
+    ],
+    "drops_in_schedule": 28,
+    "drops": 91,
+    "client_start_after_origin_ms": 18.602000058308477
+   },
+   "20261032": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     0,
+     0,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     364.7475528621271,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     28.297999999964304,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     50.48855408722375,
+     90.52877399540193,
+     98.26755286212574,
+     38.432915477187635,
+     46.742715185018824,
+     97.17441006182526,
+     51.605958877416924
+    ],
+    "drops_in_schedule": 28,
+    "drops": 93,
+    "client_start_after_origin_ms": 12.693000048784597
+   },
+   "20261033": {
+    "stall": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     true,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     0,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     5117.3090000115735,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     73.82499999995707,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     87.88105036137495,
+     98.41400001164402,
+     99.24766914241445,
+     46.55692700112013,
+     98.09550630416197,
+     47.54948468234943,
+     92.66221706457145
+    ],
+    "drops_in_schedule": 32,
+    "drops": 94,
+    "client_start_after_origin_ms": 18.903000052887364
+   },
+   "20261034": {
+    "stall": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     true,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     1,
+     0,
+     1,
+     1,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     1894.4718625075438,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     26.306999999875188,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     99.55641990450204,
+     97.1099711343868,
+     90.7128625074165,
+     48.48817784045423,
+     104.17900321385787,
+     90.80578795601468,
+     99.72306677309462
+    ],
+    "drops_in_schedule": 34,
+    "drops": 96,
+    "client_start_after_origin_ms": 19.795000064505075
+   },
+   "20261035": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     true,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     2,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     4415.103760958573,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     35.368000000304164,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     37.59198452962664,
+     94.43604095667979,
+     91.57433513200885,
+     95.70628987239616,
+     102.66176095865376,
+     139.98582948079275,
+     49.287883549823164
+    ],
+    "drops_in_schedule": 33,
+    "drops": 94,
+    "client_start_after_origin_ms": 18.526999561345292
+   },
+   "20261036": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     true,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     0,
+     0,
+     0,
+     1,
+     1,
+     0
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     1312.4181841071731,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     69.98299999988012,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     87.36746185923039,
+     40.9167032539699,
+     50.56857010049498,
+     38.05189814147525,
+     86.7062539014114,
+     87.33318410713764,
+     46.607144318841165
+    ],
+    "drops_in_schedule": 27,
+    "drops": 91,
+    "client_start_after_origin_ms": 14.297999579866882
+   },
+   "20261037": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     51.747345528838196,
+     92.32055139364093,
+     87.06142889923285,
+     98.20997093584083,
+     95.28604517709027,
+     46.25467464711619,
+     90.56116233023204
+    ],
+    "drops_in_schedule": 32,
+    "drops": 93,
+    "client_start_after_origin_ms": 16.939999549776985
+   },
+   "20261038": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     0,
+     1,
+     1,
+     1,
+     1,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     42.070759107446065,
+     97.91322392311486,
+     90.5232811960559,
+     95.66077089039027,
+     102.50829243022963,
+     37.914097126304114,
+     94.06627102407583
+    ],
+    "drops_in_schedule": 32,
+    "drops": 95,
+    "client_start_after_origin_ms": 17.99999979994027
+   },
+   "20261039": {
+    "stall": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "false": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "invalid": [
+     false,
+     false,
+     false,
+     false,
+     false,
+     false,
+     false
+    ],
+    "syn_dropped_in_interruption": [
+     1,
+     1,
+     0,
+     1,
+     2,
+     0,
+     1
+    ],
+    "stall_first_ms_after_onset": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "stall_max_ms": [
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "reconnect_syn_ms_after_onset": [
+     96.0161419020551,
+     98.1074533165156,
+     44.983869421685085,
+     99.92869703364704,
+     155.63807729495238,
+     53.721980945283576,
+     100.22966601127337
+    ],
+    "drops_in_schedule": 33,
+    "drops": 95,
+    "client_start_after_origin_ms": 18.791999535096693
+   }
+  }
+ }
+}

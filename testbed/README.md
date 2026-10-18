@@ -176,7 +176,9 @@ connection requests dropped in an interruption and loss declarations made while 
 `models/testbed_tables.py` uses, for the paired difference from `detect` C0, the windows valid in both cells (22 to
 29 of 35 per comparison). The `keep` cells lost 7 and 8 of their 35 windows, the other cells 2 to 7; the all-window
 check above shows how much the exclusion matters. Running the emulator
-under `chrt -f 50` with Python's collector disabled did not remove the stalls in a test.
+under `chrt -f 50` with Python's collector disabled did not remove the stalls in a test, and neither did the
+controlled repeat below (the emulator on its own CPU at real-time priority): 20 of 210 windows (9.5 %, against
+14.7 % in the development and 5.7 % in the held-out runs).
 
 ## X3 held-out block and the model of the late records (v1.8)
 
@@ -231,11 +233,92 @@ python3 ../models/fig_model.py           # Fig. 1 of the paper (paper/figs/fig3_
   and restores the kernel default for every other case; after an interrupted run, `python3 -c "from run import
   set_iw; set_iw('C0')"` restores it by hand.
 
+## X3 controlled repeat of the 18 ms comparison (v1.9)
+
+In the held-out block the window's 18 ms results rested on the host-stall exclusion (the window runs held 9 of the
+12 excluded windows, and analysis jobs ran on the same host). The repeat asks whether the window's benefit holds
+with every interval kept, on a host whose scheduling is controlled and recorded. It was filed before it was run:
+
+```bash
+python3 ../models/x3_repeat_prereg.py    # predictions, plan, stall attribution rule and run order
+                                         #   -> results/testbed_x3_repeat_prereg.json, testbed_x3_repeat_order.json
+sudo ./x3_repeat.sh 10 80                # ten new seeds (20261030 to 20261039), 5G-tele only, about 41 minutes
+X3_RESULTS=testbed_x3_repeat.json python3 x3_qc.py           # the unchanged 15 ms rule -> testbed_x3_repeat_qc.json
+X3_RESULTS=testbed_x3_repeat.json python3 x3_stallclass.py   # the filed attribution -> testbed_x3_repeat_stallclass.json
+python3 x3_stalldiag.py                  # post hoc, not filed: did the monitor stall too? -> testbed_x3_repeat_stalldiag.json
+python3 ../models/testbed_tables.py      # results/testbed_summary.json x3_model.repeat (checks hashes and run order)
+python3 ../models/fig_model.py --repeat ../paper/figs-repeat   # Fig. 1 of v1.9c: the repeat's markers over all intervals
+python3 x3_attempts.py                   # post hoc: loss declarations and reconnection attempts against the model's timing
+```
+
+- Host control (`x3.py` options, all off by default, so the earlier blocks run exactly as before):
+  `X3_EMU_CPU=1 X3_EMU_RT=50` runs the emulator on CPU 1 under SCHED_FIFO priority 50 (`taskset`, `chrt`);
+  `X3_EP_CPU=0` pins client, server and monitor to CPU 0; `X3_HOSTMON=1` starts `hostmon.py`, which samples every
+  5 ms the emulator's on-CPU time and run-queue wait (`/proc/PID/schedstat`), its state and CPU, and both CPUs'
+  jiffies including steal (log `x3_mon_*.log` next to the emulator log); `X3_ORDER=interleave` runs the cells seed by
+  seed in the order of `X3_ORDER_FILE`. `x3_repeat.sh` moves every movable process to CPU 0 for the block and
+  restores the affinities afterwards; per-CPU kernel threads and interrupt work stay where they are. Its output,
+  `results/testbed_x3_repeat_run.log`, holds the affinities, the load and both CPUs' `/proc/stat` lines at the start
+  and end (45 s of softirq and 3.7 s of steal time on CPU 1 over the block). During the block only text files
+  were edited on the host; no build or analysis output was written. Each run stores `host_control` and `t_start_utc`.
+- The prediction file was written at 2026-10-18T00:57:38+00:00 (UTC); its SHA-256 is
+  `1bd52b0d9b5407fd1cca6c61a1a04c061fd76a6f971ee5c37fc1664647d47d07`, that of the order file
+  `9d7e26569cdf566a454451d2cf0783b67b4c2e91cdb727e65c7882b4fa29c442`. Copies of both were on a second machine at 00:57:58 UTC,
+  and the block started at 00:58:33 UTC. The run order was drawn with seed 20261040. Filed plan
+  (`analysis_plan`): the exclusion rule unchanged; the three contrasts, paired by seed and interruption, over the
+  windows valid in both cells and over all 70; Q1, the window's benefit counts as robust if the all-interval
+  C2w minus C2 + int. interval lies below 0; Q2, its remaining penalty is the all-interval C2w minus C0 interval;
+  Q3, exclusions per cell, each attributed by the filed rule (`stall_classification`).
+- Outcome (`x3_model.repeat.contrasts`; late records per interruption, 95 % two-stage bootstrap intervals):
+
+  | Contrast at 18 ms | all 70 windows | predicted | windows valid in both (n) | predicted |
+  |---|---|---:|---|---:|
+  | C2 + int. minus C0 | 2.20 [1.71, 2.66] | 1.82 | 2.22 [1.81, 2.66] (59) | 1.81 |
+  | C2w minus C2 + int. | -1.96 [-2.50, -1.36] | -1.82 | -2.07 [-2.61, -1.64] (57) | -1.84 |
+  | C2w minus C0 | 0.24 [-0.27, 0.84] | 0.00 | 0.21 [-0.02, 0.44] (56) | 0.00 |
+
+  Every bootstrap interval, with and without the exclusions, contains its prediction, and so do the t-intervals over
+  the ten run means (`run_t_ci95*`) except those of C2 + int. minus C0 ([1.90, 2.58] and [1.88, 2.52], against 1.81 and
+  1.82 predicted: the model's underestimate of the chain, below). Q1: the benefit is robust. Q2: no remaining
+  penalty is detectable (equivalence not tested).
+- Exclusions (Q3): 20 of 210 windows, 6 for C0, 6 for C2 + int. and 8 for the window, holding
+  28 late records each; their first stall came from 4 ms before to 10.7 s after the onset. The filed rule
+  attributed 19 of the excluded windows to "idle" stalls (the emulator neither ran, nor waited for a CPU, nor was
+  blocked) and 1 to "steal"; over all 35 stall episodes, 31 were "idle" and 4 "steal". No episode was
+  "busy", the only class that could come from the emulator's own processing and so from the condition.
+- Post hoc (`x3_stalldiag.py`, written after the outcome was known, so not a filed test): the monitor on CPU 0
+  took 493,849 samples with a median spacing of 5.0 ms; 58 of its gaps exceeded 15 ms, 29 of them
+  during an emulator stall, and 28 of the 35 episodes held such a gap. Both vCPUs stopping together points
+  to the virtual machine as a whole being paused, which the steal counter (10 ms jiffies) records only in part (it
+  rose between two samples before and 0.1 s after 15 of them). On this cloud host the stalls could be recorded, not
+  removed.
+- Weak points, also in the paper: the model again underestimates C2 + int. at 18 ms (3.94 observed against
+  3.48 per valid window; t-interval of observed minus model over the ten runs [0.10, 0.83]) and the
+  window (1.85 against 1.62, [0.02, 0.50]); the window's excess over C0 (0.21 and 0.24) may hide a
+  residual of about 0.2 records. One host, one profile, ten runs per condition.
+- Post hoc timing check (`x3_attempts.py`, written after the repeat and not filed; output
+  `results/testbed_x3_attempt_timing.json`): the client declared the loss about when the model says (condition means
+  42.5 to 45.8 ms after the onset at 18 ms, 43.5 to 43.6 ms in the repeat; model 43.5 ms), so the 18 ms misses are not a
+  detection delay.
+  Failed attempts, however, lasted 49.5 to 51.1 ms at 18 ms (tau = 44.5 ms) and 41.8 to 43.1 ms at 10 ms (tau = 36.5 ms), consistent
+  with the socket timeout being rounded up to the kernel's 4 ms tick (`CONFIG_HZ=250` on this host), and the first
+  attempt started about 2 ms after the declaration. With these delays measured on the development runs
+  (5.7 ms per failed attempt, 2.0 ms first), the model matches the C2 + int. cell at 18 ms (held-out 4.26 observed,
+  4.31 modeled; repeat 3.94, 3.93), but it then overpredicts the chain's paired penalty (2.55 against 2.30;
+  repeat 2.38 against 2.22) and the window's excess over C0 (0.68 and 0.55 against 0.21 and 0.21). The attempt
+  timing explains the chain condition's miss, not the contrasts: at 18 ms the 16 ms steps of the model sit within a
+  few milliseconds of all three conditions. Not in the paper (space); a J-BHI item.
+
 ## Reproducibility notes
 
 - With freshly generated keys, ML-DSA-65 byte counts reproduce exactly. ECDSA and Falcon signatures vary in
   length, so C0, C1 and C3 flights can differ by a few bytes (a rerun gave 885 vs 886 B for the C0 server
   flight and 3,910 vs 3,911 B for C3).
+- v1.9 (Oct 18, 2026) added the controlled repeat above (`hostmon.py`, `x3_stallclass.py`, `x3_stalldiag.py`,
+  `x3_repeat.sh`, `models/x3_repeat_prereg.py`; options in `x3.py`, `x3_qc.py` split into reusable functions with
+  unchanged output) and the post hoc timing check `x3_attempts.py`; no earlier cell was rerun. Every block ran on a
+  two-vCPU cloud virtual machine (KVM); it was restarted before the repeat (booted 00:44:52 UTC on 18 Oct), so the
+  blocks need not have run on the same physical host.
 - v1.8 (Oct 18, 2026) added the C2w case (X12, timeline) and the held-out X3 block above; the development cells
   were not rerun.
 - v1.7 of the paper (Oct 17, 2026) changed only the analysis of X3 (paired difference from `detect` C0 instead of

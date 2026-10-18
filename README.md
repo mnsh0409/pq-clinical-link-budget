@@ -87,34 +87,64 @@ same interruption, averaged over the n windows valid in both, with a 95 % interv
 | Lost, C3m + intermediates | 0.39 / 1.38 | −0.04 [−0.48, 0.43] (23) | −0.07 [−0.44, 0.24] (27) |
 | Resumed (psk_dhe_ke), C2 + intermediates | 0.42 / 1.42 | 0.00 [−0.42, 0.48] (24) | −0.10 [−0.37, 0.14] (29) |
 
-**A model of the late records, tested on held-out runs** (Sec. V and Fig. 1 of the paper; `models/x3_model.py`).
-Under the recovery policy above, a lost session keeps every record within 100 ms only if its cold
-connect-to-first-record time H (median, Table III) is at most 100 ms − (k + 1) τ, with τ = RTT + 26.5 ms the timeout
-once the RTT variation is small (0.5 ms of host turnaround assumed) and k the failed reconnection attempts: 63.5 and 55.5 ms at 10 and 18 ms RTT without a failed attempt, 27.0 and 11.0 ms
-after one; one more record is late per 16 ms beyond the limit. The model has no parameter fitted to the telemetry
-runs, but its form, the acknowledgment rule included, was fixed after seeing the development runs above (mean
-absolute error 0.50 late records over their 363 lost-session windows). Its prediction for every interruption of five new seeds was written to
-`results/testbed_x3_heldout_prereg.json` (SHA-256 `7fc547475ab5a242...`, written 2026-10-17 18:14:24 UTC) before those runs started; on
-the 198 of 210 held-out windows the unchanged exclusion rule kept, its mean absolute error was 0.58 per window, and every
-paired 95 % interval (and every t-interval over the five run means) contains its prediction:
+**A model of the late records, tested on held-out runs and a controlled repeat** (Sec. V and Fig. 1 of the paper;
+`models/x3_model.py`). Take the onset of an interruption of length D as time 0 and let g, uniform on
+[−RTT/2, 16 ms − RTT/2), be the generation time of the oldest record the interruption leaves unacknowledged.
+Under the recovery policy above the loss is declared at t_d = g + τ, with τ = RTT + 26.5 ms the timeout once the RTT
+variation is small (0.5 ms of host turnaround assumed); attempts repeat every τ until one starts after the link
+returns, so k = max(0, ⌈(D − t_d)/τ⌉) fail, and the backlog reaches the server at t₁ = t_d + kτ + H, with H the cold
+connect-to-first-record time (median, Table III). The first undelivered record was generated at g₁ = g, or at
+g + 16 ms if g < 0 (that record arrived; only its acknowledgment was lost), so N = max(0, ⌊(t₁ − g₁ − 100 ms)/16 ms⌋ + 1)
+records are late; the prediction averages N over g, with k and g₁ at the same g, and neglects the backlog's drain
+time. No record is late while H < 100 ms − (k + 1)τ: 63.5 and 55.5 ms at 10 and 18 ms RTT without a failed
+attempt, 27.0 and 11.0 ms after one. The model has no parameter fitted to the telemetry runs, but its form,
+the acknowledgment rule included, was fixed after seeing the development runs above (mean absolute error 0.50
+late records over their 363 lost-session windows). Its prediction for every interruption of five new seeds was
+written to `results/testbed_x3_heldout_prereg.json` (SHA-256 `7fc547475ab5a242...`, written 2026-10-17 18:14:24 UTC)
+before those runs started; on the 198 of 210 held-out windows that passed the unchanged host-stall rule, its mean
+absolute error was 0.58 per window, and every paired 95 % interval (and every t-interval over the five run means)
+contains its prediction:
 
-| Held-out, lost session | Difference from lost C0, 10 ms [95 % CI] (n) | predicted | 18 ms [95 % CI] (n) | predicted |
+| Held-out, lost session (windows passing the stall rule) | Difference from lost C0, 10 ms [95 % CI] (n) | predicted | 18 ms [95 % CI] (n) | predicted |
 |---|---|---:|---|---:|
 | C2 + intermediates | 0.82 [0.46, 1.20] (34) | 0.81 | 2.30 [1.74, 2.84] (33) | 1.88 |
 | C2 + intermediates, initial windows of 20 segments | 0.19 [−0.14, 0.49] (31) | 0.00 | 0.21 [−0.29, 0.87] (28) | 0.00 |
 
-With the window and the same keys and certificates, no chain penalty is detectable (upper bounds 0.49 and
-0.87; equivalence not tested); against the default window it changed the late records by −0.66 [−0.97, −0.35] and
-−2.18 [−2.78, −1.64] (n = 32 and 28; predicted −0.83 and −1.88). It does not remove the cost of the recovery policy: with
-it, as with C0, every late record falls in a window with a failed reconnection attempt. Weak points: the model
-underestimates C2 + intermediates at 18 ms by about half a record (development and held-out alike) and misses the
-0.22 of C2 with leaf certificates at 10 ms in the development runs (0 predicted); the window runs hold
-9 of the 12 excluded held-out windows, whose host stalls all came 0.7 to 8.3 s after the onset, after the
-reconnection, yet the 18 ms window results rest on that exclusion (with all windows: 1.54 [−0.06, 4.91] against C0, −0.86 [−2.34, 2.17] against the default window).
-The window's cost is a first burst of up to 20 segments on both endpoints, the device included, where RFC 6928
-allows 10.
+Over those windows, with the window and the same keys and certificates, no chain penalty is detectable (equivalence
+not tested); against the default window it changed the late records by −0.66 [−0.97, −0.35] and
+−2.18 [−2.78, −1.64] (n = 32 and 28; predicted −0.83 and −1.88). With every held-out window kept,
+the 18 ms window results were inconclusive (1.54 [−0.06, 4.91] against C0, −0.86 [−2.34, 2.17] against the
+default window): the window runs held 9 of the 12 excluded windows.
 
-<p align="center"><img src="docs/fig_model.png" width="560" alt="Expected late records per interruption against the cold handshake time, and model against measurement for the development and held-out runs"></p>
+**Controlled repeat** (`testbed/README.md`). The 18 ms comparison was repeated on ten new seeds with predictions,
+analysis plan and a stall-attribution rule filed first (`results/testbed_x3_repeat_prereg.json`, SHA-256
+`1bd52b0d9b5407fd...`, written 2026-10-18 00:57:38 UTC), the emulator on its own CPU at real-time priority, no other
+jobs running and the three conditions in a filed random order per seed:
+
+| Repeat, 18 ms RTT, lost session | All 70 windows [95 % CI] | predicted | Windows valid in both [95 % CI] (n) | predicted |
+|---|---|---:|---|---:|
+| C2 + intermediates minus C0 | 2.20 [1.71, 2.66] | 1.82 | 2.22 [1.81, 2.66] (59) | 1.81 |
+| Initial windows of 20 segments minus C2 + intermediates | −1.96 [−2.50, −1.36] | −1.82 | −2.07 [−2.61, −1.64] (57) | −1.84 |
+| Initial windows of 20 segments minus C0 | 0.24 [−0.27, 0.84] | 0.00 | 0.21 [−0.02, 0.44] (56) | 0.00 |
+
+With every window kept, the window's benefit held (the filed criterion Q1), and every bootstrap interval contains its
+prediction. The
+exclusion rule would have dropped 20 windows (C0 6, C2 + intermediates 6, window 8); the filed attribution rule found none in
+which the emulator ran for half the stall, and, in a post hoc check, the monitor on the other vCPU also stalled in
+28 of the 35 stall episodes (as if both vCPUs paused) and 2 of the other 7 showed steal time. Weak points: the model
+underestimates the chain's paired penalty at 18 ms by 0.42 records (0.49 on the development runs, 0.38 in the repeat; in
+the repeat the t-interval over the ten run means excludes the prediction), and the window's excess over C0 (0.21; repeat
+0.24; 0 predicted) may be real; it misses the 0.22 of C2 with leaf certificates at 10 ms in the development runs (0 predicted).
+Post hoc (`testbed/x3_attempts.py`), loss declarations came when the model says, but failed reconnection attempts
+lasted about 50 ms at 18 ms instead of τ (the socket timeout is rounded up to the kernel's 4 ms tick); that delay
+explains the chain condition's miss but, put into the model, overpredicts the contrasts (`testbed/README.md`). The window does not remove the cost of the recovery policy: with it, as with
+C0, every late record in a valid window falls in a window with a failed reconnection attempt. Its cost is a first
+burst of up to 20 segments on both endpoints, the device included, where RFC 6928 allows 10.
+
+<p align="center"><img src="docs/fig_model_repeat.png" width="560" alt="Expected late records per interruption against the cold handshake time, and model against measurement for the development, held-out and repeat runs"></p>
+<p align="center"><sub>Fig. 1 of the paper with the controlled repeat (v1.9c; dark-edged markers, over all its windows;
+development and held-out points over the windows the exclusion rule keeps); without the repeat:
+<code>docs/fig_model.png</code> (v1.9b).</sub></p>
 
 In short:
 
@@ -134,9 +164,12 @@ In short:
   policy, ML-DSA-65 chains with intermediates add 0.92 (10 ms) and 2.29 (18 ms) late records per interruption;
   C1, Falcon-512 server and CA certificates (C3m) and resumption differ from it by −0.12 to 0.00, with intervals
   that include zero (equivalence not tested). No record was lost in any condition.
-- A model of the late records, with predictions filed before held-out runs, predicted the chain's penalty, and a
-  20-segment initial window left none detectable; after one failed reconnection attempt at 18 ms RTT even a
-  classical reconnection leaves two or three records late, which only the recovery policy can avoid.
+- A model of the late records, with predictions filed before held-out runs, predicted the chain's penalty to within
+  half a record per interruption, erring low at 18 ms. A 20-segment initial window removed the flight stalls; on the
+  held-out windows passing the host-stall rule its excess over classical reconnection was not detectable, but with
+  every window kept its 18 ms benefit was inconclusive; a controlled 18 ms repeat that kept every window reproduced it
+  (−1.96 [−2.50, −1.36] late records against the default window). After one failed reconnection attempt at 18 ms RTT even a classical reconnection leaves two or three
+  records late, a cost the model assigns to the recovery policy rather than to the handshake.
 - In a public mobility dataset the handover interruption alone exceeds 20 ms in 13,971 of 13,975 fully
   timestamped U.S. events, independently of cryptography (the throughput-proxy and Irish trace statistics of
   earlier versions stay in `results/fig2_stats.json`).
@@ -168,8 +201,9 @@ python3 mobility_handshake_budget.py  # handshake cost per handover and session 
 python3 trace_profile.py              # profile of both datasets -> results/trace_profile.json
 python3 figures.py                    # handover statistics -> results/fig2_stats.json (and the airtime and CDF figures of earlier versions)
 python3 tables.py                     # Tables I and II -> paper/tables/
-python3 testbed_tables.py             # Tables III and IV, model and held-out scoring -> paper/tables/tab4_testbed.tex, tab5_session.tex, results/testbed_summary.json
-python3 fig_model.py                  # Fig. 1 (model) -> paper/figs/fig3_model.pdf
+python3 testbed_tables.py             # Tables III and IV, model, held-out and repeat scoring -> paper/tables/tab4_testbed.tex, tab5_session.tex, results/testbed_summary.json
+python3 fig_model.py                  # Fig. 1 (model) -> paper/figs/fig3_model.pdf (paper v1.9b)
+python3 fig_model.py --repeat ../paper/figs-repeat   # Fig. 1 with the controlled repeat (paper v1.9c)
 ```
 
 A rerun from a clean checkout (2026-10-16), with the two datasets fetched as `data/README.md` describes,
@@ -188,8 +222,9 @@ three means in `results/trace_profile.json` (summation order).
 | Table III (testbed) and testbed text | `models/testbed_tables.py` | `results/testbed_x12.json` (TCP, including the 20-segment initial window), `testbed_x4.json` (QUIC), `testbed_timeline.json` (TCP flight timeline) |
 | Table IV (session loss at a handover) | `models/testbed_tables.py` | `results/testbed_x3.json`, `results/testbed_x3_qc.json` (host-stall windows); held-out rows: `testbed_x3_heldout.json`, `testbed_x3_heldout_qc.json`, `testbed_x3_heldout_prereg.json` |
 | Fig. 1 (model of the late records) and its paragraph | `models/x3_model.py`, `models/fig_model.py`, `models/testbed_tables.py` | `results/testbed_summary.json` (`x3_model`); predictions filed by `models/x3_prereg.py` |
+| Controlled repeat (Sec. V and Fig. 1 of v1.9c) | `models/testbed_tables.py`, `models/fig_model.py --repeat` | `results/testbed_x3_repeat.json`, `testbed_x3_repeat_qc.json`, `testbed_x3_repeat_stallclass.json`, `testbed_x3_repeat_stalldiag.json` (post hoc); filed by `models/x3_repeat_prereg.py`: `testbed_x3_repeat_prereg.json`, `testbed_x3_repeat_order.json` |
 | Handover statistics (Sec. V) | `models/figures.py` | DATA-01 (DATA-02 only for statistics outside the paper) -> `results/fig2_stats.json` |
-| Testbed measurements | `testbed/x12.py`, `x4.py`, `x3.py`, `x3_qc.py`, `timeline.py` | ledger profiles; X3 also DATA-01 |
+| Testbed measurements | `testbed/x12.py`, `x4.py`, `x3.py`, `x3_qc.py`, `timeline.py`; repeat: `x3_repeat.sh`, `hostmon.py`, `x3_stallclass.py`, `x3_stalldiag.py`; post hoc timing: `x3_attempts.py` | ledger profiles; X3 also DATA-01 |
 
 Any input number can be traced to its quoted source: `sources/README.md` shows how.
 
@@ -200,9 +235,9 @@ sources/   parameter ledger (ledger.json) and the quoted evidence behind each en
 models/    all arithmetic: link budgets, mobility statistics, tables, figures
 results/   JSON outputs used in the paper
 testbed/   TLS 1.3 / QUIC testbed over a user-space link emulator (experiments X1 to X4)
-paper/     generated tables (LaTeX) and figures (PDF)
+paper/     generated tables (LaTeX) and figures (PDF; figs-repeat/: Fig. 1 with the controlled repeat)
 data/      instructions to fetch the two public datasets (nothing redistributed)
-docs/      README figure
+docs/      README figures
 ```
 
 ## Datasets
@@ -215,6 +250,9 @@ MMSys 2020; GPL-3.0) are analyzed and cited, not redistributed.
 - Airtime is a lower bound: no MAC contention, acknowledgments, retransmissions or scheduling.
 - The testbed checks the protocol and timing model, not a radio. The LTE-M and NB-IoT testbed profiles use an
   assumed 10 ms RTT, so those rows isolate serialization.
+- The testbed ran on two-vCPU cloud virtual machines (KVM). Host stalls (a frame delivered 15 ms or more late) hit
+  15 % of the development, 6 % of the held-out and 10 % of the repeat windows; a timing-only rule excludes them, and
+  the controlled repeat found none caused by the emulator's own processing.
 - Falcon-512 is the round-3 Falcon in oqs-provider 0.12.0 (experimental TLS code point); FN-DSA (FIPS 206) was
   not yet published when the experiments ran.
 - Session loss is modeled as a silent drop of the old connection, recovered by one detector and retry policy;

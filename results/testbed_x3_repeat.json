@@ -1,0 +1,3883 @@
+{
+ "setup": {
+  "profiles": {
+   "5G-hosp": {
+    "name": "5G-hosp",
+    "ul": 91000000.0,
+    "dl": 790000000.0,
+    "owd_ms": 5.0
+   },
+   "5G-tele": {
+    "name": "5G-tele",
+    "ul": 101000000.0,
+    "dl": 177000000.0,
+    "owd_ms": 9.0
+   }
+  },
+  "period_ms": 16.0,
+  "msg_B": 1000,
+  "deadline_ms": 100,
+  "duration_s": 80.0,
+  "runs": 10,
+  "outage_every_s": 10.0,
+  "outage_source": "NSA primary-cell T2 (HO+RCH), SIGCOMM'22 artifact, measured events",
+  "T2_pool_n": 7821,
+  "T2_pool_median_ms": 49.0,
+  "detect_rule": "session declared lost when the oldest unacknowledged message has waited one probe timeout, srtt + max(4 rttvar, 1 ms) + 25 ms (RFC 9002 form, application-acknowledgment RTT samples, Karn); connect and handshake bounded by the same timeout, then retried; unacknowledged messages resent",
+  "session_loss": "emulator --kill-flows: connections seen before an outage start are dropped from then on",
+  "attribution": "late messages assigned to the outage whose window [start - 0.5 s, next start - 0.5 s) contains their generation time",
+  "run_order": [
+   [
+    20261030,
+    "detect:C2:3"
+   ],
+   [
+    20261030,
+    "detect:C2w:3"
+   ],
+   [
+    20261030,
+    "detect:C0:2"
+   ],
+   [
+    20261031,
+    "detect:C2w:3"
+   ],
+   [
+    20261031,
+    "detect:C0:2"
+   ],
+   [
+    20261031,
+    "detect:C2:3"
+   ],
+   [
+    20261032,
+    "detect:C2:3"
+   ],
+   [
+    20261032,
+    "detect:C2w:3"
+   ],
+   [
+    20261032,
+    "detect:C0:2"
+   ],
+   [
+    20261033,
+    "detect:C2:3"
+   ],
+   [
+    20261033,
+    "detect:C2w:3"
+   ],
+   [
+    20261033,
+    "detect:C0:2"
+   ],
+   [
+    20261034,
+    "detect:C0:2"
+   ],
+   [
+    20261034,
+    "detect:C2:3"
+   ],
+   [
+    20261034,
+    "detect:C2w:3"
+   ],
+   [
+    20261035,
+    "detect:C0:2"
+   ],
+   [
+    20261035,
+    "detect:C2:3"
+   ],
+   [
+    20261035,
+    "detect:C2w:3"
+   ],
+   [
+    20261036,
+    "detect:C2:3"
+   ],
+   [
+    20261036,
+    "detect:C0:2"
+   ],
+   [
+    20261036,
+    "detect:C2w:3"
+   ],
+   [
+    20261037,
+    "detect:C2:3"
+   ],
+   [
+    20261037,
+    "detect:C2w:3"
+   ],
+   [
+    20261037,
+    "detect:C0:2"
+   ],
+   [
+    20261038,
+    "detect:C2:3"
+   ],
+   [
+    20261038,
+    "detect:C2w:3"
+   ],
+   [
+    20261038,
+    "detect:C0:2"
+   ],
+   [
+    20261039,
+    "detect:C2:3"
+   ],
+   [
+    20261039,
+    "detect:C0:2"
+   ],
+   [
+    20261039,
+    "detect:C2w:3"
+   ]
+  ],
+  "host_control": {
+   "X3_EMU_CPU": "1",
+   "X3_EMU_RT": "50",
+   "X3_EP_CPU": "0",
+   "X3_HOSTMON": "1"
+  }
+ },
+ "cells": {
+  "5G-tele|detect|C2|ch3": {
+   "policy": "detect",
+   "cfg": "C2",
+   "chain": 3,
+   "runs": [
+    {
+     "seed": 20261030,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285113.5906713,
+     "outage_ms": [
+      50.0,
+      28.0,
+      78.0,
+      35.0,
+      52.0,
+      65.0,
+      27.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 10,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.995000000003529,
+      "p99": 58.4097799999569,
+      "max": 183.0090000000837
+     },
+     "n_miss": 27,
+     "late_outside_outages": 1,
+     "miss_share": 0.0054,
+     "longest_gap_ms": 189.37100000005103,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 5,
+       "n_gen": 534,
+       "resume_delivery_ms": 129.8180000000002,
+       "gap_ms": 174.03300000000854,
+       "detect_ms": 41.353999999955704,
+       "handshake_ms": 59.56200000002809,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 1,
+       "n_gen": 706,
+       "resume_delivery_ms": 95.09600000001228,
+       "gap_ms": 119.97800000006009,
+       "detect_ms": 38.58500000001186,
+       "handshake_ms": 60.265999999955966,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 78.0,
+       "late": 6,
+       "n_gen": 594,
+       "resume_delivery_ms": 105.86299999999937,
+       "gap_ms": 189.37100000005103,
+       "detect_ms": 47.15600000008635,
+       "handshake_ms": 57.23000000000411,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 35.0,
+       "late": 2,
+       "n_gen": 565,
+       "resume_delivery_ms": 100.9399999999232,
+       "gap_ms": 136.6289999999708,
+       "detect_ms": 51.85900000003585,
+       "handshake_ms": 57.18899999999394,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 6,
+       "n_gen": 644,
+       "resume_delivery_ms": 129.38899999994646,
+       "gap_ms": 187.78899999995247,
+       "detect_ms": 45.15500000002248,
+       "handshake_ms": 57.60699999996177,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 65.0,
+       "late": 5,
+       "n_gen": 595,
+       "resume_delivery_ms": 107.80900000008842,
+       "gap_ms": 171.55800000000454,
+       "detect_ms": 37.38099999998212,
+       "handshake_ms": 57.01299999998355,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 27.0,
+       "late": 1,
+       "n_gen": 708,
+       "resume_delivery_ms": 98.08799999996154,
+       "gap_ms": 120.19099999997707,
+       "detect_ms": 40.962000000035914,
+       "handshake_ms": 57.05399999999372,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261031,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285525.5367043,
+     "outage_ms": [
+      52.0,
+      29.0,
+      57.0,
+      36.0,
+      26.0,
+      44.0,
+      50.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 30,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.038000000122338,
+      "p99": 68.64953999994448,
+      "max": 164.14400000007845
+     },
+     "n_miss": 26,
+     "late_outside_outages": 0,
+     "miss_share": 0.0052,
+     "longest_gap_ms": 170.41999999992186,
+     "per_outage": [
+      {
+       "outage_ms": 52.0,
+       "late": 4,
+       "n_gen": 600,
+       "resume_delivery_ms": 119.55299999999625,
+       "gap_ms": 168.86599999997998,
+       "detect_ms": 38.90799999999217,
+       "handshake_ms": 57.19400000020869,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 29.0,
+       "late": 1,
+       "n_gen": 595,
+       "resume_delivery_ms": 90.84200000006604,
+       "gap_ms": 119.53700000003664,
+       "detect_ms": 35.756999999875916,
+       "handshake_ms": 56.96400000010726,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 6,
+       "n_gen": 655,
+       "resume_delivery_ms": 115.69699999995464,
+       "gap_ms": 170.41999999992186,
+       "detect_ms": 38.467999999966196,
+       "handshake_ms": 57.76900000000751,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 5,
+       "n_gen": 641,
+       "resume_delivery_ms": 121.33199999993849,
+       "gap_ms": 152.3890000000847,
+       "detect_ms": 40.504000000055385,
+       "handshake_ms": 56.82000000001608,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 2,
+       "n_gen": 612,
+       "resume_delivery_ms": 108.08700000006866,
+       "gap_ms": 135.8700000000681,
+       "detect_ms": 49.80899999986832,
+       "handshake_ms": 57.56300000007286,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 44.0,
+       "late": 4,
+       "n_gen": 640,
+       "resume_delivery_ms": 127.73300000003474,
+       "gap_ms": 168.54699999998957,
+       "detect_ms": 38.95599999987098,
+       "handshake_ms": 57.81100000012884,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 4,
+       "n_gen": 615,
+       "resume_delivery_ms": 126.06499999992593,
+       "gap_ms": 168.8609999998789,
+       "detect_ms": 42.78700000008939,
+       "handshake_ms": 59.863000000177635,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 11,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261032,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285607.9401577,
+     "outage_ms": [
+      45.0,
+      52.0,
+      82.0,
+      30.0,
+      45.0,
+      60.0,
+      28.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 4,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.997000000112166,
+      "p99": 54.942760000103675,
+      "max": 179.88500000001295
+     },
+     "n_miss": 27,
+     "late_outside_outages": 0,
+     "miss_share": 0.0054,
+     "longest_gap_ms": 186.09199999991688,
+     "per_outage": [
+      {
+       "outage_ms": 45.0,
+       "late": 2,
+       "n_gen": 617,
+       "resume_delivery_ms": 85.78399999987596,
+       "gap_ms": 135.7919999998103,
+       "detect_ms": 46.53299999995397,
+       "handshake_ms": 56.87400000010712,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 5,
+       "n_gen": 669,
+       "resume_delivery_ms": 123.76799999992727,
+       "gap_ms": 170.2909999999065,
+       "detect_ms": 41.600000000016735,
+       "handshake_ms": 57.88499999994201,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 6,
+       "n_gen": 595,
+       "resume_delivery_ms": 99.80300000006537,
+       "gap_ms": 186.09199999991688,
+       "detect_ms": 48.35699999989629,
+       "handshake_ms": 57.054999999991196,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 5,
+       "n_gen": 675,
+       "resume_delivery_ms": 93.59999999992397,
+       "gap_ms": 122.2499999998945,
+       "detect_ms": 38.40999999988526,
+       "handshake_ms": 57.56399999995665,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 45.0,
+       "late": 2,
+       "n_gen": 600,
+       "resume_delivery_ms": 84.7519999999804,
+       "gap_ms": 136.05099999995218,
+       "detect_ms": 45.25899999998728,
+       "handshake_ms": 60.97700000009354,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 6,
+       "n_gen": 637,
+       "resume_delivery_ms": 121.22900000008485,
+       "gap_ms": 185.93700000019453,
+       "detect_ms": 47.96999999985019,
+       "handshake_ms": 57.23299999999654,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 1,
+       "n_gen": 617,
+       "resume_delivery_ms": 100.744000000077,
+       "gap_ms": 120.17100000002756,
+       "detect_ms": 44.80100000000675,
+       "handshake_ms": 56.4049999998133,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 3,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261033,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285855.1145768,
+     "outage_ms": [
+      70.0,
+      54.0,
+      50.0,
+      34.0,
+      54.0,
+      33.0,
+      61.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.013999999955558,
+      "p99": 76.44791999985874,
+      "max": 181.76199999993514
+     },
+     "n_miss": 36,
+     "late_outside_outages": 0,
+     "miss_share": 0.0072,
+     "longest_gap_ms": 188.2109999999102,
+     "per_outage": [
+      {
+       "outage_ms": 70.0,
+       "late": 4,
+       "n_gen": 632,
+       "resume_delivery_ms": 100.61700000005658,
+       "gap_ms": 169.88500000002205,
+       "detect_ms": 37.21399999994901,
+       "handshake_ms": 59.45799999994961,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 6,
+       "n_gen": 616,
+       "resume_delivery_ms": 129.50299999988601,
+       "gap_ms": 188.2109999999102,
+       "detect_ms": 48.13899999999194,
+       "handshake_ms": 59.524999999894135,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 6,
+       "n_gen": 724,
+       "resume_delivery_ms": 132.54400000005262,
+       "gap_ms": 185.67600000005768,
+       "detect_ms": 48.448999999891385,
+       "handshake_ms": 57.28599999997641,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 2,
+       "n_gen": 573,
+       "resume_delivery_ms": 96.36799999998402,
+       "gap_ms": 136.9600000000446,
+       "detect_ms": 46.05700000001889,
+       "handshake_ms": 57.45699999988574,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 10,
+       "n_gen": 676,
+       "resume_delivery_ms": 126.74100000003818,
+       "gap_ms": 185.76499999994667,
+       "detect_ms": 46.573999999964144,
+       "handshake_ms": 57.062999999971,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 2,
+       "n_gen": 544,
+       "resume_delivery_ms": 97.32099999996535,
+       "gap_ms": 136.0899999999674,
+       "detect_ms": 45.8929999999782,
+       "handshake_ms": 56.82500000011714,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 6,
+       "n_gen": 690,
+       "resume_delivery_ms": 114.68399999989742,
+       "gap_ms": 170.08199999986573,
+       "detect_ms": 41.86600000002727,
+       "handshake_ms": 60.08500000007189,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261034,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286184.7808583,
+     "outage_ms": [
+      47.0,
+      53.0,
+      58.0,
+      34.0,
+      54.0,
+      40.0,
+      82.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.013500000013664,
+      "p99": 54.182979999855,
+      "max": 180.13399999995272
+     },
+     "n_miss": 29,
+     "late_outside_outages": 0,
+     "miss_share": 0.0058,
+     "longest_gap_ms": 186.00799999990159,
+     "per_outage": [
+      {
+       "outage_ms": 47.0,
+       "late": 5,
+       "n_gen": 591,
+       "resume_delivery_ms": 128.10399999989386,
+       "gap_ms": 169.86100000008264,
+       "detect_ms": 40.70600000000013,
+       "handshake_ms": 60.2449999998953,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 5,
+       "n_gen": 631,
+       "resume_delivery_ms": 123.80899999993744,
+       "gap_ms": 170.6819999999425,
+       "detect_ms": 41.59699999991062,
+       "handshake_ms": 57.440999999926134,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 58.0,
+       "late": 5,
+       "n_gen": 652,
+       "resume_delivery_ms": 112.43800000011106,
+       "gap_ms": 170.13799999995172,
+       "detect_ms": 35.94500000008338,
+       "handshake_ms": 57.66300000004776,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 1,
+       "n_gen": 552,
+       "resume_delivery_ms": 92.33799999992698,
+       "gap_ms": 119.81500000001688,
+       "detect_ms": 42.370000000119035,
+       "handshake_ms": 60.473000000001775,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 6,
+       "n_gen": 712,
+       "resume_delivery_ms": 129.53399999992143,
+       "gap_ms": 186.00799999990159,
+       "detect_ms": 49.185000000079526,
+       "handshake_ms": 56.737999999995736,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 40.0,
+       "late": 2,
+       "n_gen": 587,
+       "resume_delivery_ms": 96.11199999994824,
+       "gap_ms": 136.5849999999682,
+       "detect_ms": 52.112000000079206,
+       "handshake_ms": 59.14499999994405,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 5,
+       "n_gen": 670,
+       "resume_delivery_ms": 97.15200000005098,
+       "gap_ms": 170.3259999999318,
+       "detect_ms": 44.61900000001151,
+       "handshake_ms": 58.12700000001314,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261035,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286432.0104592,
+     "outage_ms": [
+      28.0,
+      48.0,
+      62.0,
+      54.0,
+      61.0,
+      91.0,
+      33.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 10,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.978499999988344,
+      "p99": 55.20298999981835,
+      "max": 180.89599999984785
+     },
+     "n_miss": 27,
+     "late_outside_outages": 1,
+     "miss_share": 0.0054,
+     "longest_gap_ms": 186.95600000000923,
+     "per_outage": [
+      {
+       "outage_ms": 28.0,
+       "late": 1,
+       "n_gen": 651,
+       "resume_delivery_ms": 99.68900000012582,
+       "gap_ms": 119.83700000018871,
+       "detect_ms": 43.880999999601045,
+       "handshake_ms": 56.525999999848864,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 48.0,
+       "late": 2,
+       "n_gen": 550,
+       "resume_delivery_ms": 84.96800000011717,
+       "gap_ms": 134.83499999983906,
+       "detect_ms": 48.96400000006906,
+       "handshake_ms": 57.02499999961219,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 62.0,
+       "late": 6,
+       "n_gen": 593,
+       "resume_delivery_ms": 119.95299999989584,
+       "gap_ms": 186.95600000000923,
+       "detect_ms": 46.55999999977212,
+       "handshake_ms": 58.668000000125176,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 6,
+       "n_gen": 688,
+       "resume_delivery_ms": 130.88900000002468,
+       "gap_ms": 185.512000000017,
+       "detect_ms": 50.98099999986516,
+       "handshake_ms": 56.98800000027404,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 5,
+       "n_gen": 588,
+       "resume_delivery_ms": 114.80499999970561,
+       "gap_ms": 169.3529999997736,
+       "detect_ms": 42.484000000058586,
+       "handshake_ms": 57.04699999978402,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 91.0,
+       "late": 5,
+       "n_gen": 632,
+       "resume_delivery_ms": 86.53400000002875,
+       "gap_ms": 170.09200000029523,
+       "detect_ms": 42.925999999624764,
+       "handshake_ms": 58.66500000001906,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 1,
+       "n_gen": 681,
+       "resume_delivery_ms": 90.68600000000515,
+       "gap_ms": 120.01900000041132,
+       "detect_ms": 40.033000000221364,
+       "handshake_ms": 56.26299999994444,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261036,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286596.8202355,
+     "outage_ms": [
+      46.0,
+      31.0,
+      36.0,
+      30.0,
+      67.0,
+      57.0,
+      36.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 9,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.99599999977363,
+      "p99": 53.93766999983332,
+      "max": 163.71699999990597
+     },
+     "n_miss": 23,
+     "late_outside_outages": 0,
+     "miss_share": 0.0046,
+     "longest_gap_ms": 169.7559999997793,
+     "per_outage": [
+      {
+       "outage_ms": 46.0,
+       "late": 7,
+       "n_gen": 562,
+       "resume_delivery_ms": 125.46700000029887,
+       "gap_ms": 169.39899999988484,
+       "detect_ms": 37.3859999999695,
+       "handshake_ms": 56.810999999925116,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 31.0,
+       "late": 1,
+       "n_gen": 654,
+       "resume_delivery_ms": 95.02000000020416,
+       "gap_ms": 119.68800000022384,
+       "detect_ms": 41.776000000027125,
+       "handshake_ms": 57.47699999983524,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 2,
+       "n_gen": 601,
+       "resume_delivery_ms": 98.72200000017983,
+       "gap_ms": 135.32900000018344,
+       "detect_ms": 50.91200000015306,
+       "handshake_ms": 56.56300000009651,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 1,
+       "n_gen": 630,
+       "resume_delivery_ms": 94.80600000006234,
+       "gap_ms": 120.64599999985148,
+       "detect_ms": 39.92500000003929,
+       "handshake_ms": 57.58500000001732,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 67.0,
+       "late": 4,
+       "n_gen": 561,
+       "resume_delivery_ms": 103.5570000003645,
+       "gap_ms": 169.21300000012707,
+       "detect_ms": 37.58400000015172,
+       "handshake_ms": 57.04599999990023,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 5,
+       "n_gen": 709,
+       "resume_delivery_ms": 114.60200000010445,
+       "gap_ms": 169.7559999997793,
+       "detect_ms": 37.612000000081025,
+       "handshake_ms": 57.51899999995658,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 3,
+       "n_gen": 634,
+       "resume_delivery_ms": 92.62899999976071,
+       "gap_ms": 119.6829999998954,
+       "detect_ms": 44.45399999985966,
+       "handshake_ms": 62.23499999987325,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 3,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261037,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286844.015661,
+     "outage_ms": [
+      50.0,
+      60.0,
+      38.0,
+      89.0,
+      57.0,
+      26.0,
+      63.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 9,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.009000000081869,
+      "p99": 63.22007000006177,
+      "max": 188.10100000018792
+     },
+     "n_miss": 28,
+     "late_outside_outages": 0,
+     "miss_share": 0.0056,
+     "longest_gap_ms": 194.33900000012727,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 6,
+       "n_gen": 590,
+       "resume_delivery_ms": 130.25500000003376,
+       "gap_ms": 185.7679999998254,
+       "detect_ms": 47.0909999999094,
+       "handshake_ms": 56.713000000399916,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 4,
+       "n_gen": 713,
+       "resume_delivery_ms": 111.52099999981147,
+       "gap_ms": 169.60900000003676,
+       "detect_ms": 38.192999999864696,
+       "handshake_ms": 56.860999999571504,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 38.0,
+       "late": 2,
+       "n_gen": 538,
+       "resume_delivery_ms": 95.37999999975,
+       "gap_ms": 136.08900000008362,
+       "detect_ms": 48.914999999851716,
+       "handshake_ms": 57.62700000013865,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 89.0,
+       "late": 5,
+       "n_gen": 727,
+       "resume_delivery_ms": 89.08000000019456,
+       "gap_ms": 170.01100000015867,
+       "detect_ms": 43.92700000016703,
+       "handshake_ms": 60.35299999985,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 4,
+       "n_gen": 589,
+       "resume_delivery_ms": 117.06599999979517,
+       "gap_ms": 168.7489999999343,
+       "detect_ms": 42.02400000031048,
+       "handshake_ms": 57.05400000033478,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 1,
+       "n_gen": 607,
+       "resume_delivery_ms": 98.54799999993702,
+       "gap_ms": 119.46499999976368,
+       "detect_ms": 40.7470000000103,
+       "handshake_ms": 56.60200000011173,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 6,
+       "n_gen": 650,
+       "resume_delivery_ms": 131.5559999998186,
+       "gap_ms": 194.33900000012727,
+       "detect_ms": 48.571999999694526,
+       "handshake_ms": 57.15399999962756,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261038,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287091.250152,
+     "outage_ms": [
+      33.0,
+      53.0,
+      47.0,
+      63.0,
+      59.0,
+      36.0,
+      55.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.010999999849446,
+      "p99": 52.38361000018814,
+      "max": 178.32300000009127
+     },
+     "n_miss": 25,
+     "late_outside_outages": 0,
+     "miss_share": 0.005,
+     "longest_gap_ms": 183.97600000025705,
+     "per_outage": [
+      {
+       "outage_ms": 33.0,
+       "late": 1,
+       "n_gen": 610,
+       "resume_delivery_ms": 91.44600000036007,
+       "gap_ms": 120.4160000002048,
+       "detect_ms": 39.77400000030684,
+       "handshake_ms": 58.9919999997619,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 5,
+       "n_gen": 626,
+       "resume_delivery_ms": 125.13600000011138,
+       "gap_ms": 170.82600000003367,
+       "detect_ms": 43.07799999969575,
+       "handshake_ms": 59.46899999980815,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 47.0,
+       "late": 4,
+       "n_gen": 635,
+       "resume_delivery_ms": 121.44600000010541,
+       "gap_ms": 168.489000000136,
+       "detect_ms": 36.10600000001796,
+       "handshake_ms": 57.19900000030975,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 4,
+       "n_gen": 617,
+       "resume_delivery_ms": 111.44599999988714,
+       "gap_ms": 168.84799999979805,
+       "detect_ms": 41.20899999998073,
+       "handshake_ms": 57.42099999997663,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 5,
+       "n_gen": 663,
+       "resume_delivery_ms": 121.38400000003458,
+       "gap_ms": 183.97600000025705,
+       "detect_ms": 47.98900000014328,
+       "handshake_ms": 56.61099999997532,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 2,
+       "n_gen": 619,
+       "resume_delivery_ms": 97.70299999991039,
+       "gap_ms": 135.22499999999127,
+       "detect_ms": 49.989000000095984,
+       "handshake_ms": 57.453999999779626,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 55.0,
+       "late": 4,
+       "n_gen": 657,
+       "resume_delivery_ms": 117.00399999972433,
+       "gap_ms": 168.4940000000097,
+       "detect_ms": 39.59600000007413,
+       "handshake_ms": 57.28300000009767,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261039,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287338.4369104,
+     "outage_ms": [
+      55.0,
+      53.0,
+      34.0,
+      59.0,
+      106.0,
+      41.0,
+      49.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 8,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.996500000170272,
+      "p99": 69.35673000008596,
+      "max": 231.27500000009604
+     },
+     "n_miss": 34,
+     "late_outside_outages": 0,
+     "miss_share": 0.0068,
+     "longest_gap_ms": 237.536000000091,
+     "per_outage": [
+      {
+       "outage_ms": 55.0,
+       "late": 5,
+       "n_gen": 680,
+       "resume_delivery_ms": 117.2910000000229,
+       "gap_ms": 169.24799999969764,
+       "detect_ms": 39.03900000022986,
+       "handshake_ms": 57.29199999996126,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 5,
+       "n_gen": 557,
+       "resume_delivery_ms": 121.45300000020143,
+       "gap_ms": 169.38500000014756,
+       "detect_ms": 40.89900000008129,
+       "handshake_ms": 57.24999999983993,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 4,
+       "n_gen": 593,
+       "resume_delivery_ms": 87.13100000022678,
+       "gap_ms": 120.14799999997194,
+       "detect_ms": 37.163999999847874,
+       "handshake_ms": 56.9550000000163,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 5,
+       "n_gen": 646,
+       "resume_delivery_ms": 116.96800000026997,
+       "gap_ms": 169.39400000001115,
+       "detect_ms": 42.347999999947206,
+       "handshake_ms": 56.73000000024331,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 106.0,
+       "late": 9,
+       "n_gen": 592,
+       "resume_delivery_ms": 125.6109999999353,
+       "gap_ms": 237.536000000091,
+       "detect_ms": 46.69499999999971,
+       "handshake_ms": 56.850999999824126,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 41.0,
+       "late": 2,
+       "n_gen": 702,
+       "resume_delivery_ms": 88.45199999996112,
+       "gap_ms": 135.52500000014334,
+       "detect_ms": 45.56000000002314,
+       "handshake_ms": 56.45199999980832,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 49.0,
+       "late": 4,
+       "n_gen": 636,
+       "resume_delivery_ms": 127.23400000004403,
+       "gap_ms": 168.97100000005594,
+       "detect_ms": 43.32099999965067,
+       "handshake_ms": 58.02200000016455,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 7,
+     "client_rc": 0,
+     "client_err": ""
+    }
+   ],
+   "late_per_outage": [
+    5,
+    1,
+    6,
+    2,
+    6,
+    5,
+    1,
+    4,
+    1,
+    6,
+    5,
+    2,
+    4,
+    4,
+    2,
+    5,
+    6,
+    5,
+    2,
+    6,
+    1,
+    4,
+    6,
+    6,
+    2,
+    10,
+    2,
+    6,
+    5,
+    5,
+    5,
+    1,
+    6,
+    2,
+    5,
+    1,
+    2,
+    6,
+    6,
+    5,
+    5,
+    1,
+    7,
+    1,
+    2,
+    1,
+    4,
+    5,
+    3,
+    6,
+    4,
+    2,
+    5,
+    4,
+    1,
+    6,
+    1,
+    5,
+    4,
+    4,
+    5,
+    2,
+    4,
+    5,
+    5,
+    4,
+    5,
+    9,
+    2,
+    4
+   ],
+   "misses_per_outage": 4.0,
+   "late_outside_outages": 2,
+   "lost": 0,
+   "dup": 95,
+   "gap_ms_max": 237.536000000091,
+   "resume_delivery_ms_median": 111.4834999998493,
+   "detect_ms_median": 42.63550000007399,
+   "handshake_ms_median": 57.28450000003704,
+   "resumed_share": null,
+   "failed_attempts": 46,
+   "failed_runs": 0,
+   "p99_ms": 76.44791999985874
+  },
+  "5G-tele|detect|C2w|ch3": {
+   "policy": "detect",
+   "cfg": "C2w",
+   "chain": 3,
+   "runs": [
+    {
+     "seed": 20261030,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285195.9581823,
+     "outage_ms": [
+      50.0,
+      28.0,
+      78.0,
+      35.0,
+      52.0,
+      65.0,
+      27.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 4,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.007000000086919,
+      "p99": 18.555710000030448,
+      "max": 152.37200000001394
+     },
+     "n_miss": 13,
+     "late_outside_outages": 0,
+     "miss_share": 0.0026,
+     "longest_gap_ms": 158.53800000002138,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 4,
+       "n_gen": 534,
+       "resume_delivery_ms": 101.20199999994384,
+       "gap_ms": 155.91199999994387,
+       "detect_ms": 46.94500000005064,
+       "handshake_ms": 42.85800000002382,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 707,
+       "resume_delivery_ms": 68.65500000003522,
+       "gap_ms": 87.46399999995447,
+       "detect_ms": 44.81999999995878,
+       "handshake_ms": 41.64300000002186,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 78.0,
+       "late": 2,
+       "n_gen": 594,
+       "resume_delivery_ms": 59.60400000003574,
+       "gap_ms": 136.79899999999634,
+       "detect_ms": 37.37100000000737,
+       "handshake_ms": 39.48600000001079,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 35.0,
+       "late": 0,
+       "n_gen": 565,
+       "resume_delivery_ms": 58.049000000096385,
+       "gap_ms": 87.22199999999702,
+       "detect_ms": 41.9809999999643,
+       "handshake_ms": 40.81699999994726,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 4,
+       "n_gen": 643,
+       "resume_delivery_ms": 105.67300000002433,
+       "gap_ms": 158.53800000002138,
+       "detect_ms": 51.75199999996494,
+       "handshake_ms": 44.922999999926105,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 65.0,
+       "late": 3,
+       "n_gen": 595,
+       "resume_delivery_ms": 80.83899999996902,
+       "gap_ms": 138.99900000001253,
+       "detect_ms": 42.96599999997852,
+       "handshake_ms": 42.27400000002035,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 27.0,
+       "late": 0,
+       "n_gen": 709,
+       "resume_delivery_ms": 69.38900000000103,
+       "gap_ms": 102.50599999994847,
+       "detect_ms": 46.47299999999177,
+       "handshake_ms": 39.75900000000365,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261031,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285360.7595737,
+     "outage_ms": [
+      52.0,
+      29.0,
+      57.0,
+      36.0,
+      26.0,
+      44.0,
+      50.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.022500000104628,
+      "p99": 18.026349999979768,
+      "max": 132.05900000002657
+     },
+     "n_miss": 9,
+     "late_outside_outages": 0,
+     "miss_share": 0.0018,
+     "longest_gap_ms": 138.1340000000364,
+     "per_outage": [
+      {
+       "outage_ms": 52.0,
+       "late": 2,
+       "n_gen": 600,
+       "resume_delivery_ms": 86.9190000000799,
+       "gap_ms": 138.1340000000364,
+       "detect_ms": 36.7750000000342,
+       "handshake_ms": 40.226999999958934,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 29.0,
+       "late": 0,
+       "n_gen": 595,
+       "resume_delivery_ms": 73.06900000003225,
+       "gap_ms": 104.05200000013792,
+       "detect_ms": 50.66599999986465,
+       "handshake_ms": 41.49299999994582,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 2,
+       "n_gen": 655,
+       "resume_delivery_ms": 77.38599999993312,
+       "gap_ms": 133.80000000006476,
+       "detect_ms": 36.251999999876716,
+       "handshake_ms": 39.511000000175045,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 641,
+       "resume_delivery_ms": 52.185000000008586,
+       "gap_ms": 85.72000000003754,
+       "detect_ms": 38.317000000006374,
+       "handshake_ms": 39.4619999999577,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 0,
+       "n_gen": 612,
+       "resume_delivery_ms": 71.93200000006073,
+       "gap_ms": 101.38499999993655,
+       "detect_ms": 48.37699999984579,
+       "handshake_ms": 39.201000000048225,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 44.0,
+       "late": 2,
+       "n_gen": 641,
+       "resume_delivery_ms": 94.46200000002136,
+       "gap_ms": 137.78400000001056,
+       "detect_ms": 36.61799999986215,
+       "handshake_ms": 39.138999999977386,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 3,
+       "n_gen": 614,
+       "resume_delivery_ms": 93.30199999999422,
+       "gap_ms": 137.9300000000967,
+       "detect_ms": 40.90800000017225,
+       "handshake_ms": 39.306000000124186,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261032,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285690.3380036,
+     "outage_ms": [
+      45.0,
+      52.0,
+      82.0,
+      30.0,
+      45.0,
+      60.0,
+      28.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 3,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.012000000074295,
+      "p99": 18.396759999948348,
+      "max": 144.95899999997164
+     },
+     "n_miss": 10,
+     "late_outside_outages": 0,
+     "miss_share": 0.002,
+     "longest_gap_ms": 150.90799999984483,
+     "per_outage": [
+      {
+       "outage_ms": 45.0,
+       "late": 0,
+       "n_gen": 617,
+       "resume_delivery_ms": 51.70899999984613,
+       "gap_ms": 103.48499999986416,
+       "detect_ms": 45.02700000011828,
+       "handshake_ms": 41.51899999988018,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 2,
+       "n_gen": 669,
+       "resume_delivery_ms": 86.76500000001397,
+       "gap_ms": 132.54400000005262,
+       "detect_ms": 39.87900000015543,
+       "handshake_ms": 40.27899999982765,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 3,
+       "n_gen": 595,
+       "resume_delivery_ms": 63.23799999995572,
+       "gap_ms": 150.90799999984483,
+       "detect_ms": 45.92400000001362,
+       "handshake_ms": 39.585999999872,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 0,
+       "n_gen": 675,
+       "resume_delivery_ms": 71.2229999999181,
+       "gap_ms": 101.77099999987149,
+       "detect_ms": 51.042999999936,
+       "handshake_ms": 39.70300000014504,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 45.0,
+       "late": 2,
+       "n_gen": 600,
+       "resume_delivery_ms": 98.92500000000837,
+       "gap_ms": 135.091999999986,
+       "detect_ms": 44.64600000005703,
+       "handshake_ms": 40.15099999992344,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 3,
+       "n_gen": 637,
+       "resume_delivery_ms": 84.78300000001582,
+       "gap_ms": 150.65100000015264,
+       "detect_ms": 45.75799999997798,
+       "handshake_ms": 39.236999999957334,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 617,
+       "resume_delivery_ms": 64.69900000001871,
+       "gap_ms": 85.9090000001288,
+       "detect_ms": 42.76299999992261,
+       "handshake_ms": 39.23799999984112,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261033,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285937.5322604,
+     "outage_ms": [
+      70.0,
+      54.0,
+      50.0,
+      34.0,
+      54.0,
+      33.0,
+      61.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 10,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.013999999955558,
+      "p99": 39.35615999994348,
+      "max": 162.89299999994
+     },
+     "n_miss": 18,
+     "late_outside_outages": 0,
+     "miss_share": 0.0036,
+     "longest_gap_ms": 152.49199999993834,
+     "per_outage": [
+      {
+       "outage_ms": 70.0,
+       "late": 8,
+       "n_gen": 632,
+       "resume_delivery_ms": 80.78000000000429,
+       "gap_ms": 152.12099999985185,
+       "detect_ms": 50.21000000010645,
+       "handshake_ms": 39.4739999999274,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 3,
+       "n_gen": 616,
+       "resume_delivery_ms": 98.29000000013366,
+       "gap_ms": 143.22500000002947,
+       "detect_ms": 44.879000000037195,
+       "handshake_ms": 46.97299999997995,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 3,
+       "n_gen": 724,
+       "resume_delivery_ms": 96.63599999998951,
+       "gap_ms": 152.49199999993834,
+       "detect_ms": 46.68600000013612,
+       "handshake_ms": 40.5639999999039,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 573,
+       "resume_delivery_ms": 59.01399999993373,
+       "gap_ms": 85.93199999995704,
+       "detect_ms": 43.0900000001202,
+       "handshake_ms": 39.37299999984134,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 2,
+       "n_gen": 676,
+       "resume_delivery_ms": 90.86299999989933,
+       "gap_ms": 136.009999999942,
+       "detect_ms": 44.33399999993526,
+       "handshake_ms": 39.590999999973064,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 0,
+       "n_gen": 544,
+       "resume_delivery_ms": 61.397999999826425,
+       "gap_ms": 86.79899999992813,
+       "detect_ms": 43.95300000010138,
+       "handshake_ms": 40.43099999989863,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 2,
+       "n_gen": 690,
+       "resume_delivery_ms": 80.55300000000898,
+       "gap_ms": 137.3150000001715,
+       "detect_ms": 39.06900000015412,
+       "handshake_ms": 42.315999999800624,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261034,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286267.1948304,
+     "outage_ms": [
+      47.0,
+      53.0,
+      58.0,
+      34.0,
+      54.0,
+      40.0,
+      82.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 10,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.017500000003565,
+      "p99": 52.70619999986622,
+      "max": 239.15500000020984
+     },
+     "n_miss": 26,
+     "late_outside_outages": 0,
+     "miss_share": 0.0052,
+     "longest_gap_ms": 154.26700000011806,
+     "per_outage": [
+      {
+       "outage_ms": 47.0,
+       "late": 3,
+       "n_gen": 592,
+       "resume_delivery_ms": 99.61599999996906,
+       "gap_ms": 139.67699999989236,
+       "detect_ms": 44.61700000001656,
+       "handshake_ms": 40.12899999997899,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 12,
+       "n_gen": 631,
+       "resume_delivery_ms": 91.43500000004678,
+       "gap_ms": 136.71999999996842,
+       "detect_ms": 43.33999999994376,
+       "handshake_ms": 39.705999999796404,
+       "resumed": 0,
+       "failed_attempts": 3
+      },
+      {
+       "outage_ms": 58.0,
+       "late": 2,
+       "n_gen": 652,
+       "resume_delivery_ms": 79.61099999988619,
+       "gap_ms": 136.04699999996228,
+       "detect_ms": 37.654999999858774,
+       "handshake_ms": 39.22799999986637,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 552,
+       "resume_delivery_ms": 61.4060000000336,
+       "gap_ms": 86.53900000012982,
+       "detect_ms": 44.35200000011719,
+       "handshake_ms": 40.58899999995447,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 3,
+       "n_gen": 712,
+       "resume_delivery_ms": 97.55199999995057,
+       "gap_ms": 152.48299999984738,
+       "detect_ms": 50.2769999998236,
+       "handshake_ms": 40.25000000001455,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 40.0,
+       "late": 3,
+       "n_gen": 587,
+       "resume_delivery_ms": 101.06099999984508,
+       "gap_ms": 139.00300000000243,
+       "detect_ms": 37.57399999994959,
+       "handshake_ms": 43.06199999996352,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 3,
+       "n_gen": 670,
+       "resume_delivery_ms": 66.47900000007212,
+       "gap_ms": 154.26700000011806,
+       "detect_ms": 46.542000000044936,
+       "handshake_ms": 41.75899999995636,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 8,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261035,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286514.4141755,
+     "outage_ms": [
+      28.0,
+      48.0,
+      62.0,
+      54.0,
+      61.0,
+      91.0,
+      33.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 4,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.983000000374886,
+      "p99": 21.741849999769304,
+      "max": 147.96500000011292
+     },
+     "n_miss": 14,
+     "late_outside_outages": 0,
+     "miss_share": 0.0028,
+     "longest_gap_ms": 153.90700000034485,
+     "per_outage": [
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 651,
+       "resume_delivery_ms": 58.650999999827036,
+       "gap_ms": 86.56899999959933,
+       "detect_ms": 35.6709999996383,
+       "handshake_ms": 40.293000000019674,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 48.0,
+       "late": 2,
+       "n_gen": 550,
+       "resume_delivery_ms": 94.12800000018251,
+       "gap_ms": 136.4810000000034,
+       "detect_ms": 41.956999999911204,
+       "handshake_ms": 40.64199999993434,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 62.0,
+       "late": 2,
+       "n_gen": 592,
+       "resume_delivery_ms": 76.5809999998055,
+       "gap_ms": 135.7239999997546,
+       "detect_ms": 38.23999999985972,
+       "handshake_ms": 39.42600000027596,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 2,
+       "n_gen": 689,
+       "resume_delivery_ms": 88.70099999967351,
+       "gap_ms": 135.9189999998307,
+       "detect_ms": 42.17599999992672,
+       "handshake_ms": 39.566999999806285,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 3,
+       "n_gen": 588,
+       "resume_delivery_ms": 90.26999999969121,
+       "gap_ms": 153.5359999998036,
+       "detect_ms": 49.35199999999895,
+       "handshake_ms": 41.3010000002032,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 91.0,
+       "late": 4,
+       "n_gen": 631,
+       "resume_delivery_ms": 62.07300000005489,
+       "gap_ms": 153.90700000034485,
+       "detect_ms": 50.746999999773834,
+       "handshake_ms": 42.035999999825435,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 1,
+       "n_gen": 682,
+       "resume_delivery_ms": 82.7249999997548,
+       "gap_ms": 120.95199999976103,
+       "detect_ms": 65.80100000019229,
+       "handshake_ms": 39.43799999979092,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261036,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286761.639036,
+     "outage_ms": [
+      46.0,
+      31.0,
+      36.0,
+      30.0,
+      67.0,
+      57.0,
+      36.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 6,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.006999999859545,
+      "p99": 13.465500000124969,
+      "max": 135.00500000009197
+     },
+     "n_miss": 9,
+     "late_outside_outages": 0,
+     "miss_share": 0.0018,
+     "longest_gap_ms": 141.37200000004668,
+     "per_outage": [
+      {
+       "outage_ms": 46.0,
+       "late": 3,
+       "n_gen": 562,
+       "resume_delivery_ms": 97.27199999997538,
+       "gap_ms": 138.6649999999463,
+       "detect_ms": 40.91999999991458,
+       "handshake_ms": 41.04699999970762,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 31.0,
+       "late": 0,
+       "n_gen": 654,
+       "resume_delivery_ms": 63.314999999875,
+       "gap_ms": 85.84000000018932,
+       "detect_ms": 44.1699999996672,
+       "handshake_ms": 39.31000000011409,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 600,
+       "resume_delivery_ms": 52.51499999985754,
+       "gap_ms": 86.54099999967002,
+       "detect_ms": 37.46499999988373,
+       "handshake_ms": 41.071999999985565,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 0,
+       "n_gen": 631,
+       "resume_delivery_ms": 61.99999999989814,
+       "gap_ms": 85.68300000024465,
+       "detect_ms": 41.727000000264525,
+       "handshake_ms": 40.297000000009575,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 67.0,
+       "late": 3,
+       "n_gen": 561,
+       "resume_delivery_ms": 77.99199999999473,
+       "gap_ms": 141.37200000004668,
+       "detect_ms": 39.5370000001094,
+       "handshake_ms": 43.19200000009005,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 3,
+       "n_gen": 709,
+       "resume_delivery_ms": 86.95499999976164,
+       "gap_ms": 139.8519999997916,
+       "detect_ms": 40.20100000025195,
+       "handshake_ms": 41.62799999994604,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 634,
+       "resume_delivery_ms": 61.67800000002899,
+       "gap_ms": 101.35900000022957,
+       "detect_ms": 47.986000000037166,
+       "handshake_ms": 39.870000000064465,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 3,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261037,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286926.4227126,
+     "outage_ms": [
+      50.0,
+      60.0,
+      38.0,
+      89.0,
+      57.0,
+      26.0,
+      63.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 4,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.017000000061671,
+      "p99": 28.073960000270684,
+      "max": 146.7000000002372
+     },
+     "n_miss": 13,
+     "late_outside_outages": 0,
+     "miss_share": 0.0026,
+     "longest_gap_ms": 152.6530000001003,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 0,
+       "n_gen": 590,
+       "resume_delivery_ms": 50.4519999999502,
+       "gap_ms": 101.90800000009403,
+       "detect_ms": 50.192999999580934,
+       "handshake_ms": 39.27400000020498,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 3,
+       "n_gen": 713,
+       "resume_delivery_ms": 86.50399999987712,
+       "gap_ms": 141.11200000024837,
+       "detect_ms": 41.26499999983935,
+       "handshake_ms": 43.72600000033344,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 38.0,
+       "late": 2,
+       "n_gen": 538,
+       "resume_delivery_ms": 99.86299999991388,
+       "gap_ms": 136.8959999999788,
+       "detect_ms": 36.65399999999863,
+       "handshake_ms": 39.69199999983175,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 89.0,
+       "late": 3,
+       "n_gen": 726,
+       "resume_delivery_ms": 59.403000000202155,
+       "gap_ms": 152.6530000001003,
+       "detect_ms": 48.232000000098196,
+       "handshake_ms": 39.592999999968015,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 3,
+       "n_gen": 589,
+       "resume_delivery_ms": 88.50699999993594,
+       "gap_ms": 152.4779999999737,
+       "detect_ms": 45.60700000001816,
+       "handshake_ms": 39.385999999922205,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 0,
+       "n_gen": 608,
+       "resume_delivery_ms": 71.07600000017555,
+       "gap_ms": 88.11300000024858,
+       "detect_ms": 45.27299999972456,
+       "handshake_ms": 41.59799999979441,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 2,
+       "n_gen": 650,
+       "resume_delivery_ms": 78.23199999984354,
+       "gap_ms": 137.16699999986304,
+       "detect_ms": 40.16100000035294,
+       "handshake_ms": 40.03099999999904,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261038,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287173.6359203,
+     "outage_ms": [
+      33.0,
+      53.0,
+      47.0,
+      63.0,
+      59.0,
+      36.0,
+      55.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.017000000061671,
+      "p99": 20.718080000210648,
+      "max": 148.62100000027567
+     },
+     "n_miss": 13,
+     "late_outside_outages": 0,
+     "miss_share": 0.0026,
+     "longest_gap_ms": 154.79400000003807,
+     "per_outage": [
+      {
+       "outage_ms": 33.0,
+       "late": 0,
+       "n_gen": 610,
+       "resume_delivery_ms": 61.74299999975119,
+       "gap_ms": 90.01499999976659,
+       "detect_ms": 40.15000000026703,
+       "handshake_ms": 44.43300000002637,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 2,
+       "n_gen": 626,
+       "resume_delivery_ms": 93.37199999981749,
+       "gap_ms": 137.94699999971272,
+       "detect_ms": 44.19400000006135,
+       "handshake_ms": 41.75100000020393,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 47.0,
+       "late": 2,
+       "n_gen": 634,
+       "resume_delivery_ms": 91.35499999956664,
+       "gap_ms": 137.08999999971638,
+       "detect_ms": 36.62099999974089,
+       "handshake_ms": 41.647999999895546,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 3,
+       "n_gen": 618,
+       "resume_delivery_ms": 83.49700000007942,
+       "gap_ms": 140.58700000032331,
+       "detect_ms": 42.19499999999243,
+       "handshake_ms": 44.729999999617576,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 4,
+       "n_gen": 663,
+       "resume_delivery_ms": 92.80300000000352,
+       "gap_ms": 154.79400000003807,
+       "detect_ms": 48.72699999987162,
+       "handshake_ms": 43.004000000109954,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 619,
+       "resume_delivery_ms": 67.15299999996205,
+       "gap_ms": 103.59799999969255,
+       "detect_ms": 52.33200000020588,
+       "handshake_ms": 40.96800000024814,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 55.0,
+       "late": 2,
+       "n_gen": 657,
+       "resume_delivery_ms": 85.51399999987552,
+       "gap_ms": 135.4639999999563,
+       "detect_ms": 40.5559999999241,
+       "handshake_ms": 40.288000000145985,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261039,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287503.2502446,
+     "outage_ms": [
+      55.0,
+      53.0,
+      34.0,
+      59.0,
+      106.0,
+      41.0,
+      49.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 3,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.997000000112166,
+      "p99": 32.96606999987491,
+      "max": 198.86300000007395
+     },
+     "n_miss": 18,
+     "late_outside_outages": 0,
+     "miss_share": 0.0036,
+     "longest_gap_ms": 204.34400000021924,
+     "per_outage": [
+      {
+       "outage_ms": 55.0,
+       "late": 2,
+       "n_gen": 679,
+       "resume_delivery_ms": 87.39700000023731,
+       "gap_ms": 136.99499999984255,
+       "detect_ms": 41.247999999995955,
+       "handshake_ms": 41.54000000016822,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 2,
+       "n_gen": 558,
+       "resume_delivery_ms": 89.70899999985704,
+       "gap_ms": 134.52400000005582,
+       "detect_ms": 44.09699999996519,
+       "handshake_ms": 39.14299999996729,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 593,
+       "resume_delivery_ms": 55.99300000039875,
+       "gap_ms": 85.89700000038647,
+       "detect_ms": 39.52499999968495,
+       "handshake_ms": 39.12099999979546,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 4,
+       "n_gen": 646,
+       "resume_delivery_ms": 92.7719999999681,
+       "gap_ms": 158.15900000006877,
+       "detect_ms": 46.147000000019034,
+       "handshake_ms": 46.81699999991906,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 106.0,
+       "late": 7,
+       "n_gen": 592,
+       "resume_delivery_ms": 96.30199999992328,
+       "gap_ms": 204.34400000021924,
+       "detect_ms": 49.52800000000934,
+       "handshake_ms": 40.0710000003528,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 41.0,
+       "late": 0,
+       "n_gen": 702,
+       "resume_delivery_ms": 57.866999999987456,
+       "gap_ms": 101.91399999985151,
+       "detect_ms": 48.48700000002282,
+       "handshake_ms": 40.54099999984828,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 49.0,
+       "late": 3,
+       "n_gen": 636,
+       "resume_delivery_ms": 95.88200000007419,
+       "gap_ms": 150.76600000020335,
+       "detect_ms": 46.68099999980768,
+       "handshake_ms": 39.37899999982619,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    }
+   ],
+   "late_per_outage": [
+    4,
+    0,
+    2,
+    0,
+    4,
+    3,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    2,
+    3,
+    0,
+    2,
+    3,
+    0,
+    2,
+    3,
+    0,
+    8,
+    3,
+    3,
+    0,
+    2,
+    0,
+    2,
+    3,
+    12,
+    2,
+    0,
+    3,
+    3,
+    3,
+    0,
+    2,
+    2,
+    2,
+    3,
+    4,
+    1,
+    3,
+    0,
+    0,
+    0,
+    3,
+    3,
+    0,
+    0,
+    3,
+    2,
+    3,
+    3,
+    0,
+    2,
+    0,
+    2,
+    2,
+    3,
+    4,
+    0,
+    2,
+    2,
+    2,
+    0,
+    4,
+    7,
+    0,
+    3
+   ],
+   "misses_per_outage": 2.0428571428571427,
+   "late_outside_outages": 0,
+   "lost": 0,
+   "dup": 54,
+   "gap_ms_max": 204.34400000021924,
+   "resume_delivery_ms_median": 80.80949999998666,
+   "detect_ms_median": 44.133499999816195,
+   "handshake_ms_median": 40.283499999986816,
+   "resumed_share": null,
+   "failed_attempts": 50,
+   "failed_runs": 0,
+   "p99_ms": 52.70619999986622
+  },
+  "5G-tele|detect|C0|ch2": {
+   "policy": "detect",
+   "cfg": "C0",
+   "chain": 2,
+   "runs": [
+    {
+     "seed": 20261030,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285278.3641646,
+     "outage_ms": [
+      50.0,
+      28.0,
+      78.0,
+      35.0,
+      52.0,
+      65.0,
+      27.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.01799999994546,
+      "p99": 15.291319999935247,
+      "max": 145.49999999997
+     },
+     "n_miss": 10,
+     "late_outside_outages": 0,
+     "miss_share": 0.002,
+     "longest_gap_ms": 151.71399999996993,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 2,
+       "n_gen": 534,
+       "resume_delivery_ms": 90.31900000002224,
+       "gap_ms": 135.1359999999886,
+       "detect_ms": 41.003999999929874,
+       "handshake_ms": 38.24100000008457,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 706,
+       "resume_delivery_ms": 60.53799999995135,
+       "gap_ms": 84.47200000000521,
+       "detect_ms": 39.841000000023996,
+       "handshake_ms": 38.44099999992068,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 78.0,
+       "late": 3,
+       "n_gen": 594,
+       "resume_delivery_ms": 68.32999999994627,
+       "gap_ms": 151.71399999996993,
+       "detect_ms": 47.22699999990709,
+       "handshake_ms": 38.708999999926164,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 35.0,
+       "late": 0,
+       "n_gen": 565,
+       "resume_delivery_ms": 49.643999999943844,
+       "gap_ms": 84.54499999993459,
+       "detect_ms": 36.10900000012407,
+       "handshake_ms": 38.56599999994614,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 3,
+       "n_gen": 644,
+       "resume_delivery_ms": 92.88199999991775,
+       "gap_ms": 151.47200000001249,
+       "detect_ms": 45.08999999984553,
+       "handshake_ms": 38.430999999945925,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 65.0,
+       "late": 2,
+       "n_gen": 595,
+       "resume_delivery_ms": 71.18100000002414,
+       "gap_ms": 135.51000000006752,
+       "detect_ms": 36.93999999995867,
+       "handshake_ms": 38.3679999999913,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 27.0,
+       "late": 0,
+       "n_gen": 708,
+       "resume_delivery_ms": 62.78299999985393,
+       "gap_ms": 85.29999999996107,
+       "detect_ms": 40.833999999904336,
+       "handshake_ms": 38.8709999999719,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261031,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285443.158724,
+     "outage_ms": [
+      52.0,
+      29.0,
+      57.0,
+      36.0,
+      26.0,
+      44.0,
+      50.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 13,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.045999999874766,
+      "p99": 30.11410000003259,
+      "max": 142.20700000009856
+     },
+     "n_miss": 7,
+     "late_outside_outages": 0,
+     "miss_share": 0.0014,
+     "longest_gap_ms": 147.74000000011256,
+     "per_outage": [
+      {
+       "outage_ms": 52.0,
+       "late": 2,
+       "n_gen": 600,
+       "resume_delivery_ms": 90.44999999991887,
+       "gap_ms": 133.54599999979655,
+       "detect_ms": 45.129999999971915,
+       "handshake_ms": 38.77299999999195,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 29.0,
+       "late": 0,
+       "n_gen": 595,
+       "resume_delivery_ms": 61.68999999999869,
+       "gap_ms": 84.99800000004143,
+       "detect_ms": 41.33899999987989,
+       "handshake_ms": 39.26699999988159,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 2,
+       "n_gen": 655,
+       "resume_delivery_ms": 84.76599999994505,
+       "gap_ms": 133.1920000000082,
+       "detect_ms": 45.03599999998187,
+       "handshake_ms": 38.40100000002167,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 642,
+       "resume_delivery_ms": 58.9310000000296,
+       "gap_ms": 99.77600000001985,
+       "detect_ms": 46.69400000011592,
+       "handshake_ms": 38.30300000004172,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 0,
+       "n_gen": 611,
+       "resume_delivery_ms": 63.29099999993559,
+       "gap_ms": 84.09400000005007,
+       "detect_ms": 41.175000000066575,
+       "handshake_ms": 38.00900000010188,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 44.0,
+       "late": 0,
+       "n_gen": 641,
+       "resume_delivery_ms": 49.676000000090426,
+       "gap_ms": 84.62200000008124,
+       "detect_ms": 44.61700000001656,
+       "handshake_ms": 38.55799999996634,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 3,
+       "n_gen": 615,
+       "resume_delivery_ms": 95.47700000007353,
+       "gap_ms": 147.74000000011256,
+       "detect_ms": 49.33200000004945,
+       "handshake_ms": 38.016999999854306,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 9,
+     "n_failed_attempts": 3,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261032,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792285772.7400823,
+     "outage_ms": [
+      45.0,
+      52.0,
+      82.0,
+      30.0,
+      45.0,
+      60.0,
+      28.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 4,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.038000000008651,
+      "p99": 19.394850000042055,
+      "max": 144.10700000007637
+     },
+     "n_miss": 8,
+     "late_outside_outages": 0,
+     "miss_share": 0.0016,
+     "longest_gap_ms": 149.74600000005012,
+     "per_outage": [
+      {
+       "outage_ms": 45.0,
+       "late": 0,
+       "n_gen": 616,
+       "resume_delivery_ms": 53.57499999990978,
+       "gap_ms": 101.59699999985605,
+       "detect_ms": 50.56200000012723,
+       "handshake_ms": 38.070000000061555,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 52.0,
+       "late": 2,
+       "n_gen": 670,
+       "resume_delivery_ms": 87.12800000012066,
+       "gap_ms": 133.0790000001798,
+       "detect_ms": 42.37999999986641,
+       "handshake_ms": 38.61200000005738,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 3,
+       "n_gen": 595,
+       "resume_delivery_ms": 65.17000000008011,
+       "gap_ms": 149.74600000005012,
+       "detect_ms": 49.09199999997327,
+       "handshake_ms": 39.67700000021068,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 0,
+       "n_gen": 675,
+       "resume_delivery_ms": 57.00199999978395,
+       "gap_ms": 84.82599999979357,
+       "detect_ms": 38.52400000005218,
+       "handshake_ms": 38.488000000143074,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 45.0,
+       "late": 0,
+       "n_gen": 600,
+       "resume_delivery_ms": 49.7699999998531,
+       "gap_ms": 99.56399999987298,
+       "detect_ms": 46.7630000000554,
+       "handshake_ms": 38.03199999993012,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 3,
+       "n_gen": 637,
+       "resume_delivery_ms": 85.24199999988014,
+       "gap_ms": 147.23499999990963,
+       "detect_ms": 48.846999999796026,
+       "handshake_ms": 38.22300000001633,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 617,
+       "resume_delivery_ms": 71.77999999998974,
+       "gap_ms": 105.99299999989853,
+       "detect_ms": 51.67800000003808,
+       "handshake_ms": 38.109000000076776,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 3,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261033,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286019.9600947,
+     "outage_ms": [
+      70.0,
+      54.0,
+      50.0,
+      34.0,
+      54.0,
+      33.0,
+      61.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 6,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.01500000006672,
+      "p99": 42.04758999998438,
+      "max": 168.24899999983245
+     },
+     "n_miss": 19,
+     "late_outside_outages": 0,
+     "miss_share": 0.0038,
+     "longest_gap_ms": 149.45699999998396,
+     "per_outage": [
+      {
+       "outage_ms": 70.0,
+       "late": 2,
+       "n_gen": 632,
+       "resume_delivery_ms": 65.23199999992357,
+       "gap_ms": 135.12100000002647,
+       "detect_ms": 36.031999999977415,
+       "handshake_ms": 40.253000000120664,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 9,
+       "n_gen": 616,
+       "resume_delivery_ms": 89.10900000000765,
+       "gap_ms": 148.53500000003805,
+       "detect_ms": 46.1720000000696,
+       "handshake_ms": 37.89399999982379,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 50.0,
+       "late": 3,
+       "n_gen": 724,
+       "resume_delivery_ms": 94.38999999997577,
+       "gap_ms": 149.3199999999888,
+       "detect_ms": 47.72699999989527,
+       "handshake_ms": 38.19399999997586,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 573,
+       "resume_delivery_ms": 57.17900000013287,
+       "gap_ms": 82.94000000000779,
+       "detect_ms": 43.53499999979249,
+       "handshake_ms": 37.75499999983367,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 3,
+       "n_gen": 676,
+       "resume_delivery_ms": 89.27599999992708,
+       "gap_ms": 149.45699999998396,
+       "detect_ms": 45.36200000006829,
+       "handshake_ms": 38.219999999910215,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 0,
+       "n_gen": 544,
+       "resume_delivery_ms": 60.03200000009201,
+       "gap_ms": 84.47000000001026,
+       "detect_ms": 44.57899999988513,
+       "handshake_ms": 38.401999999905456,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 2,
+       "n_gen": 690,
+       "resume_delivery_ms": 76.9470000000183,
+       "gap_ms": 133.05100000002312,
+       "detect_ms": 40.58899999995447,
+       "handshake_ms": 38.31399999990026,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261034,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286102.37115,
+     "outage_ms": [
+      47.0,
+      53.0,
+      58.0,
+      34.0,
+      54.0,
+      40.0,
+      82.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 7,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.007999999970707,
+      "p99": 31.848319999976482,
+      "max": 145.47099999981583
+     },
+     "n_miss": 14,
+     "late_outside_outages": 0,
+     "miss_share": 0.0028,
+     "longest_gap_ms": 151.86599999992723,
+     "per_outage": [
+      {
+       "outage_ms": 47.0,
+       "late": 2,
+       "n_gen": 592,
+       "resume_delivery_ms": 97.6109999999153,
+       "gap_ms": 137.40699999993922,
+       "detect_ms": 44.351000000006024,
+       "handshake_ms": 38.21499999980915,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 2,
+       "n_gen": 631,
+       "resume_delivery_ms": 89.16700000008859,
+       "gap_ms": 133.0880000000434,
+       "detect_ms": 44.96500000004744,
+       "handshake_ms": 38.37799999996605,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 58.0,
+       "late": 2,
+       "n_gen": 652,
+       "resume_delivery_ms": 78.1409999999596,
+       "gap_ms": 133.4750000000895,
+       "detect_ms": 38.652999999840176,
+       "handshake_ms": 38.496000000122876,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 552,
+       "resume_delivery_ms": 59.725000000071304,
+       "gap_ms": 100.01299999998992,
+       "detect_ms": 45.32999999992171,
+       "handshake_ms": 38.188999999874795,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 3,
+       "n_gen": 712,
+       "resume_delivery_ms": 97.30100000001585,
+       "gap_ms": 151.86599999992723,
+       "detect_ms": 52.077999999937674,
+       "handshake_ms": 40.79900000010639,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 40.0,
+       "late": 2,
+       "n_gen": 587,
+       "resume_delivery_ms": 96.55500000008033,
+       "gap_ms": 133.829999999989,
+       "detect_ms": 38.33800000006704,
+       "handshake_ms": 38.73299999986557,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 82.0,
+       "late": 3,
+       "n_gen": 670,
+       "resume_delivery_ms": 62.70100000006096,
+       "gap_ms": 149.22300000012,
+       "detect_ms": 47.0909999999094,
+       "handshake_ms": 38.05599999986953,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261035,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286349.60004,
+     "outage_ms": [
+      28.0,
+      48.0,
+      62.0,
+      54.0,
+      61.0,
+      91.0,
+      33.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 7,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.018499999887354,
+      "p99": 33.40715999990152,
+      "max": 181.39900000005582
+     },
+     "n_miss": 15,
+     "late_outside_outages": 0,
+     "miss_share": 0.003,
+     "longest_gap_ms": 187.25799999992887,
+     "per_outage": [
+      {
+       "outage_ms": 28.0,
+       "late": 0,
+       "n_gen": 650,
+       "resume_delivery_ms": 56.93100000007689,
+       "gap_ms": 83.99999999983265,
+       "detect_ms": 36.77799999968556,
+       "handshake_ms": 38.22900000022855,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 48.0,
+       "late": 2,
+       "n_gen": 551,
+       "resume_delivery_ms": 96.23499999997875,
+       "gap_ms": 137.74599999987913,
+       "detect_ms": 42.25099999985105,
+       "handshake_ms": 40.79200000023775,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 62.0,
+       "late": 2,
+       "n_gen": 592,
+       "resume_delivery_ms": 76.83300000007875,
+       "gap_ms": 135.33899999993082,
+       "detect_ms": 39.44099999989703,
+       "handshake_ms": 38.100000000213186,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 54.0,
+       "late": 2,
+       "n_gen": 689,
+       "resume_delivery_ms": 89.08199999996214,
+       "gap_ms": 135.5149999999412,
+       "detect_ms": 43.505000000095606,
+       "handshake_ms": 37.902999999914755,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 61.0,
+       "late": 3,
+       "n_gen": 588,
+       "resume_delivery_ms": 88.98999999973967,
+       "gap_ms": 150.9529999998449,
+       "detect_ms": 50.613999999768566,
+       "handshake_ms": 38.08300000036979,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 91.0,
+       "late": 6,
+       "n_gen": 631,
+       "resume_delivery_ms": 96.39100000003964,
+       "gap_ms": 187.25799999992887,
+       "detect_ms": 35.63899999971909,
+       "handshake_ms": 38.2089999998243,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 33.0,
+       "late": 0,
+       "n_gen": 682,
+       "resume_delivery_ms": 64.22099999963393,
+       "gap_ms": 101.46499999973457,
+       "detect_ms": 48.435000000154105,
+       "handshake_ms": 38.6039999998502,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 6,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261036,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792286679.2361016,
+     "outage_ms": [
+      46.0,
+      31.0,
+      36.0,
+      30.0,
+      67.0,
+      57.0,
+      36.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 8,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.00400000020818,
+      "p99": 29.903359999880244,
+      "max": 185.68400000003749
+     },
+     "n_miss": 13,
+     "late_outside_outages": 0,
+     "miss_share": 0.0026,
+     "longest_gap_ms": 137.67400000006091,
+     "per_outage": [
+      {
+       "outage_ms": 46.0,
+       "late": 2,
+       "n_gen": 563,
+       "resume_delivery_ms": 89.88499999986743,
+       "gap_ms": 135.42400000005728,
+       "detect_ms": 36.1720000000787,
+       "handshake_ms": 38.60800000029485,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 31.0,
+       "late": 0,
+       "n_gen": 653,
+       "resume_delivery_ms": 57.682999999997264,
+       "gap_ms": 83.4740000000238,
+       "detect_ms": 40.825999999924534,
+       "handshake_ms": 37.97600000007151,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 601,
+       "resume_delivery_ms": 62.47399999983827,
+       "gap_ms": 100.48800000004121,
+       "detect_ms": 50.522000000000844,
+       "handshake_ms": 38.12000000016269,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 30.0,
+       "late": 0,
+       "n_gen": 630,
+       "resume_delivery_ms": 55.79000000034284,
+       "gap_ms": 83.45600000029663,
+       "detect_ms": 37.977999999839085,
+       "handshake_ms": 37.86200000013196,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 67.0,
+       "late": 2,
+       "n_gen": 561,
+       "resume_delivery_ms": 68.32699999995384,
+       "gap_ms": 134.7819999996318,
+       "detect_ms": 36.61099999999351,
+       "handshake_ms": 38.7510000000475,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 9,
+       "n_gen": 709,
+       "resume_delivery_ms": 78.36900000029345,
+       "gap_ms": 137.67400000006091,
+       "detect_ms": 36.71600000006947,
+       "handshake_ms": 38.272999999662716,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 634,
+       "resume_delivery_ms": 59.35399999998481,
+       "gap_ms": 87.23599999984799,
+       "detect_ms": 46.512999999777094,
+       "handshake_ms": 38.778999999976804,
+       "resumed": 0,
+       "failed_attempts": 0
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 4,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261037,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287008.855725,
+     "outage_ms": [
+      50.0,
+      60.0,
+      38.0,
+      89.0,
+      57.0,
+      26.0,
+      63.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 3,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 9.995499999831736,
+      "p99": 18.566980000011988,
+      "max": 144.1320000003543
+     },
+     "n_miss": 12,
+     "late_outside_outages": 0,
+     "miss_share": 0.0024,
+     "longest_gap_ms": 149.64499999996406,
+     "per_outage": [
+      {
+       "outage_ms": 50.0,
+       "late": 0,
+       "n_gen": 589,
+       "resume_delivery_ms": 48.82499999985157,
+       "gap_ms": 99.54599999991842,
+       "detect_ms": 51.15299999988565,
+       "handshake_ms": 37.841999999727705,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 60.0,
+       "late": 2,
+       "n_gen": 714,
+       "resume_delivery_ms": 79.93100000021514,
+       "gap_ms": 133.74300000032235,
+       "detect_ms": 42.39899999993213,
+       "handshake_ms": 38.277000000107364,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 38.0,
+       "late": 2,
+       "n_gen": 538,
+       "resume_delivery_ms": 97.2820000001775,
+       "gap_ms": 133.9020000000346,
+       "detect_ms": 37.32399999989866,
+       "handshake_ms": 38.721999999779655,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 89.0,
+       "late": 3,
+       "n_gen": 726,
+       "resume_delivery_ms": 56.91899999965244,
+       "gap_ms": 148.72699999978067,
+       "detect_ms": 48.86100000021543,
+       "handshake_ms": 38.30800000014278,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 57.0,
+       "late": 3,
+       "n_gen": 589,
+       "resume_delivery_ms": 86.84200000016062,
+       "gap_ms": 149.64499999996406,
+       "detect_ms": 45.87199999969016,
+       "handshake_ms": 39.033999999901425,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 26.0,
+       "late": 0,
+       "n_gen": 608,
+       "resume_delivery_ms": 67.54499999988184,
+       "gap_ms": 99.442000000181,
+       "detect_ms": 45.66400000021531,
+       "handshake_ms": 37.990000000263535,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 2,
+       "n_gen": 650,
+       "resume_delivery_ms": 75.03199999973731,
+       "gap_ms": 132.6930000000175,
+       "detect_ms": 40.74399999990419,
+       "handshake_ms": 38.170000000263826,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261038,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287256.0574596,
+     "outage_ms": [
+      33.0,
+      53.0,
+      47.0,
+      63.0,
+      59.0,
+      36.0,
+      55.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.021000000051572,
+      "p99": 18.04199999969569,
+      "max": 145.33799999981056
+     },
+     "n_miss": 12,
+     "late_outside_outages": 0,
+     "miss_share": 0.0024,
+     "longest_gap_ms": 151.34500000021944,
+     "per_outage": [
+      {
+       "outage_ms": 33.0,
+       "late": 0,
+       "n_gen": 610,
+       "resume_delivery_ms": 55.548999999700754,
+       "gap_ms": 83.44999999962965,
+       "detect_ms": 40.631999999732216,
+       "handshake_ms": 37.94999999990978,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 3,
+       "n_gen": 626,
+       "resume_delivery_ms": 91.66499999992084,
+       "gap_ms": 151.3159999999516,
+       "detect_ms": 45.028000000002066,
+       "handshake_ms": 38.30900000002657,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 47.0,
+       "late": 2,
+       "n_gen": 634,
+       "resume_delivery_ms": 90.2259999998023,
+       "gap_ms": 135.6740000001082,
+       "detect_ms": 37.57099999984348,
+       "handshake_ms": 38.36300000011761,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 63.0,
+       "late": 2,
+       "n_gen": 618,
+       "resume_delivery_ms": 79.3020000000979,
+       "gap_ms": 135.23200000008728,
+       "detect_ms": 43.02400000005946,
+       "handshake_ms": 38.15900000017791,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 3,
+       "n_gen": 663,
+       "resume_delivery_ms": 90.02099999997881,
+       "gap_ms": 151.34500000021944,
+       "detect_ms": 49.293000000034226,
+       "handshake_ms": 38.02899999982401,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 36.0,
+       "late": 0,
+       "n_gen": 619,
+       "resume_delivery_ms": 48.862000000099215,
+       "gap_ms": 84.36499999970692,
+       "detect_ms": 36.44599999961429,
+       "handshake_ms": 38.34999999980937,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 55.0,
+       "late": 2,
+       "n_gen": 657,
+       "resume_delivery_ms": 86.4240000000791,
+       "gap_ms": 135.6460000001789,
+       "detect_ms": 41.46099999979924,
+       "handshake_ms": 38.57500000003711,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 7,
+     "n_failed_attempts": 5,
+     "client_rc": 0,
+     "client_err": ""
+    },
+    {
+     "seed": 20261039,
+     "host_control": {
+      "X3_EMU_CPU": "1",
+      "X3_EMU_RT": "50",
+      "X3_EP_CPU": "0",
+      "X3_HOSTMON": "1"
+     },
+     "t_start_utc": 1792287420.8375654,
+     "outage_ms": [
+      55.0,
+      53.0,
+      34.0,
+      59.0,
+      106.0,
+      41.0,
+      49.0
+     ],
+     "n_expected": 5000,
+     "n_recv": 5000,
+     "n_dup": 5,
+     "n_lost": 0,
+     "delay_ms": {
+      "p50": 10.001000000102067,
+      "p99": 51.824449999608504,
+      "max": 237.36300000018673
+     },
+     "n_miss": 26,
+     "late_outside_outages": 10,
+     "miss_share": 0.0052,
+     "longest_gap_ms": 216.3390000000618,
+     "per_outage": [
+      {
+       "outage_ms": 55.0,
+       "late": 2,
+       "n_gen": 680,
+       "resume_delivery_ms": 84.65300000034404,
+       "gap_ms": 133.18700000036188,
+       "detect_ms": 42.15199999998731,
+       "handshake_ms": 38.31999999965774,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 53.0,
+       "late": 2,
+       "n_gen": 558,
+       "resume_delivery_ms": 88.80099999987578,
+       "gap_ms": 133.527999999842,
+       "detect_ms": 44.055999999727646,
+       "handshake_ms": 38.15100000019811,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 34.0,
+       "late": 0,
+       "n_gen": 593,
+       "resume_delivery_ms": 55.14399999992747,
+       "gap_ms": 84.53499999995984,
+       "detect_ms": 40.31600000007529,
+       "handshake_ms": 38.74999999970896,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 59.0,
+       "late": 3,
+       "n_gen": 646,
+       "resume_delivery_ms": 84.89899999995032,
+       "gap_ms": 149.518000000171,
+       "detect_ms": 45.952000000397675,
+       "handshake_ms": 38.44799999978932,
+       "resumed": 0,
+       "failed_attempts": 1
+      },
+      {
+       "outage_ms": 106.0,
+       "late": 6,
+       "n_gen": 592,
+       "resume_delivery_ms": 93.37000000004991,
+       "gap_ms": 201.20799999995143,
+       "detect_ms": 49.720999999863125,
+       "handshake_ms": 38.47399999995105,
+       "resumed": 0,
+       "failed_attempts": 2
+      },
+      {
+       "outage_ms": 41.0,
+       "late": 0,
+       "n_gen": 702,
+       "resume_delivery_ms": 56.283999999777734,
+       "gap_ms": 99.81999999990876,
+       "detect_ms": 49.09300000008443,
+       "handshake_ms": 38.15099999974336,
+       "resumed": 0,
+       "failed_attempts": 0
+      },
+      {
+       "outage_ms": 49.0,
+       "late": 3,
+       "n_gen": 636,
+       "resume_delivery_ms": 94.85799999993105,
+       "gap_ms": 149.48000000003958,
+       "detect_ms": 46.094999999695574,
+       "handshake_ms": 38.30500000003667,
+       "resumed": 0,
+       "failed_attempts": 1
+      }
+     ],
+     "n_detect": 8,
+     "n_failed_attempts": 8,
+     "client_rc": 0,
+     "client_err": ""
+    }
+   ],
+   "late_per_outage": [
+    2,
+    0,
+    3,
+    0,
+    3,
+    2,
+    0,
+    2,
+    0,
+    2,
+    0,
+    0,
+    0,
+    3,
+    0,
+    2,
+    3,
+    0,
+    0,
+    3,
+    0,
+    2,
+    9,
+    3,
+    0,
+    3,
+    0,
+    2,
+    2,
+    2,
+    2,
+    0,
+    3,
+    2,
+    3,
+    0,
+    2,
+    2,
+    2,
+    3,
+    6,
+    0,
+    2,
+    0,
+    0,
+    0,
+    2,
+    9,
+    0,
+    0,
+    2,
+    2,
+    3,
+    3,
+    0,
+    2,
+    0,
+    3,
+    2,
+    2,
+    3,
+    0,
+    2,
+    2,
+    2,
+    0,
+    3,
+    6,
+    0,
+    3
+   ],
+   "misses_per_outage": 1.8,
+   "late_outside_outages": 10,
+   "lost": 0,
+   "dup": 63,
+   "gap_ms_max": 201.20799999995143,
+   "resume_delivery_ms_median": 76.89000000004853,
+   "detect_ms_median": 44.203499999866835,
+   "handshake_ms_median": 38.30850000008468,
+   "resumed_share": null,
+   "failed_attempts": 50,
+   "failed_runs": 0,
+   "p99_ms": 51.824449999608504
+  }
+ }
+}

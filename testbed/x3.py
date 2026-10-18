@@ -11,6 +11,12 @@ acknowledgments (tele.c), reconnects and resends; detect-resume = detect with PS
 Records: generated every PERIOD_MS at the client (generation time = schedule), queued while no session exists, late if
 first received more than DEADLINE_MS after generation, lost if never received.
 usage: python3 x3.py [RUNS] [DURATION_S]
+v1.9 (controlled repeat; every option is off by default, so the earlier blocks run exactly as before):
+  X3_EMU_CPU=1 X3_EMU_RT=50   the emulator pinned to CPU 1 under SCHED_FIFO priority 50 (taskset, chrt)
+  X3_EP_CPU=0                 client, server and monitor pinned to CPU 0
+  X3_HOSTMON=1                testbed/hostmon.py samples the emulator's scheduling state every 5 ms during each run
+  X3_ORDER=interleave         for each seed, the cells run in the order filed in X3_ORDER_FILE (a JSON list of
+                              [seed, "policy:cfg:chain"] pairs), instead of one cell after another
 """
 import json, os, signal, statistics, subprocess, sys, time
 import numpy as np, pandas as pd
@@ -56,13 +62,19 @@ def one(policy, cfg, chain, seed, T2, PROFILE):
             f.write(f"{a:.6f} {a + d / 1e3:.6f}\n")
     kill = ["--kill-flows"] if policy.startswith("detect") else []
     elog = f"{TMP}/x3_emu_{PROFILE['name']}_{policy}_{cfg}_{chain}_{seed}.log"
-    emu = subprocess.Popen(["ip", "netns", "exec", "rt", "python3", f"{HERE}/linkemu.py", "r0", "r1", "--ab-rate", str(PROFILE["ul"]), "--ba-rate", str(PROFILE["dl"]),
+    emu_pre = (["taskset", "-c", os.environ["X3_EMU_CPU"]] if os.environ.get("X3_EMU_CPU") else []) + (["chrt", "-f", os.environ["X3_EMU_RT"]] if os.environ.get("X3_EMU_RT") else [])
+    ep_pre = ["taskset", "-c", os.environ["X3_EP_CPU"]] if os.environ.get("X3_EP_CPU") else []      # v1.9 host control (off unless set)
+    t_wall = time.time()
+    emu = subprocess.Popen(["ip", "netns", "exec", "rt"] + emu_pre + ["python3", f"{HERE}/linkemu.py", "r0", "r1", "--ab-rate", str(PROFILE["ul"]), "--ba-rate", str(PROFILE["dl"]),
                             "--ab-delay-ms", str(PROFILE["owd_ms"]), "--ba-delay-ms", str(PROFILE["owd_ms"]), "--outages", outf, "--outages-abs", "--log", elog] + kill,
                            stderr=open(f"{TMP}/x3_emu_{policy}_{cfg}_{chain}_{seed}.err", "w"))
     env = env_for(fam)
+    mon = None
+    if os.environ.get("X3_HOSTMON"):            # ip netns exec, taskset and chrt exec in place, so emu.pid is the emulator itself
+        mon = subprocess.Popen(ep_pre + ["python3", f"{HERE}/hostmon.py", str(emu.pid), f"{TMP}/x3_mon_{PROFILE['name']}_{policy}_{cfg}_{chain}_{seed}.log"])
     time.sleep(0.5)
     scert = f"{P}/srv.byroot.crt"; schain = f"{P}/srv.chain3.pem" if chain == 3 else "-"
-    srv = subprocess.Popen(["ip", "netns", "exec", "srv", f"{HERE}/tele", "s", "4433", scert, f"{P}/srv.key", schain, f"{P}/root.crt", groups, str(mutual)],
+    srv = subprocess.Popen(["ip", "netns", "exec", "srv"] + ep_pre + [f"{HERE}/tele", "s", "4433", scert, f"{P}/srv.key", schain, f"{P}/root.crt", groups, str(mutual)],
                            stdout=open(f"{TMP}/x3_srv_{seed}.out", "w"), stderr=subprocess.PIPE, text=True, env=env)   # a file, not a pipe: 5,000 lines overflow a pipe and block the server
     srv.stderr.readline()
     if mutual:
@@ -70,7 +82,7 @@ def one(policy, cfg, chain, seed, T2, PROFILE):
     else:
         cc = ck = cch = "-"
     while time.monotonic() < t_base: time.sleep(0.01)
-    cli = subprocess.run(["ip", "netns", "exec", "cli", f"{HERE}/tele", "c", "10.9.0.2", "4433", f"{P}/root.crt", groups, cc, ck, cch,
+    cli = subprocess.run(["ip", "netns", "exec", "cli"] + ep_pre + [f"{HERE}/tele", "c", "10.9.0.2", "4433", f"{P}/root.crt", groups, cc, ck, cch,
                           str(DUR), str(PERIOD_MS), policy, outf], capture_output=True, text=True, timeout=DUR + 120, env=env)
     if cli.returncode != 0: print("CLIENT", policy, cfg, chain, seed, cli.returncode, cli.stderr[-300:], flush=True)
     try: srv.wait(timeout=20)
@@ -79,6 +91,9 @@ def one(policy, cfg, chain, seed, T2, PROFILE):
     emu.send_signal(signal.SIGINT)
     try: emu.wait(timeout=5)
     except subprocess.TimeoutExpired: emu.kill()
+    if mon is not None:                          # the monitor exits once the emulator is gone
+        try: mon.wait(timeout=5)
+        except subprocess.TimeoutExpired: mon.kill()
     subprocess.run(CLEANUP)
     R = [l.split() for l in sout.splitlines() if l.startswith("R ")]
     win = [tuple(map(float, l.split())) for l in open(outf)]
@@ -114,11 +129,29 @@ def one(policy, cfg, chain, seed, T2, PROFILE):
                     "handshake_ms": hs[0][0] if hs else None, "resumed": hs[0][1] if hs else None,
                     "failed_attempts": sum(1 for f in F if oa <= f < hi)})
     late_outside = int(late.sum()) - sum(x["late"] for x in per)
-    return {"seed": seed, "outage_ms": [x["outage_ms"] for x in per], "n_expected": expected, "n_recv": len(first), "n_dup": dup,
+    hc = {k: os.environ[k] for k in ("X3_EMU_CPU", "X3_EMU_RT", "X3_EP_CPU", "X3_HOSTMON") if os.environ.get(k)}
+    return {"seed": seed, **({"host_control": hc, "t_start_utc": t_wall} if hc else {}), "outage_ms": [x["outage_ms"] for x in per], "n_expected": expected, "n_recv": len(first), "n_dup": dup,
             "n_lost": expected - len(first), "delay_ms": {"p50": float(np.median(delay)), "p99": float(np.percentile(delay, 99)), "max": float(delay.max())},
             "n_miss": int(late.sum()), "late_outside_outages": late_outside, "miss_share": float(late.mean()),
             "longest_gap_ms": float(np.diff(trs).max() * 1e3), "per_outage": per, "n_detect": len(D), "n_failed_attempts": len(F),
             "client_rc": cli.returncode, "client_err": cli.stderr[-300:]}
+
+def summarize(policy, cfg, ch, runs):
+    per = [x for r in runs for x in r.get("per_outage", [])]
+    med = lambda v: statistics.median(v) if v else None
+    return {"policy": policy, "cfg": cfg, "chain": ch, "runs": runs,
+            "late_per_outage": [x["late"] for x in per],
+            "misses_per_outage": sum(x["late"] for x in per) / max(1, len(per)),
+            "late_outside_outages": sum(r.get("late_outside_outages", 0) for r in runs),
+            "lost": sum(r.get("n_lost", 0) for r in runs), "dup": sum(r.get("n_dup", 0) for r in runs),
+            "gap_ms_max": max((x["gap_ms"] for x in per if x["gap_ms"] == x["gap_ms"]), default=None),
+            "resume_delivery_ms_median": med([x["resume_delivery_ms"] for x in per if x["resume_delivery_ms"] == x["resume_delivery_ms"]]),
+            "detect_ms_median": med([x["detect_ms"] for x in per if x["detect_ms"] is not None]),
+            "handshake_ms_median": med([x["handshake_ms"] for x in per if x["handshake_ms"] is not None]),
+            "resumed_share": (sum(1 for x in per if x["resumed"]) / max(1, sum(1 for x in per if x["resumed"] is not None))) if policy.endswith("resume") else None,
+            "failed_attempts": sum(r.get("n_failed_attempts", 0) for r in runs),
+            "failed_runs": sum(1 for r in runs if r.get("failed") or r.get("client_rc", 0) != 0),
+            "p99_ms": max(r["delay_ms"]["p99"] for r in runs)}
 
 def main():
     subprocess.run(["bash", os.path.join(HERE, "netns_up.sh")], check=True, stdout=subprocess.DEVNULL)
@@ -134,6 +167,19 @@ def main():
     outp = os.environ.get("X3_OUT", outp)
     if (only or os.environ.get("X3_MERGE")) and os.path.exists(outp):
         res["cells"] = json.load(open(outp))["cells"]
+    if os.environ.get("X3_ORDER") == "interleave":      # v1.9: seed by seed, cells in the filed random order
+        order = json.load(open(os.environ["X3_ORDER_FILE"]))
+        res["setup"]["run_order"] = order; res["setup"]["host_control"] = {k: os.environ.get(k) for k in ("X3_EMU_CPU", "X3_EMU_RT", "X3_EP_CPU", "X3_HOSTMON")}
+        pname = os.environ["X3_PROFILES"]; PROFILE = PROFILES[pname]; got = {}
+        for seed, cell in order:
+            policy, cfg, ch = cell.split(":"); ch = int(ch)
+            r = one(policy, cfg, ch, seed, T2, PROFILE)
+            got.setdefault((policy, cfg, ch), []).append(r)
+            print(seed, cell, "late", sum(x["late"] for x in r.get("per_outage", [])), "rc", r.get("client_rc"), flush=True)
+            for (pol_, cfg_, ch_), runs in got.items():
+                res["cells"][f"{pname}|{pol_}|{cfg_}|ch{ch_}"] = summarize(pol_, cfg_, ch_, sorted(runs, key=lambda x: x["seed"]))
+            json.dump(res, open(outp, "w"), indent=1)
+        return
     for pname, PROFILE in PROFILES.items():
      if os.environ.get("X3_PROFILES") and pname not in os.environ["X3_PROFILES"].split(","): continue
      for policy, cfg, ch in CELLS:
@@ -141,21 +187,7 @@ def main():
         key = f"{pname}|{policy}|{cfg}|ch{ch}"
         seed0 = int(os.environ.get("X3_SEED0", "20261015"))       # the paper's development block: 20261015..19; held-out block: 20261020..24
         runs = [one(policy, cfg, ch, seed0 + r, T2, PROFILE) for r in range(RUNS)]   # same seeds => same outage durations in every cell
-        per = [x for r in runs for x in r.get("per_outage", [])]
-        med = lambda v: statistics.median(v) if v else None
-        res["cells"][key] = {"policy": policy, "cfg": cfg, "chain": ch, "runs": runs,
-            "late_per_outage": [x["late"] for x in per],
-            "misses_per_outage": sum(x["late"] for x in per) / max(1, len(per)),
-            "late_outside_outages": sum(r.get("late_outside_outages", 0) for r in runs),
-            "lost": sum(r.get("n_lost", 0) for r in runs), "dup": sum(r.get("n_dup", 0) for r in runs),
-            "gap_ms_max": max((x["gap_ms"] for x in per if x["gap_ms"] == x["gap_ms"]), default=None),
-            "resume_delivery_ms_median": med([x["resume_delivery_ms"] for x in per if x["resume_delivery_ms"] == x["resume_delivery_ms"]]),
-            "detect_ms_median": med([x["detect_ms"] for x in per if x["detect_ms"] is not None]),
-            "handshake_ms_median": med([x["handshake_ms"] for x in per if x["handshake_ms"] is not None]),
-            "resumed_share": (sum(1 for x in per if x["resumed"]) / max(1, sum(1 for x in per if x["resumed"] is not None))) if policy.endswith("resume") else None,
-            "failed_attempts": sum(r.get("n_failed_attempts", 0) for r in runs),
-            "failed_runs": sum(1 for r in runs if r.get("failed") or r.get("client_rc", 0) != 0),
-            "p99_ms": max(r["delay_ms"]["p99"] for r in runs)}
+        res["cells"][key] = summarize(policy, cfg, ch, runs)
         c = res["cells"][key]
         print(key, {k: c[k] for k in ("misses_per_outage", "lost", "dup", "gap_ms_max", "resume_delivery_ms_median", "detect_ms_median", "handshake_ms_median", "failed_attempts", "failed_runs")}, flush=True)
         json.dump(res, open(outp, "w"), indent=1)

@@ -26,13 +26,11 @@ from run import TMP
 STALL_MS = 15.0
 N_OUT = 7
 
-def check(logf, seed, owd_s, T2):
+def fit_schedule(t, tout, seed, T2):
+    """Interruption onsets of a run: the seed's schedule replayed as x3.one() draws it, its origin fitted to the drops."""
     rng = np.random.default_rng(seed)
     durs = rng.choice(T2, size=N_OUT)                                  # same draws, same order as x3.one()
     jit = np.array([rng.uniform(-1, 1) for _ in range(N_OUT)])
-    rows = [l.split() for l in open(logf)]
-    rows = [r for r in rows if len(r) >= 7]
-    t = np.array([float(r[0]) for r in rows]); tout = np.array([float(r[3]) for r in rows])
     drops = t[tout < 0]
     best = (-1, None)
     for tb in np.arange(t[0] - 1.0, t[0] + 4.0, 0.001):                 # origin of the schedule (the log may open with a
@@ -40,7 +38,23 @@ def check(logf, seed, owd_s, T2):
         a = tb + OUT_EVERY_S * np.arange(1, N_OUT + 1) + jit; b = a + durs / 1e3
         k = int(sum(((drops >= a[i]) & (drops <= b[i] + 0.002)).sum() for i in range(N_OUT)))
         if k > best[0]: best = (k, tb)
-    a = best[1] + OUT_EVERY_S * np.arange(1, N_OUT + 1) + jit
+    return best, best[1] + OUT_EVERY_S * np.arange(1, N_OUT + 1) + jit, drops
+
+def read_log(logf):
+    rows = [l.split() for l in open(logf)]
+    rows = [r for r in rows if len(r) >= 7]
+    return rows, np.array([float(r[0]) for r in rows]), np.array([float(r[3]) for r in rows])
+
+def windows(logf, seed, T2):
+    """v1.9: the attribution window (index) of a time on the emulator's clock, as check() assigns stalls."""
+    rows, t, tout = read_log(logf)
+    _, a, _ = fit_schedule(t, tout, seed, T2)
+    lo = a - 0.5
+    return lambda x: int(np.searchsorted(lo, x, side="right") - 1)
+
+def check(logf, seed, owd_s, T2):
+    rows, t, tout = read_log(logf)
+    best, a, drops = fit_schedule(t, tout, seed, T2)
     lo = a - 0.5; hi = np.r_[a[1:] - 0.5, np.inf]
     win = lambda x: int(np.searchsorted(lo, x, side="right") - 1)       # -1: before the first window
     stall = [False] * N_OUT; false = [False] * N_OUT; syn_lost = [0] * N_OUT     # connection requests dropped in an interruption

@@ -1,0 +1,41 @@
+start 2026-10-18T00:58:33Z
+affinity of all tasks:
+     38 Cpus_allowed_list:	0
+     21 Cpus_allowed_list:	0-1
+      7 Cpus_allowed_list:	1
+load: 0.02 0.08 0.02 2/95 695
+cpu0 2194 0 488 79157 465 0 100 61 0 0
+cpu1 1851 0 284 79121 482 0 274 60 0 0
+20261030 detect:C2:3 late 26 rc 0
+20261030 detect:C2w:3 late 13 rc 0
+20261030 detect:C0:2 late 10 rc 0
+20261031 detect:C2w:3 late 9 rc 0
+20261031 detect:C0:2 late 7 rc 0
+20261031 detect:C2:3 late 26 rc 0
+20261032 detect:C2:3 late 27 rc 0
+20261032 detect:C2w:3 late 10 rc 0
+20261032 detect:C0:2 late 8 rc 0
+20261033 detect:C2:3 late 36 rc 0
+20261033 detect:C2w:3 late 18 rc 0
+20261033 detect:C0:2 late 19 rc 0
+20261034 detect:C0:2 late 14 rc 0
+20261034 detect:C2:3 late 29 rc 0
+20261034 detect:C2w:3 late 26 rc 0
+20261035 detect:C0:2 late 15 rc 0
+20261035 detect:C2:3 late 26 rc 0
+20261035 detect:C2w:3 late 14 rc 0
+20261036 detect:C2:3 late 23 rc 0
+20261036 detect:C0:2 late 13 rc 0
+20261036 detect:C2w:3 late 9 rc 0
+20261037 detect:C2:3 late 28 rc 0
+20261037 detect:C2w:3 late 13 rc 0
+20261037 detect:C0:2 late 12 rc 0
+20261038 detect:C2:3 late 25 rc 0
+20261038 detect:C2w:3 late 13 rc 0
+20261038 detect:C0:2 late 12 rc 0
+20261039 detect:C2:3 late 34 rc 0
+20261039 detect:C0:2 late 16 rc 0
+20261039 detect:C2w:3 late 18 rc 0
+cpu0 10871 0 3743 311432 483 0 1452 666 0 0
+cpu1 4207 0 1265 320649 483 0 4775 429 0 0
+end 2026-10-18T01:39:45Z rc 0

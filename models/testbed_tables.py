@@ -104,6 +104,7 @@ def boot_means(late, ok, n_runs, n=10000):
         means[b] = tot / cnt
     return means
 T975_DF4 = 2.7764451051977987      # Student t, 97.5th percentile, 4 degrees of freedom (five runs)
+T975 = {4: T975_DF4, 9: 2.2621571627409915}   # v1.9: also 9 degrees of freedom (the ten runs of the controlled repeat)
 REF = "detect|C0|ch2"               # lost session, classical C0: shares the detector and retry policy of every lost cell
 S["x3"] = {"setup": {k: v for k, v in X3["setup"].items() if k != "profiles"}, "cells": {},
            "contrast": "per interruption, late in a cell minus late in lost C0 on the same interruption (same seed and index); "
@@ -198,15 +199,29 @@ def model_cells(x3, qc, tag, filed=None):
                     "late_obs_no_retry": float(obs[ok & ~retry].mean()) if (ok & ~retry).any() else None, "late_model_no_retry": float(pre[ok & ~retry].mean()) if (ok & ~retry).any() else None,
                     "late_obs_retry": float(obs[ok & retry].mean()) if (ok & retry).any() else None, "late_model_retry": float(pre[ok & retry].mean()) if (ok & retry).any() else None,
                     "_obs": obs, "_pre": pre, "_ok": ok, "_nruns": len(c["runs"])}
+        _o, _k, _p = obs.reshape(len(c["runs"]), -1), ok.reshape(len(c["runs"]), -1), pre.reshape(len(c["runs"]), -1)   # v1.9: run-level intervals
+        _rm = np.array([_o[i][_k[i]].mean() for i in range(len(c["runs"])) if _k[i].any()]); _hw = T975[len(_rm) - 1] * _rm.std(ddof=1) / np.sqrt(len(_rm))
+        out[key]["late_obs_run_t_ci95"] = [float(_rm.mean() - _hw), float(_rm.mean() + _hw)]
+        _rr = np.array([(_o[i] - _p[i])[_k[i]].mean() for i in range(len(c["runs"])) if _k[i].any()]); _hr = T975[len(_rr) - 1] * _rr.std(ddof=1) / np.sqrt(len(_rr))
+        out[key]["obs_minus_model_run_t_ci95"] = [float(_rr.mean() - _hr), float(_rr.mean() + _hr)]   # Fig. 1b bars: measured minus model, over the run means
+        _ra = (_o - _p).mean(axis=1); _ha = T975[len(_ra) - 1] * _ra.std(ddof=1) / np.sqrt(len(_ra))     # v1.9c: the same over all intervals (the repeat's markers)
+        out[key].update({"late_model_all_windows": float(pre.mean()), "late_obs_all_windows_cell": float(obs.mean()),
+                         "obs_minus_model_run_t_ci95_all_windows": [float(_ra.mean() - _ha), float(_ra.mean() + _ha)]})
     allo = np.concatenate([v["_obs"][v["_ok"]] for v in out.values()]); allp = np.concatenate([v["_pre"][v["_ok"]] for v in out.values()])
     summ = {"n_intervals": int(len(allo)), "mae": float(np.abs(allo - allp).mean()), "bias_model_minus_obs": float((allp - allo).mean()),
             "corr": float(np.corrcoef(allo, allp)[0, 1]), "late_obs": float(allo.mean()), "late_model": float(allp.mean()),
             "failed_attempts_obs": float(np.mean([v["failed_attempts_obs"] for v in out.values()])), "failed_attempts_model": float(np.mean([v["failed_attempts_model"] for v in out.values()]))}
     return out, summ
 dev_cells, dev_summ = model_cells(X3, QC, "development")
+_dev_con = {}                                    # v1.9: the chain's penalty on the development runs, measured and modeled over the same matched intervals
+for _p in ("5G-hosp", "5G-tele"):
+    _a, _b = dev_cells[f"{_p}|detect|C2|ch3"], dev_cells[f"{_p}|detect|C0|ch2"]; _both = _a["_ok"] & _b["_ok"]
+    _dd = float((_a["_obs"] - _b["_obs"])[_both].mean())
+    assert abs(_dd - S["x3"]["cells"][f"{_p}|detect|C2|ch3"]["diff_from_lost_c0"]) < 1e-3                           # = Table IV
+    _dev_con[f"{_p}|C2int_minus_C0"] = {"diff": _dd, "model_diff_common": float((_a["_pre"] - _b["_pre"])[_both].mean()), "n_common": int(_both.sum())}
 S["x3_model"] = {"constants": {"pto_ms": "RTT + 25 + 1 + 0.5 (margin, variation floor, host turnaround per sample)", "period_ms": M.PERIOD_MS, "deadline_ms": M.DEADLINE_MS,
                                "phase": "g0 uniform on [-OWD, 16 - OWD); records generated before the onset were delivered, only their acknowledgments were lost"},
-                 "development": {"summary": dev_summ, "cells": {k: {kk: vv for kk, vv in v.items() if not kk.startswith("_")} for k, v in dev_cells.items()}},
+                 "development": {"summary": dev_summ, "cells": {k: {kk: vv for kk, vv in v.items() if not kk.startswith("_")} for k, v in dev_cells.items()}, "contrasts": _dev_con},
                  "boundary": {}}
 for prof, (rtt, owd) in PROF.items():
     S["x3_model"]["boundary"][prof] = {"pto_ms": M.pto_ms(rtt), "H_no_retry_limit_ms": M.DEADLINE_MS - M.pto_ms(rtt), "H_one_retry_limit_ms": M.DEADLINE_MS - 2 * M.pto_ms(rtt), "cells": {}}
@@ -279,6 +294,61 @@ if os.path.exists(HOF) and os.path.exists(HOQ) and os.path.exists(PRE):
     M.SRTT_EXTRA_MS = _keep
     HO["sensitivity_host_turnaround_ms"] = _sens
     S["x3_model"]["heldout"] = HO
+# ---------------------------------------------------------------- v1.9: controlled repeat of the 18 ms comparison (seeds 20261030..39,
+# predictions, plan and run order filed before the runs in testbed_x3_repeat_prereg.json; emulator on its own CPU at real-time
+# priority, conditions interleaved per seed in the filed random order; stalls attributed by testbed/x3_stallclass.py)
+RPF, RPQ, RPP, RPO, RPC = (os.path.join(RES, f"testbed_x3_repeat{x}.json") for x in ("", "_qc", "_prereg", "_order", "_stallclass"))
+if all(os.path.exists(f) for f in (RPF, RPQ, RPP, RPO)):
+    import hashlib
+    X3R = json.load(open(RPF)); QCR = json.load(open(RPQ)); PRR = json.load(open(RPP))
+    assert X3R["setup"]["run_order"] == PRR["run_order"] == json.load(open(RPO))            # the runs followed the filed order
+    FILR = {k: (np.array([x["late_expected"] for r in v["runs"] for x in r["per_outage"]]), [x["outage_ms"] for r in v["runs"] for x in r["per_outage"]]) for k, v in PRR["cells"].items()}
+    rp_cells, rp_summ = model_cells(X3R, QCR, "repeat", filed=FILR)
+    RP = {"prereg_sha256": hashlib.sha256(open(RPP, "rb").read()).hexdigest(), "order_sha256": hashlib.sha256(open(RPO, "rb").read()).hexdigest(),
+          "prereg_written": PRR["written"], "seeds": PRR["seeds"], "host_control": X3R["setup"]["host_control"], "summary": rp_summ, "cells": {}, "contrasts": {}}
+    for key, v in rp_cells.items():
+        c = X3R["cells"][key]; per = [x for r in c["runs"] for x in r["per_outage"]]
+        _ok, _obs = v["_ok"], v["_obs"]; _nf = np.array([x["failed_attempts"] for x in per], float)
+        RP["cells"][key] = {kk: vv for kk, vv in v.items() if not kk.startswith("_")}
+        RP["cells"][key].update({"n_interruptions": len(per), "late_obs_all_windows": float(_obs.mean()), "late_prereg": PRR["cells"][key]["late_per_interruption_expected"],
+                                 "late_total_valid": int(_obs[_ok].sum()), "late_in_failed_attempt_intervals_valid": int(_obs[_ok & (_nf > 0)].sum()),
+                                 "intervals_with_failed_attempt_valid": int((_ok & (_nf > 0)).sum()), "lost": c["lost"], "dup": c["dup"], "failed_runs": c["failed_runs"]})
+    prof = PRR["profile"]; k0, ki, kw = (f"{prof}|detect|C0|ch2", f"{prof}|detect|C2|ch3", f"{prof}|detect|C2w|ch3")
+    for ka, kb, name in ((ki, k0, "C2int_minus_C0"), (kw, k0, "C2w_minus_C0"), (kw, ki, "C2w_minus_C2int")):
+        a, b = rp_cells[ka], rp_cells[kb]; both = a["_ok"] & b["_ok"]; d = a["_obs"] - b["_obs"]; dm = a["_pre"] - b["_pre"]; nr = a["_nruns"]
+        assert [r["seed"] for r in X3R["cells"][ka]["runs"]] == [r["seed"] for r in X3R["cells"][kb]["runs"]]
+        bd = boot_means(d, both, nr); ba = boot_means(d, np.ones_like(both), nr)
+        e = {"diff": float(d[both].mean()), "ci95": [float(np.percentile(bd, 2.5)), float(np.percentile(bd, 97.5))], "n_common": int(both.sum()),
+             "diff_all_windows": float(d.mean()), "ci95_all_windows": [float(np.percentile(ba, 2.5)), float(np.percentile(ba, 97.5))], "n_all": int(len(d)),
+             "model_diff_common": float(dm[both].mean()), "model_diff_all": float(dm.mean())}
+        for tag, m in (("", both), ("_all_windows", np.ones_like(both))):
+            rm = np.array([dd[mm].mean() for dd, mm in zip(d.reshape(nr, -1), m.reshape(nr, -1)) if mm.any()])
+            hw = T975[len(rm) - 1] * rm.std(ddof=1) / np.sqrt(len(rm))
+            e["run_t_ci95" + tag] = [float(rm.mean() - hw), float(rm.mean() + hw)]
+        e["ci_contains_model"] = bool(e["ci95"][0] <= e["model_diff_common"] <= e["ci95"][1])
+        e["ci_all_windows_contains_model"] = bool(e["ci95_all_windows"][0] <= e["model_diff_all"] <= e["ci95_all_windows"][1])
+        RP["contrasts"][f"{prof}|{name}"] = e
+    _ex = {}
+    for key, c in X3R["cells"].items():
+        for r in c["runs"]:
+            n_bad = sum(QCR["cells"][key][str(r["seed"])]["invalid"])
+            if n_bad: _ex[key] = _ex.get(key, 0) + n_bad
+    RP["exclusions_per_cell"] = _ex
+    RP["windows_total"] = sum(c["n_interruptions"] for c in RP["cells"].values()); RP["windows_invalid"] = sum(c["n_interruptions"] - c["n_valid"] for c in RP["cells"].values())
+    RP["late_in_excluded_windows"] = {key: [r["per_outage"][i]["late"] for r in c["runs"] for i, bad in enumerate(QCR["cells"][key][str(r["seed"])]["invalid"]) if bad] for key, c in X3R["cells"].items()}
+    _D = [x["outage_ms"] for r in X3R["cells"][k0]["runs"] for x in r["per_outage"]]
+    RP["outage_ms_median"] = float(np.median(_D)); RP["outage_ms_max"] = float(np.max(_D)); RP["n_interruptions_per_cell"] = len(_D)
+    if os.path.exists(RPC):
+        SC = json.load(open(RPC)); RP["invalid_by_class"] = SC["invalid_by_class"]
+        RP["episodes_by_class"] = {}
+        for key, v in SC["cells"].items():
+            for q in v.values():
+                for ep in q["episodes"]:
+                    RP["episodes_by_class"].setdefault(key, {}).setdefault(ep["class"], 0); RP["episodes_by_class"][key][ep["class"]] += 1
+    RPD = os.path.join(RES, "testbed_x3_repeat_stalldiag.json")          # post hoc diagnostic (testbed/x3_stalldiag.py), not the filed rule
+    if os.path.exists(RPD):
+        _sd = json.load(open(RPD)); RP["stalldiag_post_hoc"] = {k: v for k, v in _sd.items() if k not in ("rows", "note")}
+    S["x3_model"]["repeat"] = RP
 json.dump(S, open(os.path.join(RES, "testbed_summary.json"), "w"), indent=1)
 
 def ms(x):

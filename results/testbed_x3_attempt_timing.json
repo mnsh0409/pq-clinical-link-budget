@@ -1,0 +1,377 @@
+{
+ "note": "x3_attempts.py -- post hoc check (v1.9, after the controlled repeat; NOT part of any filed analysis) of the model's timing\nassumptions in the lost-session windows of all three X3 blocks (development, held-out, repeat), asked by the review of\nv1.9: are the model's misses at 18 ms a detection delay?",
+ "delta_ms_from_development": 5.733644067769323,
+ "delta0_ms_from_development": 1.984472671210824,
+ "timing": {
+  "development": {
+   "5G-hosp|detect|C0|ch2": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 39.675750000006765,
+    "n_declarations": 28,
+    "attempt_period_ms_mean": 41.83675000002722,
+    "n_attempt_periods": 20,
+    "first_syn_after_declaration_ms_median": 2.6455649594936403
+   },
+   "5G-hosp|detect|C1|ch2": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 38.52290624999455,
+    "n_declarations": 32,
+    "attempt_period_ms_mean": 43.07236842104383,
+    "n_attempt_periods": 19,
+    "first_syn_after_declaration_ms_median": 0.8343209719896549
+   },
+   "5G-hosp|detect|C2|ch2": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 39.48446666668133,
+    "n_declarations": 30,
+    "attempt_period_ms_mean": 42.21359090913459,
+    "n_attempt_periods": 22,
+    "first_syn_after_declaration_ms_median": 2.284155585584813
+   },
+   "5G-hosp|detect|C2|ch3": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 38.584133333385275,
+    "n_declarations": 30,
+    "attempt_period_ms_mean": 42.54773913044119,
+    "n_attempt_periods": 23,
+    "first_syn_after_declaration_ms_median": 0.7052519231365295
+   },
+   "5G-hosp|detect|C3m|ch3": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 39.049535714298145,
+    "n_declarations": 28,
+    "attempt_period_ms_mean": 41.851388888845676,
+    "n_attempt_periods": 18,
+    "first_syn_after_declaration_ms_median": 2.4237152406385576
+   },
+   "5G-tele|detect|C0|ch2": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.45435483866177,
+    "n_declarations": 31,
+    "attempt_period_ms_mean": 51.08216666657326,
+    "n_attempt_periods": 18,
+    "first_syn_after_declaration_ms_median": 1.7569753945281263
+   },
+   "5G-tele|detect|C1|ch2": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 42.52679999993537,
+    "n_declarations": 30,
+    "attempt_period_ms_mean": 49.77999999997943,
+    "n_attempt_periods": 18,
+    "first_syn_after_declaration_ms_median": 3.7758173007205187
+   },
+   "5G-tele|detect|C2|ch2": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 45.783866666655136,
+    "n_declarations": 30,
+    "attempt_period_ms_mean": 49.83333333287495,
+    "n_attempt_periods": 12,
+    "first_syn_after_declaration_ms_median": 2.2119699478935217
+   },
+   "5G-tele|detect|C2|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.777741935539986,
+    "n_declarations": 31,
+    "attempt_period_ms_mean": 49.92843750005704,
+    "n_attempt_periods": 16,
+    "first_syn_after_declaration_ms_median": 0.13642492740473244
+   },
+   "5G-tele|detect|C3m|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.87227586216638,
+    "n_declarations": 29,
+    "attempt_period_ms_mean": 49.74990909100928,
+    "n_attempt_periods": 11,
+    "first_syn_after_declaration_ms_median": 0.574040024275746
+   }
+  },
+  "heldout": {
+   "5G-hosp|detect|C0|ch2": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 38.98341176467484,
+    "n_declarations": 34,
+    "attempt_period_ms_mean": 42.23056250000212,
+    "n_attempt_periods": 32,
+    "first_syn_after_declaration_ms_median": 2.0979695491405437
+   },
+   "5G-hosp|detect|C2|ch3": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 39.683714285709875,
+    "n_declarations": 35,
+    "attempt_period_ms_mean": 42.22954838707166,
+    "n_attempt_periods": 31,
+    "first_syn_after_declaration_ms_median": 2.6453346411017264
+   },
+   "5G-hosp|detect|C2w|ch3": {
+    "tau_ms": 36.5,
+    "td_model_mean_ms": 39.5,
+    "declaration_ms_mean": 40.77596875001177,
+    "n_declarations": 32,
+    "attempt_period_ms_mean": 42.59413333334123,
+    "n_attempt_periods": 30,
+    "first_syn_after_declaration_ms_median": 2.1731120655203995
+   },
+   "5G-tele|detect|C0|ch2": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 42.97564705880444,
+    "n_declarations": 34,
+    "attempt_period_ms_mean": 50.52888888881339,
+    "n_attempt_periods": 27,
+    "first_syn_after_declaration_ms_median": 2.4391557685703447
+   },
+   "5G-tele|detect|C2|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 44.08173529415816,
+    "n_declarations": 34,
+    "attempt_period_ms_mean": 50.899159999971744,
+    "n_attempt_periods": 25,
+    "first_syn_after_declaration_ms_median": 0.15172336679825094
+   },
+   "5G-tele|detect|C2w|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 42.54910344826416,
+    "n_declarations": 29,
+    "attempt_period_ms_mean": 50.02029166668839,
+    "n_attempt_periods": 24,
+    "first_syn_after_declaration_ms_median": 2.306204811702628
+   }
+  },
+  "repeat": {
+   "5G-tele|detect|C2|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.49768749998972,
+    "n_declarations": 64,
+    "attempt_period_ms_mean": 49.52153658535269,
+    "n_attempt_periods": 41,
+    "first_syn_after_declaration_ms_median": 1.5144954936658905
+   },
+   "5G-tele|detect|C2w|ch3": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.56319354835228,
+    "n_declarations": 62,
+    "attempt_period_ms_mean": 50.263619047592826,
+    "n_attempt_periods": 42,
+    "first_syn_after_declaration_ms_median": 1.6494485143994098
+   },
+   "5G-tele|detect|C0|ch2": {
+    "tau_ms": 44.5,
+    "td_model_mean_ms": 43.5,
+    "declaration_ms_mean": 43.46235937495102,
+    "n_declarations": 64,
+    "attempt_period_ms_mean": 50.02257500001974,
+    "n_attempt_periods": 40,
+    "first_syn_after_declaration_ms_median": 0.8076654144133499
+   }
+  }
+ },
+ "model_with_timing": {
+  "development": {
+   "cells": {
+    "5G-hosp|detect|C0|ch2": {
+     "late_obs": 0.5,
+     "late_model": 0.546875,
+     "late_model_with_timing": 0.5518973214285714
+    },
+    "5G-hosp|detect|C1|ch2": {
+     "late_obs": 0.375,
+     "late_model": 0.478515625,
+     "late_model_with_timing": 0.47412109375
+    },
+    "5G-hosp|detect|C2|ch2": {
+     "late_obs": 0.5666666666666667,
+     "late_model": 0.4875,
+     "late_model_with_timing": 0.4901041666666667
+    },
+    "5G-hosp|detect|C2|ch3": {
+     "late_obs": 1.2333333333333334,
+     "late_model": 1.215625,
+     "late_model_with_timing": 1.1671875
+    },
+    "5G-hosp|detect|C3m|ch3": {
+     "late_obs": 0.39285714285714285,
+     "late_model": 0.4921875,
+     "late_model_with_timing": 0.4916294642857143
+    },
+    "5G-tele|detect|C0|ch2": {
+     "late_obs": 1.3870967741935485,
+     "late_model": 1.2973790322580645,
+     "late_model_with_timing": 1.1557459677419355
+    },
+    "5G-tele|detect|C1|ch2": {
+     "late_obs": 1.3,
+     "late_model": 1.28125,
+     "late_model_with_timing": 1.1458333333333333
+    },
+    "5G-tele|detect|C2|ch2": {
+     "late_obs": 1.5333333333333334,
+     "late_model": 1.403125,
+     "late_model_with_timing": 1.7302083333333333
+    },
+    "5G-tele|detect|C2|ch3": {
+     "late_obs": 3.7096774193548385,
+     "late_model": 3.1673387096774195,
+     "late_model_with_timing": 3.4546370967741935
+    },
+    "5G-tele|detect|C3m|ch3": {
+     "late_obs": 1.3793103448275863,
+     "late_model": 1.2844827586206897,
+     "late_model_with_timing": 1.144396551724138
+    }
+   },
+   "contrasts": {
+    "5G-hosp|C2int_minus_C0": {
+     "obs": 0.9166666666666666,
+     "model": 0.7838541666666666,
+     "model_with_timing": 0.7376302083333334,
+     "n": 24
+    },
+    "5G-tele|C2int_minus_C0": {
+     "obs": 2.2857142857142856,
+     "model": 1.8002232142857142,
+     "model_with_timing": 2.2578125,
+     "n": 28
+    }
+   },
+   "mae": {
+    "model": 0.5215301003344481,
+    "model_with_timing": 0.48808528428093645
+   }
+  },
+  "heldout": {
+   "cells": {
+    "5G-hosp|detect|C0|ch2": {
+     "late_obs": 0.7647058823529411,
+     "late_model": 0.7959558823529411,
+     "late_model_with_timing": 0.8184742647058824
+    },
+    "5G-hosp|detect|C2|ch3": {
+     "late_obs": 1.5714285714285714,
+     "late_model": 1.6035714285714286,
+     "late_model_with_timing": 1.5919642857142857
+    },
+    "5G-hosp|detect|C2w|ch3": {
+     "late_obs": 0.96875,
+     "late_model": 0.833984375,
+     "late_model_with_timing": 0.86474609375
+    },
+    "5G-tele|detect|C0|ch2": {
+     "late_obs": 1.9705882352941178,
+     "late_model": 1.9623161764705883,
+     "late_model_with_timing": 1.7591911764705883
+    },
+    "5G-tele|detect|C2|ch3": {
+     "late_obs": 4.264705882352941,
+     "late_model": 3.7895220588235294,
+     "late_model_with_timing": 4.307904411764706
+    },
+    "5G-tele|detect|C2w|ch3": {
+     "late_obs": 2.2758620689655173,
+     "late_model": 1.990301724137931,
+     "late_model_with_timing": 2.461206896551724
+    }
+   },
+   "contrasts": {
+    "5G-hosp|C2int_minus_C0": {
+     "obs": 0.8235294117647058,
+     "model": 0.8051470588235294,
+     "model_with_timing": 0.7706801470588235,
+     "n": 34
+    },
+    "5G-hosp|C2w_minus_C0": {
+     "obs": 0.1935483870967742,
+     "model": 0.0,
+     "model_with_timing": 0.0,
+     "n": 31
+    },
+    "5G-hosp|C2w_minus_C2int": {
+     "obs": -0.65625,
+     "model": -0.833984375,
+     "model_with_timing": -0.80419921875,
+     "n": 32
+    },
+    "5G-tele|C2int_minus_C0": {
+     "obs": 2.303030303030303,
+     "model": 1.878787878787879,
+     "model_with_timing": 2.5492424242424243,
+     "n": 33
+    },
+    "5G-tele|C2w_minus_C0": {
+     "obs": 0.21428571428571427,
+     "model": 0.0,
+     "model_with_timing": 0.6752232142857143,
+     "n": 28
+    },
+    "5G-tele|C2w_minus_C2int": {
+     "obs": -2.1785714285714284,
+     "model": -1.8772321428571428,
+     "model_with_timing": -1.8660714285714286,
+     "n": 28
+    }
+   },
+   "mae": {
+    "model": 0.5841224747474747,
+    "model_with_timing": 0.5579229797979798
+   }
+  },
+  "repeat": {
+   "cells": {
+    "5G-tele|detect|C2|ch3": {
+     "late_obs": 3.9375,
+     "late_model": 3.4736328125,
+     "late_model_with_timing": 3.931640625
+    },
+    "5G-tele|detect|C2w|ch3": {
+     "late_obs": 1.8548387096774193,
+     "late_model": 1.6144153225806452,
+     "late_model_with_timing": 2.072328629032258
+    },
+    "5G-tele|detect|C0|ch2": {
+     "late_obs": 1.53125,
+     "late_model": 1.52587890625,
+     "late_model_with_timing": 1.3916015625
+    }
+   },
+   "contrasts": {
+    "5G-tele|C2int_minus_C0": {
+     "obs": 2.2203389830508473,
+     "model": 1.8140889830508475,
+     "model_with_timing": 2.3771186440677967,
+     "n": 59
+    },
+    "5G-tele|C2w_minus_C0": {
+     "obs": 0.21428571428571427,
+     "model": 0.0,
+     "model_with_timing": 0.5524553571428571,
+     "n": 56
+    },
+    "5G-tele|C2w_minus_C2int": {
+     "obs": -2.0701754385964914,
+     "model": -1.837171052631579,
+     "model_with_timing": -1.8248355263157894,
+     "n": 57
+    }
+   },
+   "mae": {
+    "model": 0.6661184210526315,
+    "model_with_timing": 0.6640625
+   }
+  }
+ }
+}
