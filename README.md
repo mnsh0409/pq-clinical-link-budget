@@ -49,20 +49,21 @@ C0 / C1 / C2 below the 100 ms telemetry budget, n/a where the link cannot carry 
 
 **Testbed** (Table III of the paper: OpenSSL 3.5.4, cold connection, handshake bytes as TCP payload, median
 time from connect to the first application record at the server, ms unless stated; TCP except the QUIC column,
-which runs without Retry; 10 ms RTT on every link, assumed for LTE-M and NB-IoT; `models/testbed_tables.py`):
+which runs without Retry; 10 ms RTT on every link, assumed for LTE-M and NB-IoT, except the 18 ms column: TCP on the
+second 5G profile, 101 Mb/s up and 177 Mb/s down at 18 ms RTT; `models/testbed_tables.py`):
 
-| Config. | Server flight (B) | Total (B) | 5G TCP | 5G QUIC | LTE-M | NB-IoT |
-|---|---:|---:|---:|---:|---:|---:|
-| C0 | 886 | 1,743 | 28.4 | 18.4 | 103 | 639 |
-| C1 | 1,941 | 3,940 | 28.5 | 18.8 | 157 | 1.13 s |
-| C2 | 10,275 | 20,608 | 30.9 | 32.4 | 574 | 4.89 s |
-| C2′ | 10,200 | 11,641 | 29.1 | 30.2 | 377 | 3.72 s |
-| C2 + one intermediate certificate per side | 15,806 | 31,670 | 48.8 | 43.7 | 851 | 7.36 s |
-| C2 + intermediates, TCP initial windows of 20 segments (same keys and certificates) | 15,806 | 31,670 | 31.3 | n/a | 851 | 7.35 s |
-| C3 (Falcon-512) | 3,911 | 7,879 | 29.6 | 19.5 | 255 | 2.00 s |
-| C3 + one intermediate certificate per side | 5,727 | 11,515 | 30.1 | 19.8 | 348 | 2.85 s |
-| C3m (Falcon-512 server, ML-DSA-65 device) | 3,914 | 11,598 | 30.4 | 19.8 | 338 | 2.49 s |
-| C3m + one intermediate certificate per side | 5,727 | 15,226 | 29.9 | 19.9 | 429 | 3.32 s |
+| Config. | Server flight (B) | Total (B) | 5G TCP | 5G TCP, 18 ms | 5G QUIC | LTE-M | NB-IoT |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| C0 | 886 | 1,743 | 28.4 | 48.6 | 18.4 | 103 | 639 |
+| C1 | 1,941 | 3,940 | 28.5 | 49.1 | 18.8 | 157 | 1.13 s |
+| C2 | 10,275 | 20,608 | 30.9 | 51.4 | 32.4 | 574 | 4.89 s |
+| C2′ | 10,200 | 11,641 | 29.1 | 49.0 | 30.2 | 377 | 3.72 s |
+| C2 + one intermediate certificate per side | 15,806 | 31,670 | 48.8 | 84.7 | 43.7 | 851 | 7.36 s |
+| C2 + intermediates, TCP initial windows of 20 segments (same keys and certificates) | 15,806 | 31,670 | 31.3 | 51.5 | n/a | 851 | 7.35 s |
+| C3 (Falcon-512) | 3,911 | 7,879 | 29.6 | 49.8 | 19.5 | 255 | 2.00 s |
+| C3 + one intermediate certificate per side | 5,727 | 11,515 | 30.1 | 49.9 | 19.8 | 348 | 2.85 s |
+| C3m (Falcon-512 server, ML-DSA-65 device) | 3,914 | 11,598 | 30.4 | 50.3 | 19.8 | 338 | 2.49 s |
+| C3m + one intermediate certificate per side | 5,727 | 15,226 | 29.9 | 50.1 | 19.9 | 429 | 3.32 s |
 
 **Session loss at a handover** (Table IV of the paper: a 0.5 Mb/s telemetry stream, one 1,000-B record every
 16 ms acknowledged by the server, 100 ms deadline from generation to receipt, through seven interruptions per
@@ -93,7 +94,8 @@ same interruption, averaged over the n windows valid in both, with a 95 % interv
 Under the recovery policy above the loss is declared at t_d = g + τ, with τ = RTT + 26.5 ms the timeout once the RTT
 variation is small (0.5 ms of host turnaround assumed); attempts repeat every τ until one starts after the link
 returns, so k = max(0, ⌈(D − t_d)/τ⌉) fail, and the backlog reaches the server at t₁ = t_d + kτ + H, with H the cold
-connect-to-first-record time (median, Table III). The first undelivered record was generated at g₁ = g, or at
+connect-to-first-record time (median, Table III, both 5G columns above; a resumed session, with C0's round trips and
+no certificates, takes C0's). The first undelivered record was generated at g₁ = g, or at
 g + 16 ms if g < 0 (that record arrived; only its acknowledgment was lost), so N = max(0, ⌊(t₁ − g₁ − 100 ms)/16 ms⌋ + 1)
 records are late; the prediction averages N over g, with k and g₁ at the same g, and neglects the backlog's drain
 time. No record is late while H < 100 ms − (k + 1)τ: 63.5 and 55.5 ms at 10 and 18 ms RTT without a failed
