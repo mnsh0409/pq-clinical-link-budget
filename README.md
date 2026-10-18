@@ -150,7 +150,9 @@ In short:
 
 - On constrained radios a full post-quantum handshake takes 0.12 to 6.2 s of airtime alone. On the links that can
   carry the 100 ms telemetry stream (802.15.6 at its highest rate, Bluetooth LE) the airtime of C0 and C1 fits
-  that budget and that of C2 (116 to 202 ms) does not; with its ML-KEM-768 computation C1 reaches 82 to 102 ms.
+  that budget and that of C2 (116 to 202 ms) does not; with its ML-KEM-768 computation at 24 MHz C1 reaches 82 to
+  102 ms before its classical operations, and a classical handshake took 109 ms even on a 180 MHz Cortex-M4
+  (Tasopoulos et al.), so at 24 MHz C1 misses the budget.
 - On 5G uplinks the bytes serialize in under 2 ms and round trips bind, for classical handshakes too.
 - The ML-DSA-65 server flight exceeds QUIC's anti-amplification allowance (one more round trip) and, with
   intermediate certificates, the server and client flights exceed TCP's initial window. Falcon-512 server
