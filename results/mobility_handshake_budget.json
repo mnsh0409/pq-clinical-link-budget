@@ -24,7 +24,7 @@
    "derived_from": [
     "tls_hs_bytes_dil3_kyb3[PQC-05]"
    ],
-   "note": "pre-FIPS Dilithium3/Kyber768 sizes; ML-DSA-65 sig 3309 B vs Dilithium3 3293 B and identical Kyber768/ML-KEM-768 sizes -> +32 B per signature at most"
+   "note": "pre-FIPS Dilithium3/Kyber768 sizes; ML-DSA-65 sig 3309 B vs Dilithium3 3293 B and identical Kyber768/ML-KEM-768 sizes -> +16 B per signature"
   }
  },
  "handover_scenarios": [

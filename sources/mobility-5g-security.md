@@ -1,7 +1,7 @@
 # mobility-5g-security.md — handover models and measurements, TS 33.501, PQC study status, hybrid TLS
 
 Cluster file for the source ledger (see `README.md`). All entries were
-collected on **2026-09-27** using WebSearch/WebFetch only. Quotes are copied from the
+collected on **2026-09-27** (SEC-06f and SEC-09: **2026-10-18**) using WebSearch/WebFetch only. Quotes are copied from the
 fetched text and each is 60 words or fewer. `…` marks text omitted from a longer sentence
 or list. Maths is reproduced as the fetch tool returned it (plain text/Unicode). There is
 no arithmetic in this file.
@@ -21,8 +21,9 @@ named in the collection brief.
 | SEC-03 | 33.501 lists SECONDARY; 256-bit status VERIFIED | 128-NEA1/2/3 and 128-NIA1/2/3 only; TS 35.240 V18.0.0 (2024-05, "Release 18") and V19.0.0 (2026-03, "Release 19"); TS 35.243/35.246 ETSI directories 18.00.00 (2024-05-24) and 19.00.00 (2026); 3GPP article (June 2026): "as part of 3GPP Release 20"; TR 33.771 AEAD study (Rel-20) |
 | SEC-04 | metadata VERIFIED; scope text SECONDARY | TR 33.703 "Study on transitioning to Post Quantum Cryptography (PQC) in 3GPP", Rel-20, "Under change control", V20.0.0 2026-06-25 / V20.0.1 2026-07-03 |
 | SEC-05 | VERIFIED | GSMA PQ.01–PQ.07 (Feb 2023 – May 2026); PQ.05: TLS 1.2/1.3 on N32 "relies on either ECDHE or DHE" |
-| SEC-06 | VERIFIED | draft-ietf-tls-ecdhe-mlkem-05: "Approved-announcement sent", RFC Editor "In Progress", no RFC number yet; client share 1216 bytes, server share 1120 bytes |
+| SEC-06 | VERIFIED | draft-ietf-tls-ecdhe-mlkem-05: "Approved-announcement sent", RFC Editor "In Progress", no RFC number on 2026-09-27; client share 1216 bytes, server share 1120 bytes; published as RFC 10024 (Proposed Standard, August 2026) with the same sizes (SEC-06f) |
 | SEC-07 | VERIFIED | Cloudflare: 29% → 52% (1 Jan – 2 Dec 2025); "over 65%" (blog of 7 Apr 2026) |
+| SEC-09 | VERIFIED | NIST IR 8547 (initial public draft): elliptic-curve DH and ECDSA at ≥ 128 bits "Disallowed after 2035"; RFC 7518 §3.4: an ECDSA P-256 signature is a 64-octet sequence (R then S) |
 | SEC-08 | 33.501 SECONDARY; TS 33.210 VERIFIED | NFs "shall support mutually authenticated TLS"; N2 IPsec/IKEv2 + DTLS; TS 33.210 V19.3.0: DH group 19 shall, secp256r1 shall (TLS 1.2) |
 
 ## How the TS 33.501 text was obtained (affects SEC-01, SEC-02, SEC-03a–c, SEC-08a–e)
@@ -577,7 +578,7 @@ Common fields: **Citation:** 3GPP TS 33.501 Annex C.3.4 (primary ETSI TS 133 501
 - **Quote:** Status "Active Internet-Draft (tls WG)"; IESG state "Approved-announcement sent"; RFC Editor state "In Progress"; Intended RFC status "Proposed Standard"; Last updated "2026-08-09 (Latest revision 2026-05-26)"
 - **Figure(s):** No RFC number as of 2026-09-27 (IESG-approved and in the RFC Editor queue)
 - **Condition:** Status on the access date. The RFC Editor queue page itself was not readable (JavaScript).
-- **Use in paper:** Cite as an Internet-Draft approved for Proposed Standard, not as an RFC.
+- **Use in paper:** Cite as an Internet-Draft approved for Proposed Standard, not as an RFC. Superseded on 2026-10-18: published as RFC 10024 (SEC-06f), which the paper cites.
 - **Status:** VERIFIED
 
 ### SEC-06b
@@ -615,6 +616,16 @@ Common fields: **Citation:** 3GPP TS 33.501 Annex C.3.4 (primary ETSI TS 133 501
 - **Figure(s):** 64-byte shared secret (X25519MLKEM768)
 - **Condition:** From a single fetch. The tool also reported the concatenation order "ML-KEM shared secret followed by X25519 shared secret", but that is not quoted here.
 - **Use in paper:** Key-schedule input size (minor).
+- **Status:** VERIFIED
+
+### SEC-06f
+- **Citation:** K. Kwiatkowski, P. Kampanakis, B. E. Westerbaan, D. Stebila, "Post-Quantum Traditional (PQ/T) Hybrid Key Agreement Mechanisms for TLS 1.3," RFC 10024, August 2026. DOI 10.17487/RFC10024.
+- **Fetched URL:** https://www.rfc-editor.org/info/rfc10024 (metadata) and https://www.rfc-editor.org/rfc/rfc10024.html (text), read 2026-10-18
+- **Location:** RFC info page; Section 4.1 "Client Share" and Section 4.2 "Server Share"
+- **Quote:** Status "Proposed Standard" ("This is an Internet Standards Track document."); Stream "IETF". §4.1: "The size of the client share is 1216 bytes (1184 bytes for the ML-KEM part and 32 bytes for X25519)." §4.2: "The size of the server share is 1120 bytes (1088 bytes for the ML-KEM part and 32 bytes for X25519)."
+- **Figure(s):** RFC 10024, Proposed Standard, August 2026; X25519MLKEM768 client share 1216 bytes, server share 1120 bytes; the same section gives SecP256r1MLKEM768 as "1249 bytes (65 bytes for the secp256r1 part and 1184 bytes for ML-KEM)" and "1153 bytes (1088 bytes for the ML-KEM part and 65 bytes for secp256r1)".
+- **Condition:** The published form of draft-ietf-tls-ecdhe-mlkem-05 (SEC-06a to SEC-06e); the share sentences are identical to the draft's, so the ledger keeps ids SEC-06b to SEC-06d and cites the RFC.
+- **Use in paper:** "Hybrid ECDHE–ML-KEM key agreement for TLS 1.3 is a Proposed Standard [RFC 10024]"; the share sizes of C1 and of psk_dhe_ke with the hybrid group.
 - **Status:** VERIFIED
 
 ---
@@ -738,3 +749,27 @@ Common fields: **Citation:** 3GPP TS 33.501 Annex C.3.4 (primary ETSI TS 133 501
 - **Condition:** TLS 1.3 profile. RFC 8446 §9.1 itself could not be fetched (truncated), so the mandatory-to-implement group and signature list is **not** in this ledger. The tool found no mention of "quantum", "ML-KEM", "hybrid" or "post-quantum" in the TS 33.210 V19.3.0 text it received. Treat this as indicative only, since the text may have been truncated.
 - **Use in paper:** Indicates, but does not confirm, that the Rel-19 5GC TLS profile names no PQ hybrid group. Check TS 33.210 V19.3.0 §6.2 by hand before claiming this. Pair with SEC-06 and SEC-04.
 - **Status:** VERIFIED (quotes); NOT-FOUND (RFC 8446 §9.1 text)
+
+---
+
+## SEC-09 — Transition date for elliptic-curve cryptography and the classical signature size (read 2026-10-18)
+
+### SEC-09a
+- **Citation:** D. Moody, R. Perlner, A. Regenscheid, A. Robinson, D. Cooper, "Transition to Post-Quantum Cryptography Standards," NIST IR 8547 (Initial Public Draft), 12 November 2024.
+- **Fetched URL:** https://nvlpubs.nist.gov/nistpubs/ir/2024/NIST.IR.8547.ipd.pdf (tables); https://csrc.nist.gov/pubs/ir/8547/ipd (status)
+- **Location:** Section 4.1.2, Table 4 "Quantum-vulnerable key-establishment schemes"; Section 4.1.1, Table 3 (its title reads "Post-quantum digital signature algorithms" although its rows are the classical algorithms)
+- **Quote:** Table 4: "Elliptic Curve DH and MQC [SP80056A]" (MQV intended) "≥ 128 bits of security strength Disallowed after 2035"; 112 bits: "Deprecated after 2030" / "Disallowed after 2035". Table 3: "ECDSA [FIPS186]" "≥ 128 bits of security strength Disallowed after 2035". The CSRC page labels the report "NIST IR 8547 (Initial Public Draft)" and lists no final version.
+- **Figure(s):** elliptic-curve key agreement and ECDSA at ≥ 128-bit strength (P-256): disallowed after 2035
+- **Condition:** Initial public draft (comment period closed); status checked on 2026-10-18.
+- **Use in paper:** "NIST's draft transition plan disallows elliptic-curve key agreement and signatures after 2035".
+- **Status:** VERIFIED
+
+### SEC-09b
+- **Citation:** M. Jones, "JSON Web Algorithms (JWA)," RFC 7518, May 2015.
+- **Fetched URL:** https://www.rfc-editor.org/rfc/rfc7518.html
+- **Location:** Section 3.4 "Digital Signature with ECDSA"
+- **Quote:** "The output will be the pair (R, S), where R and S are 256-bit unsigned integers." … "Turn R and S into octet sequences in big-endian order, with each array being be 32 octets long." … "The resulting 64-octet sequence is the JWS Signature value."
+- **Figure(s):** ECDSA P-256 SHA-256 signature: 64 octets (R and S, 32 octets each)
+- **Condition:** The raw (R, S) form; TLS 1.3 carries an ECDSA signature DER-encoded, a few octets longer.
+- **Use in paper:** "a signature of ML-DSA-65 (FIPS 204) is 3,309 B instead of 64 B".
+- **Status:** VERIFIED

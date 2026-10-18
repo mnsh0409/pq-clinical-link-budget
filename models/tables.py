@@ -31,9 +31,9 @@ rows = [
  ("12-lead ECG, 12 bit, survey rate", p("ecg12_bps"), "--", "latre2011"),
  ("ICU monitor as archived, $8{\\times}125$\\,Hz${\\times}12$\\,bit", p("icu_mimic3_channels")*p("icu_mimic3_rate_Hz")*p("icu_mimic3_bits_hi"), "--", "mimic3wdb"),
  ("Cardiac telemetry, TR 22.826", p("telemetry_inhospital_rate_bps"), "$<$100\\,ms", "tr22826"),
- ("RAD, 80\\,B/1\\,ms", None, "$<$20\\,ms", "ts22104"),   # TS 22.104 service bit rate 2-16 Mbit/s (MED-04c); 80 B/1 ms alone would be 640 kb/s
- ("RAS, local link, 250--2,000\\,B/1\\,ms", None, "$<$2\\,ms", "ts22104"),
- ("RAS, remote ($<$400\\,km)", None, "$<$20\\,ms", "ts22104"),
+ ("RAD, 80\\,B/1\\,ms", (p("rad_rate_lo_bps"), p("rad_rate_hi_bps")), "$<$20\\,ms", "ts22104"),   # TS 22.104 service bit rate 2-16 Mbit/s (MED-04c); 80 B/1 ms alone would be 640 kb/s
+ ("RAS, local link, 250--2,000\\,B/1\\,ms", (p("ras_local_rate_lo_bps"), p("ras_local_rate_hi_bps")), "$<$2\\,ms", "ts22104"),   # MED-04a
+ ("RAS, remote ($<$400\\,km)", (p("ras_remote_rate_lo_bps"), p("ras_remote_rate_hi_bps")), "$<$20\\,ms", "ts22104"),   # MED-04b
  ("Ambulance vital signs, TR 22.826", p("ambulance_vitals_rate_bps"), "$<$100\\,ms", "tr22826"),
  # v1.8: row dropped for space (not used in the text): ("Ambulance video, measured", p("ambulance_video_measured_bps"), "$<$100\\,ms~\\cite{tr22826}", "berlet2022"),
  # v1.8: row dropped for space (not used in the text): ("Surgical video, measured", p("surg_video_measured_ye2026_bps"), "--", "ye2026"),
@@ -42,7 +42,7 @@ L = []
 L.append("\\begin{tabular}{@{}lrr@{}}\\toprule")
 L.append("Stream & Rate & Latency req. \\\\ \\midrule")
 for name, bps, basis, key in rows:
-    rate = ("2--16\\,Mb/s" if bps is None else kb(bps))
+    rate = (f"{bps[0]/1e6:.0f}--{bps[1]/1e6:.0f}\\,Mb/s" if isinstance(bps, tuple) else kb(bps))   # v1.9 proofreading: the 3GPP service bit rates from the ledger
     L.append(f"{name}~\\cite{{{key}}} & {rate} & {basis} \\\\")
 L.append("\\bottomrule\\end{tabular}")
 open(os.path.join(OUT, "tab1_streams.tex"), "w").write("\n".join(L) + "\n")

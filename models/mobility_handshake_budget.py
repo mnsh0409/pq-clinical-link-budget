@@ -41,7 +41,7 @@ HS = {
      ["tls_hs_bytes_ecdsa_ecdhe", "p256_uncompressed_point_B", "kex_x25519mlkem768_client_B", "kex_x25519mlkem768_server_B"],
      assumption="the measured classical handshake carries one 65-B P-256 share per direction; each is replaced by the hybrid share"),
  "C2_full_pq": derived(C2, "byte", ["tls_hs_bytes_dil3_kyb3"],
-     note="pre-FIPS Dilithium3/Kyber768 sizes; ML-DSA-65 sig 3309 B vs Dilithium3 3293 B and identical Kyber768/ML-KEM-768 sizes -> +32 B per signature at most"),
+     note="pre-FIPS Dilithium3/Kyber768 sizes; ML-DSA-65 sig 3309 B vs Dilithium3 3293 B and identical Kyber768/ML-KEM-768 sizes -> +16 B per signature"),
 }
 
 # ---------------------------------------------------------------- handover rates

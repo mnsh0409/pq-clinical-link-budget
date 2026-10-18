@@ -27,7 +27,7 @@ Access date: 2026-09-27 unless an entry states otherwise.
 | `clinical-streams.md` | STR | Physiological stream rates, clinical 5G measurements |
 | `mobility-5g-security.md` | MOB, SEC | Handover measurements, TS 33.501 key handling, 3GPP PQC study status, hybrid TLS key shares |
 | `ntn.md` | NTN | 3GPP non-terrestrial reference parameters (read by the scripts, not used in the paper's results) |
-| `ledger.json` | all | 229 parameters and 55 citations, written by `models/build_ledger.py` |
+| `ledger.json` | all | 240 parameters and 61 citations, written by `models/build_ledger.py` |
 
 ## `ledger.json` format
 

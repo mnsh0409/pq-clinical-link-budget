@@ -131,8 +131,8 @@ With every window kept, the window's benefit held (the filed criterion Q1), and 
 prediction. The
 exclusion rule would have dropped 20 windows (C0 6, C2 + intermediates 6, window 8); the filed attribution rule found none in
 which the emulator ran for half the stall, and, in a post hoc check, the monitor on the other vCPU also stalled in
-28 of the 35 stall episodes (as if both vCPUs paused) and 2 of the other 7 showed steal time. Weak points: the model
-underestimates the chain's paired penalty at 18 ms by 0.42 records (0.49 on the development runs, 0.38 in the repeat; in
+28 of the 35 stall episodes (as if both vCPUs paused) and 2 of the other 7 were mostly steal time (the filed class). Weak points: the model
+underestimates the chain's paired penalty at 18 ms by 0.42 records (0.49 on the development runs, 0.41 in the repeat, all over the windows the exclusion rule keeps; in
 the repeat the t-interval over the ten run means excludes the prediction), and the window's excess over C0 (0.21; repeat
 0.24; 0 predicted) may be real; it misses the 0.22 of C2 with leaf certificates at 10 ms in the development runs (0 predicted).
 Post hoc (`testbed/x3_attempts.py`), loss declarations came when the model says, but failed reconnection attempts
@@ -200,6 +200,7 @@ python3 urllc_transmission.py         # airtime per link, first-flight bounds, c
 python3 mobility_handshake_budget.py  # handshake cost per handover and session -> results/mobility_handshake_budget.json
 python3 trace_profile.py              # profile of both datasets -> results/trace_profile.json
 python3 figures.py                    # handover statistics -> results/fig2_stats.json (and the airtime and CDF figures of earlier versions)
+python3 hassan2022_types.py           # handover categories of DATA-01 (Limitations) -> results/hassan2022_event_types.json
 python3 tables.py                     # Tables I and II -> paper/tables/
 python3 testbed_tables.py             # Tables III and IV, model, held-out and repeat scoring -> paper/tables/tab4_testbed.tex, tab5_session.tex, results/testbed_summary.json
 python3 fig_model.py                  # Fig. 1 (model) -> paper/figs/fig3_model.pdf (paper v1.9b)
@@ -224,6 +225,7 @@ three means in `results/trace_profile.json` (summation order).
 | Fig. 1 (model of the late records) and its paragraph | `models/x3_model.py`, `models/fig_model.py`, `models/testbed_tables.py` | `results/testbed_summary.json` (`x3_model`); predictions filed by `models/x3_prereg.py` |
 | Controlled repeat (Sec. V and Fig. 1 of v1.9c) | `models/testbed_tables.py`, `models/fig_model.py --repeat` | `results/testbed_x3_repeat.json`, `testbed_x3_repeat_qc.json`, `testbed_x3_repeat_stallclass.json`, `testbed_x3_repeat_stalldiag.json` (post hoc); filed by `models/x3_repeat_prereg.py`: `testbed_x3_repeat_prereg.json`, `testbed_x3_repeat_order.json` |
 | Handover statistics (Sec. V) | `models/figures.py` | DATA-01 (DATA-02 only for statistics outside the paper) -> `results/fig2_stats.json` |
+| Handover categories of the dataset (Limitations) | `models/hassan2022_types.py` | DATA-01 -> `results/hassan2022_event_types.json` |
 | Testbed measurements | `testbed/x12.py`, `x4.py`, `x3.py`, `x3_qc.py`, `timeline.py`; repeat: `x3_repeat.sh`, `hostmon.py`, `x3_stallclass.py`, `x3_stalldiag.py`; post hoc timing: `x3_attempts.py` | ledger profiles; X3 also DATA-01 |
 
 Any input number can be traced to its quoted source: `sources/README.md` shows how.
@@ -247,7 +249,8 @@ MMSys 2020; GPL-3.0) are analyzed and cited, not redistributed.
 
 ## Scope and limitations
 
-- Airtime is a lower bound: no MAC contention, acknowledgments, retransmissions or scheduling.
+- Airtime is a lower bound on symmetric links (no MAC contention, acknowledgments, retransmissions or
+  scheduling); on NB-IoT and 5G the two-way exchange lies between the per-direction values.
 - The testbed checks the protocol and timing model, not a radio. The LTE-M and NB-IoT testbed profiles use an
   assumed 10 ms RTT, so those rows isolate serialization.
 - The testbed ran on two-vCPU cloud virtual machines (KVM). Host stalls (a frame delivered 15 ms or more late) hit
@@ -258,6 +261,8 @@ MMSys 2020; GPL-3.0) are analyzed and cited, not redistributed.
 - Session loss is modeled as a silent drop of the old connection, recovered by one detector and retry policy;
   the gap between a kept and a lost session belongs to that policy (a client that cannot tell whether its
   session survived and runs the same detector pays the lost-session cost whenever the detector fires).
+- DATA-01's handover log has no dual active protocol stack or conditional handover category
+  (`results/hassan2022_event_types.json`), so interruptions under those schemes are not represented.
 - Keys and certificates are generated locally (`testbed/pki/mkpki.sh`) and are not included.
 
 ## License

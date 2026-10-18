@@ -53,6 +53,9 @@ CITES = {
  "gsma-pq05": "GSMA PQ.05, Quantum-safe Cryptography for 4G and 5G Roaming, v1.0, 26 June 2025",
  "gsma-pq07": "GSMA PQ.07, Post Quantum Cryptography for Non-Terrestrial Networks, v1.0, 4 Feb 2026",
  "ts22104": "ETSI TS 122 104 V19.2.0 (2026-01) = 3GPP TS 22.104 V19.2.0 Rel-19, Table 5.2-1",
+ "rfc10024": "K. Kwiatkowski, P. Kampanakis, B. E. Westerbaan, D. Stebila, 'Post-Quantum Traditional (PQ/T) Hybrid Key Agreement Mechanisms for TLS 1.3', RFC 10024 (Proposed Standard), Aug 2026, doi:10.17487/RFC10024; the published form of draft-ietf-tls-ecdhe-mlkem-05, same share sizes (SEC-06f, read 2026-10-18)",
+ "nistir8547": "D. Moody, R. Perlner, A. Regenscheid, A. Robinson, D. Cooper, 'Transition to Post-Quantum Cryptography Standards', NIST IR 8547 initial public draft, 12 Nov 2024; no final version listed on csrc.nist.gov on 2026-10-18 (SEC-09a)",
+ "rfc7518": "M. Jones, 'JSON Web Algorithms (JWA)', RFC 7518, May 2015, Sec. 3.4 (ECDSA P-256 SHA-256 signature as R || S) (SEC-09b, read 2026-10-18)",
  "tr22826": "3GPP TR 22.826 V17.2.0 (Rel-17), Study on communication services for critical medical applications -- via tech-invite mirror (SECONDARY)",
  "ts22261": "3GPP TS 22.261 V19.14.0 (ETSI TS 122 261, 2026-07) clause 3.1; Table 7.11-1 via iTecSpec Rel-20 mirror",
  "itu-tactile-2014": "ITU-T Technology Watch Report, 'The Tactile Internet', Aug 2014",
@@ -79,10 +82,10 @@ CITES = {
 L = {}
 
 # ---------------------------------------------------------------- crypto sizes
-L["kex_x25519mlkem768_client_B"] = P(1216, "byte", "SEC-06b", "VERIFIED", "TLS 1.3 ClientHello key_share, X25519MLKEM768 (1184 ML-KEM + 32 X25519)", "ietf-mlkem-05")
-L["kex_x25519mlkem768_server_B"] = P(1120, "byte", "SEC-06c", "VERIFIED", "TLS 1.3 ServerHello key_share (1088 ML-KEM + 32 X25519)", "ietf-mlkem-05")
-L["kex_secp256r1mlkem768_client_B"] = P(1249, "byte", "SEC-06d", "VERIFIED", "65 B secp256r1 + 1184 B ML-KEM", "ietf-mlkem-05")
-L["kex_secp256r1mlkem768_server_B"] = P(1153, "byte", "SEC-06d", "VERIFIED", "1088 B ML-KEM + 65 B secp256r1", "ietf-mlkem-05")
+L["kex_x25519mlkem768_client_B"] = P(1216, "byte", "SEC-06b", "VERIFIED", "TLS 1.3 ClientHello key_share, X25519MLKEM768 (1184 ML-KEM + 32 X25519)", "rfc10024")
+L["kex_x25519mlkem768_server_B"] = P(1120, "byte", "SEC-06c", "VERIFIED", "TLS 1.3 ServerHello key_share (1088 ML-KEM + 32 X25519)", "rfc10024")
+L["kex_secp256r1mlkem768_client_B"] = P(1249, "byte", "SEC-06d", "VERIFIED", "65 B secp256r1 + 1184 B ML-KEM", "rfc10024")
+L["kex_secp256r1mlkem768_server_B"] = P(1153, "byte", "SEC-06d", "VERIFIED", "1088 B ML-KEM + 65 B secp256r1", "rfc10024")
 L["mlkem768_ek_B"] = P(1184, "byte", "PQC-01", "VERIFIED", "FIPS 203 Table 3", "fips203")
 L["mlkem768_dk_B"] = P(2400, "byte", "PQC-01", "VERIFIED", "FIPS 203 Table 3", "fips203")
 L["mlkem768_ct_B"] = P(1088, "byte", "PQC-01", "VERIFIED", "FIPS 203 Table 3", "fips203")
@@ -99,7 +102,7 @@ L["falcon512_sig_max_B"] = P(752, "byte", "PQC-03b", "VERIFIED", "liboqs 0.16.0 
 # RFC-08: QUIC probe timeout form, borrowed by the X3 session-loss detector (fetched 2026-10-17)
 L["pto_rttvar_factor"] = P(4, "ratio", "RFC-08", "VERIFIED", "RFC 9002 sec. 6.2.1: PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay", "rfc9002")
 L["pto_granularity_ms"] = P(1, "ms", "RFC-08", "VERIFIED", "RFC 9002 sec. 6.1.2: RECOMMENDED kGranularity 1 millisecond", "rfc9002")
-L["p256_uncompressed_point_B"] = P(65, "byte", "SEC-06d", "VERIFIED", "secp256r1 share size as stated in draft-ietf-tls-ecdhe-mlkem-05 §4.1 ('65 bytes for the secp256r1 part')", "ietf-mlkem-05")
+L["p256_uncompressed_point_B"] = P(65, "byte", "SEC-06d", "VERIFIED", "secp256r1 share size as stated in RFC 10024 §4.1, as in draft-ietf-tls-ecdhe-mlkem-05 ('65 bytes for the secp256r1 part')", "rfc10024")
 # RFC-07: what a transport lets a server send in its first flight (fetched 2026-10-15)
 L["quic_amplification_factor"] = P(3, "ratio", "RFC-07", "VERIFIED", "RFC 9000 sec. 8.1: servers MUST NOT send more than three times as many bytes as received before validating the client address", "rfc9000")
 L["quic_initial_min_udp_payload_B"] = P(1200, "byte", "RFC-07", "VERIFIED", "RFC 9000 sec. 8.1: UDP datagrams containing Initial packets have UDP payloads of at least 1200 bytes", "rfc9000")
@@ -240,10 +243,13 @@ L["ras_local_interval_ms"] = P(1, "ms", "MED-04a", "VERIFIED", "transfer interva
 L["ras_local_availability"] = P("99.999 999 %", "%", "MED-04a", "VERIFIED", ">99.999 999 %, MTBF > 10 years", "ts22104")
 L["ras_remote_latency_ms"] = P(20, "ms", "MED-04b", "VERIFIED", "TS 22.104 RAS remote: < 20 ms, < 400 km", "ts22104")
 L["ras_remote_distance_km"] = P(400, "km", "MED-04b", "VERIFIED", "max straight-line distance between UEs", "ts22104")
+L["ras_remote_rate_lo_bps"] = P(2e6, "bit/s", "MED-04b", "VERIFIED", "2 Mbit/s to 16 Mbit/s", "ts22104")
+L["ras_remote_rate_hi_bps"] = P(16e6, "bit/s", "MED-04b", "VERIFIED", "as above", "ts22104")
 L["rad_latency_ms"] = P(20, "ms", "MED-04c", "VERIFIED", "TS 22.104 Robotic Aided Diagnosis: < 20 ms, < 50 km", "ts22104")
 L["rad_msg_B"] = P(80, "byte", "MED-04c", "VERIFIED", "message size 80 B", "ts22104")
 L["rad_interval_ms"] = P(1, "ms", "MED-04c", "VERIFIED", "transfer interval 1 ms", "ts22104")
 L["rad_rate_lo_bps"] = P(2e6, "bit/s", "MED-04c", "VERIFIED", "2-16 Mbit/s", "ts22104")
+L["rad_rate_hi_bps"] = P(16e6, "bit/s", "MED-04c", "VERIFIED", "2 Mbit/s to 16 Mbit/s", "ts22104")
 # TR 22.826 (SECONDARY)
 L["telemetry_inhospital_rate_bps"] = P(0.5e6, "bit/s", "MED-03a", "SECONDARY", "TR 22.826 §5.4.2 cardiac telemetry inside hospital: 0.5 Mbit/s, <100 ms, <=1000 B, <=1000/km2", "tr22826")
 L["telemetry_latency_ms"] = P(100, "ms", "MED-03a", "SECONDARY", "< 100 ms", "tr22826")
@@ -337,10 +343,12 @@ L["snow5g_256_spec"] = P("TS 35.240 V18.0.0 (2024-05) / V19.0.0 (2026-03)", "-",
 L["ble_pairing_curve"] = P("P-256 ECDH (LE Secure Connections, Core 4.2)", "-", "LNK-03", "SECONDARY", "NIST SP 800-121r2", "ble-sig")
 L["wban_assoc_curve"] = P("P-256 ECDH (IEEE 802.15.6-2012 security association)", "-", "LNK-05", "SECONDARY", "Toorani 2015 / Ullah 2013", "ieee802156")
 L["ikev2_dh_group_shall"] = P("group 19 (256-bit random ECP)", "-", "SEC-08f", "VERIFIED", "TS 33.210 V19.3.0 §5.4.2", "ts33210")
+L["nist_ec_disallowed_after_year"] = P(2035, "year", "SEC-09a", "VERIFIED", "NIST IR 8547 ipd Table 4: Elliptic Curve DH and MQV, >= 128 bits of security strength, 'Disallowed after 2035'; Table 3: ECDSA, >= 128 bits, 'Disallowed after 2035'", "nistir8547")
+L["ecdsa_p256_sig_B"] = P(64, "byte", "SEC-09b", "VERIFIED", "RFC 7518 Sec. 3.4: 'The resulting 64-octet sequence is the JWS Signature value.' (ECDSA P-256 SHA-256, R and S 32 octets each; TLS carries it DER-encoded)", "rfc7518")
 L["n32_tls_kex"] = P("ECDHE or DHE", "-", "SEC-05b", "VERIFIED", "GSMA PQ.05 p.17: N32 TLS 1.2/1.3 'relies on either ECDHE or DHE'", "gsma-pq05")
 
 out = {"meta": {"built": datetime.date.today().isoformat(),
-                "access_date_of_sources": "2026-09-27",
+                "access_date_of_sources": "2026-09-27 (SEC-06f, SEC-09: 2026-10-18)",
                 "rule": "Every value copied verbatim from sources/*.md; ids refer to entries there; no arithmetic in this file.",
                 "status_tags": "VERIFIED = quoted from primary; SECONDARY = via mirror/secondary (check by hand before submission)"},
        "cites": CITES, "params": L}

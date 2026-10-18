@@ -1,7 +1,7 @@
 {
  "meta": {
   "built": "2026-10-18",
-  "access_date_of_sources": "2026-09-27",
+  "access_date_of_sources": "2026-09-27 (SEC-06f, SEC-09: 2026-10-18)",
   "rule": "Every value copied verbatim from sources/*.md; ids refer to entries there; no arithmetic in this file.",
   "status_tags": "VERIFIED = quoted from primary; SECONDARY = via mirror/secondary (check by hand before submission)"
  },
@@ -43,6 +43,9 @@
   "gsma-pq05": "GSMA PQ.05, Quantum-safe Cryptography for 4G and 5G Roaming, v1.0, 26 June 2025",
   "gsma-pq07": "GSMA PQ.07, Post Quantum Cryptography for Non-Terrestrial Networks, v1.0, 4 Feb 2026",
   "ts22104": "ETSI TS 122 104 V19.2.0 (2026-01) = 3GPP TS 22.104 V19.2.0 Rel-19, Table 5.2-1",
+  "rfc10024": "K. Kwiatkowski, P. Kampanakis, B. E. Westerbaan, D. Stebila, 'Post-Quantum Traditional (PQ/T) Hybrid Key Agreement Mechanisms for TLS 1.3', RFC 10024 (Proposed Standard), Aug 2026, doi:10.17487/RFC10024; the published form of draft-ietf-tls-ecdhe-mlkem-05, same share sizes (SEC-06f, read 2026-10-18)",
+  "nistir8547": "D. Moody, R. Perlner, A. Regenscheid, A. Robinson, D. Cooper, 'Transition to Post-Quantum Cryptography Standards', NIST IR 8547 initial public draft, 12 Nov 2024; no final version listed on csrc.nist.gov on 2026-10-18 (SEC-09a)",
+  "rfc7518": "M. Jones, 'JSON Web Algorithms (JWA)', RFC 7518, May 2015, Sec. 3.4 (ECDSA P-256 SHA-256 signature as R || S) (SEC-09b, read 2026-10-18)",
   "tr22826": "3GPP TR 22.826 V17.2.0 (Rel-17), Study on communication services for critical medical applications -- via tech-invite mirror (SECONDARY)",
   "ts22261": "3GPP TS 22.261 V19.14.0 (ETSI TS 122 261, 2026-07) clause 3.1; Table 7.11-1 via iTecSpec Rel-20 mirror",
   "itu-tactile-2014": "ITU-T Technology Watch Report, 'The Tactile Internet', Aug 2014",
@@ -72,7 +75,7 @@
    "id": "SEC-06b",
    "status": "VERIFIED",
    "condition": "TLS 1.3 ClientHello key_share, X25519MLKEM768 (1184 ML-KEM + 32 X25519)",
-   "cite": "ietf-mlkem-05"
+   "cite": "rfc10024"
   },
   "kex_x25519mlkem768_server_B": {
    "value": 1120,
@@ -80,7 +83,7 @@
    "id": "SEC-06c",
    "status": "VERIFIED",
    "condition": "TLS 1.3 ServerHello key_share (1088 ML-KEM + 32 X25519)",
-   "cite": "ietf-mlkem-05"
+   "cite": "rfc10024"
   },
   "kex_secp256r1mlkem768_client_B": {
    "value": 1249,
@@ -88,7 +91,7 @@
    "id": "SEC-06d",
    "status": "VERIFIED",
    "condition": "65 B secp256r1 + 1184 B ML-KEM",
-   "cite": "ietf-mlkem-05"
+   "cite": "rfc10024"
   },
   "kex_secp256r1mlkem768_server_B": {
    "value": 1153,
@@ -96,7 +99,7 @@
    "id": "SEC-06d",
    "status": "VERIFIED",
    "condition": "1088 B ML-KEM + 65 B secp256r1",
-   "cite": "ietf-mlkem-05"
+   "cite": "rfc10024"
   },
   "mlkem768_ek_B": {
    "value": 1184,
@@ -223,8 +226,8 @@
    "unit": "byte",
    "id": "SEC-06d",
    "status": "VERIFIED",
-   "condition": "secp256r1 share size as stated in draft-ietf-tls-ecdhe-mlkem-05 \u00a74.1 ('65 bytes for the secp256r1 part')",
-   "cite": "ietf-mlkem-05"
+   "condition": "secp256r1 share size as stated in RFC 10024 \u00a74.1, as in draft-ietf-tls-ecdhe-mlkem-05 ('65 bytes for the secp256r1 part')",
+   "cite": "rfc10024"
   },
   "quic_amplification_factor": {
    "value": 3,
@@ -1226,6 +1229,22 @@
    "condition": "max straight-line distance between UEs",
    "cite": "ts22104"
   },
+  "ras_remote_rate_lo_bps": {
+   "value": 2000000.0,
+   "unit": "bit/s",
+   "id": "MED-04b",
+   "status": "VERIFIED",
+   "condition": "2 Mbit/s to 16 Mbit/s",
+   "cite": "ts22104"
+  },
+  "ras_remote_rate_hi_bps": {
+   "value": 16000000.0,
+   "unit": "bit/s",
+   "id": "MED-04b",
+   "status": "VERIFIED",
+   "condition": "as above",
+   "cite": "ts22104"
+  },
   "rad_latency_ms": {
    "value": 20,
    "unit": "ms",
@@ -1256,6 +1275,14 @@
    "id": "MED-04c",
    "status": "VERIFIED",
    "condition": "2-16 Mbit/s",
+   "cite": "ts22104"
+  },
+  "rad_rate_hi_bps": {
+   "value": 16000000.0,
+   "unit": "bit/s",
+   "id": "MED-04c",
+   "status": "VERIFIED",
+   "condition": "2 Mbit/s to 16 Mbit/s",
    "cite": "ts22104"
   },
   "telemetry_inhospital_rate_bps": {
@@ -1937,6 +1964,22 @@
    "status": "VERIFIED",
    "condition": "TS 33.210 V19.3.0 \u00a75.4.2",
    "cite": "ts33210"
+  },
+  "nist_ec_disallowed_after_year": {
+   "value": 2035,
+   "unit": "year",
+   "id": "SEC-09a",
+   "status": "VERIFIED",
+   "condition": "NIST IR 8547 ipd Table 4: Elliptic Curve DH and MQV, >= 128 bits of security strength, 'Disallowed after 2035'; Table 3: ECDSA, >= 128 bits, 'Disallowed after 2035'",
+   "cite": "nistir8547"
+  },
+  "ecdsa_p256_sig_B": {
+   "value": 64,
+   "unit": "byte",
+   "id": "SEC-09b",
+   "status": "VERIFIED",
+   "condition": "RFC 7518 Sec. 3.4: 'The resulting 64-octet sequence is the JWS Signature value.' (ECDSA P-256 SHA-256, R and S 32 octets each; TLS carries it DER-encoded)",
+   "cite": "rfc7518"
   },
   "n32_tls_kex": {
    "value": "ECDHE or DHE",

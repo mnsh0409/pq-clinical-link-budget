@@ -1,0 +1,22 @@
+{
+ "file": "data/sigcomm22-5g-mobility/data/figure9-ho_exec_duration/HO-Duration_Combined.csv",
+ "rows": 43856,
+ "Type": {
+  "MCG": 2266,
+  "PCell": 21147,
+  "SCG Add.": 8983,
+  "SCG Mod.": 4977,
+  "SCG Rel.": 6483
+ },
+ "Tech": {
+  "LTE": 7167,
+  "NSA": 36228,
+  "SA": 461
+ },
+ "Operator": {
+  "ATT": 15068,
+  "TMB": 16786,
+  "VZW": 12002
+ },
+ "daps_or_conditional_category": false
+}

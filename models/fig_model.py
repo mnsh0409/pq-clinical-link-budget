@@ -21,7 +21,7 @@ REPEAT = "--repeat" in sys.argv
 OUT = sys.argv[sys.argv.index("--repeat") + 1] if REPEAT else os.path.join(ROOT, "paper", "figs"); os.makedirs(OUT, exist_ok=True)
 S = json.load(open(os.path.join(ROOT, "results", "testbed_summary.json")))
 XM = S["x3_model"]
-BLUE, ORANGE, AQUA = "#2a78d6", "#eb6834", "#1baf7a"
+BLUE, ORANGE, AQUA = "#1b4f9c", "#f0a04b", "#1baf7a"   # v1.9 proofreading: 10 ms dark, 18 ms light (lightness 34 vs 72), so the RTTs stay apart in grayscale
 INK, MUTED, GRID = "#0b0b0b", "#52514e", "#d9d8d3"
 plt.rcParams.update({"font.size": 7.5, "axes.labelsize": 7.5, "legend.fontsize": 6.2, "xtick.labelsize": 6.5, "ytick.labelsize": 6.5,
                      "axes.edgecolor": MUTED, "axes.linewidth": 0.6, "xtick.color": MUTED, "ytick.color": MUTED, "axes.labelcolor": INK,
@@ -33,7 +33,7 @@ PROF = {"5G-hosp": (10.0, 5.0, BLUE, "10 ms"), "5G-tele": (18.0, 9.0, ORANGE, "1
 fig, (a, b) = plt.subplots(1, 2, figsize=(3.45, 1.22), gridspec_kw={"width_ratios": [1.25, 1]})
 # (a) boundary: expected late records against H for no retry (solid) and one retry (dashed); the measured H of C0,
 # C2 + int. with the default window and with IW 20 marked as vertical lines in the profile's color
-Hs = np.arange(20, 101, 0.5)
+Hs = np.arange(10, 101, 0.5)     # v1.9 proofreading: from 10 ms, so the 11.0 ms threshold (18 ms, k = 1) is on the axis
 for prof, (rtt, owd, col, lab) in PROF.items():
     for n, ls in ((0, "-"), (1, "--")):
         a.plot(Hs, [M.late_by_retries(h, rtt, owd, n) for h in Hs], color=col, ls=ls, lw=1.2, label=f"{lab}, $k={n}$")
@@ -43,7 +43,7 @@ for prof, (rtt, owd, col, lab) in PROF.items():
         a.axvline(cells[key]["H_ms"], ymax=(ymk - 0.15 + 0.1) / 5.8, color=col, lw=0.6, alpha=0.55, zorder=1)
         a.plot(cells[key]["H_ms"], ymk, marker=mk, ms=3.0, mfc=col, mec=col, ls="none", zorder=6, clip_on=False)
 a.set_xlabel("Connect to first record, $H$ (ms)"); a.set_ylabel("Late records")
-a.set_xlim(20, 100); a.set_ylim(-0.1, 5.7); a.set_yticks([0, 1, 2, 3, 4, 5])
+a.set_xlim(10, 100); a.set_ylim(-0.1, 5.7); a.set_yticks([0, 1, 2, 3, 4, 5])
 style(a)
 a.text(0.97, 0.04, "(a)", transform=a.transAxes, ha="right", va="bottom", fontsize=7.5)
 # (b) model against measurement per cell
@@ -70,17 +70,20 @@ if REPEAT and XM.get("repeat"):          # v1.9c: the controlled 18 ms repeat ov
         bar(v, INK, 4, allw=True)
         b.plot(v["late_model_all_windows"], v["late_obs_all_windows"], marker=mk, ms=3.6, mfc=ORANGE, mec=INK, mew=0.8, ls="none", zorder=7)
 b.set_xlim(lim); b.set_ylim(lim); b.set_xticks([0, 1, 2, 3, 4]); b.set_yticks([0, 1, 2, 3, 4])
-b.set_xlabel("Model"); b.set_ylabel("Measured")
+b.set_xlabel("Model (late records)"); b.set_ylabel("Measured")
 style(b)
 b.text(0.97, 0.04, "(b)", transform=b.transAxes, ha="right", va="bottom", fontsize=7.5)
 h2 = [Line2D([], [], color=MUTED, marker="o", ls="none", ms=3.4, mfc="white", mew=0.9, label="development"),
       Line2D([], [], color=MUTED, marker="o", ls="none", ms=3.4, mfc=MUTED, mew=0.9, label="C0"),
       Line2D([], [], color=MUTED, marker="s", ls="none", ms=3.4, mfc=MUTED, mew=0.9, label="C2 + int."),
       Line2D([], [], color=MUTED, marker="D", ls="none", ms=3.4, mfc=MUTED, mew=0.9, label="C2 + int., IW 20")]
-# (the repeat's markers are keyed in the caption: a fifth legend entry would cover points)
-_lg = a.legend(loc="upper left", bbox_to_anchor=(0.0, 0.875), ncol=2, frameon=True, facecolor="white", edgecolor="none", framealpha=1.0, handlelength=1.3, handletextpad=0.3, columnspacing=0.6, labelspacing=0.1, borderaxespad=0.15, borderpad=0.15, fontsize=5.0)
+if REPEAT and XM.get("repeat"):   # v1.9 proofreading: label the repeat's dark-edged markers directly (a legend row would reach the points)
+    _r0 = XM["repeat"]["cells"]["5G-tele|detect|C0|ch2"]
+    b.annotate("repeat", xy=(_r0["late_model_all_windows"] + 0.07, _r0["late_obs_all_windows"] - 0.1), xytext=(2.3, 0.85), fontsize=5.6, color=INK,
+               ha="left", va="center", arrowprops=dict(arrowstyle="-", lw=0.5, color=INK, shrinkA=0.5, shrinkB=0.5), zorder=8)
+_lg = a.legend(loc="upper left", bbox_to_anchor=(0.0, 0.875), ncol=1, frameon=True, facecolor="white", edgecolor="none", framealpha=1.0, handlelength=1.3, handletextpad=0.3, columnspacing=0.6, labelspacing=0.1, borderaxespad=0.15, borderpad=0.15, fontsize=5.5)   # one column: the box no longer covers the 18 ms, k = 1 curve
 _lg.set_zorder(10)   # the box hides the H marker lines behind it
-b.legend(handles=h2, loc="upper left", bbox_to_anchor=(0.02, 1.02), frameon=False, handlelength=1.0, handletextpad=0.3, labelspacing=0.1, borderaxespad=0.2, fontsize=5.6)
+b.legend(handles=h2, loc="upper left", bbox_to_anchor=(0.02, 1.02), frameon=False, handlelength=1.0, handletextpad=0.3, labelspacing=0.1, borderaxespad=0.2, fontsize=5.8)
 fig.tight_layout(pad=0.3, w_pad=0.8, rect=(0, 0, 1, 1))
 fig.savefig(os.path.join(OUT, "fig3_model.pdf"), metadata={"CreationDate": None}); plt.close(fig)   # no date: reruns are byte-identical
 print("fig3_model.pdf written; development cells:", len(XM["development"]["cells"]), "held-out cells:", len(XM.get("heldout", {}).get("cells", {})) if XM.get("heldout") else 0)
